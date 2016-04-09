@@ -25,6 +25,8 @@ public abstract class Pantalla implements Screen{
 
     protected Main game; // Declaración de variable para instanciar la clase principal del juego
 
+
+    
     /**
      * Constructor
      * Instanciar la variable game
