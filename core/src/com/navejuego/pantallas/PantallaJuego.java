@@ -69,7 +69,7 @@ public class PantallaJuego extends Pantalla {
 
         //para el background
         batch = new SpriteBatch();
-        background = GestorAssets.getInstance().getTexture("background_3.png");
+        background = GestorAssets.getInstance().getTexture("background_4.png");
 
         Texture naveTextura = GestorAssets.getInstance().getTexture("nave.png");
 
