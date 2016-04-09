@@ -12,7 +12,7 @@ import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.navejuego.scene2dObsoleto.SingletonAssetManager;
+import com.navejuego.GestorAssets;
 
 import java.util.Random;
 
@@ -52,7 +52,7 @@ public class EnemigoEntity extends GameObjectEntity {
     public EnemigoEntity(Stage stage){
         // Debe conocer su stage, su textura y su sprite
         this.stage = stage;
-        this.texture = SingletonAssetManager.getManager().get("alien.png");
+        this.texture = GestorAssets.getInstance().getTexture("alien.png");
         this.sprite = new Sprite(this.texture);
 
         //Valores iniciales del Actor

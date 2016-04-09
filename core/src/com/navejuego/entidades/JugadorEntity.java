@@ -11,7 +11,7 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.utils.DragListener;
-import com.navejuego.scene2dObsoleto.SingletonAssetManager;
+import com.navejuego.GestorAssets;
 
 import static com.navejuego.Constantes.*;
 
@@ -100,8 +100,8 @@ public class JugadorEntity extends GameObjectEntity {
     protected void generarDisparo(float delta) {
         tiempoSiguienteDisparo += delta;
         if (tiempoSiguienteDisparo > cadenciaDisparo) {
-            Texture bulletTextura = SingletonAssetManager.getManager().get("bullet.png");
-            this.stage.addActor(new BulletEntity(this.stage, bulletTextura, new Vector2(getX() + (getWidth() / 2), getY() + getHeight())));
+            Texture bulletTextura = GestorAssets.getInstance().getTexture("bullet.png");
+            this.stage.addActor(new BulletNave(this.stage, bulletTextura, new Vector2(getX() + (getWidth() / 2), getY() + getHeight())));
             tiempoSiguienteDisparo = 0;
         }
     }

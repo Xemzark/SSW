@@ -2,7 +2,7 @@ package com.navejuego;
 
 import com.badlogic.gdx.Game;
 import com.navejuego.pantallas.PantallaJuego;
-import com.navejuego.scene2dObsoleto.SingletonAssetManager;
+import com.navejuego.GestorAssets;
 
 /**
  * Clase Main
@@ -14,7 +14,7 @@ public class Main extends Game {
 	 */
 	@Override
 	public void create() {
-		SingletonAssetManager.getInstance(); //Inicializo el AssetManager
+		GestorAssets.getInstance(); //Inicializo el AssetManager
 
 		setScreen(new PantallaJuego(this));
 	}

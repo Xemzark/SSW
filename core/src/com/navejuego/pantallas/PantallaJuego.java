@@ -7,10 +7,11 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.FitViewport;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.navejuego.Main;
 import com.navejuego.entidades.EnemigoEntity;
 import com.navejuego.entidades.JugadorEntity;
-import com.navejuego.scene2dObsoleto.SingletonAssetManager;
+import com.navejuego.GestorAssets;
 
 import java.util.Random;
 
@@ -28,6 +29,8 @@ import java.util.Random;
 public class PantallaJuego extends Pantalla {
 
     private Stage stage; // Variable Stage, Scene2D
+    private SpriteBatch batch;
+    private Texture background;
 
     // Variables de Actores
     private JugadorEntity jugador;
@@ -63,7 +66,14 @@ public class PantallaJuego extends Pantalla {
          * Se cargan las texturas e inicializan los actores correspondientes.
          * Los Actores reciben la correspondiente textura y el vector de inicialización
          */
-        Texture naveTextura = SingletonAssetManager.getManager().get("nave.png");
+
+        //para el background
+        batch = new SpriteBatch();
+        background = GestorAssets.getInstance().getTexture("background_7.png");
+
+        Texture naveTextura = GestorAssets.getInstance().getTexture("nave.png");
+
+
         jugador = new JugadorEntity(stage, naveTextura, new Vector2(Gdx.graphics.getWidth()/2, Gdx.graphics.getHeight()/2));
 
         /*
@@ -98,6 +108,11 @@ public class PantallaJuego extends Pantalla {
         Gdx.gl.glClearColor(0.4f, 0.5f, 0.8f, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
+        batch.begin();
+
+        batch.draw(background,0,0,Gdx.graphics.getWidth(),Gdx.graphics.getHeight());
+
+        batch.end();
         // Generar enemigos antes de actualizar
         generarEnemigos();
 
