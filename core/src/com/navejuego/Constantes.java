@@ -6,6 +6,6 @@ package com.navejuego;
 public class Constantes {
     //Constantes para libGDX
 
-    public static final float PIXELS_METRE = 90f;
+    public static final float PIXELS_METRE = 90.0f;
 
 }
