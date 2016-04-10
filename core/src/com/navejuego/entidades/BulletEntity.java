@@ -1,19 +1,13 @@
 package com.navejuego.entidades;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.physics.box2d.Body;
-import com.badlogic.gdx.physics.box2d.BodyDef;
-import com.badlogic.gdx.physics.box2d.Fixture;
-import com.badlogic.gdx.physics.box2d.PolygonShape;
-import com.badlogic.gdx.physics.box2d.World;
-import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.Touchable;
-import com.badlogic.gdx.scenes.scene2d.utils.DragListener;
+
 
 import static com.navejuego.Constantes.PIXELS_METRE;
 
@@ -34,7 +28,8 @@ Are you using box2d? Then create the bullet body, fixture, set its position and 
  */
 public abstract class BulletEntity extends GameObjectEntity {
 
-    protected float velocidad; //En pixeles/segundo
+    protected float velocidad = 900.0f; //En pixeles/segundo
+    public Rectangle bulletHitbox;
     protected int damage; //Daño que aplica al golpear
 
     /**
@@ -46,15 +41,18 @@ public abstract class BulletEntity extends GameObjectEntity {
     public BulletEntity(Stage stage, Texture texture, Vector2 posicion){
         this.stage = stage;
         this.texture = texture;
+        this.bulletHitbox = new Rectangle();
         this.sprite = new Sprite(this.texture);
 
         float x = posicion.x - (5);
         float y = posicion.y - 10;
 
         //Valores iniciales del Actor
-        setBounds(sprite.getX(),sprite.getY(),sprite.getWidth(),sprite.getHeight());
+        setBounds(sprite.getX(), sprite.getY(), sprite.getWidth(), sprite.getHeight());
         setPosition(x, y);
         setSize(10, 20);
+        this.bulletHitbox.setPosition(x, y);
+        this.bulletHitbox.setSize(this.sprite.getWidth(), this.sprite.getHeight());
         //Fin de valores iniciales del Actor
     }
 
@@ -78,7 +76,8 @@ public abstract class BulletEntity extends GameObjectEntity {
      */
     @Override
     public void destruirse() {
-
+        this.remove();
+        Gdx.app.log("Bullet killed!", "");
     }
 
     /**
@@ -91,4 +90,8 @@ public abstract class BulletEntity extends GameObjectEntity {
      */
     protected abstract void movimiento(float delta);
 
+    @Override
+    public Rectangle getHitbox(){
+        return this.bulletHitbox;
+    }
 }

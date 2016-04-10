@@ -4,8 +4,15 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.math.Circle;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.physics.box2d.Body;
+import com.badlogic.gdx.physics.box2d.BodyDef;
+import com.badlogic.gdx.physics.box2d.Box2D;
+import com.badlogic.gdx.physics.box2d.CircleShape;
+import com.badlogic.gdx.physics.box2d.FixtureDef;
+import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -29,9 +36,8 @@ public class JugadorEntity extends GameObjectEntity {
     protected float cadenciaDisparo;
 
     protected float tiempoSiguienteDisparo;
-
     private boolean invulnerabilidad;
-
+    private int contador = 0;
     /**
      * Constructor
      * Esta clase recibe una textura a asociarle y un vector de posición.
@@ -44,11 +50,11 @@ public class JugadorEntity extends GameObjectEntity {
         this.sprite = new Sprite(this.texture);
 
         this.tiempoSiguienteDisparo = 0;
-        this.cadenciaDisparo = 0.5f;
+        this.cadenciaDisparo = 0.05f;
 
         //Valores iniciales del Actor
         setBounds(sprite.getX(), sprite.getY(), sprite.getWidth(), sprite.getHeight());
-        setPosition(posicion.x - getWidth()/2, posicion.y - getHeight()/2);
+        setPosition(posicion.x - getWidth() / 2, posicion.y - getHeight() / 2);
         setSize(PIXELS_METRE, PIXELS_METRE);
         //Fin de valores iniciales del Actor
 
@@ -71,7 +77,6 @@ public class JugadorEntity extends GameObjectEntity {
                 float dx = x - getWidth() * 0.5f;
                 float dy = y - getHeight() * 0.5f;
                 //recalcular para que la posición sea relativa al objeto y no a la pantalla
-
                 setPosition(getX() + dx, getY() + dy);
             }
         });
@@ -101,7 +106,9 @@ public class JugadorEntity extends GameObjectEntity {
         tiempoSiguienteDisparo += delta;
         if (tiempoSiguienteDisparo > cadenciaDisparo) {
             Texture bulletTextura = GestorAssets.getInstance().getTexture("bullet.png");
-            this.stage.addActor(new BulletNave(this.stage, bulletTextura, new Vector2(getX() + (getWidth() / 2), getY() + getHeight())));
+            BulletNave bullet = new BulletNave(this.stage, bulletTextura, new Vector2(getX() + (getWidth() / 2), getY() + getHeight()));
+            bullet.setName("Bala " + contador);
+            this.stage.addActor(bullet);
             tiempoSiguienteDisparo = 0;
         }
     }

@@ -1,16 +1,9 @@
 package com.navejuego.entidades;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.physics.box2d.Body;
-import com.badlogic.gdx.physics.box2d.BodyDef;
-import com.badlogic.gdx.physics.box2d.Fixture;
-import com.badlogic.gdx.physics.box2d.PolygonShape;
-import com.badlogic.gdx.physics.box2d.World;
-import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.navejuego.GestorAssets;
 
@@ -32,7 +25,7 @@ public class EnemigoEntity extends GameObjectEntity {
     protected float cadenciaDisparo;
 
     protected float tiempoSiguienteDisparo;
-
+    private boolean vivo;
     // Variable para generar su posición aleatoria
     Random pos = new Random();
 
@@ -40,29 +33,37 @@ public class EnemigoEntity extends GameObjectEntity {
     private float posX;
     private float posY;
 
+    private Rectangle enemyHitbox;
     private PowerUpEntity powerUp;
     private int probabilidadPowerUp; //Entre 0% y 100%
 
     /**
      * Constructor
      * Esta clase recibe una textura a asociarle y un vector de posición.
-     * @param texture sprite a asociarle, gestionado por el assetManager
-     * @param posicion vector de coordenadas x, y para inicializar la posición
+     * texture sprite a asociarle, gestionado por el assetManager
+     * posicion vector de coordenadas x, y para inicializar la posición
      */
     public EnemigoEntity(Stage stage){
         // Debe conocer su stage, su textura y su sprite
+
         this.stage = stage;
         this.texture = GestorAssets.getInstance().getTexture("addShield.png");
         this.sprite = new Sprite(this.texture);
+        this.enemyHitbox = new Rectangle();
+        this.vivo = true;
 
         //Valores iniciales del Actor
         setBounds(sprite.getX(), sprite.getY(), sprite.getWidth(), sprite.getHeight());
-        setSize(Gdx.graphics.getWidth()/8, Gdx.graphics.getHeight()/8);
+        //setSize(Gdx.graphics.getWidth()/8, Gdx.graphics.getHeight()/8);
+        setSize(PIXELS_METRE, PIXELS_METRE);
+
+        this.enemyHitbox.setSize(this.sprite.getWidth(), this.sprite.getHeight());
 
         // Valores aleatorios
         this.posX = pos.nextInt(Gdx.graphics.getWidth()) - getWidth(); // Posición X aleatoria
         this.posY = Gdx.graphics.getHeight() + getHeight(); // Posición Y por encima de la pantalla
         setPosition(posX, posY);
+        this.enemyHitbox.setPosition(posX, posY);
         //Fin valores iniciales del Actor
     }
 
@@ -97,11 +98,16 @@ public class EnemigoEntity extends GameObjectEntity {
 
     }
 
+    public String getName(){
+        return "Nave enemiga";
+    }
     /**
      * TODO: Desaparecer/eliminar enemigo.
      */
     public void destruirse() {
         generarPowerUp();
+        this.remove();
+        Gdx.app.log("Enemy killed!", "");
     }
 
     /**
@@ -116,6 +122,11 @@ public class EnemigoEntity extends GameObjectEntity {
      */
     private void generarPowerUp() {
 
+    }
+
+    @Override
+    public Rectangle getHitbox(){
+        return this.enemyHitbox;
     }
 }
 
