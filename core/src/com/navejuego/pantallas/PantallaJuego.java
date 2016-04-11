@@ -39,13 +39,9 @@ public class PantallaJuego extends Pantalla {
     boolean enemigoSi; // Variable para generar los enemigos
     float entreEnemigoAcumulable; // Variable para generar los enemigos
 
-    /**
-     * Constructor
-     *
-     * @param game
-     */
-    public PantallaJuego(Main game){
-        super(game);
+
+    public PantallaJuego(){
+
 
         // Se inicializa el stage con un ViewPort para adaptar la pantalla a los márgenes del dispositivo
         this.stage = new Stage(new FitViewport(Gdx.graphics.getWidth(), Gdx.graphics.getHeight())); //fitviewport adapta la pantalla. tamaño y lo otro lo pone a negro
