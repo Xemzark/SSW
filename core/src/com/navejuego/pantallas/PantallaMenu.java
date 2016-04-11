@@ -49,7 +49,15 @@ public class PantallaMenu extends Pantalla {
         Salir= new TextButton("Salir", skin);
 
         jugar.setSize(Gdx.graphics.getWidth() / 4, Gdx.graphics.getHeight() / 4);
-        jugar.setPosition(Gdx.graphics.getWidth() / 3, Gdx.graphics.getHeight() / 4);
+        jugar.setPosition(Gdx.graphics.getWidth() / 4 - Gdx.graphics.getWidth() / 8, 2.5f* Gdx.graphics.getHeight() / 4 - Gdx.graphics.getHeight() / 8);
+        jugar.getSkin().getFont("default-font").getData().setScale(2,2); //cambia el tamaño de la fuente del boton
+        //Ajustes.setSize(Gdx.graphics.getWidth() / 4, Gdx.graphics.getHeight() / 4);
+        //Ajustes.setPosition(Gdx.graphics.getWidth() / 4 + 100 , Gdx.graphics.getHeight() / 3);
+
+
+
+
+
        // jugar.addListener()
 
         jugar.addListener(new ChangeListener() {
