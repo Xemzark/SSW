@@ -8,11 +8,13 @@ import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeType;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 
 
@@ -50,6 +52,14 @@ public class PantallaMenu extends Pantalla {
         jugar.setPosition(Gdx.graphics.getWidth() / 3, Gdx.graphics.getHeight() / 4);
        // jugar.addListener()
 
+        jugar.addListener(new ChangeListener() {
+            public void changed(ChangeListener.ChangeEvent event, Actor actor) {
+                //System.out.println("Clicked! Is checked: " + button.isChecked());
+                jugar.setText("Starting new game");
+                ScreenManager.getInstance().showScreen(ScreenEnum.GAME);
+
+            }
+        });
 
 
         menuStage.addActor(Ajustes);
