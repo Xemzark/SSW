@@ -30,7 +30,7 @@ public class PantallaMenu extends Pantalla {
 
     private Skin skin;
 
-    private TextButton jugar;
+    private TextButton jugar, Ajustes, Ranking, Garaje, Salir;
 
 
 
@@ -41,14 +41,21 @@ public class PantallaMenu extends Pantalla {
         skin = new Skin(Gdx.files.internal("skin/uiskin.json"));
 
         jugar= new TextButton("Jugar", skin);
+        Ajustes= new TextButton("Ajustes", skin);
+        Ranking = new TextButton("Ranking", skin);
+        Garaje = new TextButton("Garaje", skin);
+        Salir= new TextButton("Salir", skin);
 
-
-        jugar.setSize(Gdx.graphics.getWidth()/2,Gdx.graphics.getHeight()/2);
+        jugar.setSize(Gdx.graphics.getWidth() / 4, Gdx.graphics.getHeight() / 4);
         jugar.setPosition(Gdx.graphics.getWidth() / 3, Gdx.graphics.getHeight() / 4);
        // jugar.addListener()
 
 
 
+        menuStage.addActor(Ajustes);
+        menuStage.addActor(Salir);
+        menuStage.addActor(Garaje);
+        menuStage.addActor(Ranking);
         menuStage.addActor(jugar);
 
 
