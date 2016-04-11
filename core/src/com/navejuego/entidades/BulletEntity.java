@@ -25,8 +25,9 @@ Are you using box2d? Then create the bullet body, fixture, set its position and 
  */
 public abstract class BulletEntity extends GameObjectEntity {
 
-    protected float velocidad = 50.0f; //En pixeles/segundo
-    protected int damage; //Daño que aplica al golpear
+    protected float velocidad = 200.0f; //En pixeles/segundo
+    protected int damage = 1; //Daño que aplica al golpear
+    protected boolean ignoraEscudo = false;
 
     /**
      * Constructor
@@ -89,5 +90,13 @@ public abstract class BulletEntity extends GameObjectEntity {
     @Override
     public Rectangle getHitbox(){
         return this.hitbox;
+    }
+
+    public void setIgnoraEscudo(boolean ignorar) {
+        ignoraEscudo = ignorar;
+    }
+
+    public void setDamage(int damage) {
+        this.damage = damage;
     }
 }

@@ -12,6 +12,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 public class BulletNave extends BulletEntity {
     public BulletNave(Stage stage, Texture texture, Vector2 posicion) {
         super(stage, texture, posicion);
+
     }
 
     /**
@@ -25,9 +26,9 @@ public class BulletNave extends BulletEntity {
             if (b instanceof EnemigoEntity){
                 EnemigoEntity enemigo = (EnemigoEntity) b;
                 if (enemigo.getHitbox().overlaps(this.getHitbox())){
-                    enemigo.destruirse();
+                    enemigo.recibirDmg(damage, ignoraEscudo);
+                    Gdx.app.log("Hit a nave enemiga", "");
                     this.destruirse();
-                    Gdx.app.log("destruir bala, nave enemiga", "");
                 }
             }
         }

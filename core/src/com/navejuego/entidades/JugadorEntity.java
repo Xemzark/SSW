@@ -48,6 +48,10 @@ public class JugadorEntity extends GameObjectEntity {
         this.stage = stage; //La nave jugador conoce el stage al que pertenece para añadirle bullets
         this.texture = texture;
         this.sprite = new Sprite(this.texture);
+        this.hitbox = new Rectangle();
+
+        this.vida = 3;
+        this.escudo = 0;
 
         this.tiempoSiguienteDisparo = 0;
         this.cadenciaDisparo = 0.5f;
@@ -55,7 +59,9 @@ public class JugadorEntity extends GameObjectEntity {
         //Valores iniciales del Actor
         setBounds(sprite.getX(), sprite.getY(), sprite.getWidth(), sprite.getHeight());
         setPosition(posicion.x - getWidth() / 2, posicion.y - getHeight() / 2);
+        hitbox.setPosition(getX(), getY());
         setSize(PIXELS_METRE, PIXELS_METRE);
+        hitbox.setSize(getWidth(), getHeight());
         //Fin de valores iniciales del Actor
 
         //Inicio de reacción al drag
@@ -77,7 +83,25 @@ public class JugadorEntity extends GameObjectEntity {
                 float dx = x - getWidth() * 0.5f;
                 float dy = y - getHeight() * 0.5f;
                 //recalcular para que la posición sea relativa al objeto y no a la pantalla
-                setPosition(getX() + dx, getY() + dy);
+                float newX = getX() + dx;
+                float newY = getY() + dy;
+                //si se sale da pantalla, ajustar
+                if (newX < 0) {
+                    newX = 0;
+                } else if ((newX + getWidth()) > Gdx.graphics.getWidth()) {
+                    newX = Gdx.graphics.getWidth() - getWidth();
+                }
+                if (newY < 0) {
+                    newY = 0;
+                } else if ((newX + getHeight()) > Gdx.graphics.getHeight()) {
+                    //TODO: Ajustar por barra de acción
+                    newY = Gdx.graphics.getHeight() - getHeight();
+                }
+
+                setPosition(newX, newY);
+                hitbox.setPosition(getX(), getY());
+
+
             }
         });
         //Fin de reacción al drag
@@ -126,14 +150,30 @@ public class JugadorEntity extends GameObjectEntity {
         }
     }
 
-    /**
-     * TODO: Aplica daño al jugador si este no es invulnerable.
+    /*
      * Primero daña escudos. Si están vacíos, daña la nave.
-     * @param dmg
-     * @param ignoraEscudo
+     * No recibe daño si es invulnerable.
+     * @param dmg Daño que aplica.
+     * @param ignoraEscudo Si es cierto, ignora escudo.
      */
-    protected void recibirDmg(int dmg, boolean ignoraEscudo) {
+    public void recibirDmg(int dmg, boolean ignoraEscudo) {
+        if (invulnerabilidad)
+            return;
 
+        if (ignoraEscudo || escudo <= 0) {
+            vida -= dmg;
+        } else {
+            int temp = dmg;
+            dmg -= escudo;
+            escudo -= temp;
+            if (escudo < 0)
+                escudo = 0;
+            if (dmg > 0)
+                vida -= dmg;
+        }
+
+        if (vida <= 0)
+            destruirse();
     }
 
     /**
@@ -156,7 +196,9 @@ public class JugadorEntity extends GameObjectEntity {
      * TODO: Activa secuencia de destrucción de la nave.
      */
     public void destruirse() {
-
+        setPosition(-100, -100);
+        hitbox.setPosition(-100,-100);
+        remove();
     }
 
     /**

@@ -33,7 +33,7 @@ public class PantallaJuego extends Pantalla {
     private Texture background;
 
     // Variables de Actores
-    private JugadorEntity jugador;
+    public static JugadorEntity jugador = null;
 
     private float acumulableTiempo; // Variable para generar los enemigos
     boolean enemigoSi; // Variable para generar los enemigos
@@ -70,7 +70,6 @@ public class PantallaJuego extends Pantalla {
         background = GestorAssets.getInstance().getTexture("background_4.png");
 
         Texture naveTextura = GestorAssets.getInstance().getTexture("nave.png");
-
 
         jugador = new JugadorEntity(stage, naveTextura, new Vector2(Gdx.graphics.getWidth()/2, Gdx.graphics.getHeight()/2));
 
