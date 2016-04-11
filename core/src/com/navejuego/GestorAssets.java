@@ -37,6 +37,10 @@ public class GestorAssets {
         manager.load("background_5.png", Texture.class);
         manager.load("background_6.png", Texture.class);
         manager.load("background_7.png", Texture.class);
+        manager.load("vidabg.png", Texture.class);
+        manager.load("vidafg.png", Texture.class);
+        manager.load("vidabgv2.png", Texture.class);
+        manager.load("vidafgv2.png", Texture.class);
         manager.load("2xShield.png", Texture.class);
         manager.load("addShield.png", Texture.class);
         manager.finishLoading();

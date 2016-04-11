@@ -38,6 +38,8 @@ public class JugadorEntity extends GameObjectEntity {
     protected float tiempoSiguienteDisparo;
     private boolean invulnerabilidad;
     private int contador = 0;
+    private BarraVida barravida;
+    private int maxVida = 100;
     /**
      * Constructor
      * Esta clase recibe una textura a asociarle y un vector de posición.
@@ -50,8 +52,11 @@ public class JugadorEntity extends GameObjectEntity {
         this.sprite = new Sprite(this.texture);
         this.hitbox = new Rectangle();
 
-        this.vida = 3;
+        this.vida = 100;
+
         this.escudo = 0;
+
+        this.barravida = new BarraVida(this);
 
         this.tiempoSiguienteDisparo = 0;
         this.cadenciaDisparo = 0.5f;
@@ -116,9 +121,11 @@ public class JugadorEntity extends GameObjectEntity {
         eliminarDisparo();
     }
 
+
     @Override
     public void draw(Batch batch, float parentAlpha) {
         batch.draw(texture, getX(), getY(), getWidth(), getHeight());
+        barravida.render(batch);
     }
 
 
@@ -174,6 +181,8 @@ public class JugadorEntity extends GameObjectEntity {
 
         if (vida <= 0)
             destruirse();
+
+        barravida.update();
     }
 
     /**
@@ -213,6 +222,10 @@ public class JugadorEntity extends GameObjectEntity {
      */
     public boolean activarAtaqueEspecial() {
         return false;
+    }
+
+    public int getMaxVida(){
+        return this.maxVida;
     }
 
 }
