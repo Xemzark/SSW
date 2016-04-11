@@ -50,7 +50,7 @@ public class JugadorEntity extends GameObjectEntity {
         this.sprite = new Sprite(this.texture);
 
         this.tiempoSiguienteDisparo = 0;
-        this.cadenciaDisparo = 0.5f;
+        this.cadenciaDisparo = 0.05f;
 
         //Valores iniciales del Actor
         setBounds(sprite.getX(), sprite.getY(), sprite.getWidth(), sprite.getHeight());

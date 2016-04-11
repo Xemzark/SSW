@@ -25,7 +25,7 @@ Are you using box2d? Then create the bullet body, fixture, set its position and 
  */
 public abstract class BulletEntity extends GameObjectEntity {
 
-    protected float velocidad = 50.0f; //En pixeles/segundo
+    protected float velocidad = 900.0f; //En pixeles/segundo
     protected int damage; //Daño que aplica al golpear
 
     /**
