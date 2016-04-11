@@ -8,9 +8,6 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 
-
-import static com.navejuego.Constantes.PIXELS_METRE;
-
 /**
  * Created by Andrés on 04/04/2016.
  */
@@ -28,8 +25,7 @@ Are you using box2d? Then create the bullet body, fixture, set its position and 
  */
 public abstract class BulletEntity extends GameObjectEntity {
 
-    protected float velocidad = 900.0f; //En pixeles/segundo
-    public Rectangle bulletHitbox;
+    protected float velocidad = 50.0f; //En pixeles/segundo
     protected int damage; //Daño que aplica al golpear
 
     /**
@@ -41,7 +37,7 @@ public abstract class BulletEntity extends GameObjectEntity {
     public BulletEntity(Stage stage, Texture texture, Vector2 posicion){
         this.stage = stage;
         this.texture = texture;
-        this.bulletHitbox = new Rectangle();
+        this.hitbox = new Rectangle();
         this.sprite = new Sprite(this.texture);
 
         float x = posicion.x - (5);
@@ -51,8 +47,8 @@ public abstract class BulletEntity extends GameObjectEntity {
         setBounds(sprite.getX(), sprite.getY(), sprite.getWidth(), sprite.getHeight());
         setPosition(x, y);
         setSize(10, 20);
-        this.bulletHitbox.setPosition(x, y);
-        this.bulletHitbox.setSize(this.sprite.getWidth(), this.sprite.getHeight());
+        this.hitbox.setPosition(getX(), getY());
+        this.hitbox.setSize(getWidth(), getHeight());
         //Fin de valores iniciales del Actor
     }
 
@@ -92,6 +88,6 @@ public abstract class BulletEntity extends GameObjectEntity {
 
     @Override
     public Rectangle getHitbox(){
-        return this.bulletHitbox;
+        return this.hitbox;
     }
 }

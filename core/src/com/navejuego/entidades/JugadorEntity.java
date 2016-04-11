@@ -50,7 +50,7 @@ public class JugadorEntity extends GameObjectEntity {
         this.sprite = new Sprite(this.texture);
 
         this.tiempoSiguienteDisparo = 0;
-        this.cadenciaDisparo = 0.05f;
+        this.cadenciaDisparo = 0.5f;
 
         //Valores iniciales del Actor
         setBounds(sprite.getX(), sprite.getY(), sprite.getWidth(), sprite.getHeight());
@@ -71,7 +71,7 @@ public class JugadorEntity extends GameObjectEntity {
              */
             @Override
             public void touchDragged(InputEvent event, float x, float y, int pointer) {
-                System.out.print("Me muevo" + getX() + " " + getY() + "\n");
+                //System.out.print("Me muevo" + getX() + " " + getY() + "\n");
                 //recalcular para que la posición sea relativa al objeto y no a la pantalla
                 //porque x e y devuelven el pixel del centro del sprite, no el 0,0 relativo al sprite
                 float dx = x - getWidth() * 0.5f;

@@ -37,6 +37,7 @@ public class BulletNave extends BulletEntity {
     protected void movimiento(float delta) {
         // leer * delta como *segundo!!!!!!!!!!!
         setPosition(getX(), getY() + (velocidad * delta));
+        hitbox.setPosition(getX(), getY());
     }
 
 }

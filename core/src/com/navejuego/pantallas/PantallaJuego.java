@@ -31,11 +31,9 @@ public class PantallaJuego extends Pantalla {
     private Stage stage; // Variable Stage, Scene2D
     private SpriteBatch batch;
     private Texture background;
-    private int contador = 0;
+
     // Variables de Actores
     private JugadorEntity jugador;
-
-    float b = 0; //TEST NRO ACTORES A LA VEZ
 
     private float acumulableTiempo; // Variable para generar los enemigos
     boolean enemigoSi; // Variable para generar los enemigos
@@ -46,12 +44,8 @@ public class PantallaJuego extends Pantalla {
      *
      * @param game
      */
-    public PantallaJuego(Main game) {
+    public PantallaJuego(Main game){
         super(game);
-
-        Vector2 gravity = new Vector2();
-        gravity.x = 0;
-        gravity.y = 0;
 
         // Se inicializa el stage con un ViewPort para adaptar la pantalla a los márgenes del dispositivo
         this.stage = new Stage(new FitViewport(Gdx.graphics.getWidth(), Gdx.graphics.getHeight())); //fitviewport adapta la pantalla. tamaño y lo otro lo pone a negro
@@ -78,8 +72,8 @@ public class PantallaJuego extends Pantalla {
         Texture naveTextura = GestorAssets.getInstance().getTexture("nave.png");
 
 
-        jugador = new JugadorEntity(stage, naveTextura, new Vector2(Gdx.graphics.getWidth() / 2, Gdx.graphics.getHeight() / 2));
-        jugador.setName("jugador");
+        jugador = new JugadorEntity(stage, naveTextura, new Vector2(Gdx.graphics.getWidth()/2, Gdx.graphics.getHeight()/2));
+
         /*
          * Se de la la propiedad al stage de procesar inputs. El stage estará escuchando eventos de
          * input que sucedan sobre la pantalla actual
@@ -105,7 +99,6 @@ public class PantallaJuego extends Pantalla {
      * stage.act() hace que todos los actores del stage se actualicen ejecutando su propio método
      * act() en tiempo delta.
      * stage.draw() hace que todos los actores del stage se dibujen ejecutando su propio método draw
-     *
      * @param delta
      */
     @Override
@@ -115,26 +108,13 @@ public class PantallaJuego extends Pantalla {
 
         batch.begin();
 
-        batch.draw(background, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+        batch.draw(background,0,0,Gdx.graphics.getWidth(),Gdx.graphics.getHeight());
 
         batch.end();
         // Generar enemigos antes de actualizar
         generarEnemigos();
 
         stage.act(delta);
-
-        //Cuantos actores hay
-        int i = 0;
-        for (Actor b : stage.getActors()) {
-            i++;
-        }
-
-        float a = 0.5f;
-        b += delta;
-        if (b > a) {
-            System.out.print(i + "\n");
-            b = 0;
-        }
 
         //System.out.print(Gdx.graphics.getDeltaTime() + "\n"); deltatime
 
@@ -151,7 +131,7 @@ public class PantallaJuego extends Pantalla {
      * Función que genera los enemigos.
      * TODO: Rehacer
      */
-    private void generarEnemigos() {
+    private void generarEnemigos(){
         //Coger el tiempo
         acumulableTiempo += Gdx.graphics.getDeltaTime();
 
@@ -162,21 +142,19 @@ public class PantallaJuego extends Pantalla {
          * Ola entre 6 y 3 segundos
          * Si se ha generado el enemigo, se empieza a contar el tiempo y no se puede generar otro.
          */
-        if (enemigoSi) {
-            entreEnemigoAcumulable = entreEnemigo.nextInt(6 - 3 + 1) + 3;
+        if(enemigoSi){
+            entreEnemigoAcumulable = entreEnemigo.nextInt(6-3 + 1) + 3;
             enemigoSi = false; // Ya no se puede recalcular el tiempo hasta el siguiente enemigo
         }
 
         // Si se ha superado el tiempo marcado para el enemigo y ya se había calculado dicho tiempo...
-        if ((acumulableTiempo > entreEnemigoAcumulable) && (!enemigoSi)) {
-            EnemigoEntity a = new EnemigoEntity(stage);
-            a.setName("Nave " + contador);
-            //Se genera un nuevo enemigo, sea cual sea
-            stage.addActor(a);
+        if ((acumulableTiempo > entreEnemigoAcumulable) && (!enemigoSi)){
 
-            acumulableTiempo = 0.0f; // Se reinicia el tiempo
+            //Se genera un nuevo enemigo, sea cual sea
+            stage.addActor(new EnemigoEntity(stage));
+
+            acumulableTiempo=0.0f; // Se reinicia el tiempo
             enemigoSi = true; // Se puede recalcular el tiempo para el siguiente enemigo
-            contador++;
         }
     }
 
@@ -235,15 +213,6 @@ public class PantallaJuego extends Pantalla {
      */
     private void comprobarDerrota() {
 
-    }
-
-    private void destruirActor(Actor a){
-
-        for(Actor b: stage.getActors()){
-            if (b == a){
-
-            }
-        }
     }
 }
 

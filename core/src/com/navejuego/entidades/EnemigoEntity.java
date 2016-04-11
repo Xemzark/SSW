@@ -33,7 +33,6 @@ public class EnemigoEntity extends GameObjectEntity {
     private float posX;
     private float posY;
 
-    private Rectangle enemyHitbox;
     private PowerUpEntity powerUp;
     private int probabilidadPowerUp; //Entre 0% y 100%
 
@@ -49,21 +48,20 @@ public class EnemigoEntity extends GameObjectEntity {
         this.stage = stage;
         this.texture = GestorAssets.getInstance().getTexture("addShield.png");
         this.sprite = new Sprite(this.texture);
-        this.enemyHitbox = new Rectangle();
+        this.hitbox = new Rectangle();
         this.vivo = true;
 
         //Valores iniciales del Actor
         setBounds(sprite.getX(), sprite.getY(), sprite.getWidth(), sprite.getHeight());
         //setSize(Gdx.graphics.getWidth()/8, Gdx.graphics.getHeight()/8);
         setSize(PIXELS_METRE, PIXELS_METRE);
-
-        this.enemyHitbox.setSize(this.sprite.getWidth(), this.sprite.getHeight());
+        this.hitbox.setSize(getWidth(), getHeight());
 
         // Valores aleatorios
         this.posX = pos.nextInt(Gdx.graphics.getWidth()) - getWidth(); // Posición X aleatoria
         this.posY = Gdx.graphics.getHeight() + getHeight(); // Posición Y por encima de la pantalla
         setPosition(posX, posY);
-        this.enemyHitbox.setPosition(posX, posY);
+        this.hitbox.setPosition(posX, posY);
         //Fin valores iniciales del Actor
     }
 
@@ -75,6 +73,7 @@ public class EnemigoEntity extends GameObjectEntity {
     @Override
     public void act(float delta) {
         setPosition(getX(), getY() - (100 * delta));
+        hitbox.setPosition(getX(), getY());
     }
 
     @Override
@@ -126,7 +125,7 @@ public class EnemigoEntity extends GameObjectEntity {
 
     @Override
     public Rectangle getHitbox(){
-        return this.enemyHitbox;
+        return this.hitbox;
     }
 }
 
