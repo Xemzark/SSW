@@ -44,7 +44,11 @@ public class PantallaMenu extends Pantalla {
 
 
         jugar.setSize(Gdx.graphics.getWidth()/2,Gdx.graphics.getHeight()/2);
-        jugar.setPosition(Gdx.graphics.getWidth()/3, Gdx.graphics.getHeight()/4);
+        jugar.setPosition(Gdx.graphics.getWidth() / 3, Gdx.graphics.getHeight() / 4);
+       // jugar.addListener()
+
+
+
         menuStage.addActor(jugar);
 
 
