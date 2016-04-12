@@ -32,7 +32,7 @@ public class PantallaMenu extends Pantalla {
 
     private Skin skin;
 
-    private TextButton jugar, Ajustes, Ranking, Garaje, Salir;
+    private TextButton jugar, Ajustes, Ranking, Garaje;
 
 
 
@@ -46,7 +46,7 @@ public class PantallaMenu extends Pantalla {
         Ajustes= new TextButton("Ajustes", skin);
         Ranking = new TextButton("Ranking", skin);
         Garaje = new TextButton("Garaje", skin);
-        Salir= new TextButton("Salir", skin);
+
 
         jugar.setSize(Gdx.graphics.getWidth() / 4, Gdx.graphics.getHeight() / 4);
         jugar.setPosition(Gdx.graphics.getWidth() / 4 - Gdx.graphics.getWidth() / 8, 2.5f* Gdx.graphics.getHeight() / 4 - Gdx.graphics.getHeight() / 8);
@@ -54,11 +54,21 @@ public class PantallaMenu extends Pantalla {
         //Ajustes.setSize(Gdx.graphics.getWidth() / 4, Gdx.graphics.getHeight() / 4);
         //Ajustes.setPosition(Gdx.graphics.getWidth() / 4 + 100 , Gdx.graphics.getHeight() / 3);
 
+        Garaje.setSize(Gdx.graphics.getWidth() / 4, Gdx.graphics.getHeight() / 4);
+        Garaje.setPosition(Gdx.graphics.getWidth() / 4 + 2* Gdx.graphics.getWidth() / 8, 2.5f* Gdx.graphics.getHeight() / 4 - Gdx.graphics.getHeight() / 8);
+        Garaje.getSkin().getFont("default-font").getData().setScale(2,2); //cambia el tamaño de la fuente
+
+        Ajustes.setSize(Gdx.graphics.getWidth() / 4, Gdx.graphics.getHeight() / 4);
+        Ajustes.setPosition(Gdx.graphics.getWidth() / 4 - Gdx.graphics.getWidth() / 8, 2.5f* Gdx.graphics.getHeight() / 4 - 4* Gdx.graphics.getHeight() / 8);
+        Ajustes.getSkin().getFont("default-font").getData().setScale(2,2); //cambia el tamaño de la fuente del boton
+
+        Ranking.setSize(Gdx.graphics.getWidth() / 4, Gdx.graphics.getHeight() / 4);
+        Ranking.setPosition(Gdx.graphics.getWidth() / 4 + 2* Gdx.graphics.getWidth() / 8, 2.5f* Gdx.graphics.getHeight() / 4 - 4* Gdx.graphics.getHeight() / 8);
+        Ranking.getSkin().getFont("default-font").getData().setScale(2,2); //cambia el tamaño de la fuente
 
 
 
-
-       // jugar.addListener()
+        // jugar.addListener()
 
         jugar.addListener(new ChangeListener() {
             public void changed(ChangeListener.ChangeEvent event, Actor actor) {
@@ -71,7 +81,6 @@ public class PantallaMenu extends Pantalla {
 
 
         menuStage.addActor(Ajustes);
-        menuStage.addActor(Salir);
         menuStage.addActor(Garaje);
         menuStage.addActor(Ranking);
         menuStage.addActor(jugar);
