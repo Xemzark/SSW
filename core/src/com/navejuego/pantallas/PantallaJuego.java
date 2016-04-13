@@ -110,6 +110,7 @@ public class PantallaJuego extends Pantalla {
         batch.draw(background,0,0,Gdx.graphics.getWidth(),Gdx.graphics.getHeight());
 
         batch.end();
+
         // Generar enemigos antes de actualizar
         generarEnemigos();
 

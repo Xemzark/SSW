@@ -6,16 +6,11 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 
 /**
  * Created by Andrés on 04/04/2016.
- */
-
-/*
-PARA HACER EL BULLET
-Are you using scene2d? Then just create an Actor bullet, set its position and add it to the Stage.
-Are you using box2d? Then create the bullet body, fixture, set its position and add it to the box2d world.
  */
 
 /**
@@ -54,11 +49,14 @@ public abstract class BulletEntity extends GameObjectEntity {
     }
 
     /**
-     * Este método se encarga de actualizar la posición del disparo cada delta tiempo.
+     * Este método se encarga de actualizar la posición del disparo cada delta tiempo,
+     * eliminarlo si se ha salido de pantalla y comprobar si ha colisionado con algún actor
      * @param delta tiempo desde el último frame (*delta leer como *segundo)
      */
     @Override
     public void act(float delta) {
+        eliminarDisparo();
+
         movimiento(delta);
         comprobarColision();
     }
@@ -86,6 +84,18 @@ public abstract class BulletEntity extends GameObjectEntity {
      * Mueve el proyectil en la direccion que corresponde.
      */
     protected abstract void movimiento(float delta);
+
+    /**
+     * eliminarDisparo
+     * Este método elimina los disparos que se salen por arriba de la pantalla, tanto
+     * por arriba como por abajo, aplicable tanto a disparos de la nave como a los
+     * disparos enemigos.
+     */
+    protected void eliminarDisparo(){
+        if(this.getY() > Gdx.graphics.getHeight() || (this.getY()+this.getHeight()) < 0){
+            remove();
+        }
+    }
 
     @Override
     public Rectangle getHitbox(){

@@ -56,7 +56,6 @@ public class JugadorEntity extends GameObjectEntity {
         this.hitbox = new Rectangle();
 
         this.vida = 100;
-
         this.escudo = 0;
 
         this.barravida = new BarraVida(this);
@@ -66,7 +65,7 @@ public class JugadorEntity extends GameObjectEntity {
 
 
         this.tiempoSiguienteDisparo = 0;
-        this.cadenciaDisparo = 0.5f;
+        this.cadenciaDisparo = 0.1f;
 
         //Valores iniciales del Actor
         setBounds(sprite.getX(), sprite.getY(), sprite.getWidth(), sprite.getHeight());
@@ -105,7 +104,7 @@ public class JugadorEntity extends GameObjectEntity {
                 }
                 if (newY < 0) {
                     newY = 0;
-                } else if ((newX + getHeight()) > Gdx.graphics.getHeight()) {
+                } else if ((newY + getHeight()) > Gdx.graphics.getHeight()) {
                     //TODO: Ajustar por barra de acción
                     newY = Gdx.graphics.getHeight() - getHeight();
                 }
@@ -122,10 +121,6 @@ public class JugadorEntity extends GameObjectEntity {
     @Override
     public void act(float delta) {
         generarDisparo(delta);
-        //
-            //BLABLABLA
-        //
-        eliminarDisparo();
     }
 
 
@@ -153,19 +148,6 @@ public class JugadorEntity extends GameObjectEntity {
         }
     }
 
-    /**
-     * eliminarDisparo
-     * Este método elimina los disparos que se salen por arriba de la pantalla
-     */
-    private void eliminarDisparo(){
-        // No me gusta el INSTANCEOF!
-        for(Actor a : this.stage.getActors()){
-            if(a instanceof BulletEntity && (a.getY()>Gdx.graphics.getHeight())){
-                a.remove();
-            }
-        }
-    }
-
     /*
      * Primero daña escudos. Si están vacíos, daña la nave.
      * No recibe daño si es invulnerable.
@@ -188,11 +170,16 @@ public class JugadorEntity extends GameObjectEntity {
                 vida -= dmg;
         }
 
-        if (vida <= 0)
+        if (vida <= 0) {
             destruirse();
+        }
 
         barravida.update();
         barraescudo.update();
+    }
+
+    public Puntuacion getPuntuacion() {
+        return puntuacion;
     }
 
     /**
