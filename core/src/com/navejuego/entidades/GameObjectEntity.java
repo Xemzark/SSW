@@ -15,18 +15,18 @@ public abstract class GameObjectEntity extends Actor {
 
     protected Sprite sprite;
 
-    protected int vida;
-    protected int escudo;
+    protected float vida;
+    protected float escudo;
 
     protected Rectangle hitbox;
 
     public abstract void destruirse();
 
-    public int getVida() {
+    public float getVida() {
         return vida;
     }
 
-    public int getEscudo() {
+    public float getEscudo() {
         return escudo;
     }
 

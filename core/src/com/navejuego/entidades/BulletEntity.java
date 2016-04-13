@@ -20,7 +20,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
  */
 public abstract class BulletEntity extends GameObjectEntity {
 
-    protected float velocidad = 200.0f; //En pixeles/segundo
+    protected float velocidad = 900.0f; //En pixeles/segundo
     protected int damage = 10; //Daño que aplica al golpear
     protected boolean ignoraEscudo = false;
 

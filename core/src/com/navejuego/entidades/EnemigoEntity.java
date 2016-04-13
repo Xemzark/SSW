@@ -192,6 +192,17 @@ public class EnemigoEntity extends GameObjectEntity {
      * TODO: Tirar los dados para ver si genera o no genera el power up.
      */
     private void generarPowerUp() {
+        Vector2 posicion = new Vector2(getX(), getY());
+        Texture powerup;
+        //Power up vida
+       /* powerup = GestorAssets.getInstance().getTexture("powerup_vida.png");
+        PowerUpVida vida = new PowerUpVida(stage, powerup, posicion );
+        this.stage.addActor(vida);*/
+
+        //Power up escudo
+        powerup = GestorAssets.getInstance().getTexture("addShield.png");
+        PowerUpEscudo shield = new PowerUpEscudo(stage, powerup, posicion );
+        this.stage.addActor(shield);
 
     }
 

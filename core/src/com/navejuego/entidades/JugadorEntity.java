@@ -40,7 +40,8 @@ public class JugadorEntity extends GameObjectEntity {
     private int contador = 0;
     private BarraVida barravida;
     private BarraEscudo barraescudo;
-    private int maxVida = 100;
+    private float maxVida = 100;
+    private float maxEscudo = 100;
     private float valorPuntuacion;
     private Puntuacion puntuacion;
     /**
@@ -58,8 +59,12 @@ public class JugadorEntity extends GameObjectEntity {
         this.vida = 100;
         this.escudo = 0;
 
-        this.barravida = new BarraVida(this);
-        this.barraescudo = new BarraEscudo(this);
+        this.escudo = 100;
+
+        this.barravida = new BarraVida();
+        this.stage.addActor(barravida);
+        this.barraescudo = new BarraEscudo();
+        stage.addActor(barraescudo);
         this.valorPuntuacion = 0;
         this.puntuacion = new Puntuacion("xxxxxxxxxx");
 
@@ -174,6 +179,10 @@ public class JugadorEntity extends GameObjectEntity {
             destruirse();
         }
 
+        updateUI();
+    }
+
+    public void updateUI(){
         barravida.update();
         barraescudo.update();
     }
@@ -221,8 +230,10 @@ public class JugadorEntity extends GameObjectEntity {
         return false;
     }
 
-    public int getMaxVida(){
+    public float getMaxVida(){
         return this.maxVida;
     }
+
+    public float getMaxEscudo() { return this.maxEscudo; }
 
 }
