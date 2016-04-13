@@ -4,7 +4,10 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.navejuego.GestorAssets;
+import com.navejuego.pantallas.Pantalla;
+import com.navejuego.pantallas.PantallaJuego;
 
 import javax.naming.Context;
 
@@ -12,7 +15,7 @@ import javax.naming.Context;
  * Created by beno_ on 11/04/2016.
  */
 //tuto -->  https://www.youtube.com/watch?v=zrsUFTplNa4
-public class BarraEscudo {
+public class BarraEscudo extends Actor {
 
     private Sprite vidaBG;
     private Sprite vidaFG;
@@ -20,11 +23,10 @@ public class BarraEscudo {
     private Texture corazon;
     float buffer = 22;
 
-    public BarraEscudo(JugadorEntity owner){
+    public BarraEscudo(){
 
         this.vidaBG = new Sprite(GestorAssets.getInstance().getTexture("escudobg.png"));
         this.vidaFG = new Sprite(GestorAssets.getInstance().getTexture("escudofg.png"));
-        this.owner = owner;
         this.corazon = GestorAssets.getInstance().getTexture("shieldbar.png");
         float spriteh = 0;
 
@@ -47,7 +49,7 @@ public class BarraEscudo {
 
     public void update(){
         //this.vidaFG.setScale(owner.getVida() / 100, 1f);
-        this.vidaFG.setScale(1f,(this.owner.getVida()/(float)this.owner.getMaxVida()));
+        this.vidaFG.setScale(1f, (PantallaJuego.jugador.getEscudo() / PantallaJuego.jugador.getMaxEscudo()));
         /*this.vidaBG.setX(20);
         this.vidaBG.setY(40);
 

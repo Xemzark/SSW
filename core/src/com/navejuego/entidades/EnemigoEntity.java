@@ -25,7 +25,7 @@ import static com.navejuego.Constantes.PIXELS_METRE;
  */
 public class EnemigoEntity extends GameObjectEntity {
 
-    protected float cadenciaDisparo = 1f;
+    protected float cadenciaDisparo = 0.5f;
 
     protected float tiempoSiguienteDisparo = 0f;
     private boolean vivo = true;
@@ -142,13 +142,27 @@ public class EnemigoEntity extends GameObjectEntity {
      * TODO: Comprueba una colisión con el jugador. Si se da, se auto-destruye y le causa daño.
      */
     public void comprobarColisionJugador() {
-
+        if (PantallaJuego.jugador.getHitbox().overlaps(this.getHitbox())) {
+            PantallaJuego.jugador.recibirDmg(50, false);
+            this.remove();
+        }
     }
 
     /**
      * TODO: Tirar los dados para ver si genera o no genera el power up.
      */
     private void generarPowerUp() {
+        Vector2 posicion = new Vector2(getX(), getY());
+        Texture powerup;
+        //Power up vida
+       /* powerup = GestorAssets.getInstance().getTexture("powerup_vida.png");
+        PowerUpVida vida = new PowerUpVida(stage, powerup, posicion );
+        this.stage.addActor(vida);*/
+
+        //Power up escudo
+        powerup = GestorAssets.getInstance().getTexture("addShield.png");
+        PowerUpEscudo shield = new PowerUpEscudo(stage, powerup, posicion );
+        this.stage.addActor(shield);
 
     }
 
