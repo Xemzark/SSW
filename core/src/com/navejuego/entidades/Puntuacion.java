@@ -19,7 +19,7 @@ public class Puntuacion extends Actor {
     private int puntuacionInt = 0;
     private float buffer = 10;
 
-    public Puntuacion(String puntuacion){
+    public Puntuacion(){
         this.font=new BitmapFont();
         this.font.setColor(Color.WHITE);
         this.font.getData().setScale((float)1.7, (float)1.7);

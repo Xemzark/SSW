@@ -65,7 +65,7 @@ public class EnemigoEntity extends GameObjectEntity {
         this.escudo = 20;
         //Ahora son necesarios 3 golpes
 
-        this.dañoColision = (this.vida/2); //Daño que le hace la nave al jugador si colisionan
+        this.dañoColision = ((int) this.vida/2); //Daño que le hace la nave al jugador si colisionan
 
         //Valores iniciales del Actor
         setBounds(sprite.getX(), sprite.getY(), sprite.getWidth(), sprite.getHeight());

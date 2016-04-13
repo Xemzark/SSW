@@ -34,15 +34,14 @@ import static com.navejuego.Constantes.*;
 public class JugadorEntity extends GameObjectEntity {
 
     protected float cadenciaDisparo;
-
     protected float tiempoSiguienteDisparo;
+
     private boolean invulnerabilidad;
     private int contador = 0;
     private BarraVida barravida;
     private BarraEscudo barraescudo;
     private float maxVida = 100;
     private float maxEscudo = 100;
-    private float valorPuntuacion;
     private Puntuacion puntuacion;
     /**
      * Constructor
@@ -56,18 +55,15 @@ public class JugadorEntity extends GameObjectEntity {
         this.sprite = new Sprite(this.texture);
         this.hitbox = new Rectangle();
 
+        this.invulnerabilidad = false;
+        this.puntuacion = new Puntuacion();
         this.vida = 100;
-        this.escudo = 0;
-
         this.escudo = 100;
 
         this.barravida = new BarraVida();
         this.stage.addActor(barravida);
         this.barraescudo = new BarraEscudo();
         stage.addActor(barraescudo);
-        this.valorPuntuacion = 0;
-        this.puntuacion = new Puntuacion("xxxxxxxxxx");
-
 
         this.tiempoSiguienteDisparo = 0;
         this.cadenciaDisparo = 0.1f;
