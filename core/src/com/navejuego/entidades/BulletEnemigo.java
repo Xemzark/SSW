@@ -23,6 +23,10 @@ public class BulletEnemigo extends BulletEntity {
 
     }
 
+    /**
+     * Actualizar su posición y la de su hitbox
+     * @param delta
+     */
     @Override
     protected void movimiento(float delta) {
         // leer * delta como *segundo!!!!!!!!!!!

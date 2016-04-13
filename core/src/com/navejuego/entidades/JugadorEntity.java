@@ -162,9 +162,9 @@ public class JugadorEntity extends GameObjectEntity {
     /**
      * TODO: Dado un PowerUp, modifica las stats.
      */
-    public void modificarStats(PowerUpEntity powerUp) {
+    //public void modificarStats(PowerUpEntity powerUp) {
 
-    }
+    //}
 
     /**
      * TODO: Si el ataque especial puede activarse, lo activa. Devuelve cierto si lo ha activado.

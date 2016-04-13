@@ -33,6 +33,10 @@ public class BulletNave extends BulletEntity {
         }
     }
 
+    /**
+     * Actualizar su posición y la de su hitbox
+     * @param delta
+     */
     @Override
     protected void movimiento(float delta) {
         // leer * delta como *segundo!!!!!!!!!!!

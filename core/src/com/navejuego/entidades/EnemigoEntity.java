@@ -33,7 +33,7 @@ public class EnemigoEntity extends GameObjectEntity {
     private float posX;
     private float posY;
 
-    private PowerUpEntity powerUp;
+    //private PowerUpEntity powerUp;
     private int probabilidadPowerUp; //Entre 0% y 100%
 
     /**
@@ -104,6 +104,7 @@ public class EnemigoEntity extends GameObjectEntity {
      * TODO: Desaparecer/eliminar enemigo.
      */
     public void destruirse() {
+
         generarPowerUp();
         this.remove();
         Gdx.app.log("Enemy killed!", "");
