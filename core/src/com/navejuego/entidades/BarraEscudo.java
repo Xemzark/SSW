@@ -12,7 +12,7 @@ import javax.naming.Context;
  * Created by beno_ on 11/04/2016.
  */
 //tuto -->  https://www.youtube.com/watch?v=zrsUFTplNa4
-public class BarraVida {
+public class BarraEscudo {
 
     private Sprite vidaBG;
     private Sprite vidaFG;
@@ -20,12 +20,12 @@ public class BarraVida {
     private Texture corazon;
     float buffer = 22;
 
-    public BarraVida(JugadorEntity owner){
+    public BarraEscudo(JugadorEntity owner){
 
-        this.vidaBG = new Sprite(GestorAssets.getInstance().getTexture("vidabgv2.png"));
-        this.vidaFG = new Sprite(GestorAssets.getInstance().getTexture("vidafgv2.png"));
+        this.vidaBG = new Sprite(GestorAssets.getInstance().getTexture("escudobg.png"));
+        this.vidaFG = new Sprite(GestorAssets.getInstance().getTexture("escudofg.png"));
         this.owner = owner;
-        this.corazon = GestorAssets.getInstance().getTexture("corazon.png");
+        this.corazon = GestorAssets.getInstance().getTexture("shieldbar.png");
         float spriteh = 0;
 
         spriteh = this.vidaBG.getHeight();
@@ -36,10 +36,10 @@ public class BarraVida {
         sh = Gdx.graphics.getHeight();
 
         this.vidaBG.setX(10);
-        this.vidaBG.setY(sw);
+        this.vidaBG.setY(20);
 
         this.vidaFG.setX(10);
-        this.vidaFG.setY(sw);
+        this.vidaFG.setY(20);
         //vidaBG.getHeight()/2
         this.vidaFG.setOrigin(0, 80);
 
@@ -63,9 +63,6 @@ public class BarraVida {
     public void render(Batch batch){
         this.vidaBG.draw(batch);
         this.vidaFG.draw(batch);
-        batch.draw(this.corazon,buffer, Gdx.graphics.getHeight() - this.vidaBG.getHeight());
+        batch.draw(this.corazon,buffer, this.buffer);
     }
 }
-
-
-
