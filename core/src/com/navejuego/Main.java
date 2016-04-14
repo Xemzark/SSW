@@ -3,6 +3,7 @@ package com.navejuego;
 import com.badlogic.gdx.Game;
 import com.navejuego.pantallas.PantallaJuego;
 import com.navejuego.GestorAssets;
+import com.navejuego.pantallas.PantallaMenu;
 
 /**
  * Clase Main

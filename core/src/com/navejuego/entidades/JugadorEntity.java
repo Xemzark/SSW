@@ -18,6 +18,8 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.utils.DragListener;
+import com.badlogic.gdx.utils.TimeUtils;
+import com.badlogic.gdx.utils.Timer;
 import com.navejuego.GestorAssets;
 
 import static com.navejuego.Constantes.*;
@@ -37,12 +39,19 @@ public class JugadorEntity extends GameObjectEntity {
     protected float tiempoSiguienteDisparo;
 
     private boolean invulnerabilidad;
-    private int contador = 0;
+    private long inicioInvulnerabilidad = 0;
+    private int duracionInvulnerabilidad = 0;
+
+    private boolean dobleASPD = false;
+    private long inicioDobleASPD = 0;
+    private int duracionDobleASPD = 0;
+
     private BarraVida barravida;
     private BarraEscudo barraescudo;
     private float maxVida = 100;
     private float maxEscudo = 100;
     private Puntuacion puntuacion;
+
     /**
      * Constructor
      * Esta clase recibe una textura a asociarle y un vector de posición.
@@ -122,6 +131,9 @@ public class JugadorEntity extends GameObjectEntity {
     @Override
     public void act(float delta) {
         generarDisparo(delta);
+        if (invulnerabilidad){
+            contadorInvulnerabilidad();
+        }
     }
 
 
@@ -143,7 +155,6 @@ public class JugadorEntity extends GameObjectEntity {
         if (tiempoSiguienteDisparo > cadenciaDisparo) {
             Texture bulletTextura = GestorAssets.getInstance().getTexture("bullet.png");
             BulletNave bullet = new BulletNave(this.stage, bulletTextura, new Vector2(getX() + (getWidth() / 2), getY() + getHeight()));
-            bullet.setName("Bala " + contador);
             this.stage.addActor(bullet);
             tiempoSiguienteDisparo = 0;
         }
@@ -232,4 +243,43 @@ public class JugadorEntity extends GameObjectEntity {
 
     public float getMaxEscudo() { return this.maxEscudo; }
 
+    public void setInvulnerabilidad (int duracion) {
+        this.invulnerabilidad = true;
+        this.inicioInvulnerabilidad = new TimeUtils().millis();
+        this.duracionInvulnerabilidad = duracion;
+    }
+
+    public void contadorInvulnerabilidad(){
+        long tiempoActual = new TimeUtils().millis();
+        if (tiempoActual - inicioInvulnerabilidad > duracionInvulnerabilidad * 1000){
+            invulnerabilidad = false;
+            inicioInvulnerabilidad = 0;
+            duracionInvulnerabilidad = 0;
+        }
+    }
+
+    public void setDobleASPD(int duracion){
+
+        if (!this.dobleASPD) {
+            this.dobleASPD = true;
+            this.inicioDobleASPD = new TimeUtils().millis();
+            this.duracionDobleASPD = duracion;
+            this.cadenciaDisparo /= 2;
+        }
+    }
+
+    public void contadorDobleASPD(){
+        long tiempoActual = new TimeUtils().millis();
+        if (tiempoActual - inicioDobleASPD > duracionDobleASPD * 1000){
+            dobleASPD = false;
+            inicioDobleASPD = 0;
+            duracionDobleASPD = 0;
+            this.cadenciaDisparo *= 2;
+
+        }
+    }
+
+    public void addPuntos(int puntos){
+        this.puntuacion.incrementarPuntuacion(puntos);
+    }
 }

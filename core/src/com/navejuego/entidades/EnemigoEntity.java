@@ -155,6 +155,7 @@ public class EnemigoEntity extends GameObjectEntity {
      */
     public void destruirse() {
         generarPowerUp();
+        PantallaJuego.jugador.addPuntos(50);
         this.remove();
         Gdx.app.log("Enemy killed!", "");
     }
@@ -201,8 +202,8 @@ public class EnemigoEntity extends GameObjectEntity {
 
         //Power up escudo
         powerup = GestorAssets.getInstance().getTexture("addShield.png");
-        PowerUpEscudo shield = new PowerUpEscudo(stage, powerup, posicion );
-        this.stage.addActor(shield);
+        PowerUpASPD pUp = new PowerUpASPD(stage, powerup, posicion );
+        this.stage.addActor(pUp);
 
     }
 
