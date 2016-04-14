@@ -66,7 +66,7 @@ public class PantallaMenu extends Pantalla {
         Garaje.getSkin().getFont("default-font").getData().setScale(2, 2); //cambia el tamaño de la fuente
 
         Ajustes.setSize(Gdx.graphics.getWidth() / 4, Gdx.graphics.getHeight() / 8);
-        Ajustes.setPosition(Gdx.graphics.getWidth()/2 - Gdx.graphics.getWidth() / 8, 0,5*Gdx.graphics.getHeight() / 2 - Gdx.graphics.getHeight() / 16);
+        Ajustes.setPosition(Gdx.graphics.getWidth() / 2 - Gdx.graphics.getWidth() / 8, Gdx.graphics.getHeight() / 6 - Gdx.graphics.getHeight() / 16);
         Ajustes.getSkin().getFont("default-font").getData().setScale(2, 2); //cambia el tamaño de la fuente del boton
 
         Ranking.setSize(Gdx.graphics.getWidth() / 4, Gdx.graphics.getHeight() / 8);
@@ -85,6 +85,38 @@ public class PantallaMenu extends Pantalla {
 
             }
         });
+
+
+
+
+        Ranking.addListener(new ChangeListener() {
+            public void changed(ChangeListener.ChangeEvent event, Actor actor) {
+                //System.out.println("Clicked! Is checked: " + button.isChecked());
+
+                ScreenManager.getInstance().showScreen(ScreenEnum.GARAJE);
+
+            }
+        });
+
+        Ajustes.addListener(new ChangeListener() {
+            public void changed(ChangeListener.ChangeEvent event, Actor actor) {
+                //System.out.println("Clicked! Is checked: " + button.isChecked());
+
+                ScreenManager.getInstance().showScreen(ScreenEnum.GARAJE);
+
+            }
+        });
+
+
+        Garaje.addListener(new ChangeListener() {
+            public void changed(ChangeListener.ChangeEvent event, Actor actor) {
+                //System.out.println("Clicked! Is checked: " + button.isChecked());
+
+                ScreenManager.getInstance().showScreen(ScreenEnum.GARAJE);
+
+            }
+        });
+
 
 
         menuStage.addActor(Ajustes);

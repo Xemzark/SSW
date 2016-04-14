@@ -15,6 +15,28 @@ public enum ScreenEnum {
         }
     },
 
+    AJUSTES {
+        public Pantalla getScreen(Object... params) {
+            return new PantallaAjustes();
+        }
+    },
+
+    GARAJE {
+        public Pantalla getScreen(Object... params) {
+            return new PantallaGaraje();
+        }
+    },
+
+    LOADING {
+        public Pantalla getScreen(Object... params) {
+            return new PantallaGaraje();
+        }
+    },
+
+
+
+
+
     GAME {
         public Pantalla getScreen(Object... params) {
             return new PantallaJuego();

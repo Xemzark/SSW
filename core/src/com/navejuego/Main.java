@@ -19,10 +19,15 @@ public class Main extends Game {
     public void create() {
 
 
+
         ScreenManager.getInstance().initialize(this); //Inicializo el AssetManager
-        GestorAssets.getInstance();
+        GestorAssets.getInstance().create();
 
         ScreenManager.getInstance().showScreen(ScreenEnum.MAIN_MENU);
+
+
+
+
 
     }
 
