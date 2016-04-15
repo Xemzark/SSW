@@ -12,7 +12,6 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 public class BulletNave extends BulletEntity {
     public BulletNave(Stage stage, Texture texture, Vector2 posicion) {
         super(stage, texture, posicion);
-
     }
 
     /**
@@ -34,6 +33,10 @@ public class BulletNave extends BulletEntity {
         }
     }
 
+    /**
+     * Actualizar su posición y la de su hitbox
+     * @param delta
+     */
     @Override
     protected void movimiento(float delta) {
         // leer * delta como *segundo!!!!!!!!!!!

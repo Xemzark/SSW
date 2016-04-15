@@ -25,10 +25,13 @@ import static com.navejuego.Constantes.PIXELS_METRE;
  */
 public class EnemigoEntity extends GameObjectEntity {
 
-    protected float cadenciaDisparo = 1f;
+    protected int puntuacion;
+    protected int dañoColision;
 
-    protected float tiempoSiguienteDisparo = 0f;
-    private boolean vivo = true;
+    protected float cadenciaDisparo;
+    protected float tiempoSiguienteDisparo;
+    private boolean vivo;
+
     // Variable para generar su posición aleatoria
     Random pos = new Random();
 
@@ -52,10 +55,17 @@ public class EnemigoEntity extends GameObjectEntity {
         this.texture = GestorAssets.getInstance().getTexture("addShield.png");
         this.sprite = new Sprite(this.texture);
         this.hitbox = new Rectangle();
+
+        this.puntuacion = 200;
+        this.cadenciaDisparo = 1f;
+        this.tiempoSiguienteDisparo = 0f;
         this.vivo = true;
 
-        vida = 2;
-        escudo = 0;
+        this.vida = 10;
+        this.escudo = 20;
+        //Ahora son necesarios 3 golpes
+
+        this.dañoColision = ((int) this.vida/2); //Daño que le hace la nave al jugador si colisionan
 
         //Valores iniciales del Actor
         setBounds(sprite.getX(), sprite.getY(), sprite.getWidth(), sprite.getHeight());
@@ -63,8 +73,8 @@ public class EnemigoEntity extends GameObjectEntity {
         setSize(PIXELS_METRE, PIXELS_METRE);
         this.hitbox.setSize(getWidth(), getHeight());
 
-        // Valores aleatorios
 
+        // Valores aleatorios
         this.posX = pos.nextInt(Gdx.graphics.getWidth() - 2*((int) getWidth())) + getWidth(); // Posición X aleatoria
         this.posY = Gdx.graphics.getHeight() + getHeight(); // Posición Y por encima de la pantalla
         setPosition(posX, posY);
@@ -79,6 +89,9 @@ public class EnemigoEntity extends GameObjectEntity {
      */
     @Override
     public void act(float delta) {
+        comprobarColisionJugador();
+        eliminarseOutOfBounds();
+
         setPosition(getX(), getY() - (100 * delta));
         hitbox.setPosition(getX(), getY());
         generarDisparo(delta);
@@ -109,6 +122,12 @@ public class EnemigoEntity extends GameObjectEntity {
         }
     }
 
+    /**
+     * Esta función procesa el daño que recibe el enemigo en función de su escudo y de
+     * su vida. Si se derriba, debe pasarle su puntuación a la nave del jugador y destruirse.
+     * @param dmg
+     * @param ignoraEscudo
+     */
     public void recibirDmg(int dmg, boolean ignoraEscudo) {
         if (ignoraEscudo || escudo <= 0) {
             vida -= dmg;
@@ -122,8 +141,10 @@ public class EnemigoEntity extends GameObjectEntity {
                 vida -= dmg;
         }
 
-        if (vida <= 0)
+        if (vida <= 0) {
+            darPuntuacion();
             destruirse();
+        }
     }
 
     public String getName(){
@@ -134,14 +155,37 @@ public class EnemigoEntity extends GameObjectEntity {
      */
     public void destruirse() {
         generarPowerUp();
+        PantallaJuego.jugador.addPuntos(50);
         this.remove();
         Gdx.app.log("Enemy killed!", "");
     }
 
     /**
-     * TODO: Comprueba una colisión con el jugador. Si se da, se auto-destruye y le causa daño.
+     * Si el enemigo se sale de la pantalla sin ser eliminado, se autodestruye
+     */
+    public void eliminarseOutOfBounds(){
+        if ((this.getY()+getHeight()) < 0){
+            this.remove();
+        }
+    }
+
+    /**
+     * Le pasa su puntuación al jugador para poder sumársela a su puntuación
+     */
+    public void darPuntuacion(){
+        PantallaJuego.jugador.getPuntuacion().incrementarPuntuacion(this.puntuacion);
+    }
+
+    /**
+     * Este método comprueba si ha colisionado con el jugador. De ser así, se autodestruye,
+     * causándole daño.
      */
     public void comprobarColisionJugador() {
+        if(this.getHitbox().overlaps(PantallaJuego.jugador.getHitbox())){
+            PantallaJuego.jugador.recibirDmg(this.dañoColision, false);
+            Gdx.app.log("HitColision! a jugador!", "");
+            this.destruirse();
+        }
 
     }
 
@@ -149,6 +193,17 @@ public class EnemigoEntity extends GameObjectEntity {
      * TODO: Tirar los dados para ver si genera o no genera el power up.
      */
     private void generarPowerUp() {
+        Vector2 posicion = new Vector2(getX(), getY());
+        Texture powerup;
+        //Power up vida
+       /* powerup = GestorAssets.getInstance().getTexture("powerup_vida.png");
+        PowerUpVida vida = new PowerUpVida(stage, powerup, posicion );
+        this.stage.addActor(vida);*/
+
+        //Power up escudo
+        powerup = GestorAssets.getInstance().getTexture("addShield.png");
+        PowerUpASPD pUp = new PowerUpASPD(stage, powerup, posicion );
+        this.stage.addActor(pUp);
 
     }
 

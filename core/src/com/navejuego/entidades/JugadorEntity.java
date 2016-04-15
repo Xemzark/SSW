@@ -18,6 +18,8 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.utils.DragListener;
+import com.badlogic.gdx.utils.TimeUtils;
+import com.badlogic.gdx.utils.Timer;
 import com.navejuego.GestorAssets;
 
 import static com.navejuego.Constantes.*;
@@ -34,12 +36,22 @@ import static com.navejuego.Constantes.*;
 public class JugadorEntity extends GameObjectEntity {
 
     protected float cadenciaDisparo;
-
     protected float tiempoSiguienteDisparo;
+
     private boolean invulnerabilidad;
-    private int contador = 0;
+    private long inicioInvulnerabilidad = 0;
+    private int duracionInvulnerabilidad = 0;
+
+    private boolean dobleASPD = false;
+    private long inicioDobleASPD = 0;
+    private int duracionDobleASPD = 0;
+
     private BarraVida barravida;
-    private int maxVida = 100;
+    private BarraEscudo barraescudo;
+    private float maxVida = 100;
+    private float maxEscudo = 100;
+    private Puntuacion puntuacion;
+
     /**
      * Constructor
      * Esta clase recibe una textura a asociarle y un vector de posición.
@@ -52,14 +64,18 @@ public class JugadorEntity extends GameObjectEntity {
         this.sprite = new Sprite(this.texture);
         this.hitbox = new Rectangle();
 
+        this.invulnerabilidad = false;
+        this.puntuacion = new Puntuacion();
         this.vida = 100;
+        this.escudo = 100;
 
-        this.escudo = 0;
-
-        this.barravida = new BarraVida(this);
+        this.barravida = new BarraVida();
+        this.stage.addActor(barravida);
+        this.barraescudo = new BarraEscudo();
+        stage.addActor(barraescudo);
 
         this.tiempoSiguienteDisparo = 0;
-        this.cadenciaDisparo = 0.5f;
+        this.cadenciaDisparo = 0.1f;
 
         //Valores iniciales del Actor
         setBounds(sprite.getX(), sprite.getY(), sprite.getWidth(), sprite.getHeight());
@@ -98,7 +114,7 @@ public class JugadorEntity extends GameObjectEntity {
                 }
                 if (newY < 0) {
                     newY = 0;
-                } else if ((newX + getHeight()) > Gdx.graphics.getHeight()) {
+                } else if ((newY + getHeight()) > Gdx.graphics.getHeight()) {
                     //TODO: Ajustar por barra de acción
                     newY = Gdx.graphics.getHeight() - getHeight();
                 }
@@ -115,10 +131,9 @@ public class JugadorEntity extends GameObjectEntity {
     @Override
     public void act(float delta) {
         generarDisparo(delta);
-        //
-            //BLABLABLA
-        //
-        eliminarDisparo();
+        if (invulnerabilidad){
+            contadorInvulnerabilidad();
+        }
     }
 
 
@@ -126,6 +141,8 @@ public class JugadorEntity extends GameObjectEntity {
     public void draw(Batch batch, float parentAlpha) {
         batch.draw(texture, getX(), getY(), getWidth(), getHeight());
         barravida.render(batch);
+        barraescudo.render(batch);
+        this.puntuacion.draw(batch);
     }
 
 
@@ -138,22 +155,8 @@ public class JugadorEntity extends GameObjectEntity {
         if (tiempoSiguienteDisparo > cadenciaDisparo) {
             Texture bulletTextura = GestorAssets.getInstance().getTexture("bullet.png");
             BulletNave bullet = new BulletNave(this.stage, bulletTextura, new Vector2(getX() + (getWidth() / 2), getY() + getHeight()));
-            bullet.setName("Bala " + contador);
             this.stage.addActor(bullet);
             tiempoSiguienteDisparo = 0;
-        }
-    }
-
-    /**
-     * eliminarDisparo
-     * Este método elimina los disparos que se salen por arriba de la pantalla
-     */
-    private void eliminarDisparo(){
-        // No me gusta el INSTANCEOF!
-        for(Actor a : this.stage.getActors()){
-            if(a instanceof BulletEntity && (a.getY()>Gdx.graphics.getHeight())){
-                a.remove();
-            }
         }
     }
 
@@ -179,10 +182,20 @@ public class JugadorEntity extends GameObjectEntity {
                 vida -= dmg;
         }
 
-        if (vida <= 0)
+        if (vida <= 0) {
             destruirse();
+        }
 
+        updateUI();
+    }
+
+    public void updateUI(){
         barravida.update();
+        barraescudo.update();
+    }
+
+    public Puntuacion getPuntuacion() {
+        return puntuacion;
     }
 
     /**
@@ -224,8 +237,49 @@ public class JugadorEntity extends GameObjectEntity {
         return false;
     }
 
-    public int getMaxVida(){
+    public float getMaxVida(){
         return this.maxVida;
     }
 
+    public float getMaxEscudo() { return this.maxEscudo; }
+
+    public void setInvulnerabilidad (int duracion) {
+        this.invulnerabilidad = true;
+        this.inicioInvulnerabilidad = new TimeUtils().millis();
+        this.duracionInvulnerabilidad = duracion;
+    }
+
+    public void contadorInvulnerabilidad(){
+        long tiempoActual = new TimeUtils().millis();
+        if (tiempoActual - inicioInvulnerabilidad > duracionInvulnerabilidad * 1000){
+            invulnerabilidad = false;
+            inicioInvulnerabilidad = 0;
+            duracionInvulnerabilidad = 0;
+        }
+    }
+
+    public void setDobleASPD(int duracion){
+
+        if (!this.dobleASPD) {
+            this.dobleASPD = true;
+            this.inicioDobleASPD = new TimeUtils().millis();
+            this.duracionDobleASPD = duracion;
+            this.cadenciaDisparo /= 2;
+        }
+    }
+
+    public void contadorDobleASPD(){
+        long tiempoActual = new TimeUtils().millis();
+        if (tiempoActual - inicioDobleASPD > duracionDobleASPD * 1000){
+            dobleASPD = false;
+            inicioDobleASPD = 0;
+            duracionDobleASPD = 0;
+            this.cadenciaDisparo *= 2;
+
+        }
+    }
+
+    public void addPuntos(int puntos){
+        this.puntuacion.incrementarPuntuacion(puntos);
+    }
 }
