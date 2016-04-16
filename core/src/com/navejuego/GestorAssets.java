@@ -50,6 +50,9 @@ public class GestorAssets {
         manager.load("2xShield.png", Texture.class);
         manager.load("addShield.png", Texture.class);
         manager.load("backgroundgaraje.png", Texture.class);
+        manager.load("game_over.png", Texture.class);
+
+
 
         manager.finishLoading();
            // ScreenManager.getInstance().showScreen(ScreenEnum.LOADING);

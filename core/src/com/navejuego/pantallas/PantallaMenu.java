@@ -32,7 +32,7 @@ public class PantallaMenu extends Pantalla {
 
 
     private Skin skin;
-    private Texture background;
+    private Texture background, sol;
 
     private TextButton jugar, Ajustes, Ranking, Garaje;
 
@@ -48,6 +48,8 @@ public class PantallaMenu extends Pantalla {
 
         batch = new SpriteBatch();
         background = GestorAssets.getInstance().getTexture("background_8.png");
+        //sol = GestorAssets.getInstance().getTexture("sol.png");
+
 
         jugar= new TextButton("Jugar", skin);
         Ajustes= new TextButton("Ajustes", skin);
@@ -190,6 +192,7 @@ public class PantallaMenu extends Pantalla {
         batch.begin();
 
         batch.draw(background, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+        //batch.draw(sol, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 
         batch.end();
 
