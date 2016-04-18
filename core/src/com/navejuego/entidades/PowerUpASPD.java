@@ -10,7 +10,7 @@ import com.navejuego.pantallas.PantallaJuego;
  */
 public class PowerUpASPD extends PowerUpEntity {
 
-    private int segundosDobleASPD = 20;
+    private int segundosDobleASPD = 5;
     public PowerUpASPD (Stage stage, Texture texture, Vector2 posicion){
         super(stage, texture, posicion);
     }

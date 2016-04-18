@@ -134,6 +134,9 @@ public class JugadorEntity extends GameObjectEntity {
         if (invulnerabilidad){
             contadorInvulnerabilidad();
         }
+        if (dobleASPD) {
+            contadorDobleASPD();
+        }
     }
 
 
@@ -199,35 +202,38 @@ public class JugadorEntity extends GameObjectEntity {
     }
 
     /**
-     * TODO: Incrementa la vida.
-     * @param cura
+     * Incrementa la vida si el parametro de cura es positivo.
+     * Nunca la incrementa por encima del máximo.
+     * @param cura Putnos de vida a incrementar. Valores negativos no hacen efecto.
      */
     public void curarse(int cura) {
+        if (cura > 0) {
+            vida = Math.min(vida + cura, maxVida);
+            updateUI();
+        }
 
     }
 
     /**
-     * TODO: Incrementa el escudo.
-     * @param escudo
+     * Incrementa el escudo si el parametro de escudo es positivo.
+     * Nunca lo incrementa por encima del máximo.
+     * @param escudo  Putnos de escudo a incrementar. Valores negativos no hacen efecto.
      */
     public void subirEscudo(int escudo) {
-
+        if (escudo > 0) {
+            this.escudo = Math.min(this.escudo + escudo, maxEscudo);
+            updateUI();
+        }
     }
 
     /**
-     * TODO: Activa secuencia de destrucción de la nave.
+     * Destruye la nave.
      */
     public void destruirse() {
         setPosition(-100, -100);
-        hitbox.setPosition(-100,-100);
+        hitbox.setPosition(-100, -100);
+        //TODO: Animación de destrucción de nave
         remove();
-    }
-
-    /**
-     * TODO: Dado un PowerUp, modifica las stats.
-     */
-    public void modificarStats(PowerUpEntity powerUp) {
-
     }
 
     /**
@@ -250,8 +256,7 @@ public class JugadorEntity extends GameObjectEntity {
     }
 
     public void contadorInvulnerabilidad(){
-        long tiempoActual = new TimeUtils().millis();
-        if (tiempoActual - inicioInvulnerabilidad > duracionInvulnerabilidad * 1000){
+        if (TimeUtils.timeSinceMillis(inicioInvulnerabilidad) > duracionDobleASPD * 1000){
             invulnerabilidad = false;
             inicioInvulnerabilidad = 0;
             duracionInvulnerabilidad = 0;
@@ -262,15 +267,15 @@ public class JugadorEntity extends GameObjectEntity {
 
         if (!this.dobleASPD) {
             this.dobleASPD = true;
-            this.inicioDobleASPD = new TimeUtils().millis();
+            this.inicioDobleASPD = TimeUtils.millis();
             this.duracionDobleASPD = duracion;
             this.cadenciaDisparo /= 2;
         }
     }
 
-    public void contadorDobleASPD(){
-        long tiempoActual = new TimeUtils().millis();
-        if (tiempoActual - inicioDobleASPD > duracionDobleASPD * 1000){
+    public void contadorDobleASPD() {
+
+        if (TimeUtils.timeSinceMillis(inicioDobleASPD) > duracionDobleASPD * 1000){
             dobleASPD = false;
             inicioDobleASPD = 0;
             duracionDobleASPD = 0;
