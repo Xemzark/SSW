@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.navejuego.entidades.patrones.LinealMovement;
 
 /**
  * Created by Elias on 09/04/2016.
@@ -12,6 +13,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 public class BulletNave extends BulletEntity {
     public BulletNave(Stage stage, Texture texture, Vector2 posicion) {
         super(stage, texture, posicion);
+        movementPattern = new LinealMovement(900.0f, true);
     }
 
     /**
@@ -31,17 +33,6 @@ public class BulletNave extends BulletEntity {
                 }
             }
         }
-    }
-
-    /**
-     * Actualizar su posición y la de su hitbox
-     * @param delta
-     */
-    @Override
-    protected void movimiento(float delta) {
-        // leer * delta como *segundo!!!!!!!!!!!
-        setPosition(getX(), getY() + (velocidad * delta));
-        hitbox.setPosition(getX(), getY());
     }
 
 }

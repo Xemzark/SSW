@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.navejuego.entidades.patrones.LinealMovement;
 import com.navejuego.pantallas.PantallaJuego;
 
 /**
@@ -14,6 +15,7 @@ public class BulletEnemigo extends BulletEntity {
 
     public BulletEnemigo(Stage stage, Texture texture, Vector2 posicion) {
         super(stage, texture, posicion);
+        movementPattern = new LinealMovement(900.0f, false);
     }
 
     /**
@@ -27,16 +29,5 @@ public class BulletEnemigo extends BulletEntity {
             Gdx.app.log("Hit a jugador!", "");
             this.destruirse();
         }
-    }
-
-    /**
-     * Actualizar su posición y la de su hitbox
-     * @param delta
-     */
-    @Override
-    protected void movimiento(float delta) {
-        // leer * delta como *segundo!!!!!!!!!!!
-        setPosition(getX(), getY() - (velocidad * delta));
-        hitbox.setPosition(getX(), getY());
     }
 }

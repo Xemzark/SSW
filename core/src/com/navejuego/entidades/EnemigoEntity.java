@@ -8,6 +8,7 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.navejuego.GestorAssets;
+import com.navejuego.entidades.patrones.LinealMovement;
 import com.navejuego.pantallas.PantallaJuego;
 
 import java.util.Random;
@@ -80,6 +81,9 @@ public class EnemigoEntity extends GameObjectEntity {
         setPosition(posX, posY);
         this.hitbox.setPosition(posX, posY);
         //Fin valores iniciales del Actor
+
+        //Set downwards movement at a speed of 150 per second
+        movementPattern = new LinealMovement(150, false);
     }
 
     /**
@@ -92,8 +96,8 @@ public class EnemigoEntity extends GameObjectEntity {
         comprobarColisionJugador();
         eliminarseOutOfBounds();
 
-        setPosition(getX(), getY() - (100 * delta));
-        hitbox.setPosition(getX(), getY());
+        movementPattern.Move(this, delta);
+        //MoveTo(getX(), getY() - (100 * delta));
         generarDisparo(delta);
     }
 

@@ -119,8 +119,7 @@ public class JugadorEntity extends GameObjectEntity {
                     newY = Gdx.graphics.getHeight() - getHeight();
                 }
 
-                setPosition(newX, newY);
-                hitbox.setPosition(getX(), getY());
+                MoveTo(newX, newY);
 
 
             }
