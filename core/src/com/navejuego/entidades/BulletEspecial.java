@@ -8,18 +8,15 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.navejuego.entidades.patrones.LinealMovement;
 
 /**
- * Created by Elias on 09/04/2016.
+ * Created by beno_ on 20/04/2016.
  */
-public class BulletNave extends BulletEntity {
+public class BulletEspecial extends BulletEntity{
 
-    public BulletNave(Stage stage, Texture texture, Vector2 posicion) {
+    public BulletEspecial(Stage stage, Texture texture, Vector2 posicion){
         super(stage, texture, posicion);
         movementPattern = new LinealMovement(900.0f, true);
+        setSize(50,70);
     }
-
-    /**
-     * TODO: Comprobar colision con otros gameobjects del stage.
-     */
     @Override
     protected void comprobarColision() {
         for(Actor b : stage.getActors()){
@@ -35,5 +32,4 @@ public class BulletNave extends BulletEntity {
             }
         }
     }
-
 }

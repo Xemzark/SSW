@@ -53,7 +53,7 @@ public class EnemigoEntity extends GameObjectEntity {
         // Debe conocer su stage, su textura y su sprite
 
         this.stage = stage;
-        this.texture = GestorAssets.getInstance().getTexture("addShield.png");
+        this.texture = GestorAssets.getInstance().getTexture("alien.png");
         this.sprite = new Sprite(this.texture);
         this.hitbox = new Rectangle();
 

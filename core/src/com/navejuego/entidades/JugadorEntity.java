@@ -38,6 +38,8 @@ public class JugadorEntity extends GameObjectEntity {
     protected float cadenciaDisparo;
     protected float tiempoSiguienteDisparo;
 
+    private AtaqueEspecial ataqueEspecial;
+
     private boolean invulnerabilidad;
     private long inicioInvulnerabilidad = 0;
     private int duracionInvulnerabilidad = 0;
@@ -63,6 +65,8 @@ public class JugadorEntity extends GameObjectEntity {
         this.texture = texture;
         this.sprite = new Sprite(this.texture);
         this.hitbox = new Rectangle();
+
+        this.ataqueEspecial = new AtaqueEspecial(this.stage);
 
         this.invulnerabilidad = false;
         this.puntuacion = new Puntuacion();
@@ -129,7 +133,10 @@ public class JugadorEntity extends GameObjectEntity {
 
     @Override
     public void act(float delta) {
+
         generarDisparo(delta);
+
+
         if (invulnerabilidad){
             contadorInvulnerabilidad();
         }
@@ -145,6 +152,7 @@ public class JugadorEntity extends GameObjectEntity {
         barravida.render(batch);
         barraescudo.render(batch);
         this.puntuacion.draw(batch);
+        this.ataqueEspecial.draw(batch,parentAlpha);
     }
 
 
@@ -153,11 +161,13 @@ public class JugadorEntity extends GameObjectEntity {
      * Este método genera un disparo de la nave cada delta tiempo
      */
     protected void generarDisparo(float delta) {
+
         tiempoSiguienteDisparo += delta;
         if (tiempoSiguienteDisparo > cadenciaDisparo) {
             Texture bulletTextura = GestorAssets.getInstance().getTexture("bullet.png");
             BulletNave bullet = new BulletNave(this.stage, bulletTextura, new Vector2(getX() + (getWidth() / 2), getY() + getHeight()));
             this.stage.addActor(bullet);
+            this.ataqueEspecial.generarDisparo(getX() + (getWidth() / 2),getY() + getHeight());
             tiempoSiguienteDisparo = 0;
         }
     }

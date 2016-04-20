@@ -28,7 +28,7 @@ public abstract class PowerUpEntity extends GameObjectEntity {
 
         setBounds(sprite.getX(), sprite.getY(), sprite.getWidth(), sprite.getHeight());
         setPosition(posicion.x, posicion.y);
-        setSize(30, 30);
+        setSize(50, 50);
         hitbox.setSize(sprite.getWidth(), sprite.getHeight());
         hitbox.setPosition(getX(), getY());
 
