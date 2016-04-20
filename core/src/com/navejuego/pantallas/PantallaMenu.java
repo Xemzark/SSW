@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeType;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -19,6 +20,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.navejuego.GestorAssets;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton.TextButtonStyle;
 
 
 /**
@@ -34,46 +36,59 @@ public class PantallaMenu extends Pantalla {
     private Skin skin;
     private Texture background, sol;
 
+    private BitmapFont font;
     private TextButton jugar, Ajustes, Ranking, Garaje;
+    private TextureAtlas buttonsAtlas; //** image of buttons **//
+    private Skin buttonSkin; //** images are used as skins of the button **//
 
 
 
     public PantallaMenu() {
 
 
+        buttonsAtlas = new TextureAtlas("otherskin/button.pack"); //**button atlas image **//
+        buttonSkin = new Skin();
+        buttonSkin.addRegions(buttonsAtlas); //** skins for on and off **//
+        //font = new BitmapFont(Gdx.files.internal("otherskin/new.fnt"),Gdx.files.internal("otherskin/new.png"),true); //** font **//
+        font = new BitmapFont(Gdx.files.internal("skin/default.fnt"));
 
         menuStage = new Stage(new FitViewport(Gdx.graphics.getWidth(), Gdx.graphics.getHeight()));
         Gdx.input.setInputProcessor(menuStage);
         skin = new Skin(Gdx.files.internal("skin/uiskin.json"));
+
+        TextButtonStyle style = new TextButtonStyle(); //** Button properties **//
+        style.up = buttonSkin.getDrawable("buttonOff");
+        style.down = buttonSkin.getDrawable("buttonOn");
+        style.font=font;
 
         batch = new SpriteBatch();
         background = GestorAssets.getInstance().getTexture("background_8.png");
         //sol = GestorAssets.getInstance().getTexture("sol.png");
 
 
-        jugar= new TextButton("Jugar", skin);
-        Ajustes= new TextButton("Ajustes", skin);
-        Ranking = new TextButton("Ranking", skin);
-        Garaje = new TextButton("Garaje", skin);
+        jugar= new TextButton("Jugar", style);
+        Ajustes= new TextButton("Ajustes", style);
+        Ranking = new TextButton("Ranking", style);
+        Garaje = new TextButton("Garaje", style);
 
-        jugar.setSize(Gdx.graphics.getWidth() / 4, Gdx.graphics.getHeight() / 8);
+        jugar.setSize(Gdx.graphics.getWidth() / 2, Gdx.graphics.getHeight() / 4);
 
         jugar.setPosition(Gdx.graphics.getWidth() / 2 - Gdx.graphics.getWidth() / 8, 2* Gdx.graphics.getHeight() / 3 - Gdx.graphics.getHeight() / 16);
-        jugar.getSkin().getFont("default-font").getData().setScale(2,2); //cambia el tamaño de la fuente del boton
+        //jugar.getSkin().getFont("default-font").getData().setScale(2,2); //cambia el tamaño de la fuente del boton
         //Ajustes.setSize(Gdx.graphics.getWidth() / 4, Gdx.graphics.getHeight() / 4);
         //Ajustes.setPosition(Gdx.graphics.getWidth() / 4 + 100 , Gdx.graphics.getHeight() / 3);
 
         Garaje.setSize(Gdx.graphics.getWidth() / 4, Gdx.graphics.getHeight() / 8);
         Garaje.setPosition(Gdx.graphics.getWidth() / 2 - Gdx.graphics.getWidth() / 8, Gdx.graphics.getHeight() / 3 - Gdx.graphics.getHeight() / 16);
-        Garaje.getSkin().getFont("default-font").getData().setScale(2, 2); //cambia el tamaño de la fuente
+        //Garaje.getSkin().getFont("default-font").getData().setScale(2, 2); //cambia el tamaño de la fuente
 
         Ajustes.setSize(Gdx.graphics.getWidth() / 4, Gdx.graphics.getHeight() / 8);
         Ajustes.setPosition(Gdx.graphics.getWidth() / 2 - Gdx.graphics.getWidth() / 8, Gdx.graphics.getHeight() / 6 - Gdx.graphics.getHeight() / 16);
-        Ajustes.getSkin().getFont("default-font").getData().setScale(2, 2); //cambia el tamaño de la fuente del boton
+        //Ajustes.getSkin().getFont("default-font").getData().setScale(2, 2); //cambia el tamaño de la fuente del boton
 
         Ranking.setSize(Gdx.graphics.getWidth() / 4, Gdx.graphics.getHeight() / 8);
         Ranking.setPosition(Gdx.graphics.getWidth()/2 - Gdx.graphics.getWidth() / 8, Gdx.graphics.getHeight() / 2 - Gdx.graphics.getHeight() / 16);
-        Ranking.getSkin().getFont("default-font").getData().setScale(2, 2); //cambia el tamaño de la fuente
+        //Ranking.getSkin().getFont("default-font").getData().setScale(2, 2); //cambia el tamaño de la fuente
 
 
 
@@ -104,7 +119,7 @@ public class PantallaMenu extends Pantalla {
             public void changed(ChangeListener.ChangeEvent event, Actor actor) {
                 //System.out.println("Clicked! Is checked: " + button.isChecked());
 
-                ScreenManager.getInstance().showScreen(ScreenEnum.GARAJE);
+                ScreenManager.getInstance().showScreen(ScreenEnum.AJUSTES);
 
             }
         });
