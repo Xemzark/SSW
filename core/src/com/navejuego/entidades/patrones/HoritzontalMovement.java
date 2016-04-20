@@ -46,12 +46,11 @@ public class HoritzontalMovement implements MovementPattern {
         float newX =  entity.getX();
 
         /**
-        * Controla que este dentro de los limites de la pantalla, si llega al final, cambia de
+         * Controla que este dentro de los limites de la pantalla, si llega al final, cambia de
          * direccion
          */
         if (goRight && (speed*delta)+newX > Gdx.graphics.getWidth()-entity.getWidth()){
             goRight = false;
-            Gdx.app.log(Boolean.toString(goRight),"");
         } else if (!goRight && newX - (speed*delta) < 0) {
             goRight = true;
         }
@@ -63,7 +62,6 @@ public class HoritzontalMovement implements MovementPattern {
             newX += speed * delta;
         } else {
             newX -= speed * delta;
-            Gdx.app.log("patata","");
 
         }
         entity.MoveTo(newX, entity.getY());
