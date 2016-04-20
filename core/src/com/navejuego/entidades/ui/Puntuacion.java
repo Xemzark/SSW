@@ -1,4 +1,4 @@
-package com.navejuego.entidades;
+package com.navejuego.entidades.ui;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;

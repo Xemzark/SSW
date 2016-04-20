@@ -4,10 +4,10 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.navejuego.GestorAssets;
+
 import java.util.Timer;
 
 
@@ -41,13 +41,13 @@ public class AtaqueEspecial extends GameObjectEntity{
             }
 
             Texture bulletTextura = GestorAssets.getInstance().getTexture("bulletespecial.png");
-            BulletEspecial bullet = new BulletEspecial(this.stage, bulletTextura, new Vector2(w, h));
-            BulletEspecial bullet1 = new BulletEspecial(this.stage, bulletTextura, new Vector2(w+50, h-13));
-            BulletEspecial bullet2 = new BulletEspecial(this.stage, bulletTextura, new Vector2(w-50, h -13));
-            BulletEspecial bullet3 = new BulletEspecial(this.stage, bulletTextura, new Vector2(w+100, h -25));
-            BulletEspecial bullet4 = new BulletEspecial(this.stage, bulletTextura, new Vector2(w-100, h -25));
-            BulletEspecial bullet5 = new BulletEspecial(this.stage, bulletTextura, new Vector2(w+150, h -50));
-            BulletEspecial bullet6 = new BulletEspecial(this.stage, bulletTextura, new Vector2(w-150, h-50));
+            com.navejuego.entidades.bullets.BulletEspecial bullet = new com.navejuego.entidades.bullets.BulletEspecial(this.stage, bulletTextura, new Vector2(w, h));
+            com.navejuego.entidades.bullets.BulletEspecial bullet1 = new com.navejuego.entidades.bullets.BulletEspecial(this.stage, bulletTextura, new Vector2(w+50, h-13));
+            com.navejuego.entidades.bullets.BulletEspecial bullet2 = new com.navejuego.entidades.bullets.BulletEspecial(this.stage, bulletTextura, new Vector2(w-50, h -13));
+            com.navejuego.entidades.bullets.BulletEspecial bullet3 = new com.navejuego.entidades.bullets.BulletEspecial(this.stage, bulletTextura, new Vector2(w+100, h -25));
+            com.navejuego.entidades.bullets.BulletEspecial bullet4 = new com.navejuego.entidades.bullets.BulletEspecial(this.stage, bulletTextura, new Vector2(w-100, h -25));
+            com.navejuego.entidades.bullets.BulletEspecial bullet5 = new com.navejuego.entidades.bullets.BulletEspecial(this.stage, bulletTextura, new Vector2(w+150, h -50));
+            com.navejuego.entidades.bullets.BulletEspecial bullet6 = new com.navejuego.entidades.bullets.BulletEspecial(this.stage, bulletTextura, new Vector2(w-150, h-50));
 
             //this.stage.addActor(bullet);
             this.stage.addActor(bullet);

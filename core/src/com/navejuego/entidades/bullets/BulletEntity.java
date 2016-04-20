@@ -1,4 +1,4 @@
-package com.navejuego.entidades;
+package com.navejuego.entidades.bullets;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
@@ -8,6 +8,7 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.navejuego.entidades.GameObjectEntity;
 
 /**
  * Created by Andrés on 04/04/2016.

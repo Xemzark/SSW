@@ -4,23 +4,15 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.math.Circle;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.physics.box2d.Body;
-import com.badlogic.gdx.physics.box2d.BodyDef;
-import com.badlogic.gdx.physics.box2d.Box2D;
-import com.badlogic.gdx.physics.box2d.CircleShape;
-import com.badlogic.gdx.physics.box2d.FixtureDef;
-import com.badlogic.gdx.physics.box2d.World;
-import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.utils.DragListener;
 import com.badlogic.gdx.utils.TimeUtils;
-import com.badlogic.gdx.utils.Timer;
 import com.navejuego.GestorAssets;
+import com.navejuego.entidades.ui.BarraVida;
 
 import static com.navejuego.Constantes.*;
 
@@ -48,11 +40,11 @@ public class JugadorEntity extends GameObjectEntity {
     private long inicioDobleASPD = 0;
     private int duracionDobleASPD = 0;
 
-    private BarraVida barravida;
-    private BarraEscudo barraescudo;
+    private com.navejuego.entidades.ui.BarraVida barravida;
+    private com.navejuego.entidades.ui.BarraEscudo barraescudo;
     private float maxVida = 100;
     private float maxEscudo = 100;
-    private Puntuacion puntuacion;
+    private com.navejuego.entidades.ui.Puntuacion puntuacion;
 
     /**
      * Constructor
@@ -69,13 +61,13 @@ public class JugadorEntity extends GameObjectEntity {
         this.ataqueEspecial = new AtaqueEspecial(this.stage);
 
         this.invulnerabilidad = false;
-        this.puntuacion = new Puntuacion();
+        this.puntuacion = new com.navejuego.entidades.ui.Puntuacion();
         this.vida = 100;
         this.escudo = 100;
 
         this.barravida = new BarraVida();
         this.stage.addActor(barravida);
-        this.barraescudo = new BarraEscudo();
+        this.barraescudo = new com.navejuego.entidades.ui.BarraEscudo();
         stage.addActor(barraescudo);
 
         this.tiempoSiguienteDisparo = 0;
@@ -165,9 +157,9 @@ public class JugadorEntity extends GameObjectEntity {
         tiempoSiguienteDisparo += delta;
         if (tiempoSiguienteDisparo > cadenciaDisparo) {
             Texture bulletTextura = GestorAssets.getInstance().getTexture("bullet.png");
-            BulletNave bullet = new BulletNave(this.stage, bulletTextura, new Vector2(getX() + (getWidth() / 2), getY() + getHeight()));
+            com.navejuego.entidades.bullets.BulletNave bullet = new com.navejuego.entidades.bullets.BulletNave(this.stage, bulletTextura, new Vector2(getX() + (getWidth() / 2), getY() + getHeight()));
             this.stage.addActor(bullet);
-            this.ataqueEspecial.generarDisparo(getX() + (getWidth() / 2),getY() + getHeight());
+            this.ataqueEspecial.generarDisparo(getX() + (getWidth() / 2), getY() + getHeight());
             tiempoSiguienteDisparo = 0;
         }
     }
@@ -206,7 +198,7 @@ public class JugadorEntity extends GameObjectEntity {
         barraescudo.update();
     }
 
-    public Puntuacion getPuntuacion() {
+    public com.navejuego.entidades.ui.Puntuacion getPuntuacion() {
         return puntuacion;
     }
 
