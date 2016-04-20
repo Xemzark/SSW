@@ -4,11 +4,13 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.math.Circle;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.navejuego.GestorAssets;
 import com.navejuego.entidades.patrones.LinealMovement;
+import com.navejuego.entidades.powerups.PowerUpEntity;
 import com.navejuego.pantallas.PantallaJuego;
 
 import java.util.Random;
@@ -119,7 +121,7 @@ public class EnemigoEntity extends GameObjectEntity {
         tiempoSiguienteDisparo += delta;
         if (tiempoSiguienteDisparo > cadenciaDisparo) {
             Texture bulletTextura = GestorAssets.getInstance().getTexture("bullet.png");
-            BulletEnemigo bullet = new BulletEnemigo(this.stage, bulletTextura, new Vector2(getX() + (getWidth() / 2), getY()));
+            com.navejuego.entidades.bullets.BulletEnemigo bullet = new com.navejuego.entidades.bullets.BulletEnemigo(this.stage, bulletTextura, new Vector2(getX() + (getWidth() / 2), getY()));
             bullet.setName("Bala Enemigo");
             this.stage.addActor(bullet);
             tiempoSiguienteDisparo = 0;
@@ -206,7 +208,7 @@ public class EnemigoEntity extends GameObjectEntity {
 
         //Power up escudo
         powerup = GestorAssets.getInstance().getTexture("addShield.png");
-        PowerUpASPD pUp = new PowerUpASPD(stage, powerup, posicion );
+        com.navejuego.entidades.powerups.PowerUpASPD pUp = new com.navejuego.entidades.powerups.PowerUpASPD(stage, powerup, posicion );
         this.stage.addActor(pUp);
 
     }

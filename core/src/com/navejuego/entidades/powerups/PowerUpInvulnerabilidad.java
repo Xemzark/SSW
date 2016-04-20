@@ -1,4 +1,4 @@
-package com.navejuego.entidades;
+package com.navejuego.entidades.powerups;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Vector2;
@@ -8,17 +8,15 @@ import com.navejuego.pantallas.PantallaJuego;
 /**
  * Created by Nex on 13/04/2016.
  */
-public class PowerUpASPD extends PowerUpEntity {
+public class PowerUpInvulnerabilidad extends PowerUpEntity {
 
-    private int segundosDobleASPD = 5;
-    public PowerUpASPD (Stage stage, Texture texture, Vector2 posicion){
+    private int segundosInvulnerabilidad = 20;
+    public PowerUpInvulnerabilidad (Stage stage, Texture texture, Vector2 posicion){
         super(stage, texture, posicion);
     }
 
     @Override
     public void aplicarEfectosSobreJugador() {
-
-        PantallaJuego.jugador.setDobleASPD(segundosDobleASPD);
+        PantallaJuego.jugador.setInvulnerabilidad( segundosInvulnerabilidad);
     }
-
 }
