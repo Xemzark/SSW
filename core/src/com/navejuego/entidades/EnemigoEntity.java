@@ -163,7 +163,7 @@ public class EnemigoEntity extends GameObjectEntity {
         generarPowerUp();
         PantallaJuego.jugador.addPuntos(50);
         this.remove();
-        Gdx.app.log("Enemy killed!", "");
+        //Gdx.app.log("Enemy killed!", "");
     }
 
     /**

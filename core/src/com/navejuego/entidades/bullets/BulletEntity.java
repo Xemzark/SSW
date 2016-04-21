@@ -75,7 +75,7 @@ public abstract class BulletEntity extends GameObjectEntity {
     @Override
     public void destruirse() {
         this.remove();
-        Gdx.app.log("Bullet killed!", "");
+        //Gdx.app.log("Bullet killed!", "");
     }
 
     /**

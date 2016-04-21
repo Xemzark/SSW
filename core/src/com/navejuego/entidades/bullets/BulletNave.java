@@ -30,7 +30,7 @@ public class BulletNave extends BulletEntity {
                 EnemigoEntity enemigo = (EnemigoEntity) b;
                 if (enemigo.getHitbox().overlaps(this.getHitbox())){
                     enemigo.recibirDmg(damage, ignoraEscudo);
-                    Gdx.app.log("Hit a nave enemiga", "");
+                    //Gdx.app.log("Hit a nave enemiga", "");
                     this.destruirse();
                 }
             }
