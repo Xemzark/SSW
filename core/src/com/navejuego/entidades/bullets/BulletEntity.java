@@ -1,4 +1,4 @@
-package com.navejuego.entidades;
+package com.navejuego.entidades.bullets;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
@@ -8,6 +8,7 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.navejuego.entidades.GameObjectEntity;
 
 /**
  * Created by Andrés on 04/04/2016.
@@ -20,7 +21,6 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
  */
 public abstract class BulletEntity extends GameObjectEntity {
 
-    protected float velocidad = 900.0f; //En pixeles/segundo
     protected int damage = 10; //Daño que aplica al golpear
     protected boolean ignoraEscudo = false;
 
@@ -45,6 +45,8 @@ public abstract class BulletEntity extends GameObjectEntity {
         setSize(10, 20);
         this.hitbox.setPosition(getX(), getY());
         this.hitbox.setSize(getWidth(), getHeight());
+
+        movementPattern = null;
         //Fin de valores iniciales del Actor
     }
 
@@ -57,7 +59,8 @@ public abstract class BulletEntity extends GameObjectEntity {
     public void act(float delta) {
         eliminarDisparo();
 
-        movimiento(delta);
+        movementPattern.Move(this, delta);
+
         comprobarColision();
     }
 
@@ -72,18 +75,13 @@ public abstract class BulletEntity extends GameObjectEntity {
     @Override
     public void destruirse() {
         this.remove();
-        Gdx.app.log("Bullet killed!", "");
+        //Gdx.app.log("Bullet killed!", "");
     }
 
     /**
      * Ejecuta la logica de colision y aplica sus efectos.
      */
     protected abstract void comprobarColision();
-
-    /**
-     * Mueve el proyectil en la direccion que corresponde.
-     */
-    protected abstract void movimiento(float delta);
 
     /**
      * eliminarDisparo

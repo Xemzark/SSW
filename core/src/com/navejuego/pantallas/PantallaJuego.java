@@ -12,7 +12,10 @@ import com.navejuego.Main;
 import com.navejuego.entidades.EnemigoEntity;
 import com.navejuego.entidades.JugadorEntity;
 import com.navejuego.GestorAssets;
+import com.navejuego.entidades.Wave;
+import com.navejuego.entidades.WaveManager;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 /**
@@ -28,7 +31,7 @@ import java.util.Random;
  */
 public class PantallaJuego extends Pantalla {
 
-    private Stage stage; // Variable Stage, Scene2D
+    public static Stage stage; // Variable Stage, Scene2D
     private SpriteBatch batch;
     private Texture background;
 
@@ -38,6 +41,8 @@ public class PantallaJuego extends Pantalla {
     private float acumulableTiempo; // Variable para generar los enemigos
     boolean enemigoSi; // Variable para generar los enemigos
     float entreEnemigoAcumulable; // Variable para generar los enemigos
+
+    private WaveManager waves;
 
     /**
      * Constructor
@@ -52,6 +57,12 @@ public class PantallaJuego extends Pantalla {
 
         this.acumulableTiempo = 0.0f;
         this.enemigoSi = true;
+
+        //TODO: Cuando se terminen las Waves, reemplazar estos null por lo que corresponda.
+        ArrayList<Wave> waveArray = new ArrayList<Wave>();
+        waveArray.add(new Wave(null, 5, 1000));
+        waveArray.add(new Wave(null, 2, 3000));
+        waves = new WaveManager(waveArray, null, true);
     }
 
     @Override
@@ -132,6 +143,8 @@ public class PantallaJuego extends Pantalla {
      * TODO: Rehacer
      */
     private void generarEnemigos(){
+        waves.Spawn();
+        /*
         //Coger el tiempo
         acumulableTiempo += Gdx.graphics.getDeltaTime();
 
@@ -141,7 +154,7 @@ public class PantallaJuego extends Pantalla {
         /**
          * Ola entre 6 y 3 segundos
          * Si se ha generado el enemigo, se empieza a contar el tiempo y no se puede generar otro.
-         */
+         /
         if(enemigoSi){
             entreEnemigoAcumulable = entreEnemigo.nextInt(6-3 + 1) + 3;
             enemigoSi = false; // Ya no se puede recalcular el tiempo hasta el siguiente enemigo
@@ -156,6 +169,7 @@ public class PantallaJuego extends Pantalla {
             acumulableTiempo=0.0f; // Se reinicia el tiempo
             enemigoSi = true; // Se puede recalcular el tiempo para el siguiente enemigo
         }
+        */
     }
 
     /**

@@ -1,4 +1,4 @@
-package com.navejuego.entidades;
+package com.navejuego.entidades.powerups;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Vector2;
@@ -10,7 +10,7 @@ import com.navejuego.pantallas.PantallaJuego;
  */
 public class PowerUpASPD extends PowerUpEntity {
 
-    private int segundosDobleASPD = 20;
+    private int segundosDobleASPD = 5;
     public PowerUpASPD (Stage stage, Texture texture, Vector2 posicion){
         super(stage, texture, posicion);
     }

@@ -4,23 +4,15 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.math.Circle;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.physics.box2d.Body;
-import com.badlogic.gdx.physics.box2d.BodyDef;
-import com.badlogic.gdx.physics.box2d.Box2D;
-import com.badlogic.gdx.physics.box2d.CircleShape;
-import com.badlogic.gdx.physics.box2d.FixtureDef;
-import com.badlogic.gdx.physics.box2d.World;
-import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.utils.DragListener;
 import com.badlogic.gdx.utils.TimeUtils;
-import com.badlogic.gdx.utils.Timer;
 import com.navejuego.GestorAssets;
+import com.navejuego.entidades.ui.BarraVida;
 
 import static com.navejuego.Constantes.*;
 
@@ -38,6 +30,8 @@ public class JugadorEntity extends GameObjectEntity {
     protected float cadenciaDisparo;
     protected float tiempoSiguienteDisparo;
 
+    private AtaqueEspecial ataqueEspecial;
+
     private boolean invulnerabilidad;
     private long inicioInvulnerabilidad = 0;
     private int duracionInvulnerabilidad = 0;
@@ -46,11 +40,11 @@ public class JugadorEntity extends GameObjectEntity {
     private long inicioDobleASPD = 0;
     private int duracionDobleASPD = 0;
 
-    private BarraVida barravida;
-    private BarraEscudo barraescudo;
+    private com.navejuego.entidades.ui.BarraVida barravida;
+    private com.navejuego.entidades.ui.BarraEscudo barraescudo;
     private float maxVida = 100;
     private float maxEscudo = 100;
-    private Puntuacion puntuacion;
+    private com.navejuego.entidades.ui.Puntuacion puntuacion;
 
     /**
      * Constructor
@@ -64,14 +58,16 @@ public class JugadorEntity extends GameObjectEntity {
         this.sprite = new Sprite(this.texture);
         this.hitbox = new Rectangle();
 
+        this.ataqueEspecial = new AtaqueEspecial(this.stage);
+
         this.invulnerabilidad = false;
-        this.puntuacion = new Puntuacion();
+        this.puntuacion = new com.navejuego.entidades.ui.Puntuacion();
         this.vida = 100;
         this.escudo = 100;
 
         this.barravida = new BarraVida();
         this.stage.addActor(barravida);
-        this.barraescudo = new BarraEscudo();
+        this.barraescudo = new com.navejuego.entidades.ui.BarraEscudo();
         stage.addActor(barraescudo);
 
         this.tiempoSiguienteDisparo = 0;
@@ -119,8 +115,7 @@ public class JugadorEntity extends GameObjectEntity {
                     newY = Gdx.graphics.getHeight() - getHeight();
                 }
 
-                setPosition(newX, newY);
-                hitbox.setPosition(getX(), getY());
+                MoveTo(newX, newY);
 
 
             }
@@ -130,9 +125,15 @@ public class JugadorEntity extends GameObjectEntity {
 
     @Override
     public void act(float delta) {
+
         generarDisparo(delta);
+
+
         if (invulnerabilidad){
             contadorInvulnerabilidad();
+        }
+        if (dobleASPD) {
+            contadorDobleASPD();
         }
     }
 
@@ -143,6 +144,7 @@ public class JugadorEntity extends GameObjectEntity {
         barravida.render(batch);
         barraescudo.render(batch);
         this.puntuacion.draw(batch);
+        this.ataqueEspecial.draw(batch,parentAlpha);
     }
 
 
@@ -151,11 +153,13 @@ public class JugadorEntity extends GameObjectEntity {
      * Este método genera un disparo de la nave cada delta tiempo
      */
     protected void generarDisparo(float delta) {
+
         tiempoSiguienteDisparo += delta;
         if (tiempoSiguienteDisparo > cadenciaDisparo) {
             Texture bulletTextura = GestorAssets.getInstance().getTexture("bullet.png");
-            BulletNave bullet = new BulletNave(this.stage, bulletTextura, new Vector2(getX() + (getWidth() / 2), getY() + getHeight()));
+            com.navejuego.entidades.bullets.BulletNave bullet = new com.navejuego.entidades.bullets.BulletNave(this.stage, bulletTextura, new Vector2(getX() + (getWidth() / 2), getY() + getHeight()));
             this.stage.addActor(bullet);
+            this.ataqueEspecial.generarDisparo(getX() + (getWidth() / 2), getY() + getHeight());
             tiempoSiguienteDisparo = 0;
         }
     }
@@ -194,40 +198,43 @@ public class JugadorEntity extends GameObjectEntity {
         barraescudo.update();
     }
 
-    public Puntuacion getPuntuacion() {
+    public com.navejuego.entidades.ui.Puntuacion getPuntuacion() {
         return puntuacion;
     }
 
     /**
-     * TODO: Incrementa la vida.
-     * @param cura
+     * Incrementa la vida si el parametro de cura es positivo.
+     * Nunca la incrementa por encima del máximo.
+     * @param cura Putnos de vida a incrementar. Valores negativos no hacen efecto.
      */
     public void curarse(int cura) {
+        if (cura > 0) {
+            vida = Math.min(vida + cura, maxVida);
+            updateUI();
+        }
 
     }
 
     /**
-     * TODO: Incrementa el escudo.
-     * @param escudo
+     * Incrementa el escudo si el parametro de escudo es positivo.
+     * Nunca lo incrementa por encima del máximo.
+     * @param escudo  Putnos de escudo a incrementar. Valores negativos no hacen efecto.
      */
     public void subirEscudo(int escudo) {
-
+        if (escudo > 0) {
+            this.escudo = Math.min(this.escudo + escudo, maxEscudo);
+            updateUI();
+        }
     }
 
     /**
-     * TODO: Activa secuencia de destrucción de la nave.
+     * Destruye la nave.
      */
     public void destruirse() {
         setPosition(-100, -100);
-        hitbox.setPosition(-100,-100);
+        hitbox.setPosition(-100, -100);
+        //TODO: Animación de destrucción de nave
         remove();
-    }
-
-    /**
-     * TODO: Dado un PowerUp, modifica las stats.
-     */
-    public void modificarStats(PowerUpEntity powerUp) {
-
     }
 
     /**
@@ -250,8 +257,7 @@ public class JugadorEntity extends GameObjectEntity {
     }
 
     public void contadorInvulnerabilidad(){
-        long tiempoActual = new TimeUtils().millis();
-        if (tiempoActual - inicioInvulnerabilidad > duracionInvulnerabilidad * 1000){
+        if (TimeUtils.timeSinceMillis(inicioInvulnerabilidad) > duracionDobleASPD * 1000){
             invulnerabilidad = false;
             inicioInvulnerabilidad = 0;
             duracionInvulnerabilidad = 0;
@@ -262,15 +268,15 @@ public class JugadorEntity extends GameObjectEntity {
 
         if (!this.dobleASPD) {
             this.dobleASPD = true;
-            this.inicioDobleASPD = new TimeUtils().millis();
+            this.inicioDobleASPD = TimeUtils.millis();
             this.duracionDobleASPD = duracion;
             this.cadenciaDisparo /= 2;
         }
     }
 
-    public void contadorDobleASPD(){
-        long tiempoActual = new TimeUtils().millis();
-        if (tiempoActual - inicioDobleASPD > duracionDobleASPD * 1000){
+    public void contadorDobleASPD() {
+
+        if (TimeUtils.timeSinceMillis(inicioDobleASPD) > duracionDobleASPD * 1000){
             dobleASPD = false;
             inicioDobleASPD = 0;
             duracionDobleASPD = 0;
