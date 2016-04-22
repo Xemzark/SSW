@@ -14,6 +14,8 @@ import com.badlogic.gdx.utils.TimeUtils;
 import com.navejuego.GestorAssets;
 import com.navejuego.entidades.ui.BarraVida;
 
+import java.util.ArrayList;
+
 import static com.navejuego.Constantes.*;
 
 /**
@@ -152,8 +154,9 @@ public class JugadorEntity extends GameObjectEntity {
      * generarDisparo
      * Este método genera un disparo de la nave cada delta tiempo
      */
-    protected void generarDisparo(float delta) {
 
+    protected void generarDisparo(float delta) {
+/*
         tiempoSiguienteDisparo += delta;
         if (tiempoSiguienteDisparo > cadenciaDisparo) {
             Texture bulletTextura = GestorAssets.getInstance().getTexture("bullet.png");
@@ -161,7 +164,7 @@ public class JugadorEntity extends GameObjectEntity {
             this.stage.addActor(bullet);
             this.ataqueEspecial.generarDisparo(getX() + (getWidth() / 2), getY() + getHeight());
             tiempoSiguienteDisparo = 0;
-        }
+        }*/
     }
 
     /*
@@ -231,10 +234,23 @@ public class JugadorEntity extends GameObjectEntity {
      * Destruye la nave.
      */
     public void destruirse() {
+        animacionExplo();
         setPosition(-100, -100);
         hitbox.setPosition(-100, -100);
         //TODO: Animación de destrucción de nave
         remove();
+    }
+
+    public void animacionExplo()
+    {
+        ArrayList<Texture> explosionTextura = new ArrayList<Texture>();
+        explosionTextura.add(GestorAssets.getInstance().getTexture("explo1.png"));
+        explosionTextura.add(GestorAssets.getInstance().getTexture("explo2.png"));
+        explosionTextura.add(GestorAssets.getInstance().getTexture("explo3.png"));
+        explosionTextura.add(GestorAssets.getInstance().getTexture("explo4.png"));
+        explosionTextura.add(GestorAssets.getInstance().getTexture("explo5.png"));
+        com.navejuego.Explosion explo = new com.navejuego.Explosion(this.stage,explosionTextura, new Vector2(getX(),getY()),2.0f);
+        this.stage.addActor(explo);
     }
 
     /**
