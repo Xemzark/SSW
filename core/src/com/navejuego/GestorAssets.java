@@ -50,6 +50,11 @@ public class GestorAssets {
         manager.load("powerup_vida.png", Texture.class);
         manager.load("bulletespecial.png", Texture.class);
         manager.load("botonespecial.png", Texture.class);
+        manager.load("explol.png", Texture.class);
+        manager.load("explo2.png", Texture.class);
+        manager.load("explo3.png", Texture.class);
+        manager.load("explo4.png", Texture.class);
+        manager.load("explo5.png", Texture.class);
         manager.finishLoading();
         //asÃ­ se cargan todos los assets. puede tardar, asÃ­ que mejor hacer pantalla de carga
     }
