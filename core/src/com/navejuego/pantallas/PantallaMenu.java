@@ -1,21 +1,15 @@
 package com.navejuego.pantallas;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.badlogic.gdx.graphics.g2d.freetype.FreeType;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
-import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
-import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.viewport.FitViewport;
@@ -41,9 +35,21 @@ public class PantallaMenu extends Pantalla {
     private TextureAtlas buttonsAtlas; //** image of buttons **//
     private Skin buttonSkin; //** images are used as skins of the button **//
 
+    private Image ajustess, logo;
+
 
 
     public PantallaMenu() {
+
+
+        buttonsAtlas = new TextureAtlas("otherskin/button.pack"); //**button atlas image **//
+        buttonSkin = new Skin();
+        buttonSkin.addRegions(buttonsAtlas); //** skins for on and off **//
+
+        logo = new Image(GestorAssets.getInstance().getTexture("logo4.png"));
+        logo.setSize(Gdx.graphics.getWidth() / 2 +50 , Gdx.graphics.getHeight() / 6 +50);
+        logo.setPosition(Gdx.graphics.getWidth() / 2 -2*Gdx.graphics.getWidth()/7 , Gdx.graphics.getHeight() / 2+Gdx.graphics.getHeight() / 4 );
+
 
 
         buttonsAtlas = new TextureAtlas("otherskin/button.pack"); //**button atlas image **//
@@ -61,9 +67,17 @@ public class PantallaMenu extends Pantalla {
         style.down = buttonSkin.getDrawable("buttonOn");
         style.font=font;
 
+
+
         batch = new SpriteBatch();
-        background = GestorAssets.getInstance().getTexture("background_8.png");
+        background = GestorAssets.getInstance().getTexture("background_1.png");
         //sol = GestorAssets.getInstance().getTexture("sol.png");
+
+        ajustess = new com.badlogic.gdx.scenes.scene2d.ui.Image(GestorAssets.getInstance().getTexture("otherskin/ajustess.png"));
+        ajustess.setSize(Gdx.graphics.getWidth() / 6, Gdx.graphics.getHeight() / 12);
+        ajustess.setPosition(Gdx.graphics.getWidth() / 4 + Gdx.graphics.getWidth() / 2, Gdx.graphics.getHeight() / 5);
+
+
 
 
         jugar= new TextButton("Jugar", style);
@@ -71,9 +85,11 @@ public class PantallaMenu extends Pantalla {
         Ranking = new TextButton("Ranking", style);
         Garaje = new TextButton("Garaje", style);
 
-        jugar.setSize(Gdx.graphics.getWidth() / 2, Gdx.graphics.getHeight() / 4);
+        jugar.setSize(Gdx.graphics.getWidth() / 4, Gdx.graphics.getHeight() / 8);
 
         jugar.setPosition(Gdx.graphics.getWidth() / 2 - Gdx.graphics.getWidth() / 8, 2* Gdx.graphics.getHeight() / 3 - Gdx.graphics.getHeight() / 16);
+        jugar.getLabel().setFontScale(3);
+
         //jugar.getSkin().getFont("default-font").getData().setScale(2,2); //cambia el tamaño de la fuente del boton
         //Ajustes.setSize(Gdx.graphics.getWidth() / 4, Gdx.graphics.getHeight() / 4);
         //Ajustes.setPosition(Gdx.graphics.getWidth() / 4 + 100 , Gdx.graphics.getHeight() / 3);
@@ -92,7 +108,17 @@ public class PantallaMenu extends Pantalla {
 
 
 
-        // jugar.addListener()
+
+        ajustess.addListener(new ChangeListener() {
+            public void changed(ChangeListener.ChangeEvent event, Actor actor) {
+                //System.out.println("Clicked! Is checked: " + button.isChecked());
+                jugar.setText("Starting new game");
+                ScreenManager.getInstance().showScreen(ScreenEnum.AJUSTES);
+
+            }
+        });
+
+
 
         jugar.addListener(new ChangeListener() {
             public void changed(ChangeListener.ChangeEvent event, Actor actor) {
@@ -140,6 +166,8 @@ public class PantallaMenu extends Pantalla {
         menuStage.addActor(Garaje);
         menuStage.addActor(Ranking);
         menuStage.addActor(jugar);
+        menuStage.addActor(ajustess);
+        menuStage.addActor(logo);
 
 
 
