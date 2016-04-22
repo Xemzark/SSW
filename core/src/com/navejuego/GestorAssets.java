@@ -50,7 +50,7 @@ public class GestorAssets {
         manager.load("powerup_vida.png", Texture.class);
         manager.load("bulletespecial.png", Texture.class);
         manager.load("botonespecial.png", Texture.class);
-        manager.load("explol.png", Texture.class);
+        manager.load("explo1.png", Texture.class);
         manager.load("explo2.png", Texture.class);
         manager.load("explo3.png", Texture.class);
         manager.load("explo4.png", Texture.class);

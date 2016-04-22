@@ -156,7 +156,6 @@ public class JugadorEntity extends GameObjectEntity {
      */
 
     protected void generarDisparo(float delta) {
-/*
         tiempoSiguienteDisparo += delta;
         if (tiempoSiguienteDisparo > cadenciaDisparo) {
             Texture bulletTextura = GestorAssets.getInstance().getTexture("bullet.png");
@@ -164,7 +163,7 @@ public class JugadorEntity extends GameObjectEntity {
             this.stage.addActor(bullet);
             this.ataqueEspecial.generarDisparo(getX() + (getWidth() / 2), getY() + getHeight());
             tiempoSiguienteDisparo = 0;
-        }*/
+        }
     }
 
     /*
@@ -249,7 +248,7 @@ public class JugadorEntity extends GameObjectEntity {
         explosionTextura.add(GestorAssets.getInstance().getTexture("explo3.png"));
         explosionTextura.add(GestorAssets.getInstance().getTexture("explo4.png"));
         explosionTextura.add(GestorAssets.getInstance().getTexture("explo5.png"));
-        com.navejuego.Explosion explo = new com.navejuego.Explosion(this.stage,explosionTextura, new Vector2(getX(),getY()),2.0f);
+        com.navejuego.Explosion explo = new com.navejuego.Explosion(this.stage,explosionTextura, new Vector2(getX(),getY()),1.0f);
         this.stage.addActor(explo);
     }
 

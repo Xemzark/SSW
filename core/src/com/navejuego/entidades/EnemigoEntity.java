@@ -13,6 +13,7 @@ import com.navejuego.entidades.patrones.LinealMovement;
 import com.navejuego.entidades.powerups.PowerUpEntity;
 import com.navejuego.pantallas.PantallaJuego;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 import static com.navejuego.Constantes.PIXELS_METRE;
@@ -161,9 +162,22 @@ public class EnemigoEntity extends GameObjectEntity {
      */
     public void destruirse() {
         generarPowerUp();
+        animacionExplo();
         PantallaJuego.jugador.addPuntos(50);
         this.remove();
         //Gdx.app.log("Enemy killed!", "");
+    }
+
+    public void animacionExplo()
+    {
+        ArrayList<Texture> explosionTextura = new ArrayList<Texture>();
+        explosionTextura.add(GestorAssets.getInstance().getTexture("explo1.png"));
+        explosionTextura.add(GestorAssets.getInstance().getTexture("explo2.png"));
+        explosionTextura.add(GestorAssets.getInstance().getTexture("explo3.png"));
+        explosionTextura.add(GestorAssets.getInstance().getTexture("explo4.png"));
+        explosionTextura.add(GestorAssets.getInstance().getTexture("explo5.png"));
+        com.navejuego.Explosion explo = new com.navejuego.Explosion(this.stage,explosionTextura, new Vector2(getX(),getY()),1.0f);
+        this.stage.addActor(explo);
     }
 
     /**
