@@ -164,6 +164,7 @@ public class EnemigoEntity extends GameObjectEntity {
         generarPowerUp();
         animacionExplo();
         PantallaJuego.jugador.addPuntos(50);
+        GestorAssets.getInstance().getSound("explosion2.wav").play();
         this.remove();
         //Gdx.app.log("Enemy killed!", "");
     }

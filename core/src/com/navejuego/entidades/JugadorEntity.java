@@ -61,6 +61,7 @@ public class JugadorEntity extends GameObjectEntity {
         this.hitbox = new Rectangle();
 
         this.ataqueEspecial = new AtaqueEspecial(this.stage);
+        stage.addActor(this.ataqueEspecial);
 
         this.invulnerabilidad = false;
         this.puntuacion = new com.navejuego.entidades.ui.Puntuacion();
@@ -161,7 +162,7 @@ public class JugadorEntity extends GameObjectEntity {
             Texture bulletTextura = GestorAssets.getInstance().getTexture("bullet.png");
             com.navejuego.entidades.bullets.BulletNave bullet = new com.navejuego.entidades.bullets.BulletNave(this.stage, bulletTextura, new Vector2(getX() + (getWidth() / 2), getY() + getHeight()));
             this.stage.addActor(bullet);
-            this.ataqueEspecial.generarDisparo(getX() + (getWidth() / 2), getY() + getHeight());
+            //this.ataqueEspecial.generarDisparo(getX() + (getWidth() / 2), getY() + getHeight());
             tiempoSiguienteDisparo = 0;
         }
     }

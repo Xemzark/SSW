@@ -1,6 +1,7 @@
 package com.navejuego.pantallas;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Vector2;
@@ -34,6 +35,7 @@ public class PantallaJuego extends Pantalla {
     public static Stage stage; // Variable Stage, Scene2D
     private SpriteBatch batch;
     private Texture background;
+    private Music music;
 
     // Variables de Actores
     public static JugadorEntity jugador = null;
@@ -63,6 +65,12 @@ public class PantallaJuego extends Pantalla {
         waveArray.add(new Wave(null, 5, 1000));
         waveArray.add(new Wave(null, 2, 3000));
         waves = new WaveManager(waveArray, null, true);
+
+        this.music =  GestorAssets.getInstance().getMusic("SpaceLoungeLoop.wav");
+        this.music.setLooping(true);
+        this.music.play();
+
+
     }
 
     @Override
