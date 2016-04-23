@@ -13,6 +13,7 @@ import com.navejuego.Main;
 import com.navejuego.entidades.EnemigoEntity;
 import com.navejuego.entidades.JugadorEntity;
 import com.navejuego.GestorAssets;
+import com.navejuego.entidades.LevelManager;
 import com.navejuego.entidades.Wave;
 import com.navejuego.entidades.WaveManager;
 
@@ -34,8 +35,9 @@ public class PantallaJuego extends Pantalla {
 
     public static Stage stage; // Variable Stage, Scene2D
     private SpriteBatch batch;
-    private Texture background;
-    private Music music;
+    //private Texture background;
+    //private Music music;
+    private LevelManager levelManager;
 
     // Variables de Actores
     public static JugadorEntity jugador = null;
@@ -44,7 +46,7 @@ public class PantallaJuego extends Pantalla {
     boolean enemigoSi; // Variable para generar los enemigos
     float entreEnemigoAcumulable; // Variable para generar los enemigos
 
-    private WaveManager waves;
+    //private WaveManager waves;
 
     /**
      * Constructor
@@ -61,14 +63,17 @@ public class PantallaJuego extends Pantalla {
         this.enemigoSi = true;
 
         //TODO: Cuando se terminen las Waves, reemplazar estos null por lo que corresponda.
-        ArrayList<Wave> waveArray = new ArrayList<Wave>();
+        /*ArrayList<Wave> waveArray = new ArrayList<Wave>();
         waveArray.add(new Wave(null, 5, 1000));
         waveArray.add(new Wave(null, 2, 3000));
-        waves = new WaveManager(waveArray, null, true);
+        waves = new WaveManager(waveArray, null, true);*/
 
-        this.music =  GestorAssets.getInstance().getMusic("SpaceLoungeLoop.wav");
-        this.music.setLooping(true);
-        this.music.play();
+        this.levelManager = new LevelManager(LevelManager.Nivel.NIVEL_4);
+        this.levelManager.getMusic().setLooping(true);
+        this.levelManager.getMusic().play();
+        //this.music =  GestorAssets.getInstance().getMusic("SpaceLoungeLoop.wav");
+       // this.music.setLooping(true);
+        //this.music.play();
 
 
     }
@@ -86,7 +91,9 @@ public class PantallaJuego extends Pantalla {
 
         //para el background
         batch = new SpriteBatch();
-        background = GestorAssets.getInstance().getTexture("background_1.png");
+
+        //background = GestorAssets.getInstance().getTexture("background_1.png");
+
 
         Texture naveTextura = GestorAssets.getInstance().getTexture("nave.png");
 
@@ -126,7 +133,8 @@ public class PantallaJuego extends Pantalla {
 
         batch.begin();
 
-        batch.draw(background,0,0,Gdx.graphics.getWidth(),Gdx.graphics.getHeight());
+        //batch.draw(background, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+        batch.draw(this.levelManager.getBackGround(),0,0,Gdx.graphics.getWidth(),Gdx.graphics.getHeight());
 
         batch.end();
 
@@ -151,7 +159,8 @@ public class PantallaJuego extends Pantalla {
      * TODO: Rehacer
      */
     private void generarEnemigos(){
-        waves.Spawn();
+        //waves.Spawn();
+        levelManager.spawn();
         /*
         //Coger el tiempo
         acumulableTiempo += Gdx.graphics.getDeltaTime();
@@ -216,12 +225,6 @@ public class PantallaJuego extends Pantalla {
 
     }
 
-    /**
-     * TODO: Hacer aparecer el boss.
-     */
-    private void generaBoss() {
-
-    }
 
     /**
      * TODO: Comprobar si se ha ganado el nivel.

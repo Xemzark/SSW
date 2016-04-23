@@ -63,6 +63,9 @@ public class GestorAssets {
         //Link musica espacial gratis
         //http://www.dl-sounds.com/royalty-free/category/space/
         manager.load("SpaceLoungeLoop.wav", Music.class);
+        manager.load("SpaceCube.wav", Music.class);
+        manager.load("SpaceTrip.mp3", Music.class);
+        manager.load("SpaceGate.mp3", Music.class);
 
         //Sonidos gratis
         //http://soundbible.com/tags-explosion.html
