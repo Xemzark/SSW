@@ -45,6 +45,7 @@ public class GestorAssets {
         manager.load("vidafgv2.png", Texture.class);
         manager.load("escudobg.png", Texture.class);
         manager.load("escudofg.png", Texture.class);
+        manager.load("escudoNave.png", Texture.class);
         manager.load("shieldbar.png", Texture.class);
         manager.load("corazon.png", Texture.class);
         manager.load("2xShield.png", Texture.class);

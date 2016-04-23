@@ -47,6 +47,9 @@ public class JugadorEntity extends GameObjectEntity {
     private float maxVida = 100;
     private float maxEscudo = 100;
     private com.navejuego.entidades.ui.Puntuacion puntuacion;
+    private Sprite spriteEscudo;
+    private Texture texturaEscudo;
+
 
     /**
      * Constructor
@@ -67,6 +70,12 @@ public class JugadorEntity extends GameObjectEntity {
         this.puntuacion = new com.navejuego.entidades.ui.Puntuacion();
         this.vida = 100;
         this.escudo = 100;
+        this.texturaEscudo = GestorAssets.getInstance().getTexture("escudoNave.png");
+
+        // Sprite animación escudo
+        this.spriteEscudo = new Sprite(texturaEscudo);
+        spriteEscudo.setAlpha(0.7f);
+        //
 
         this.barravida = new BarraVida();
         this.stage.addActor(barravida);
@@ -74,7 +83,7 @@ public class JugadorEntity extends GameObjectEntity {
         stage.addActor(barraescudo);
 
         this.tiempoSiguienteDisparo = 0;
-        this.cadenciaDisparo = 0.1f;
+        this.cadenciaDisparo = 0.5f;
 
         //Valores iniciales del Actor
         setBounds(sprite.getX(), sprite.getY(), sprite.getWidth(), sprite.getHeight());
@@ -82,6 +91,7 @@ public class JugadorEntity extends GameObjectEntity {
         hitbox.setPosition(getX(), getY());
         setSize(PIXELS_METRE, PIXELS_METRE);
         hitbox.setSize(getWidth(), getHeight());
+        spriteEscudo.setPosition(getX(), getY());
         //Fin de valores iniciales del Actor
 
         //Inicio de reacción al drag
@@ -119,6 +129,7 @@ public class JugadorEntity extends GameObjectEntity {
                 }
 
                 MoveTo(newX, newY);
+                spriteEscudo.setPosition(newX, newY);
 
 
             }
@@ -144,6 +155,7 @@ public class JugadorEntity extends GameObjectEntity {
     @Override
     public void draw(Batch batch, float parentAlpha) {
         batch.draw(texture, getX(), getY(), getWidth(), getHeight());
+        spriteEscudo.draw(batch);
         barravida.render(batch);
         barraescudo.render(batch);
         this.puntuacion.draw(batch);
@@ -170,6 +182,7 @@ public class JugadorEntity extends GameObjectEntity {
     /*
      * Primero daña escudos. Si están vacíos, daña la nave.
      * No recibe daño si es invulnerable.
+     * Actualiza el estado del escudo (sprite)
      * @param dmg Daño que aplica.
      * @param ignoraEscudo Si es cierto, ignora escudo.
      */
@@ -183,6 +196,7 @@ public class JugadorEntity extends GameObjectEntity {
             int temp = dmg;
             dmg -= escudo;
             escudo -= temp;
+            spriteEscudo.setAlpha(Math.min(this.escudo/this.maxEscudo, 0.7f));
             if (escudo < 0)
                 escudo = 0;
             if (dmg > 0)
@@ -221,12 +235,14 @@ public class JugadorEntity extends GameObjectEntity {
     /**
      * Incrementa el escudo si el parametro de escudo es positivo.
      * Nunca lo incrementa por encima del máximo.
+     * Actualiza el estado del escudo (sprite)
      * @param escudo  Putnos de escudo a incrementar. Valores negativos no hacen efecto.
      */
     public void subirEscudo(int escudo) {
         if (escudo > 0) {
             this.escudo = Math.min(this.escudo + escudo, maxEscudo);
             updateUI();
+            spriteEscudo.setAlpha(Math.min(this.escudo/this.maxEscudo, 0.7f));
         }
     }
 
