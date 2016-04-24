@@ -36,6 +36,8 @@ public class EnemigoEntity extends GameObjectEntity {
     protected float tiempoSiguienteDisparo;
     private boolean vivo;
 
+    private float maxEscudo = 20;
+
     // Variable para generar su posición aleatoria
     Random pos = new Random();
 
@@ -45,6 +47,8 @@ public class EnemigoEntity extends GameObjectEntity {
 
     private PowerUpEntity powerUp;
     private int probabilidadPowerUp; //Entre 0% y 100%
+
+    private Sprite spriteEscudo;
 
     /**
      * Constructor
@@ -76,13 +80,17 @@ public class EnemigoEntity extends GameObjectEntity {
         //setSize(Gdx.graphics.getWidth()/8, Gdx.graphics.getHeight()/8);
         setSize(PIXELS_METRE, PIXELS_METRE);
         this.hitbox.setSize(getWidth(), getHeight());
-
+        //Escudo para la nave enemigo
+        this.spriteEscudo = new Sprite(GestorAssets.getInstance().getTexture("escudoNave.png"));
+        spriteEscudo.setAlpha(0.7f);
 
         // Valores aleatorios
         this.posX = pos.nextInt(Gdx.graphics.getWidth() - 2*((int) getWidth())) + getWidth(); // Posición X aleatoria
         this.posY = Gdx.graphics.getHeight() + getHeight(); // Posición Y por encima de la pantalla
         setPosition(posX, posY);
         this.hitbox.setPosition(posX, posY);
+
+        spriteEscudo.setPosition(getX(), getY());
         //Fin valores iniciales del Actor
 
         //Set downwards movement at a speed of 150 per second
@@ -102,6 +110,7 @@ public class EnemigoEntity extends GameObjectEntity {
         movementPattern.Move(this, delta);
         //MoveTo(getX(), getY() - (100 * delta));
         generarDisparo(delta);
+        spriteEscudo.setPosition(getX(), getY());
     }
 
     @Override
@@ -109,6 +118,7 @@ public class EnemigoEntity extends GameObjectEntity {
         // Esto marca los límites de los bordes verdes del renderdebug
         // Debe corresponderse al tamaño
         batch.draw(texture, getX(), getY(), getWidth(), getHeight());
+        spriteEscudo.draw(batch);
     }
 
     /**
@@ -146,6 +156,8 @@ public class EnemigoEntity extends GameObjectEntity {
                 escudo = 0;
             if (dmg > 0)
                 vida -= dmg;
+
+            spriteEscudo.setAlpha(Math.min(this.escudo/this.maxEscudo, 0.7f));
         }
 
         if (vida <= 0) {
