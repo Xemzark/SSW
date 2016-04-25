@@ -12,7 +12,9 @@ import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.utils.DragListener;
 import com.badlogic.gdx.utils.TimeUtils;
 import com.navejuego.GestorAssets;
+import com.navejuego.entidades.ui.Barra;
 import com.navejuego.entidades.ui.BarraVida;
+import com.navejuego.entidades.ui.Puntuacion;
 import com.navejuego.pantallas.PantallaJuego;
 
 import java.util.ArrayList;
@@ -43,9 +45,9 @@ public class JugadorEntity extends GameObjectEntity {
     private long inicioDobleASPD = 0;
     private int duracionDobleASPD = 0;
 
-    private com.navejuego.entidades.ui.BarraVida barravida;
-    private com.navejuego.entidades.ui.BarraEscudo barraescudo;
-    private com.navejuego.entidades.ui.Puntuacion puntuacion;
+    private Barra barravida;
+    private Barra barraescudo;
+    private Puntuacion puntuacion;
     private Sprite spriteEscudo;
 
 
@@ -77,9 +79,19 @@ public class JugadorEntity extends GameObjectEntity {
         spriteEscudo.setAlpha(0.7f);
         //
 
-        this.barravida = new BarraVida();
+        this.barravida = new Barra (GestorAssets.getInstance().getTexture("vidabgv2.png"),
+                GestorAssets.getInstance().getTexture("vidafgv2.png"),
+                GestorAssets.getInstance().getTexture("corazon.png"),
+                22,
+                new Vector2(Gdx.graphics.getWidth() * 0.05f, Gdx.graphics.getHeight() * 0.5f),
+                false);
         PantallaJuego.stage.addActor(barravida);
-        this.barraescudo = new com.navejuego.entidades.ui.BarraEscudo();
+        this.barraescudo = new Barra (GestorAssets.getInstance().getTexture("escudobg.png"),
+                GestorAssets.getInstance().getTexture("escudofg.png"),
+                GestorAssets.getInstance().getTexture("shieldbar.png"),
+                22,
+                new Vector2(Gdx.graphics.getWidth() * 0.05f, Gdx.graphics.getHeight() * 0.05f),
+                false);
         PantallaJuego.stage.addActor(barraescudo);
 
         this.tiempoSiguienteDisparo = 0;
@@ -212,8 +224,8 @@ public class JugadorEntity extends GameObjectEntity {
     }
 
     public void updateUI(){
-        barravida.update();
-        barraescudo.update();
+        barravida.Update(vida/maxVida);
+        barraescudo.Update(escudo/maxEscudo);
     }
 
     public com.navejuego.entidades.ui.Puntuacion getPuntuacion() {
