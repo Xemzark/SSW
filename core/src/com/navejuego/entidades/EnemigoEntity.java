@@ -9,6 +9,7 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.navejuego.GestorAssets;
+import com.navejuego.entidades.patrones.LinealMovement;
 import com.navejuego.entidades.powerups.PowerUpEntity;
 import com.navejuego.pantallas.PantallaJuego;
 

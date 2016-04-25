@@ -14,12 +14,6 @@ import com.badlogic.gdx.utils.Timer;
 import com.navejuego.GestorAssets;
 import com.navejuego.pantallas.PantallaJuego;
 
-import java.awt.event.ActionListener;
-
-
-import javafx.event.ActionEvent;
-
-
 /**
  * Created by beno_ on 20/04/2016.
  */
