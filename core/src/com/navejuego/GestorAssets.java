@@ -55,6 +55,8 @@ public class GestorAssets {
         manager.load("logo2.png", Texture.class);
         manager.load("logo3.png", Texture.class);
         manager.load("logo4.png", Texture.class);
+        manager.load("background_ajustes.png", Texture.class);
+
 
 
 
