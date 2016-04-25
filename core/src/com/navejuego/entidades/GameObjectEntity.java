@@ -12,7 +12,6 @@ import com.navejuego.entidades.patrones.MovementPattern;
  * Created by Elias on 09/04/2016.
  */
 public abstract class GameObjectEntity extends Actor {
-    protected Stage stage;
     protected Texture texture;
 
     protected Sprite sprite;

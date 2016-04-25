@@ -18,9 +18,8 @@ public class Explosion extends GameObjectEntity {
     List<Texture> listatextura;
     float duracionframe; //segundos
 
-    public Explosion(Stage stage, ArrayList<Texture> texture, Vector2 posicion, float duracion) {
+    public Explosion(ArrayList<Texture> texture, Vector2 posicion, float duracion) {
 
-        this.stage = stage;
         this.texture = texture.get(0);
         this.sprite = new Sprite(this.texture);
         ttrans = 0.0f;

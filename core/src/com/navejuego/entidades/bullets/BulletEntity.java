@@ -30,8 +30,7 @@ public abstract class BulletEntity extends GameObjectEntity {
      * @param texture sprite a asociarle, gestionado por el assetManager
      * @param posicion vector de coordenadas x, y para inicializar la posición
      */
-    public BulletEntity(Stage stage, Texture texture, Vector2 posicion){
-        this.stage = stage;
+    public BulletEntity(Texture texture, Vector2 posicion){
         this.texture = texture;
         this.hitbox = new Rectangle();
         this.sprite = new Sprite(this.texture);

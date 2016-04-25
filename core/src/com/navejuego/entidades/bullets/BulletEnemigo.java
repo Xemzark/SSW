@@ -12,8 +12,8 @@ import com.navejuego.pantallas.PantallaJuego;
  */
 public class BulletEnemigo extends BulletEntity {
 
-    public BulletEnemigo(Stage stage, Texture texture, Vector2 posicion) {
-        super(stage, texture, posicion);
+    public BulletEnemigo(Texture texture, Vector2 posicion) {
+        super(texture, posicion);
         movementPattern = new LinealMovement(900.0f, false);
     }
 

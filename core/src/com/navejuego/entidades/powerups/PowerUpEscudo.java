@@ -12,12 +12,12 @@ import com.navejuego.pantallas.PantallaJuego;
 public class PowerUpEscudo extends PowerUpEntity {
 
     private int escudo = 10;
-    public PowerUpEscudo (Stage stage, Texture textura, Vector2 posicion){
-        super(stage, textura, posicion);
+    public PowerUpEscudo (Texture textura, Vector2 posicion){
+        super(textura, posicion);
     }
 
     public PowerUpEscudo (Stage stage, Vector2 posicion){
-        super(stage, GestorAssets.getInstance().getTexture("addShield.png"), posicion);
+        super(GestorAssets.getInstance().getTexture("addShield.png"), posicion);
     }
 
     @Override

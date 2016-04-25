@@ -51,7 +51,7 @@ public class Wave {
 
         if (spawnCount < spawnTargetAmount && nextSpawn <= System.currentTimeMillis()) {
 
-            PantallaJuego.stage.addActor(new EnemigoEntity(PantallaJuego.stage, 1 ));
+            PantallaJuego.stage.addActor(new EnemigoEntity(1));
             nextSpawn = System.currentTimeMillis() + spawnDelay;
             spawnCount += 1;
         }

@@ -7,14 +7,15 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.navejuego.entidades.*;
 import com.navejuego.entidades.patrones.LinealMovement;
+import com.navejuego.pantallas.PantallaJuego;
 
 /**
  * Created by Elias on 09/04/2016.
  */
 public class BulletNave extends BulletEntity {
 
-    public BulletNave(Stage stage, Texture texture, Vector2 posicion) {
-        super(stage, texture, posicion);
+    public BulletNave(Texture texture, Vector2 posicion) {
+        super(texture, posicion);
         movementPattern = new LinealMovement(900.0f, true);
     }
 
@@ -23,7 +24,7 @@ public class BulletNave extends BulletEntity {
      */
     @Override
     protected void comprobarColision() {
-        for(Actor b : stage.getActors()){
+        for(Actor b : PantallaJuego.stage.getActors()){
             //TODO: Comprobar colisión aquí y aplicar efectos de choque si corresponde.
             //Gdx.app.log("comprovando colision", b.getName());
             if (b instanceof EnemigoEntity){

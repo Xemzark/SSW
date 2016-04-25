@@ -54,11 +54,10 @@ public class EnemigoEntity extends GameObjectEntity {
      * posicion vector de coordenadas x, y para inicializar la posición
      */
 
-    public EnemigoEntity(Stage stage, int enemyType){
+    public EnemigoEntity(int enemyType){
         // Debe conocer su stage, su textura y su sprite
 
         enemyProperties = new EnemyType(enemyType);
-        this.stage = stage;
         texture = enemyProperties.texture;
         sprite = enemyProperties.sprite;
         spriteEscudo = enemyProperties.spriteEscudo;
@@ -87,7 +86,7 @@ public class EnemigoEntity extends GameObjectEntity {
         // Valores aleatorios
 
 
-        posX = pos.nextInt(Gdx.graphics.getWidth() - 2*((int) getWidth())) + getWidth(); // Posición X aleatoria
+        posX = pos.nextInt(Gdx.graphics.getWidth() - 2 * ((int) getWidth())) + getWidth(); // Posición X aleatoria
         posY = Gdx.graphics.getHeight() + getHeight(); // Posición Y por encima de la pantalla
         setPosition(posX, posY);
 
@@ -109,7 +108,7 @@ public class EnemigoEntity extends GameObjectEntity {
         eliminarseOutOfBounds();
 
         movementPattern.Move(this, delta);
-        spriteEscudo.setPosition(getX(),getY());
+        spriteEscudo.setPosition(getX(), getY());
         //MoveTo(getX(), getY() - (100 * delta));
         generarDisparo(delta);
     }
@@ -133,9 +132,9 @@ public class EnemigoEntity extends GameObjectEntity {
         tiempoSiguienteDisparo += delta;
         if (tiempoSiguienteDisparo > cadenciaDisparo) {
             Texture bulletTextura = GestorAssets.getInstance().getTexture("bullet.png");
-            com.navejuego.entidades.bullets.BulletEnemigo bullet = new com.navejuego.entidades.bullets.BulletEnemigo(this.stage, bulletTextura, new Vector2(getX() + (getWidth() / 2), getY()));
+            com.navejuego.entidades.bullets.BulletEnemigo bullet = new com.navejuego.entidades.bullets.BulletEnemigo(bulletTextura, new Vector2(getX() + (getWidth() / 2), getY()));
             bullet.setName("Bala Enemigo");
-            this.stage.addActor(bullet);
+            PantallaJuego.stage.addActor(bullet);
             tiempoSiguienteDisparo = 0;
         }
     }
@@ -189,8 +188,8 @@ public class EnemigoEntity extends GameObjectEntity {
         explosionTextura.add(GestorAssets.getInstance().getTexture("explo3.png"));
         explosionTextura.add(GestorAssets.getInstance().getTexture("explo4.png"));
         explosionTextura.add(GestorAssets.getInstance().getTexture("explo5.png"));
-        com.navejuego.Explosion explo = new com.navejuego.Explosion(this.stage,explosionTextura, new Vector2(getX(),getY()),1.0f);
-        this.stage.addActor(explo);
+        com.navejuego.Explosion explo = new com.navejuego.Explosion(explosionTextura, new Vector2(getX(),getY()),1.0f);
+        PantallaJuego.stage.addActor(explo);
     }
 
     /**
@@ -235,8 +234,8 @@ public class EnemigoEntity extends GameObjectEntity {
 
         //Power up escudo
         powerup = GestorAssets.getInstance().getTexture("addShield.png");
-        com.navejuego.entidades.powerups.PowerUpASPD pUp = new com.navejuego.entidades.powerups.PowerUpASPD(stage, powerup, posicion );
-        this.stage.addActor(pUp);
+        com.navejuego.entidades.powerups.PowerUpASPD pUp = new com.navejuego.entidades.powerups.PowerUpASPD(powerup, posicion );
+        PantallaJuego.stage.addActor(pUp);
 
     }
 

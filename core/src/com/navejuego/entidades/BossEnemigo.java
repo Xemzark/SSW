@@ -26,12 +26,11 @@ public class BossEnemigo extends EnemigoEntity {
     private ArrayList<MovementPattern> patternList = new ArrayList<MovementPattern>();
 
 
-    public BossEnemigo (Stage stage, int startingX, int startingY,
+    public BossEnemigo (int startingX, int startingY,
                          PowerUpEntity powerUp, int enemyType){
         // Debe conocer su stage, su textura y su sprite
-        super(stage, enemyType);
+        super(enemyType);
         enemyProperties = new EnemyType(enemyType);
-        this.stage = stage;
         sprite = enemyProperties.sprite;
         hitbox = enemyProperties.hitbox;
 
@@ -108,9 +107,9 @@ public class BossEnemigo extends EnemigoEntity {
         tiempoSiguienteDisparo += delta;
         if (tiempoSiguienteDisparo > cadenciaDisparo) {
             Texture bulletTextura = GestorAssets.getInstance().getTexture("bullet.png");
-            com.navejuego.entidades.bullets.BulletEnemigo bullet = new com.navejuego.entidades.bullets.BulletEnemigo(this.stage, bulletTextura, new Vector2(getX() + (getWidth() / 2), getY()));
+            com.navejuego.entidades.bullets.BulletEnemigo bullet = new com.navejuego.entidades.bullets.BulletEnemigo(bulletTextura, new Vector2(getX() + (getWidth() / 2), getY()));
             bullet.setName("Bala Enemigo");
-            this.stage.addActor(bullet);
+            PantallaJuego.stage.addActor(bullet);
             tiempoSiguienteDisparo = 0;
         }
     }
@@ -162,8 +161,8 @@ public class BossEnemigo extends EnemigoEntity {
         explosionTextura.add(GestorAssets.getInstance().getTexture("explo3.png"));
         explosionTextura.add(GestorAssets.getInstance().getTexture("explo4.png"));
         explosionTextura.add(GestorAssets.getInstance().getTexture("explo5.png"));
-        com.navejuego.Explosion explo = new com.navejuego.Explosion(this.stage,explosionTextura, new Vector2(getX(),getY()),1.0f);
-        this.stage.addActor(explo);
+        com.navejuego.Explosion explo = new com.navejuego.Explosion(explosionTextura, new Vector2(getX(),getY()),1.0f);
+        PantallaJuego.stage.addActor(explo);
     }
 
     /**

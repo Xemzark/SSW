@@ -97,7 +97,7 @@ public class PantallaJuego extends Pantalla {
 
         Texture naveTextura = GestorAssets.getInstance().getTexture("nave.png");
 
-        jugador = new JugadorEntity(stage, naveTextura, new Vector2(Gdx.graphics.getWidth()/2, Gdx.graphics.getHeight()/2));
+        jugador = new JugadorEntity(naveTextura, new Vector2(Gdx.graphics.getWidth()/2, Gdx.graphics.getHeight()/2));
 
         /*
          * Se de la la propiedad al stage de procesar inputs. El stage estará escuchando eventos de

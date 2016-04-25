@@ -12,12 +12,12 @@ import com.navejuego.pantallas.PantallaJuego;
 public class PowerUpInvulnerabilidad extends PowerUpEntity {
 
     private int segundosInvulnerabilidad = 20;
-    public PowerUpInvulnerabilidad (Stage stage, Texture texture, Vector2 posicion){
-        super(stage, texture, posicion);
+    public PowerUpInvulnerabilidad (Texture texture, Vector2 posicion){
+        super(texture, posicion);
     }
 
     public PowerUpInvulnerabilidad (Vector2 posicion){
-        super(PantallaJuego.stage, GestorAssets.getInstance().getTexture("addShield.png"), posicion);
+        super(GestorAssets.getInstance().getTexture("addShield.png"), posicion);
     }
 
     @Override

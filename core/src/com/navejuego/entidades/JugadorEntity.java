@@ -13,6 +13,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.DragListener;
 import com.badlogic.gdx.utils.TimeUtils;
 import com.navejuego.GestorAssets;
 import com.navejuego.entidades.ui.BarraVida;
+import com.navejuego.pantallas.PantallaJuego;
 
 import java.util.ArrayList;
 
@@ -54,14 +55,13 @@ public class JugadorEntity extends GameObjectEntity {
      * @param texture sprite a asociarle, gestionado por el assetManager
      * @param posicion vector de coordenadas x, y para inicializar la posición
      */
-    public JugadorEntity(Stage stage, Texture texture, Vector2 posicion){
-        this.stage = stage; //La nave jugador conoce el stage al que pertenece para añadirle bullets
+    public JugadorEntity(Texture texture, Vector2 posicion){
         this.texture = texture;
         this.sprite = new Sprite(this.texture);
         this.hitbox = new Rectangle();
 
-        this.ataqueEspecial = new AtaqueEspecial(this.stage);
-        stage.addActor(this.ataqueEspecial);
+        this.ataqueEspecial = new AtaqueEspecial();
+        PantallaJuego.stage.addActor(this.ataqueEspecial);
 
         this.invulnerabilidad = false;
         this.puntuacion = new com.navejuego.entidades.ui.Puntuacion();
@@ -78,9 +78,9 @@ public class JugadorEntity extends GameObjectEntity {
         //
 
         this.barravida = new BarraVida();
-        this.stage.addActor(barravida);
+        PantallaJuego.stage.addActor(barravida);
         this.barraescudo = new com.navejuego.entidades.ui.BarraEscudo();
-        stage.addActor(barraescudo);
+        PantallaJuego.stage.addActor(barraescudo);
 
         this.tiempoSiguienteDisparo = 0;
         this.cadenciaDisparo = 0.5f;
@@ -172,8 +172,8 @@ public class JugadorEntity extends GameObjectEntity {
         tiempoSiguienteDisparo += delta;
         if (tiempoSiguienteDisparo > cadenciaDisparo) {
             Texture bulletTextura = GestorAssets.getInstance().getTexture("bullet.png");
-            com.navejuego.entidades.bullets.BulletNave bullet = new com.navejuego.entidades.bullets.BulletNave(this.stage, bulletTextura, new Vector2(getX() + (getWidth() / 2), getY() + getHeight()));
-            this.stage.addActor(bullet);
+            com.navejuego.entidades.bullets.BulletNave bullet = new com.navejuego.entidades.bullets.BulletNave(bulletTextura, new Vector2(getX() + (getWidth() / 2), getY() + getHeight()));
+            PantallaJuego.stage.addActor(bullet);
             //this.ataqueEspecial.generarDisparo(getX() + (getWidth() / 2), getY() + getHeight());
             tiempoSiguienteDisparo = 0;
         }
@@ -266,8 +266,8 @@ public class JugadorEntity extends GameObjectEntity {
         explosionTextura.add(GestorAssets.getInstance().getTexture("explo3.png"));
         explosionTextura.add(GestorAssets.getInstance().getTexture("explo4.png"));
         explosionTextura.add(GestorAssets.getInstance().getTexture("explo5.png"));
-        com.navejuego.Explosion explo = new com.navejuego.Explosion(this.stage,explosionTextura, new Vector2(getX(),getY()),1.0f);
-        this.stage.addActor(explo);
+        com.navejuego.Explosion explo = new com.navejuego.Explosion(explosionTextura, new Vector2(getX(),getY()),1.0f);
+        PantallaJuego.stage.addActor(explo);
     }
 
     /**
