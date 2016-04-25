@@ -20,6 +20,9 @@ public abstract class GameObjectEntity extends Actor {
     protected float vida;
     protected float escudo;
 
+    protected float maxVida;
+    protected float maxEscudo;
+
     protected Rectangle hitbox;
 
     protected MovementPattern movementPattern;

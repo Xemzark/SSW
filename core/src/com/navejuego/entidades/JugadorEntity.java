@@ -44,8 +44,6 @@ public class JugadorEntity extends GameObjectEntity {
 
     private com.navejuego.entidades.ui.BarraVida barravida;
     private com.navejuego.entidades.ui.BarraEscudo barraescudo;
-    private float maxVida = 100;
-    private float maxEscudo = 100;
     private com.navejuego.entidades.ui.Puntuacion puntuacion;
     private Sprite spriteEscudo;
     private Texture texturaEscudo;
@@ -68,8 +66,10 @@ public class JugadorEntity extends GameObjectEntity {
 
         this.invulnerabilidad = false;
         this.puntuacion = new com.navejuego.entidades.ui.Puntuacion();
-        this.vida = 100;
-        this.escudo = 100;
+        this.maxVida = 100;
+        this.maxEscudo = 100;
+        this.vida = maxVida;
+        this.escudo = maxEscudo;
         this.texturaEscudo = GestorAssets.getInstance().getTexture("escudoNave.png");
 
         // Sprite animación escudo
@@ -196,11 +196,12 @@ public class JugadorEntity extends GameObjectEntity {
             int temp = dmg;
             dmg -= escudo;
             escudo -= temp;
-            spriteEscudo.setAlpha(Math.min(this.escudo/this.maxEscudo, 0.7f));
+
             if (escudo < 0)
                 escudo = 0;
             if (dmg > 0)
                 vida -= dmg;
+            spriteEscudo.setAlpha(Math.min(this.escudo/this.maxEscudo, 0.7f));
         }
 
         if (vida <= 0) {
