@@ -34,21 +34,18 @@ public class EnemigoEntity extends GameObjectEntity {
 
     protected float cadenciaDisparo;
     protected float tiempoSiguienteDisparo;
-    private boolean vivo;
-
-    private float maxEscudo = 20;
+    protected boolean vivo;
+    protected EnemyType enemyProperties;
 
     // Variable para generar su posición aleatoria
     Random pos = new Random();
 
     // Variables para sus posiciones
-    private float posX;
-    private float posY;
-
+    protected float posX;
+    protected float posY;
+    private Sprite spriteEscudo;
     private PowerUpEntity powerUp;
     private int probabilidadPowerUp; //Entre 0% y 100%
-
-    private Sprite spriteEscudo;
 
     /**
      * Constructor
@@ -56,45 +53,49 @@ public class EnemigoEntity extends GameObjectEntity {
      * texture sprite a asociarle, gestionado por el assetManager
      * posicion vector de coordenadas x, y para inicializar la posición
      */
-    public EnemigoEntity(Stage stage){
+
+    public EnemigoEntity(Stage stage, int enemyType){
         // Debe conocer su stage, su textura y su sprite
 
+        enemyProperties = new EnemyType(enemyType);
         this.stage = stage;
-        this.texture = GestorAssets.getInstance().getTexture("alien.png");
-        this.sprite = new Sprite(this.texture);
-        this.hitbox = new Rectangle();
+        texture = enemyProperties.texture;
+        sprite = enemyProperties.sprite;
+        spriteEscudo = enemyProperties.spriteEscudo;
+        hitbox = enemyProperties.hitbox;
+        spriteEscudo.setAlpha(0.7f);
 
-        this.puntuacion = 200;
-        this.cadenciaDisparo = 1f;
-        this.tiempoSiguienteDisparo = 0f;
-        this.vivo = true;
+        puntuacion = enemyProperties.puntuacion;
+        cadenciaDisparo = enemyProperties.cadenciaDisparo;
+        tiempoSiguienteDisparo = enemyProperties.tiempoSiguienteDisparo;
+        vivo = enemyProperties.vivo;
 
-        this.vida = 10;
-        this.escudo = 20;
-        //Ahora son necesarios 3 golpes
+        vida = enemyProperties.vida;
+        escudo = enemyProperties.escudo;
 
-        this.dañoColision = ((int) this.vida/2); //Daño que le hace la nave al jugador si colisionan
+        dañoColision = enemyProperties.dañoColision ; //Daño que le hace la nave al jugador si colisionan
+        this.powerUp = powerUp;
+        probabilidadPowerUp = enemyProperties.probabilidadPowerUp;
 
         //Valores iniciales del Actor
         setBounds(sprite.getX(), sprite.getY(), sprite.getWidth(), sprite.getHeight());
         //setSize(Gdx.graphics.getWidth()/8, Gdx.graphics.getHeight()/8);
         setSize(PIXELS_METRE, PIXELS_METRE);
         this.hitbox.setSize(getWidth(), getHeight());
-        //Escudo para la nave enemigo
-        this.spriteEscudo = new Sprite(GestorAssets.getInstance().getTexture("escudoNave.png"));
-        spriteEscudo.setAlpha(0.7f);
+
 
         // Valores aleatorios
-        this.posX = pos.nextInt(Gdx.graphics.getWidth() - 2*((int) getWidth())) + getWidth(); // Posición X aleatoria
-        this.posY = Gdx.graphics.getHeight() + getHeight(); // Posición Y por encima de la pantalla
-        setPosition(posX, posY);
-        this.hitbox.setPosition(posX, posY);
 
-        spriteEscudo.setPosition(getX(), getY());
+
+        posX = pos.nextInt(Gdx.graphics.getWidth() - 2*((int) getWidth())) + getWidth(); // Posición X aleatoria
+        posY = Gdx.graphics.getHeight() + getHeight(); // Posición Y por encima de la pantalla
+        setPosition(posX, posY);
+
+        hitbox.setPosition(posX, posY);
         //Fin valores iniciales del Actor
 
         //Set downwards movement at a speed of 150 per second
-        movementPattern = new LinealMovement(150, false);
+        movementPattern = enemyProperties.movementPattern;
     }
 
     /**
@@ -108,9 +109,9 @@ public class EnemigoEntity extends GameObjectEntity {
         eliminarseOutOfBounds();
 
         movementPattern.Move(this, delta);
+        spriteEscudo.setPosition(getX(),getY());
         //MoveTo(getX(), getY() - (100 * delta));
         generarDisparo(delta);
-        spriteEscudo.setPosition(getX(), getY());
     }
 
     @Override
@@ -156,7 +157,6 @@ public class EnemigoEntity extends GameObjectEntity {
                 escudo = 0;
             if (dmg > 0)
                 vida -= dmg;
-
             spriteEscudo.setAlpha(Math.min(this.escudo/this.maxEscudo, 0.7f));
         }
 
