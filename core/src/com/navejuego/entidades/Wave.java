@@ -33,12 +33,17 @@ public class Wave {
      */
     private long nextSpawn;
 
+    //TODO: Reemplazar "enemigo" por un factory class o lo que sea
     public Wave(EnemigoEntity enemigo, int cantidadDeEnemgios, long tiempoEntreEnemigos) {
         enemy = enemigo;
         spawnTargetAmount = cantidadDeEnemgios;
         spawnDelay = tiempoEntreEnemigos;
         spawnCount = 0;
         nextSpawn = System.currentTimeMillis() + tiempoEntreEnemigos;
+    }
+
+    public void GetReady() {
+        nextSpawn = System.currentTimeMillis() + spawnDelay;
     }
 
     public void Spawn () {
