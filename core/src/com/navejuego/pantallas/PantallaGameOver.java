@@ -3,7 +3,9 @@ package com.navejuego.pantallas;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
@@ -22,43 +24,53 @@ public class PantallaGameOver extends Pantalla{
 
     private Stage gameoverStage;
 
-    private Skin gameOverskin;
+
     private SpriteBatch batchGameOver;
 
 
-
+private BitmapFont font;
 
     private Texture backgroundGameOver;
     private com.badlogic.gdx.scenes.scene2d.ui.Image gameOver;
     private TextButton retry, volvermenu;
+    private TextureAtlas buttonsAtlas;
+    private Skin buttonSkin;
 
 
     public PantallaGameOver() {
 
+        buttonsAtlas = new TextureAtlas("otherskin/button.pack"); //**button atlas image **//
+        buttonSkin = new Skin();
+        buttonSkin.addRegions(buttonsAtlas); //** skins for on and off **//
 
         gameoverStage = new Stage(new FitViewport(Gdx.graphics.getWidth(), Gdx.graphics.getHeight()));
         Gdx.input.setInputProcessor(gameoverStage);
-        gameOverskin = new Skin(Gdx.files.internal("skin/uiskin.json"));
+
+
+        font = new BitmapFont(Gdx.files.internal("otherfont/font.fnt"));
+
+        TextButton.TextButtonStyle style = new TextButton.TextButtonStyle(); //** Button properties **//
+        style.up = buttonSkin.getDrawable("buttonOff");
+        style.down = buttonSkin.getDrawable("buttonOn");
+        style.font=font;
+
+
 
         batchGameOver = new SpriteBatch();
-        backgroundGameOver = GestorAssets.getInstance().getTexture("background_1.png");
-
-        gameOver = new com.badlogic.gdx.scenes.scene2d.ui.Image(GestorAssets.getInstance().getTexture("game_over.png"));
-        gameOver.setSize(Gdx.graphics.getWidth() / 2, Gdx.graphics.getHeight() / 3);
-        gameOver.setPosition(Gdx.graphics.getWidth() / 4, Gdx.graphics.getHeight() / 2);
+        backgroundGameOver = GestorAssets.getInstance().getTexture("background_gameover.png");
 
 
-        retry = new TextButton("Volver a jugar", gameOverskin);
-        volvermenu = new TextButton("Volver menu", gameOverskin);
+        retry = new TextButton("Jugar", style);
+        volvermenu = new TextButton("Menu", style);
 
         retry.setSize(Gdx.graphics.getWidth() / 4, Gdx.graphics.getHeight() / 8);
-        retry.setPosition(Gdx.graphics.getWidth() / 3- Gdx.graphics.getWidth() / 9, Gdx.graphics.getHeight() / 3 - Gdx.graphics.getHeight() / 16);
-        //retry.getSkin().getFont("default-font").getData().setScale(2, 2); //cambia el tamaño de la fuente
+        retry.setPosition(Gdx.graphics.getWidth() / 3 - Gdx.graphics.getWidth() / 9, Gdx.graphics.getHeight() / 3 - Gdx.graphics.getHeight() / 16);
+        retry.getLabel().setFontScale(0.5f * (Gdx.graphics.getWidth() / 640.0f));
 
 
         volvermenu.setSize(Gdx.graphics.getWidth() / 4, Gdx.graphics.getHeight() / 8);
         volvermenu.setPosition(Gdx.graphics.getWidth() / 4 + Gdx.graphics.getWidth() / 4, Gdx.graphics.getHeight() / 3 - Gdx.graphics.getHeight() / 16);
-        //volvermenu.getSkin().getFont("default-font").getData().setScale(2, 2); //cambia el tamaño de la fuente
+        volvermenu.getLabel().setFontScale(0.5f * (Gdx.graphics.getWidth() / 640.0f));
 
         volvermenu.addListener(new ChangeListener() {
             public void changed(ChangeListener.ChangeEvent event, Actor actor) {
@@ -79,7 +91,7 @@ public class PantallaGameOver extends Pantalla{
         });
 
 
-        gameoverStage.addActor(gameOver);
+
         gameoverStage.addActor(volvermenu);
         gameoverStage.addActor(retry);
 
@@ -91,7 +103,7 @@ public class PantallaGameOver extends Pantalla{
 
 
     public void render(float delta) {
-        gameoverStage.setDebugAll(true);
+        //gameoverStage.setDebugAll(true);
         Gdx.gl.glClearColor(0.4f, 0.5f, 0.8f, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 

@@ -69,9 +69,9 @@ public class PantallaMenu extends Pantalla {
         background = GestorAssets.getInstance().getTexture("background_menuprincipal.png");
         //sol = GestorAssets.getInstance().getTexture("sol.png");
 
-        ajustess = new com.badlogic.gdx.scenes.scene2d.ui.Image(GestorAssets.getInstance().getTexture("otherskin/ajustess.png"));
-        ajustess.setSize(Gdx.graphics.getWidth() / 6, Gdx.graphics.getHeight() / 12);
-        ajustess.setPosition(Gdx.graphics.getWidth() / 4 + Gdx.graphics.getWidth() / 2, Gdx.graphics.getHeight() / 5);
+        //ajustess = new com.badlogic.gdx.scenes.scene2d.ui.Image(GestorAssets.getInstance().getTexture("otherskin/ajustess.png"));
+        //ajustess.setSize(Gdx.graphics.getWidth() / 6, Gdx.graphics.getHeight() / 12);
+        //ajustess.setPosition(Gdx.graphics.getWidth() / 4 + Gdx.graphics.getWidth() / 2, Gdx.graphics.getHeight() / 5);
 
 
 
@@ -112,14 +112,7 @@ public class PantallaMenu extends Pantalla {
 
 
 
-        ajustess.addListener(new ChangeListener() {
-            public void changed(ChangeListener.ChangeEvent event, Actor actor) {
-                //System.out.println("Clicked! Is checked: " + button.isChecked());
-                jugar.setText("Starting new game");
-                ScreenManager.getInstance().showScreen(ScreenEnum.AJUSTES);
 
-            }
-        });
 
 
 
@@ -169,7 +162,7 @@ public class PantallaMenu extends Pantalla {
         menuStage.addActor(Garaje);
         menuStage.addActor(Ranking);
         menuStage.addActor(jugar);
-        menuStage.addActor(ajustess);
+        //menuStage.addActor(ajustess);
 
 
 
@@ -230,7 +223,7 @@ public class PantallaMenu extends Pantalla {
 
     @Override
     public void render(float delta) {
-        menuStage.setDebugAll(true);
+        //menuStage.setDebugAll(true);
         Gdx.gl.glClearColor(0.4f, 0.5f, 0.8f, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
