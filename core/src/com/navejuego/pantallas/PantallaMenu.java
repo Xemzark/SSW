@@ -36,7 +36,7 @@ public class PantallaMenu extends Pantalla {
     private TextureAtlas buttonsAtlas; //** image of buttons **//
     private Skin buttonSkin; //** images are used as skins of the button **//
 
-    private Image ajustess, logo;
+    private Image ajustess;
 
 
 
@@ -45,9 +45,6 @@ public class PantallaMenu extends Pantalla {
 
 
 
-        logo = new Image(GestorAssets.getInstance().getTexture("logo4.png"));
-        logo.setSize(Gdx.graphics.getWidth() / 2 + 50, Gdx.graphics.getHeight() / 6 + 50);
-        logo.setPosition(Gdx.graphics.getWidth() / 2 -2*Gdx.graphics.getWidth()/7 , Gdx.graphics.getHeight() / 2+Gdx.graphics.getHeight() / 4 );
 
 
 
@@ -69,12 +66,12 @@ public class PantallaMenu extends Pantalla {
 
 
         batch = new SpriteBatch();
-        background = GestorAssets.getInstance().getTexture("background_1.png");
+        background = GestorAssets.getInstance().getTexture("background_menuprincipal.png");
         //sol = GestorAssets.getInstance().getTexture("sol.png");
 
-        ajustess = new com.badlogic.gdx.scenes.scene2d.ui.Image(GestorAssets.getInstance().getTexture("otherskin/ajustess.png"));
-        ajustess.setSize(Gdx.graphics.getWidth() / 6, Gdx.graphics.getHeight() / 12);
-        ajustess.setPosition(Gdx.graphics.getWidth() / 4 + Gdx.graphics.getWidth() / 2, Gdx.graphics.getHeight() / 5);
+        //ajustess = new com.badlogic.gdx.scenes.scene2d.ui.Image(GestorAssets.getInstance().getTexture("otherskin/ajustess.png"));
+        //ajustess.setSize(Gdx.graphics.getWidth() / 6, Gdx.graphics.getHeight() / 12);
+        //ajustess.setPosition(Gdx.graphics.getWidth() / 4 + Gdx.graphics.getWidth() / 2, Gdx.graphics.getHeight() / 5);
 
 
 
@@ -86,29 +83,28 @@ public class PantallaMenu extends Pantalla {
         Ranking = new TextButton("Ranking", style);
         Garaje = new TextButton("Garaje", style);
 
-        jugar.setSize(2*Gdx.graphics.getWidth() / 4, Gdx.graphics.getHeight() / 8);
-
-        jugar.setPosition(Gdx.graphics.getWidth() / 2 - Gdx.graphics.getWidth() / 4, 2 * Gdx.graphics.getHeight() / 3 - Gdx.graphics.getHeight() / 16);
+        jugar.setSize(1.5f* Gdx.graphics.getWidth() / 4, Gdx.graphics.getHeight() / 12);
+        jugar.setPosition(Gdx.graphics.getWidth() / 2 - Gdx.graphics.getWidth() / 5.5f,   Gdx.graphics.getHeight() / 4 + Gdx.graphics.getHeight() / 4);
         jugar.getLabel().setFontScale(0.5f*(Gdx.graphics.getWidth()/640.0f));
 
         //jugar.getSkin().getFont("default-font").getData().setScale(2,2); //cambia el tamaño de la fuente del boton
         //Ajustes.setSize(Gdx.graphics.getWidth() / 4, Gdx.graphics.getHeight() / 4);
         //Ajustes.setPosition(Gdx.graphics.getWidth() / 4 + 100 , Gdx.graphics.getHeight() / 3);
 
-        Garaje.setSize(2 * Gdx.graphics.getWidth() / 4, Gdx.graphics.getHeight() / 8);
-        Garaje.setPosition(Gdx.graphics.getWidth() / 2 - Gdx.graphics.getWidth() / 4, Gdx.graphics.getHeight() / 3 - Gdx.graphics.getHeight() / 16);
+        Garaje.setSize(1.5f*Gdx.graphics.getWidth() / 4, Gdx.graphics.getHeight() / 12);
+        Garaje.setPosition(Gdx.graphics.getWidth() / 2 - Gdx.graphics.getWidth() /5.5f , Gdx.graphics.getHeight() / 4 + Gdx.graphics.getHeight() / 8);
         Garaje.getLabel().setFontScale(0.5f*(Gdx.graphics.getWidth()/640.0f));
 
         //Garaje.getSkin().getFont("default-font").getData().setScale(2, 2); //cambia el tamaño de la fuente
 
-        Ajustes.setSize(2 * Gdx.graphics.getWidth() / 4, Gdx.graphics.getHeight() / 8);
-        Ajustes.setPosition(Gdx.graphics.getWidth() / 2 - Gdx.graphics.getWidth() / 4, Gdx.graphics.getHeight() / 6 - Gdx.graphics.getHeight() / 16);
+        Ajustes.setSize(1.5f*Gdx.graphics.getWidth() / 4, Gdx.graphics.getHeight() / 12);
+        Ajustes.setPosition(Gdx.graphics.getWidth() / 2 - Gdx.graphics.getWidth() /5.5f, Gdx.graphics.getHeight() / 3 - Gdx.graphics.getHeight() / 14);
         Ajustes.getLabel().setFontScale(0.5f*(Gdx.graphics.getWidth()/640.0f));
 
         //Ajustes.getSkin().getFont("default-font").getData().setScale(2, 2); //cambia el tamaño de la fuente del boton
 
-        Ranking.setSize(2 * Gdx.graphics.getWidth() / 4, Gdx.graphics.getHeight() / 8);
-        Ranking.setPosition(Gdx.graphics.getWidth() / 2 - Gdx.graphics.getWidth() / 4, Gdx.graphics.getHeight() / 2 - Gdx.graphics.getHeight() / 16);
+        Ranking.setSize(1.5f* Gdx.graphics.getWidth() / 4, Gdx.graphics.getHeight() / 12);
+        Ranking.setPosition(Gdx.graphics.getWidth() / 2 - Gdx.graphics.getWidth() /5.5f, Gdx.graphics.getHeight() / 3 - Gdx.graphics.getHeight() / 5.5f);
         Ranking.getLabel().setFontScale(0.5f*(Gdx.graphics.getWidth()/640.0f));
 
         //Ranking.getSkin().getFont("default-font").getData().setScale(2, 2); //cambia el tamaño de la fuente
@@ -116,14 +112,7 @@ public class PantallaMenu extends Pantalla {
 
 
 
-        ajustess.addListener(new ChangeListener() {
-            public void changed(ChangeListener.ChangeEvent event, Actor actor) {
-                //System.out.println("Clicked! Is checked: " + button.isChecked());
-                jugar.setText("Starting new game");
-                ScreenManager.getInstance().showScreen(ScreenEnum.AJUSTES);
 
-            }
-        });
 
 
 
@@ -173,8 +162,7 @@ public class PantallaMenu extends Pantalla {
         menuStage.addActor(Garaje);
         menuStage.addActor(Ranking);
         menuStage.addActor(jugar);
-        menuStage.addActor(ajustess);
-        menuStage.addActor(logo);
+        //menuStage.addActor(ajustess);
 
 
 
@@ -235,7 +223,7 @@ public class PantallaMenu extends Pantalla {
 
     @Override
     public void render(float delta) {
-        menuStage.setDebugAll(true);
+        //menuStage.setDebugAll(true);
         Gdx.gl.glClearColor(0.4f, 0.5f, 0.8f, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
