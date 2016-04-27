@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.navejuego.Constantes;
 import com.navejuego.GestorAssets;
 import com.navejuego.pantallas.PantallaJuego;
 
@@ -32,8 +33,12 @@ public class Barra extends Actor {
         this.horizontal = horizontal;
 
         this.background.setPosition(posicion.x, posicion.y);
+        this.background.setSize(background.getWidth() * Constantes.resizeWidth,
+                background.getHeight() * Constantes.resizeHeight);
         this.foreground.setPosition(posicion.x, posicion.y);
-        this.setPosition(posicion.x, posicion.y);
+        this.foreground.setSize(foreground.getWidth() * Constantes.resizeWidth,
+                foreground.getHeight() * Constantes.resizeHeight);
+        this.setPosition(posicion.x, posicion.y);;
 
        /* if (horizontal) {
             this.background.setOrigin(getX(), getY()+getHeight()/2);

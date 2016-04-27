@@ -1,5 +1,6 @@
 package com.navejuego.entidades.patrones;
 
+import com.navejuego.Constantes;
 import com.navejuego.entidades.GameObjectEntity;
 
 /**
@@ -10,7 +11,6 @@ public class SinusMovement implements MovementPattern {
     private float speed;
     private double deltaAcum;
     private float SinSpeed;
-    private float horizontal;
     /**
      * If this is set to true, the ship moves upwards.
      * Otherwise, it moves downwards.
@@ -18,11 +18,10 @@ public class SinusMovement implements MovementPattern {
     private boolean goUp = false;
 
     public SinusMovement(float speed, float horizontal, float SinSpeed, boolean goUp) {
-        this.speed = speed;
-        this.horizontal = horizontal;
+        this.speed = speed * Constantes.resizeHeight;
         this.goUp = goUp;
         deltaAcum = 0;
-        this.SinSpeed = SinSpeed;
+        this.SinSpeed = SinSpeed * Constantes.resizeWidth;
     }
 
     @Override
