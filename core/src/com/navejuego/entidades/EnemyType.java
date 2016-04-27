@@ -22,6 +22,11 @@ import java.util.Random;
 /**
  * Created by Kevin on 24/04/2016.
  */
+
+/**
+ * EnemyType guarda todos los parametros basicos de los diferentes enemigos y bosses del juego.
+ * Cuando se quiera acceder a datos predeterminados, se obtendrán de aqui.
+ */
 public class EnemyType {
 
     protected int puntuacion;
@@ -46,9 +51,12 @@ public class EnemyType {
     protected Rectangle hitbox;
 
     protected MovementPattern movementPattern;
-    protected ArrayList<MovementPattern> patternList;
+    protected ArrayList<MovementPattern> patternList = new ArrayList<MovementPattern>();
 
-
+    /**
+     * Mediante un swithc/case, se selecciona el tipo de enemigo deseado y se obtienen sus datos
+     * @param enemyType
+     */
     public EnemyType(int enemyType) {
 
         switch(enemyType){
@@ -62,8 +70,10 @@ public class EnemyType {
                 cadenciaDisparo = 1f;
                 tiempoSiguienteDisparo = 0f;
                 vivo = true;
-                vida = 10;
-                escudo = 20;
+                maxVida = 10;
+                maxEscudo = 20;
+                vida = maxVida;
+                escudo = maxEscudo;
                 dañoColision = ((int)vida/2); //Daño que le hace la nave al jugador si colisionan
                 probabilidadPowerUp = 100;
                 movementPattern =  new LinealMovement(150, false);
@@ -73,14 +83,16 @@ public class EnemyType {
                 texture = GestorAssets.getInstance().getTexture("goku.png");
                 sprite = new Sprite(texture);
                 textureEscudo = GestorAssets.getInstance().getTexture("escudoNave.png");
-                spriteEscudo = new Sprite(spriteEscudo);
+                spriteEscudo = new Sprite(textureEscudo);
                 hitbox = new Rectangle();
                 puntuacion = 20000;
                 cadenciaDisparo = 0.5f;
                 tiempoSiguienteDisparo = 0f;
                 vivo = true;
-                vida = 100;
-                escudo = 20;
+                maxVida = 100;
+                maxEscudo = 20;
+                vida = maxVida;
+                escudo = maxEscudo;
                 dañoColision = 1000; //Daño que le hace la nave al jugador si colisionan
                 patternList.add(new NullMovement());
                 patternList.add(new HoritzontalMovement(150));

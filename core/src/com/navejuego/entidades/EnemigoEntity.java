@@ -70,7 +70,9 @@ public class EnemigoEntity extends GameObjectEntity {
         tiempoSiguienteDisparo = enemyProperties.tiempoSiguienteDisparo;
         vivo = enemyProperties.vivo;
 
+        maxVida = enemyProperties.maxVida;
         vida = enemyProperties.vida;
+        maxEscudo = enemyProperties.maxEscudo;
         escudo = enemyProperties.escudo;
 
         dañoColision = enemyProperties.dañoColision ; //Daño que le hace la nave al jugador si colisionan
@@ -175,7 +177,7 @@ public class EnemigoEntity extends GameObjectEntity {
     public void destruirse() {
         generarPowerUp();
         animacionExplo();
-        PantallaJuego.jugador.addPuntos(50);
+        PantallaJuego.jugador.addPuntos(puntuacion);
         GestorAssets.getInstance().getSound("explosion2.wav").play();
         this.remove();
         //Gdx.app.log("Enemy killed!", "");

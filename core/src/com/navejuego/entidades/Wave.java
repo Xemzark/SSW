@@ -56,6 +56,9 @@ public class Wave {
             spawnCount += 1;
         }
     }
+    public void SpawnBoss (int bossType) {
+            PantallaJuego.stage.addActor(new BossEnemigo(PantallaJuego.stage, bossType));
+        }
 
     public boolean isDone() {
         //TODO: Que esto devuelva "True" solo cuando todas las naves de la oleada sean destruidas.
