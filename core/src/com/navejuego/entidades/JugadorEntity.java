@@ -5,16 +5,13 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Circle;
-import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.utils.DragListener;
 import com.badlogic.gdx.utils.TimeUtils;
 import com.navejuego.GestorAssets;
 import com.navejuego.entidades.ui.Barra;
-import com.navejuego.entidades.ui.BarraVida;
 import com.navejuego.entidades.ui.Puntuacion;
 import com.navejuego.pantallas.PantallaJuego;
 
@@ -102,7 +99,7 @@ public class JugadorEntity extends GameObjectEntity {
         setBounds(sprite.getX(), sprite.getY(), sprite.getWidth(), sprite.getHeight());
         setPosition(posicion.x - getWidth() / 2, posicion.y - getHeight() / 2);
         setSize(PIXELS_METRE, PIXELS_METRE);
-        hitbox.set(getX()+getWidth()/2,getY()+getHeight()/2,getWidth()/2);
+        hitbox.set(getX() + getWidth() / 2, getY() + getHeight() / 2, getWidth() / 2);
         spriteEscudo.setPosition(getX(), getY());
         //Fin de valores iniciales del Actor
 
@@ -296,9 +293,13 @@ public class JugadorEntity extends GameObjectEntity {
     public float getMaxEscudo() { return this.maxEscudo; }
 
     public void setInvulnerabilidad (int duracion) {
-        this.invulnerabilidad = true;
-        this.inicioInvulnerabilidad = new TimeUtils().millis();
-        this.duracionInvulnerabilidad = duracion;
+        if (!invulnerabilidad) {
+            this.invulnerabilidad = true;
+            this.inicioInvulnerabilidad = new TimeUtils().millis();
+            this.duracionInvulnerabilidad = duracion;
+        } else {
+            this.duracionInvulnerabilidad += duracion;
+        }
     }
 
     public void contadorInvulnerabilidad(){
@@ -316,6 +317,8 @@ public class JugadorEntity extends GameObjectEntity {
             this.inicioDobleASPD = TimeUtils.millis();
             this.duracionDobleASPD = duracion;
             this.cadenciaDisparo /= 2;
+        } else {
+            duracionDobleASPD += duracion;
         }
     }
 
