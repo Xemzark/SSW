@@ -3,6 +3,7 @@ package com.navejuego.entidades;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.math.Circle;
 import com.badlogic.gdx.math.Rectangle;
 import com.navejuego.GestorAssets;
 import com.navejuego.entidades.patrones.HoritzontalMovement;
@@ -41,6 +42,8 @@ public class EnemyType {
     protected float maxVida;
     protected float maxEscudo;
 
+    protected float sizeX;
+    protected float sizeY;
 
     protected int probabilidadPowerUp; //Entre 0% y 100%
     protected Texture texture;
@@ -48,7 +51,7 @@ public class EnemyType {
     protected Sprite sprite;
     protected Sprite spriteEscudo;
 
-    protected Rectangle hitbox;
+    protected Circle hitbox;
 
     protected MovementPattern movementPattern;
     protected ArrayList<MovementPattern> patternList = new ArrayList<MovementPattern>();
@@ -65,7 +68,7 @@ public class EnemyType {
                 sprite = new Sprite(texture);
                 textureEscudo = GestorAssets.getInstance().getTexture("escudoNave.png");
                 spriteEscudo = new Sprite(textureEscudo);
-                hitbox = new Rectangle();
+                hitbox = new Circle();
                 puntuacion = 200;
                 cadenciaDisparo = 1f;
                 tiempoSiguienteDisparo = 0f;
@@ -77,6 +80,8 @@ public class EnemyType {
                 dañoColision = ((int)vida/2); //Daño que le hace la nave al jugador si colisionan
                 probabilidadPowerUp = 100;
                 movementPattern =  new LinealMovement(150, false);
+                sizeX = 110.0f;
+                sizeY = 130.0f;
                 break;
 
             case 2: //BOSS DEMO
@@ -84,7 +89,7 @@ public class EnemyType {
                 sprite = new Sprite(texture);
                 textureEscudo = GestorAssets.getInstance().getTexture("escudoNave.png");
                 spriteEscudo = new Sprite(textureEscudo);
-                hitbox = new Rectangle();
+                hitbox = new Circle();
                 puntuacion = 20000;
                 cadenciaDisparo = 0.5f;
                 tiempoSiguienteDisparo = 0f;
@@ -96,6 +101,8 @@ public class EnemyType {
                 dañoColision = 1000; //Daño que le hace la nave al jugador si colisionan
                 patternList.add(new NullMovement());
                 patternList.add(new HoritzontalMovement(150));
+                sizeX = 150.0f;
+                sizeY = 130.0f;
                 break;
         }
     }

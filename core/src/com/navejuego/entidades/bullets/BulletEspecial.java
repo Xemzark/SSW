@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.navejuego.Constantes;
 import com.navejuego.entidades.*;
 import com.navejuego.entidades.patrones.LinealMovement;
 import com.navejuego.pantallas.PantallaJuego;
@@ -17,7 +18,7 @@ public class BulletEspecial extends BulletEntity {
     public BulletEspecial(Texture texture, Vector2 posicion){
         super(texture, posicion);
         movementPattern = new LinealMovement(900.0f, true);
-        setSize(50,70);
+        setSize(50 * Constantes.resizeWidth,70 * Constantes.resizeHeight);
     }
     @Override
     protected void comprobarColision() {

@@ -10,6 +10,7 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.utils.DragListener;
 import com.badlogic.gdx.utils.TimeUtils;
+import com.navejuego.Constantes;
 import com.navejuego.GestorAssets;
 import com.navejuego.entidades.ui.Barra;
 import com.navejuego.entidades.ui.Puntuacion;
@@ -98,9 +99,10 @@ public class JugadorEntity extends GameObjectEntity {
         //Valores iniciales del Actor
         setBounds(sprite.getX(), sprite.getY(), sprite.getWidth(), sprite.getHeight());
         setPosition(posicion.x - getWidth() / 2, posicion.y - getHeight() / 2);
-        setSize(PIXELS_METRE, PIXELS_METRE);
+        setSize(getWidth() * Constantes.resizeWidth, getHeight() * Constantes.resizeHeight);
         hitbox.set(getX() + getWidth() / 2, getY() + getHeight() / 2, getWidth() / 2);
         spriteEscudo.setPosition(getX(), getY());
+        spriteEscudo.setSize(getWidth(), getHeight());
         //Fin de valores iniciales del Actor
 
         //Inicio de reacción al drag

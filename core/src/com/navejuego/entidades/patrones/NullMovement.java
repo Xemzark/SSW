@@ -23,7 +23,7 @@ public class NullMovement implements MovementPattern {
 
     @Override
     public void Move(GameObjectEntity entity, float delta) {
-
+        entity.MoveTo(entity.getX(), entity.getY());
     }
 
     @Override

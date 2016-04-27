@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.navejuego.Constantes;
 import com.navejuego.GestorAssets;
 import com.navejuego.entidades.patrones.MovementPattern;
 import com.navejuego.entidades.powerups.PowerUpEntity;
@@ -30,17 +31,16 @@ public class BossEnemigo extends EnemigoEntity {
     private float nextSegmentoVida;
 
 
-    public BossEnemigo (Stage stage, int enemyType) {
+    public BossEnemigo (int enemyType) {
         // Debe conocer su stage, su textura y su sprite
-        super(stage, enemyType);
+        super(enemyType);
+
+        //System.out.print("Boss Size: " + getHeight() + ", " + getWidth());
 
         posX = Gdx.graphics.getWidth() / 2 - getWidth() / 2; // Centra al boss en el eje de las X
         posY = Gdx.graphics.getHeight() - getHeight() * 2; // Situa al boss en la parte superior de la pantalla
         setPosition(posX, posY);
-
         this.hitbox.setPosition(posX, posY);
-
-
 
         //Carga la succesion de patrones de movimiento del boss
         patternList = new ArrayList<MovementPattern>();
@@ -90,12 +90,12 @@ public class BossEnemigo extends EnemigoEntity {
         tiempoSiguienteDisparo += delta;
         if (tiempoSiguienteDisparo > cadenciaDisparo) {
             Texture bulletTextura = GestorAssets.getInstance().getTexture("bullet.png");
-            com.navejuego.entidades.bullets.BulletEnemigo bullet1 = new com.navejuego.entidades.bullets.BulletEnemigo(this.stage, bulletTextura, new Vector2(getX() + getWidth(), getY()));
-            com.navejuego.entidades.bullets.BulletEnemigo bullet2 = new com.navejuego.entidades.bullets.BulletEnemigo(this.stage, bulletTextura, new Vector2(getX(), getY()));
+            com.navejuego.entidades.bullets.BulletEnemigo bullet1 = new com.navejuego.entidades.bullets.BulletEnemigo(bulletTextura, new Vector2(getX() + getWidth(), getY()));
+            com.navejuego.entidades.bullets.BulletEnemigo bullet2 = new com.navejuego.entidades.bullets.BulletEnemigo(bulletTextura, new Vector2(getX(), getY()));
             bullet1.setName("Bala Enemigo 1");
-            this.stage.addActor(bullet1);
+            PantallaJuego.stage.addActor(bullet1);
             bullet1.setName("Bala Enemigo 2");
-            this.stage.addActor(bullet2);
+            PantallaJuego.stage.addActor(bullet2);
             tiempoSiguienteDisparo = 0;
         }
     }

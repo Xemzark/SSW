@@ -57,7 +57,7 @@ public class Wave {
         }
     }
     public void SpawnBoss (int bossType) {
-            PantallaJuego.stage.addActor(new BossEnemigo(PantallaJuego.stage, bossType));
+            PantallaJuego.stage.addActor(new BossEnemigo(bossType));
         }
 
     public boolean isDone() {
