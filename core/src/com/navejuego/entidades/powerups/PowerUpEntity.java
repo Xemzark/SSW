@@ -3,7 +3,7 @@ package com.navejuego.entidades.powerups;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.math.Circle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.navejuego.entidades.GameObjectEntity;
@@ -24,13 +24,12 @@ public abstract class PowerUpEntity extends GameObjectEntity {
 
         this.texture = texture;
         this.sprite = new Sprite(this.texture);
-        this.hitbox = new Rectangle();
+        this.hitbox = new Circle();
 
         setBounds(sprite.getX(), sprite.getY(), sprite.getWidth(), sprite.getHeight());
         setPosition(posicion.x, posicion.y);
         setSize(50, 50);
-        hitbox.setSize(sprite.getWidth(), sprite.getHeight());
-        hitbox.setPosition(getX(), getY());
+        hitbox.set(getX()+getWidth()/2,getY()+getHeight()/2,getWidth()/2);
 
     }
 
@@ -47,7 +46,7 @@ public abstract class PowerUpEntity extends GameObjectEntity {
 
     public void movimiento(float delta){
         setPosition(getX(), getY() - (velocidad * delta));
-        hitbox.setPosition(getX(), getY());
+        hitbox.set(getX()+getWidth()/2,getY()+getHeight()/2,getWidth()/2);
     }
     /**
      * TODO: Comprobar si ha colisionado con el jugador. Si ha colisionado, se auto-destruye y le aplica el efecto.

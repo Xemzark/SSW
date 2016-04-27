@@ -80,7 +80,7 @@ public class EnemigoEntity extends GameObjectEntity {
         setBounds(sprite.getX(), sprite.getY(), sprite.getWidth(), sprite.getHeight());
         //setSize(Gdx.graphics.getWidth()/8, Gdx.graphics.getHeight()/8);
         setSize(PIXELS_METRE, PIXELS_METRE);
-        this.hitbox.setSize(getWidth(), getHeight());
+        hitbox.set(getX()+getWidth()/2,getY()+getHeight()/2,getWidth()/2);
 
 
         // Valores aleatorios
@@ -240,7 +240,7 @@ public class EnemigoEntity extends GameObjectEntity {
     }
 
     @Override
-    public Rectangle getHitbox(){
+    public Circle getHitbox(){
         return this.hitbox;
     }
 }

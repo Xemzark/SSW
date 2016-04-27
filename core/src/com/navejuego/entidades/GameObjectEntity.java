@@ -2,6 +2,7 @@ package com.navejuego.entidades;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.math.Circle;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
@@ -22,7 +23,7 @@ public abstract class GameObjectEntity extends Actor {
     protected float maxVida;
     protected float maxEscudo;
 
-    protected Rectangle hitbox;
+    protected Circle hitbox;
 
     protected MovementPattern movementPattern;
 
@@ -36,7 +37,7 @@ public abstract class GameObjectEntity extends Actor {
         return escudo;
     }
 
-    public Rectangle getHitbox() {
+    public Circle getHitbox() {
         return hitbox;
     }
 
@@ -47,7 +48,7 @@ public abstract class GameObjectEntity extends Actor {
      */
     public void MoveTo(float x, float y) {
         setPosition(x, y);
-        hitbox.setPosition(x, y);
+        hitbox.setPosition(x+getWidth()/2, y+getHeight()/2);
     }
 
 }

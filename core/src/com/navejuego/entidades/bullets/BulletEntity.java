@@ -4,7 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.math.Circle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -32,7 +32,7 @@ public abstract class BulletEntity extends GameObjectEntity {
      */
     public BulletEntity(Texture texture, Vector2 posicion){
         this.texture = texture;
-        this.hitbox = new Rectangle();
+        this.hitbox = new Circle();
         this.sprite = new Sprite(this.texture);
 
         float x = posicion.x - (5);
@@ -42,8 +42,7 @@ public abstract class BulletEntity extends GameObjectEntity {
         setBounds(sprite.getX(), sprite.getY(), sprite.getWidth(), sprite.getHeight());
         setPosition(x, y);
         setSize(10, 20);
-        this.hitbox.setPosition(getX(), getY());
-        this.hitbox.setSize(getWidth(), getHeight());
+        hitbox.set(getX()+getWidth()/2,getY()+getHeight()/2,getWidth()/2);
 
         movementPattern = null;
         //Fin de valores iniciales del Actor
@@ -95,7 +94,7 @@ public abstract class BulletEntity extends GameObjectEntity {
     }
 
     @Override
-    public Rectangle getHitbox(){
+    public Circle getHitbox(){
         return this.hitbox;
     }
 
