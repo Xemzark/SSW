@@ -17,6 +17,9 @@ public class LevelManager {
         NIVEL_1, NIVEL_2, NIVEL_3, NIVEL_4;
     }
 
+    public int bossList[] = {2,2,2,2};
+    public int bossType;
+
     public LevelManager(Nivel nivel){
         this.setCurrentLevel(nivel);
     }
@@ -36,6 +39,7 @@ public class LevelManager {
 
                 waveArray.add(new Wave(null, 5, 1000));
                 waveArray.add(new Wave(null, 2, 3000));
+                bossType = bossList[0];
                 background = GestorAssets.getInstance().getTexture("background_1.png");
                 music = GestorAssets.getInstance().getMusic("SpaceLoungeLoop.wav");
 
@@ -45,6 +49,7 @@ public class LevelManager {
 
                 waveArray.add(new Wave(null, 5, 1000));
                 waveArray.add(new Wave(null, 2, 3000));
+                bossType = bossList[1];
                 background = GestorAssets.getInstance().getTexture("background_3.png");
                 music = GestorAssets.getInstance().getMusic("SpaceCube.wav");
 
@@ -54,6 +59,7 @@ public class LevelManager {
 
                 waveArray.add(new Wave(null, 5, 1000));
                 waveArray.add(new Wave(null, 2, 3000));
+                bossType = bossList[2];
                 background = GestorAssets.getInstance().getTexture("background_7.png");
                 music = GestorAssets.getInstance().getMusic("SpaceTrip.mp3");
 
@@ -63,6 +69,7 @@ public class LevelManager {
 
                 waveArray.add(new Wave(null, 5, 1000));
                 waveArray.add(new Wave(null, 2, 3000));
+                bossType = bossList[3];
                 background = GestorAssets.getInstance().getTexture("background_6.png");
                 music = GestorAssets.getInstance().getMusic("SpaceGate.mp3");
 
@@ -74,7 +81,7 @@ public class LevelManager {
 
         }
 
-        WaveManager waves = new WaveManager(waveArray, null, true);
+        WaveManager waves = new WaveManager(waveArray, bossType, false);
         this.currentLevel = new Level(waves,music,background);
 
     }

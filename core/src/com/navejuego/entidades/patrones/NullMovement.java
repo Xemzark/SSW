@@ -7,6 +7,10 @@ import com.navejuego.entidades.GameObjectEntity;
  */
 public class NullMovement implements MovementPattern {
 
+
+    public NullMovement(){
+        setSpeed(0);
+    }
     @Override
     public float getSpeed() {
         return 0;
