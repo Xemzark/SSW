@@ -103,7 +103,7 @@ public class PantallaMenu extends Pantalla {
 
         //Ajustes.getSkin().getFont("default-font").getData().setScale(2, 2); //cambia el tamaño de la fuente del boton
 
-        Ranking.setSize(1.5f* Gdx.graphics.getWidth() / 4, Gdx.graphics.getHeight() / 12);
+        Ranking.setSize(1.5f/ 4 * Gdx.graphics.getWidth() , Gdx.graphics.getHeight() / 12);
         Ranking.setPosition(Gdx.graphics.getWidth() / 2 - Gdx.graphics.getWidth() /5.5f, Gdx.graphics.getHeight() / 3 - Gdx.graphics.getHeight() / 5.5f);
         Ranking.getLabel().setFontScale(0.5f*(Gdx.graphics.getWidth()/640.0f));
 
