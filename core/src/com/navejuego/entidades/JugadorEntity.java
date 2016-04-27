@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.math.Circle;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
@@ -60,7 +61,7 @@ public class JugadorEntity extends GameObjectEntity {
     public JugadorEntity(Texture texture, Vector2 posicion){
         this.texture = texture;
         this.sprite = new Sprite(this.texture);
-        this.hitbox = new Rectangle();
+        this.hitbox = new Circle();
 
         this.ataqueEspecial = new AtaqueEspecial();
         PantallaJuego.stage.addActor(this.ataqueEspecial);
@@ -100,9 +101,8 @@ public class JugadorEntity extends GameObjectEntity {
         //Valores iniciales del Actor
         setBounds(sprite.getX(), sprite.getY(), sprite.getWidth(), sprite.getHeight());
         setPosition(posicion.x - getWidth() / 2, posicion.y - getHeight() / 2);
-        hitbox.setPosition(getX(), getY());
         setSize(PIXELS_METRE, PIXELS_METRE);
-        hitbox.setSize(getWidth(), getHeight());
+        hitbox.set(getX()+getWidth()/2,getY()+getHeight()/2,getWidth()/2);
         spriteEscudo.setPosition(getX(), getY());
         //Fin de valores iniciales del Actor
 

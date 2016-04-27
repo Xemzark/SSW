@@ -3,6 +3,7 @@ package com.navejuego.entidades;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.math.Circle;
 import com.badlogic.gdx.math.Rectangle;
 import com.navejuego.GestorAssets;
 import com.navejuego.entidades.patrones.HoritzontalMovement;
@@ -43,7 +44,7 @@ public class EnemyType {
     protected Sprite sprite;
     protected Sprite spriteEscudo;
 
-    protected Rectangle hitbox;
+    protected Circle hitbox;
 
     protected MovementPattern movementPattern;
     protected ArrayList<MovementPattern> patternList;
@@ -57,7 +58,7 @@ public class EnemyType {
                 sprite = new Sprite(texture);
                 textureEscudo = GestorAssets.getInstance().getTexture("escudoNave.png");
                 spriteEscudo = new Sprite(textureEscudo);
-                hitbox = new Rectangle();
+                hitbox = new Circle();
                 puntuacion = 200;
                 cadenciaDisparo = 1f;
                 tiempoSiguienteDisparo = 0f;
@@ -74,7 +75,7 @@ public class EnemyType {
                 sprite = new Sprite(texture);
                 textureEscudo = GestorAssets.getInstance().getTexture("escudoNave.png");
                 spriteEscudo = new Sprite(spriteEscudo);
-                hitbox = new Rectangle();
+                hitbox = new Circle();
                 puntuacion = 20000;
                 cadenciaDisparo = 0.5f;
                 tiempoSiguienteDisparo = 0f;
