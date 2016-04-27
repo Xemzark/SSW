@@ -15,14 +15,13 @@ import com.navejuego.pantallas.PantallaJuego;
 public abstract class PowerUpEntity extends GameObjectEntity {
     private float velocidad = 200.0f;
 
-    public PowerUpEntity(Stage stage, Texture texture, Vector2 posicion) {
+    public PowerUpEntity(Texture texture, Vector2 posicion) {
         /*this.vida = vida;
         this.escudo = escudo;
         this.segundosInvulnerabilidad = segundosInvulnerabilidad;
         this.segundosDobleCadenciaDisparo = segundosDobleCadenciaDisparo;
         this.puntos = puntos;*/
 
-        this.stage = stage;
         this.texture = texture;
         this.sprite = new Sprite(this.texture);
         this.hitbox = new Rectangle();

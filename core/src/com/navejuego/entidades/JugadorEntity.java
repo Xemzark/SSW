@@ -12,7 +12,12 @@ import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.utils.DragListener;
 import com.badlogic.gdx.utils.TimeUtils;
 import com.navejuego.GestorAssets;
+import com.navejuego.entidades.ui.Barra;
 import com.navejuego.entidades.ui.BarraVida;
+import com.navejuego.entidades.ui.Puntuacion;
+import com.navejuego.pantallas.PantallaJuego;
+
+import java.util.ArrayList;
 
 import static com.navejuego.Constantes.*;
 
@@ -40,11 +45,11 @@ public class JugadorEntity extends GameObjectEntity {
     private long inicioDobleASPD = 0;
     private int duracionDobleASPD = 0;
 
-    private com.navejuego.entidades.ui.BarraVida barravida;
-    private com.navejuego.entidades.ui.BarraEscudo barraescudo;
-    private float maxVida = 100;
-    private float maxEscudo = 100;
-    private com.navejuego.entidades.ui.Puntuacion puntuacion;
+    private Barra barravida;
+    private Barra barraescudo;
+    private Puntuacion puntuacion;
+    private Sprite spriteEscudo;
+
 
     /**
      * Constructor
@@ -52,26 +57,45 @@ public class JugadorEntity extends GameObjectEntity {
      * @param texture sprite a asociarle, gestionado por el assetManager
      * @param posicion vector de coordenadas x, y para inicializar la posición
      */
-    public JugadorEntity(Stage stage, Texture texture, Vector2 posicion){
-        this.stage = stage; //La nave jugador conoce el stage al que pertenece para añadirle bullets
+    public JugadorEntity(Texture texture, Vector2 posicion){
         this.texture = texture;
         this.sprite = new Sprite(this.texture);
         this.hitbox = new Rectangle();
 
-        this.ataqueEspecial = new AtaqueEspecial(this.stage);
+        this.ataqueEspecial = new AtaqueEspecial();
+        PantallaJuego.stage.addActor(this.ataqueEspecial);
 
         this.invulnerabilidad = false;
         this.puntuacion = new com.navejuego.entidades.ui.Puntuacion();
+        this.maxVida = 100;
+        this.maxEscudo = 100;
+        this.vida = maxVida;
+        this.escudo = maxEscudo;
         this.vida = 100;
         this.escudo = 100;
 
-        this.barravida = new BarraVida();
-        this.stage.addActor(barravida);
-        this.barraescudo = new com.navejuego.entidades.ui.BarraEscudo();
-        stage.addActor(barraescudo);
+        // Sprite animación escudo
+        this.spriteEscudo = new Sprite(GestorAssets.getInstance().getTexture("escudoNave.png"));
+        spriteEscudo.setAlpha(0.7f);
+        //
+
+        this.barravida = new Barra (GestorAssets.getInstance().getTexture("vidabgv2.png"),
+                GestorAssets.getInstance().getTexture("vidafgv2.png"),
+                GestorAssets.getInstance().getTexture("corazon.png"),
+                22,
+                new Vector2(Gdx.graphics.getWidth() * 0.05f, Gdx.graphics.getHeight() * 0.5f),
+                false);
+        PantallaJuego.stage.addActor(barravida);
+        this.barraescudo = new Barra (GestorAssets.getInstance().getTexture("escudobg.png"),
+                GestorAssets.getInstance().getTexture("escudofg.png"),
+                GestorAssets.getInstance().getTexture("shieldbar.png"),
+                22,
+                new Vector2(Gdx.graphics.getWidth() * 0.05f, Gdx.graphics.getHeight() * 0.05f),
+                false);
+        PantallaJuego.stage.addActor(barraescudo);
 
         this.tiempoSiguienteDisparo = 0;
-        this.cadenciaDisparo = 0.1f;
+        this.cadenciaDisparo = 0.5f;
 
         //Valores iniciales del Actor
         setBounds(sprite.getX(), sprite.getY(), sprite.getWidth(), sprite.getHeight());
@@ -79,6 +103,7 @@ public class JugadorEntity extends GameObjectEntity {
         hitbox.setPosition(getX(), getY());
         setSize(PIXELS_METRE, PIXELS_METRE);
         hitbox.setSize(getWidth(), getHeight());
+        spriteEscudo.setPosition(getX(), getY());
         //Fin de valores iniciales del Actor
 
         //Inicio de reacción al drag
@@ -116,6 +141,7 @@ public class JugadorEntity extends GameObjectEntity {
                 }
 
                 MoveTo(newX, newY);
+                spriteEscudo.setPosition(newX, newY);
 
 
             }
@@ -141,6 +167,7 @@ public class JugadorEntity extends GameObjectEntity {
     @Override
     public void draw(Batch batch, float parentAlpha) {
         batch.draw(texture, getX(), getY(), getWidth(), getHeight());
+        spriteEscudo.draw(batch);
         barravida.render(batch);
         barraescudo.render(batch);
         this.puntuacion.draw(batch);
@@ -152,14 +179,14 @@ public class JugadorEntity extends GameObjectEntity {
      * generarDisparo
      * Este método genera un disparo de la nave cada delta tiempo
      */
-    protected void generarDisparo(float delta) {
 
+    protected void generarDisparo(float delta) {
         tiempoSiguienteDisparo += delta;
         if (tiempoSiguienteDisparo > cadenciaDisparo) {
             Texture bulletTextura = GestorAssets.getInstance().getTexture("bullet.png");
-            com.navejuego.entidades.bullets.BulletNave bullet = new com.navejuego.entidades.bullets.BulletNave(this.stage, bulletTextura, new Vector2(getX() + (getWidth() / 2), getY() + getHeight()));
-            this.stage.addActor(bullet);
-            this.ataqueEspecial.generarDisparo(getX() + (getWidth() / 2), getY() + getHeight());
+            com.navejuego.entidades.bullets.BulletNave bullet = new com.navejuego.entidades.bullets.BulletNave(bulletTextura, new Vector2(getX() + (getWidth() / 2), getY() + getHeight()));
+            PantallaJuego.stage.addActor(bullet);
+            //this.ataqueEspecial.generarDisparo(getX() + (getWidth() / 2), getY() + getHeight());
             tiempoSiguienteDisparo = 0;
         }
     }
@@ -167,6 +194,7 @@ public class JugadorEntity extends GameObjectEntity {
     /*
      * Primero daña escudos. Si están vacíos, daña la nave.
      * No recibe daño si es invulnerable.
+     * Actualiza el estado del escudo (sprite)
      * @param dmg Daño que aplica.
      * @param ignoraEscudo Si es cierto, ignora escudo.
      */
@@ -180,10 +208,12 @@ public class JugadorEntity extends GameObjectEntity {
             int temp = dmg;
             dmg -= escudo;
             escudo -= temp;
+
             if (escudo < 0)
                 escudo = 0;
             if (dmg > 0)
                 vida -= dmg;
+            spriteEscudo.setAlpha(Math.min(this.escudo/this.maxEscudo, 0.7f));
         }
 
         if (vida <= 0) {
@@ -194,8 +224,8 @@ public class JugadorEntity extends GameObjectEntity {
     }
 
     public void updateUI(){
-        barravida.update();
-        barraescudo.update();
+        barravida.Update(vida/maxVida);
+        barraescudo.Update(escudo/maxEscudo);
     }
 
     public com.navejuego.entidades.ui.Puntuacion getPuntuacion() {
@@ -218,12 +248,14 @@ public class JugadorEntity extends GameObjectEntity {
     /**
      * Incrementa el escudo si el parametro de escudo es positivo.
      * Nunca lo incrementa por encima del máximo.
+     * Actualiza el estado del escudo (sprite)
      * @param escudo  Putnos de escudo a incrementar. Valores negativos no hacen efecto.
      */
     public void subirEscudo(int escudo) {
         if (escudo > 0) {
             this.escudo = Math.min(this.escudo + escudo, maxEscudo);
             updateUI();
+            spriteEscudo.setAlpha(Math.min(this.escudo/this.maxEscudo, 0.7f));
         }
     }
 
@@ -231,10 +263,23 @@ public class JugadorEntity extends GameObjectEntity {
      * Destruye la nave.
      */
     public void destruirse() {
+        animacionExplo();
         setPosition(-100, -100);
         hitbox.setPosition(-100, -100);
         //TODO: Animación de destrucción de nave
         remove();
+    }
+
+    public void animacionExplo()
+    {
+        ArrayList<Texture> explosionTextura = new ArrayList<Texture>();
+        explosionTextura.add(GestorAssets.getInstance().getTexture("explo1.png"));
+        explosionTextura.add(GestorAssets.getInstance().getTexture("explo2.png"));
+        explosionTextura.add(GestorAssets.getInstance().getTexture("explo3.png"));
+        explosionTextura.add(GestorAssets.getInstance().getTexture("explo4.png"));
+        explosionTextura.add(GestorAssets.getInstance().getTexture("explo5.png"));
+        com.navejuego.Explosion explo = new com.navejuego.Explosion(explosionTextura, new Vector2(getX(),getY()),1.0f);
+        PantallaJuego.stage.addActor(explo);
     }
 
     /**

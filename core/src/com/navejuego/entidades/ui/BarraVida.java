@@ -46,7 +46,7 @@ public class BarraVida extends Actor {
     public void render(Batch batch){
         this.vidaBG.draw(batch);
         this.vidaFG.draw(batch);
-        batch.draw(this.corazon, margenDeIcono, Gdx.graphics.getHeight() - this.vidaBG.getHeight());
+        batch.draw(this.corazon, margenDeIcono/2, this.vidaBG.getY() - this.margenDeIcono / 4);
     }
 }
 

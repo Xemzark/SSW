@@ -18,54 +18,53 @@ import javax.naming.Context;
 //tuto -->  https://www.youtube.com/watch?v=zrsUFTplNa4
 public class BarraEscudo extends Actor {
 
-    private Sprite vidaBG;
-    private Sprite vidaFG;
-    private JugadorEntity owner;
-    private Texture corazon;
+    private Sprite escudoBG;
+    private Sprite escudoFG;
+    private Texture escudo;
     float buffer = 22;
 
     public BarraEscudo(){
 
-        this.vidaBG = new Sprite(GestorAssets.getInstance().getTexture("escudobg.png"));
-        this.vidaFG = new Sprite(GestorAssets.getInstance().getTexture("escudofg.png"));
-        this.corazon = GestorAssets.getInstance().getTexture("shieldbar.png");
+        this.escudoBG = new Sprite(GestorAssets.getInstance().getTexture("escudobg.png"));
+        this.escudoFG = new Sprite(GestorAssets.getInstance().getTexture("escudofg.png"));
+        this.escudo = GestorAssets.getInstance().getTexture("shieldbar.png");
         float spriteh = 0;
 
-        spriteh = this.vidaBG.getHeight();
+        spriteh = this.escudoBG.getHeight();
 
         int sw = 0;
         sw = Gdx.graphics.getWidth();
         int sh = 0;
         sh = Gdx.graphics.getHeight();
 
-        this.vidaBG.setX(10);
-        this.vidaBG.setY(20);
+        this.escudoBG.setX(10);
+        this.escudoBG.setY(20);
 
-        this.vidaFG.setX(10);
-        this.vidaFG.setY(20);
-        //vidaBG.getHeight()/2
-        this.vidaFG.setOrigin(0, 80);
+        this.escudoFG.setX(10);
+        this.escudoFG.setY(20);
+        //escudoBG.getHeight()/2
+        this.escudoFG.setOrigin(0, 80);
 
     }
 
     public void update(){
-        //this.vidaFG.setScale(owner.getVida() / 100, 1f);
-        this.vidaFG.setScale(1f, (PantallaJuego.jugador.getEscudo() / PantallaJuego.jugador.getMaxEscudo()));
-        /*this.vidaBG.setX(20);
-        this.vidaBG.setY(40);
+        //this.escudoFG.setScale(owner.getVida() / 100, 1f);
+        this.escudoFG.setScale(1f, (PantallaJuego.jugador.getEscudo() / PantallaJuego.jugador.getMaxEscudo()));
+        /*this.escudoBG.setX(20);
+        this.escudoBG.setY(40);
 
-        this.vidaFG.setX(20);
-        this.vidaFG.setY(40);*/
-       /* this.vidaBG.setX(20);
-        this.vidaBG.setY(40 + margenDeIcono);
+        this.escudoFG.setX(20);
+        this.escudoFG.setY(40);*/
+       /* this.escudoBG.setX(20);
+        this.escudoBG.setY(40 + margenDeIcono);
 
-        this.vidaFG.setX(20);
-        this.vidaFG.setY(40 + margenDeIcono);*/
+        this.escudoFG.setX(20);
+        this.escudoFG.setY(40 + margenDeIcono);*/
     }
 
     public void render(Batch batch){
-        this.vidaBG.draw(batch);
-        this.vidaFG.draw(batch);
-        batch.draw(this.corazon,buffer, this.buffer);
+        this.escudoBG.draw(batch);
+        this.escudoFG.draw(batch);
+        batch.draw(this.escudo,buffer, this.buffer);
     }
 }

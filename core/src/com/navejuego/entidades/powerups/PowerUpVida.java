@@ -11,8 +11,8 @@ import com.navejuego.pantallas.PantallaJuego;
 public class PowerUpVida extends PowerUpEntity {
 
     private int vida = 20;
-    public PowerUpVida (Stage stage, Texture textura, Vector2 posicion){
-        super(stage, textura, posicion);
+    public PowerUpVida (Texture textura, Vector2 posicion){
+        super(textura, posicion);
     }
 
     @Override

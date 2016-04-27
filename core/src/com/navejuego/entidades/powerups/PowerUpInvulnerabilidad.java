@@ -3,6 +3,7 @@ package com.navejuego.entidades.powerups;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.navejuego.GestorAssets;
 import com.navejuego.pantallas.PantallaJuego;
 
 /**
@@ -11,8 +12,12 @@ import com.navejuego.pantallas.PantallaJuego;
 public class PowerUpInvulnerabilidad extends PowerUpEntity {
 
     private int segundosInvulnerabilidad = 20;
-    public PowerUpInvulnerabilidad (Stage stage, Texture texture, Vector2 posicion){
-        super(stage, texture, posicion);
+    public PowerUpInvulnerabilidad (Texture texture, Vector2 posicion){
+        super(texture, posicion);
+    }
+
+    public PowerUpInvulnerabilidad (Vector2 posicion){
+        super(GestorAssets.getInstance().getTexture("addShield.png"), posicion);
     }
 
     @Override

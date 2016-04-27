@@ -1,5 +1,6 @@
 package com.navejuego.entidades;
 
+import com.navejuego.entidades.powerups.PowerUpASPD;
 import com.navejuego.pantallas.PantallaJuego;
 
 /**
@@ -33,6 +34,7 @@ public class Wave {
      */
     private long nextSpawn;
 
+    //TODO: Reemplazar "enemigo" por un factory class o lo que sea
     public Wave(EnemigoEntity enemigo, int cantidadDeEnemgios, long tiempoEntreEnemigos) {
         enemy = enemigo;
         spawnTargetAmount = cantidadDeEnemgios;
@@ -41,9 +43,15 @@ public class Wave {
         nextSpawn = System.currentTimeMillis() + tiempoEntreEnemigos;
     }
 
+    public void GetReady() {
+        nextSpawn = System.currentTimeMillis() + spawnDelay;
+    }
+
     public void Spawn () {
+
         if (spawnCount < spawnTargetAmount && nextSpawn <= System.currentTimeMillis()) {
-            PantallaJuego.stage.addActor(new EnemigoEntity(PantallaJuego.stage));
+
+            PantallaJuego.stage.addActor(new EnemigoEntity(1));
             nextSpawn = System.currentTimeMillis() + spawnDelay;
             spawnCount += 1;
         }

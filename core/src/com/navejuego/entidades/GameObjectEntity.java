@@ -12,13 +12,15 @@ import com.navejuego.entidades.patrones.MovementPattern;
  * Created by Elias on 09/04/2016.
  */
 public abstract class GameObjectEntity extends Actor {
-    protected Stage stage;
     protected Texture texture;
 
     protected Sprite sprite;
 
     protected float vida;
     protected float escudo;
+
+    protected float maxVida;
+    protected float maxEscudo;
 
     protected Rectangle hitbox;
 

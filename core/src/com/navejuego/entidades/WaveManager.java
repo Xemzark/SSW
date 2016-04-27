@@ -21,6 +21,8 @@ public class WaveManager {
 
     private boolean loop;
 
+    private boolean bossMode;
+
     /**
      * Enemigo que aparece cuando todas las oleadas han acabado.
      */
@@ -31,22 +33,16 @@ public class WaveManager {
         this.boss = boss;
         currentWave = 0;
         this.loop = loop;
+        bossMode = false;
     }
 
     /**
      * @return True if it can spawn something, false if there's nothing to spawn.
      */
     public boolean Spawn () {
-        if (currentWave >= waveList.size()) {
-            //No hay mas oleadas.
-            //TODO: Spawn boss
-            if (loop) {
-                Reset ();
-                return Spawn ();
-            } else {
-                //TODO: Devolver si el boss ha sido derrotado o no
-                return false;
-            }
+        if (bossMode) {
+            //TODO: Devolver si el boss ha sido derrotado o no
+            return false;
         }
 
         if (!waveList.get(currentWave).isDone()) {
@@ -54,9 +50,25 @@ public class WaveManager {
             waveList.get(currentWave).Spawn();
             return true;
         } else {
-            System.out.print("Wave " + currentWave + " ended.");
+            System.out.print("Wave " + currentWave + " ended.\n");
             currentWave += 1;
-            return Spawn ();
+            if (currentWave < waveList.size()) {
+                waveList.get(currentWave).GetReady();
+                waveList.get(currentWave).Spawn();
+                return true;
+            } else {
+                if (boss != null) {
+                    //TODO: Spanw boss
+                    return true;
+                } else if (loop) {
+                    //Looping waves
+                    Reset ();
+                    return true;
+                } else {
+                    //Waves over
+                    return false;
+                }
+            }
         }
     }
 
