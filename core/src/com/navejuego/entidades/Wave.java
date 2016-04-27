@@ -22,7 +22,7 @@ public class Wave {
     /**
      * Enemigo a instanciar.
      */
-    public EnemigoEntity enemy;
+    public int enemy;
 
     /**
      * Cantidad de enemigos creados actualmente.
@@ -35,8 +35,8 @@ public class Wave {
     private long nextSpawn;
 
     //TODO: Reemplazar "enemigo" por un factory class o lo que sea
-    public Wave(EnemigoEntity enemigo, int cantidadDeEnemgios, long tiempoEntreEnemigos) {
-        enemy = enemigo;
+    public Wave(int enemyType, int cantidadDeEnemgios, long tiempoEntreEnemigos) {
+        enemy = enemyType;
         spawnTargetAmount = cantidadDeEnemgios;
         spawnDelay = tiempoEntreEnemigos;
         spawnCount = 0;
@@ -51,7 +51,7 @@ public class Wave {
 
         if (spawnCount < spawnTargetAmount && nextSpawn <= System.currentTimeMillis()) {
 
-            PantallaJuego.stage.addActor(new EnemigoEntity(1));
+            PantallaJuego.stage.addActor(new EnemigoEntity(enemy));
             nextSpawn = System.currentTimeMillis() + spawnDelay;
             spawnCount += 1;
         }

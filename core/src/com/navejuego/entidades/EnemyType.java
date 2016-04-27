@@ -84,6 +84,27 @@ public class EnemyType {
                 sizeY = 130.0f;
                 break;
 
+            case 3: //Kamikaze
+                texture = GestorAssets.getInstance().getTexture("boss.png");
+                sprite = new Sprite(texture);
+                textureEscudo = GestorAssets.getInstance().getTexture("escudoNave.png");
+                spriteEscudo = new Sprite(textureEscudo);
+                hitbox = new Circle();
+                puntuacion = 50;
+                cadenciaDisparo = 10000000000000000000000f;
+                tiempoSiguienteDisparo = 0;
+                vivo = true;
+                maxVida = 1;
+                maxEscudo = 0;
+                vida = maxVida;
+                escudo = maxEscudo;
+                dañoColision = ((int)vida*3); //Daño que le hace la nave al jugador si colisionan
+                probabilidadPowerUp = 100;
+                movementPattern =  new LinealMovement(400, false);
+                sizeX = 110.0f;
+                sizeY = 130.0f;
+                break;
+
             case 2: //BOSS DEMO
                 texture = GestorAssets.getInstance().getTexture("goku.png");
                 sprite = new Sprite(texture);
