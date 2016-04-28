@@ -15,6 +15,12 @@ public enum ScreenEnum {
         }
     },
 
+    NIVELES {
+        public Pantalla getScreen(Object... params) {
+            return new MainNivelesScreen();
+        }
+    },
+
     GAME_OVER {
         public Pantalla getScreen(Object... params) {
             return new PantallaGameOver();
