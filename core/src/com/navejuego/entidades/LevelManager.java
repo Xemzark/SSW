@@ -17,7 +17,7 @@ public class LevelManager {
         NIVEL_1, NIVEL_2, NIVEL_3, NIVEL_4;
     }
 
-    public int bossList[] = {2,2,2,2};
+    public int bossList[] = {21,21,21,21};
     public int bossType;
 
     public LevelManager(Nivel nivel){
@@ -37,8 +37,8 @@ public class LevelManager {
         switch (lvl) {
             case NIVEL_1:
 
-                waveArray.add(new Wave(1, 5, 1000));
-                waveArray.add(new Wave(1, 2, 3000));
+                waveArray.add(new Wave(11, 5, 1000));
+                waveArray.add(new Wave(12, 2, 3000));
                 bossType = bossList[0];
                 background = GestorAssets.getInstance().getTexture("background_1.png");
                 music = GestorAssets.getInstance().getMusic("SpaceLoungeLoop.wav");
@@ -47,8 +47,8 @@ public class LevelManager {
 
             case NIVEL_2:
 
-                waveArray.add(new Wave(1, 5, 1000));
-                waveArray.add(new Wave(1, 2, 3000));
+                waveArray.add(new Wave(11, 5, 1000));
+                waveArray.add(new Wave(12, 2, 3000));
                 bossType = bossList[1];
                 background = GestorAssets.getInstance().getTexture("background_3.png");
                 music = GestorAssets.getInstance().getMusic("SpaceCube.wav");
@@ -57,8 +57,8 @@ public class LevelManager {
 
             case NIVEL_3:
 
-                waveArray.add(new Wave(1, 5, 1000));
-                waveArray.add(new Wave(1, 2, 3000));
+                waveArray.add(new Wave(11, 5, 1000));
+                waveArray.add(new Wave(12, 2, 3000));
                 bossType = bossList[2];
                 background = GestorAssets.getInstance().getTexture("background_7.png");
                 music = GestorAssets.getInstance().getMusic("SpaceTrip.mp3");
@@ -67,8 +67,8 @@ public class LevelManager {
 
             case NIVEL_4:
 
-                waveArray.add(new Wave(1, 5, 1000));
-                waveArray.add(new Wave(3, 2, 3000));
+                waveArray.add(new Wave(11, 5, 1000));
+                waveArray.add(new Wave(12, 2, 3000));
                 bossType = bossList[3];
                 background = GestorAssets.getInstance().getTexture("background_6.png");
                 music = GestorAssets.getInstance().getMusic("SpaceGate.mp3");

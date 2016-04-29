@@ -173,7 +173,6 @@ public class EnemigoEntity extends GameObjectEntity {
         generarPowerUp();
         animacionExplo();
         PantallaJuego.jugador.addPuntos(puntuacion);
-        GestorAssets.getInstance().getSound("explosion2.wav").play();
         this.remove();
         //Gdx.app.log("Enemy killed!", "");
     }
@@ -188,6 +187,7 @@ public class EnemigoEntity extends GameObjectEntity {
         explosionTextura.add(GestorAssets.getInstance().getTexture("explo5.png"));
         com.navejuego.Explosion explo = new com.navejuego.Explosion(explosionTextura, new Vector2(getX(),getY()),1.0f);
         PantallaJuego.stage.addActor(explo);
+        GestorAssets.getInstance().getSound("explosion2.wav").play();
     }
 
     /**

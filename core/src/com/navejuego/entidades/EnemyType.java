@@ -55,6 +55,7 @@ public class EnemyType {
 
     protected MovementPattern movementPattern;
     protected ArrayList<MovementPattern> patternList = new ArrayList<MovementPattern>();
+    protected MovementPattern bulletMovement;
 
     /**
      * Mediante un swithc/case, se selecciona el tipo de enemigo deseado y se obtienen sus datos
@@ -63,7 +64,7 @@ public class EnemyType {
     public EnemyType(int enemyType) {
 
         switch(enemyType){
-            case 1: //ENEMIGO DEMO
+            case 11: //ENEMIGO DEMO
                 texture = GestorAssets.getInstance().getTexture("alien.png");
                 sprite = new Sprite(texture);
                 textureEscudo = GestorAssets.getInstance().getTexture("escudoNave.png");
@@ -82,16 +83,17 @@ public class EnemyType {
                 movementPattern =  new LinealMovement(150, false);
                 sizeX = 110.0f;
                 sizeY = 130.0f;
+                bulletMovement = new LinealMovement(150, false);
                 break;
 
-            case 3: //Kamikaze
+            case 12: //Kamikaze
                 texture = GestorAssets.getInstance().getTexture("boss.png");
                 sprite = new Sprite(texture);
                 textureEscudo = GestorAssets.getInstance().getTexture("escudoNave.png");
                 spriteEscudo = new Sprite(textureEscudo);
                 hitbox = new Circle();
                 puntuacion = 50;
-                cadenciaDisparo = 10000000000000000000000f;
+                cadenciaDisparo = 100000000000f;
                 tiempoSiguienteDisparo = 0;
                 vivo = true;
                 maxVida = 1;
@@ -103,9 +105,10 @@ public class EnemyType {
                 movementPattern =  new LinealMovement(400, false);
                 sizeX = 110.0f;
                 sizeY = 130.0f;
+                bulletMovement = null;
                 break;
 
-            case 2: //BOSS DEMO
+            case 21: //BOSS DEMO
                 texture = GestorAssets.getInstance().getTexture("goku.png");
                 sprite = new Sprite(texture);
                 textureEscudo = GestorAssets.getInstance().getTexture("escudoNave.png");
@@ -124,6 +127,7 @@ public class EnemyType {
                 patternList.add(new HoritzontalMovement(150));
                 sizeX = 150.0f;
                 sizeY = 130.0f;
+                bulletMovement = new LinealMovement(150,false);
                 break;
         }
     }

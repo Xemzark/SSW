@@ -134,15 +134,20 @@ public class BossEnemigo extends EnemigoEntity {
     }
 
     @Override
+    public void animacionExplo(){
+        ArrayList<Texture> explosionTextura = new ArrayList<Texture>();
+        explosionTextura.add(GestorAssets.getInstance().getTexture("explo1.png"));
+        explosionTextura.add(GestorAssets.getInstance().getTexture("explo2.png"));
+        explosionTextura.add(GestorAssets.getInstance().getTexture("explo3.png"));
+        explosionTextura.add(GestorAssets.getInstance().getTexture("explo4.png"));
+        explosionTextura.add(GestorAssets.getInstance().getTexture("explo5.png"));
+        com.navejuego.ExplosionChain explo = new com.navejuego.ExplosionChain(explosionTextura, new Vector2(getX(),getY()),1.0f,3);
+        PantallaJuego.stage.addActor(explo);
+    }
+    @Override
     public void destruirse() {
 
         animacionExplo();
-        GestorAssets.getInstance().getSound("explosion2.wav").play();
-        /*animacionExplo();
-        GestorAssets.getInstance().getSound("explosion2.wav").play();
-        animacionExplo();
-        GestorAssets.getInstance().getSound("explosion2.wav").play();
-        */
         PantallaJuego.jugador.addPuntos(puntuacion);
 
         this.remove();
