@@ -23,7 +23,7 @@ public class Main extends Game {
         ScreenManager.getInstance().initialize(this); //Inicializo el AssetManager
         GestorAssets.getInstance().create();
 
-        ScreenManager.getInstance().showScreen(ScreenEnum.MAIN_MENU);
+        ScreenManager.getInstance().showScreen(ScreenEnum.VICTORY);
 
 
 

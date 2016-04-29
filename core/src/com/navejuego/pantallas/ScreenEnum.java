@@ -27,6 +27,12 @@ public enum ScreenEnum {
         }
     },
 
+    VICTORY {
+        public Pantalla getScreen(Object... params) {
+            return new PantallaVictory();
+        }
+    },
+
     AJUSTES {
         public Pantalla getScreen(Object... params) {
             return new PantallaAjustes();
