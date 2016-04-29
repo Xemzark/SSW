@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Circle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.navejuego.Constantes;
 import com.navejuego.entidades.GameObjectEntity;
 import com.navejuego.pantallas.PantallaJuego;
 
@@ -26,9 +27,11 @@ public abstract class PowerUpEntity extends GameObjectEntity {
         this.sprite = new Sprite(this.texture);
         this.hitbox = new Circle();
 
-        setBounds(sprite.getX(), sprite.getY(), sprite.getWidth(), sprite.getHeight());
+        setSize(50 * Constantes.resizeWidth, 50 * Constantes.resizeHeight);
         setPosition(posicion.x, posicion.y);
-        setSize(50, 50);
+        setBounds(getX(), getY(), getWidth(), getHeight());
+
+
         hitbox.set(getX()+getWidth()/2,getY()+getHeight()/2,getWidth()/2);
 
     }

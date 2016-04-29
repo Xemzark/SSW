@@ -1,6 +1,7 @@
 package com.navejuego.entidades.patrones;
 
 import com.badlogic.gdx.Gdx;
+import com.navejuego.Constantes;
 import com.navejuego.entidades.GameObjectEntity;
 
 /**
@@ -18,9 +19,9 @@ public class ZigZagMovement implements MovementPattern {
     private boolean goUp = false;
 
     public ZigZagMovement(float speed, float ZigSpeed, boolean goUp) {
-        this.speed = speed;
+        this.speed = speed * Constantes.resizeHeight;
         this.goUp = goUp;
-        this.ZigSpeed = ZigSpeed;
+        this.ZigSpeed = ZigSpeed * Constantes.resizeWidth;
     }
 
     @Override

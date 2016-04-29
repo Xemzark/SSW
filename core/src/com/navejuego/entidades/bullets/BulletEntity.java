@@ -36,13 +36,13 @@ public abstract class BulletEntity extends GameObjectEntity {
         this.hitbox = new Circle();
         this.sprite = new Sprite(this.texture);
 
-        float x = posicion.x - (5);
-        float y = posicion.y - 10;
+        float x = posicion.x;
+        float y = posicion.y;
 
         //Valores iniciales del Actor
-        setBounds(sprite.getX(), sprite.getY(), sprite.getWidth(), sprite.getHeight());
-        setPosition(x, y);
         setSize(10 * Constantes.resizeWidth, 20 * Constantes.resizeHeight);
+        setPosition(x - getWidth() / 2, y);
+        setBounds(getX(), getY(), getWidth(), getHeight());
         hitbox.set(getX() + getWidth() / 2, getY() + getHeight() / 2, getWidth() / 2);
 
         movementPattern = null;

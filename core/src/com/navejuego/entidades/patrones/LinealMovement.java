@@ -1,5 +1,6 @@
 package com.navejuego.entidades.patrones;
 
+import com.navejuego.Constantes;
 import com.navejuego.entidades.GameObjectEntity;
 
 /**
@@ -16,7 +17,7 @@ public class LinealMovement implements MovementPattern {
     private boolean goUp = false;
 
     public LinealMovement(float speed, boolean goUp) {
-        this.speed = speed;
+        this.speed = speed * Constantes.resizeHeight;
         this.goUp = goUp;
     }
 
