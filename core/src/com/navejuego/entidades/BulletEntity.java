@@ -23,7 +23,8 @@ Are you using box2d? Then create the bullet body, fixture, set its position and 
  * Esta clase sirve para generar los disparos del juego, tanto los de la nave del jugador como los
  * de los enemigos.
  */
-public abstract class BulletEntity extends GameObjectEntity {
+public abstract class
+        BulletEntity extends GameObjectEntity {
 
     protected float velocidad = 900.0f; //En pixeles/segundo
     protected int damage; //Daño que aplica al golpear

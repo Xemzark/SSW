@@ -48,11 +48,13 @@ public class PantallaVictory extends Pantalla{
 
 
         font = new BitmapFont(Gdx.files.internal("otherfont/font.fnt"));
+        font.getData().setScale(0.5f,0.5f);
 
         TextButton.TextButtonStyle style = new TextButton.TextButtonStyle(); //** Button properties **//
         style.up = buttonSkin.getDrawable("buttonOff");
         style.down = buttonSkin.getDrawable("buttonOn");
         style.font=font;
+
 
 
 
@@ -102,6 +104,9 @@ public class PantallaVictory extends Pantalla{
         batchVictory.begin();
 
         batchVictory.draw(backgroundVictory, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+        font.draw(batchVictory, "100", (Gdx.graphics.getWidth() / 2 - Gdx.graphics.getWidth() / 14), Gdx.graphics.getHeight() / 2 + Gdx.graphics.getHeight() / 11);
+        font.draw(batchVictory, "12034", (Gdx.graphics.getWidth() / 2 - Gdx.graphics.getWidth()/8), Gdx.graphics.getHeight()/2 -Gdx.graphics.getHeight() / 20);
+
 
         batchVictory.end();
 
