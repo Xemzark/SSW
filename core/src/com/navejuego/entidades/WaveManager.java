@@ -26,11 +26,11 @@ public class WaveManager {
     /**
      * Enemigo que aparece cuando todas las oleadas han acabado.
      */
-    private BossEnemigo boss;
+    private int bossType;
 
-    public WaveManager(List<Wave> waveList, BossEnemigo boss, boolean loop) {
+    public WaveManager(List<Wave> waveList, int bossType, boolean loop) {
         this.waveList = waveList;
-        this.boss = boss;
+        this.bossType = bossType;
         currentWave = 0;
         this.loop = loop;
         bossMode = false;
@@ -45,20 +45,25 @@ public class WaveManager {
             return false;
         }
 
+        //TODO: Convertir boss es una wave
+
         if (!waveList.get(currentWave).isDone()) {
             //Quedan enemigos por spawnear en la oleada.
             waveList.get(currentWave).Spawn();
             return true;
         } else {
             System.out.print("Wave " + currentWave + " ended.\n");
-            currentWave += 1;
-            if (currentWave < waveList.size()) {
+            if (currentWave < waveList.size() -1) {
                 waveList.get(currentWave).GetReady();
                 waveList.get(currentWave).Spawn();
+                currentWave += 1;
                 return true;
             } else {
-                if (boss != null) {
-                    //TODO: Spanw boss
+                if (bossType != 0) {
+                    System.out.print(currentWave);
+
+                    waveList.get(currentWave).SpawnBoss(bossType);
+                    bossMode= true;
                     return true;
                 } else if (loop) {
                     //Looping waves

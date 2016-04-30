@@ -1,6 +1,7 @@
 package com.navejuego.entidades.patrones;
 
 import com.badlogic.gdx.Gdx;
+import com.navejuego.Constantes;
 import com.navejuego.entidades.GameObjectEntity;
 
 /**
@@ -16,7 +17,7 @@ public class HoritzontalMovement implements MovementPattern {
     private boolean goRight;
 
     public HoritzontalMovement(float speed) {
-        this.speed = speed;
+        this.speed = speed * Constantes.resizeWidth;
         this.goRight = true;
     }
 

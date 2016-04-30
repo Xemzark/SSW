@@ -15,6 +15,7 @@ public class Main extends Game {
 	 */
 	@Override
 	public void create() {
+		Constantes.CalculateScreenConstants();
 		GestorAssets.getInstance(); //Inicializo el AssetManager
 		setScreen(new PantallaJuego(this));
 	}

@@ -14,7 +14,7 @@ import java.util.List;
 public class Explosion extends GameObjectEntity {
     float duracion; //segundos
     float ttrans; // segundos
-    private int indiceactual;
+    protected int indiceactual;
     List<Texture> listatextura;
     float duracionframe; //segundos
 

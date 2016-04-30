@@ -8,6 +8,7 @@ import com.badlogic.gdx.math.Circle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.navejuego.Constantes;
 import com.navejuego.entidades.GameObjectEntity;
 
 /**
@@ -35,14 +36,14 @@ public abstract class BulletEntity extends GameObjectEntity {
         this.hitbox = new Circle();
         this.sprite = new Sprite(this.texture);
 
-        float x = posicion.x - (5);
-        float y = posicion.y - 10;
+        float x = posicion.x;
+        float y = posicion.y;
 
         //Valores iniciales del Actor
-        setBounds(sprite.getX(), sprite.getY(), sprite.getWidth(), sprite.getHeight());
-        setPosition(x, y);
-        setSize(10, 20);
-        hitbox.set(getX()+getWidth()/2,getY()+getHeight()/2,getWidth()/2);
+        setSize(10 * Constantes.resizeWidth, 20 * Constantes.resizeHeight);
+        setPosition(x - getWidth() / 2, y);
+        setBounds(getX(), getY(), getWidth(), getHeight());
+        hitbox.set(getX() + getWidth() / 2, getY() + getHeight() / 2, getWidth() / 2);
 
         movementPattern = null;
         //Fin de valores iniciales del Actor

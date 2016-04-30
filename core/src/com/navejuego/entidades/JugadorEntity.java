@@ -5,16 +5,14 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Circle;
-import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.utils.DragListener;
 import com.badlogic.gdx.utils.TimeUtils;
+import com.navejuego.Constantes;
 import com.navejuego.GestorAssets;
 import com.navejuego.entidades.ui.Barra;
-import com.navejuego.entidades.ui.BarraVida;
 import com.navejuego.entidades.ui.Puntuacion;
 import com.navejuego.pantallas.PantallaJuego;
 
@@ -84,14 +82,14 @@ public class JugadorEntity extends GameObjectEntity {
                 GestorAssets.getInstance().getTexture("vidafgv2.png"),
                 GestorAssets.getInstance().getTexture("corazon.png"),
                 22,
-                new Vector2(Gdx.graphics.getWidth() * 0.05f, Gdx.graphics.getHeight() * 0.5f),
+                new Vector2(0, 5),
                 false);
         PantallaJuego.stage.addActor(barravida);
         this.barraescudo = new Barra (GestorAssets.getInstance().getTexture("escudobg.png"),
                 GestorAssets.getInstance().getTexture("escudofg.png"),
                 GestorAssets.getInstance().getTexture("shieldbar.png"),
                 22,
-                new Vector2(Gdx.graphics.getWidth() * 0.05f, Gdx.graphics.getHeight() * 0.05f),
+                new Vector2(0, 300),
                 false);
         PantallaJuego.stage.addActor(barraescudo);
 
@@ -101,9 +99,10 @@ public class JugadorEntity extends GameObjectEntity {
         //Valores iniciales del Actor
         setBounds(sprite.getX(), sprite.getY(), sprite.getWidth(), sprite.getHeight());
         setPosition(posicion.x - getWidth() / 2, posicion.y - getHeight() / 2);
-        setSize(PIXELS_METRE, PIXELS_METRE);
-        hitbox.set(getX()+getWidth()/2,getY()+getHeight()/2,getWidth()/2);
+        setSize(getWidth() * Constantes.resizeWidth, getHeight() * Constantes.resizeHeight);
+        hitbox.set(getX() + getWidth() / 2, getY() + getHeight() / 2, getWidth() / 2);
         spriteEscudo.setPosition(getX(), getY());
+        spriteEscudo.setSize(getWidth(), getHeight());
         //Fin de valores iniciales del Actor
 
         //Inicio de reacción al drag
@@ -296,9 +295,13 @@ public class JugadorEntity extends GameObjectEntity {
     public float getMaxEscudo() { return this.maxEscudo; }
 
     public void setInvulnerabilidad (int duracion) {
-        this.invulnerabilidad = true;
-        this.inicioInvulnerabilidad = new TimeUtils().millis();
-        this.duracionInvulnerabilidad = duracion;
+        if (!invulnerabilidad) {
+            this.invulnerabilidad = true;
+            this.inicioInvulnerabilidad = new TimeUtils().millis();
+            this.duracionInvulnerabilidad = duracion;
+        } else {
+            this.duracionInvulnerabilidad += duracion;
+        }
     }
 
     public void contadorInvulnerabilidad(){
@@ -316,6 +319,8 @@ public class JugadorEntity extends GameObjectEntity {
             this.inicioDobleASPD = TimeUtils.millis();
             this.duracionDobleASPD = duracion;
             this.cadenciaDisparo /= 2;
+        } else {
+            duracionDobleASPD += duracion;
         }
     }
 

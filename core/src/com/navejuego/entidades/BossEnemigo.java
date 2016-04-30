@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.navejuego.Constantes;
 import com.navejuego.GestorAssets;
 import com.navejuego.entidades.patrones.MovementPattern;
 import com.navejuego.entidades.powerups.PowerUpEntity;
@@ -23,56 +24,38 @@ import static com.navejuego.Constantes.PIXELS_METRE;
 
 public class BossEnemigo extends EnemigoEntity {
 
-    private ArrayList<MovementPattern> patternList = new ArrayList<MovementPattern>();
+    private ArrayList<MovementPattern> patternList;
+
+    private int patternIndex;
+    private float segmentoVida;
+    private float nextSegmentoVida;
 
 
-    public BossEnemigo (int startingX, int startingY,
-                         PowerUpEntity powerUp, int enemyType){
+    public BossEnemigo (int enemyType) {
         // Debe conocer su stage, su textura y su sprite
         super(enemyType);
-        enemyProperties = new EnemyType(enemyType);
-        sprite = enemyProperties.sprite;
-        hitbox = enemyProperties.hitbox;
 
-        puntuacion = enemyProperties.puntuacion;
-        cadenciaDisparo = enemyProperties.cadenciaDisparo;
-        tiempoSiguienteDisparo = enemyProperties.tiempoSiguienteDisparo;
-        vivo = enemyProperties.vivo;
+        //System.out.print("Boss Size: " + getHeight() + ", " + getWidth());
 
-        vida = enemyProperties.vida;
-        escudo = enemyProperties.escudo;
-
-        dañoColision = enemyProperties.dañoColision ; //Daño que le hace la nave al jugador si colisionan
-        //Valores iniciales del Actor
-        setBounds(sprite.getX(), sprite.getY(), sprite.getWidth(), sprite.getHeight());
-        //setSize(Gdx.graphics.getWidth()/8, Gdx.graphics.getHeight()/8);
-        setSize(PIXELS_METRE, PIXELS_METRE);
-        hitbox.set(getX()+getWidth()/2,getY()+getHeight()/2,getWidth()/2);
-
-
-
-        // Valores aleatorios
-
-        //REVISAR LUEGO!!!!
-
-        /*this.posX = pos.nextInt(Gdx.graphics.getWidth() - 2*((int) getWidth())) + getWidth(); // Posición X aleatoria
-        this.posY = Gdx.graphics.getHeight() + getHeight(); // Posición Y por encima de la pantalla
+        posX = Gdx.graphics.getWidth() / 2 - getWidth() / 2; // Centra al boss en el eje de las X
+        posY = Gdx.graphics.getHeight() - getHeight() * 2; // Situa al boss en la parte superior de la pantalla
         setPosition(posX, posY);
-        */
+        this.hitbox.setPosition(posX, posY);
 
-        this.hitbox.setPosition(startingX, startingY);
-        //Fin valores iniciales del Actor
-
-        //Set downwards movement at a speed of 150 per second
-        patternList= enemyProperties.patternList;
+        //Carga la succesion de patrones de movimiento del boss
+        patternList = new ArrayList<MovementPattern>();
+        patternList = enemyProperties.patternList;
+        movementPattern = patternList.get(0);
+        patternIndex = 1;
+        segmentoVida = maxVida/patternList.size();
+        nextSegmentoVida = maxVida - segmentoVida;
     }
-    /**
-     * Constructor
-     * Esta clase recibe una textura a asociarle y un vector de posición.
-     * texture sprite a asociarle, gestionado por el assetManager
-     * posicion vector de coordenadas x, y para inicializar la posición
-     */
 
+
+    /**
+     * generarDisparo
+     * Este método genera un disparo de la nave cada delta tiempo
+    */
 
     /**
      * Método act
@@ -107,9 +90,12 @@ public class BossEnemigo extends EnemigoEntity {
         tiempoSiguienteDisparo += delta;
         if (tiempoSiguienteDisparo > cadenciaDisparo) {
             Texture bulletTextura = GestorAssets.getInstance().getTexture("bullet.png");
-            com.navejuego.entidades.bullets.BulletEnemigo bullet = new com.navejuego.entidades.bullets.BulletEnemigo(bulletTextura, new Vector2(getX() + (getWidth() / 2), getY()));
-            bullet.setName("Bala Enemigo");
-            PantallaJuego.stage.addActor(bullet);
+            com.navejuego.entidades.bullets.BulletEnemigo bullet1 = new com.navejuego.entidades.bullets.BulletEnemigo(bulletTextura, new Vector2(getX() + getWidth(), getY()));
+            com.navejuego.entidades.bullets.BulletEnemigo bullet2 = new com.navejuego.entidades.bullets.BulletEnemigo(bulletTextura, new Vector2(getX(), getY()));
+            bullet1.setName("Bala Enemigo 1");
+            PantallaJuego.stage.addActor(bullet1);
+            bullet1.setName("Bala Enemigo 2");
+            PantallaJuego.stage.addActor(bullet2);
             tiempoSiguienteDisparo = 0;
         }
     }
@@ -120,6 +106,7 @@ public class BossEnemigo extends EnemigoEntity {
      * @param dmg
      * @param ignoraEscudo
      */
+
     public void recibirDmg(int dmg, boolean ignoraEscudo) {
         if (ignoraEscudo || escudo <= 0) {
             vida -= dmg;
@@ -132,6 +119,7 @@ public class BossEnemigo extends EnemigoEntity {
             if (dmg > 0)
                 vida -= dmg;
         }
+        cambiarPatron();
 
         if (vida <= 0) {
             darPuntuacion();
@@ -139,70 +127,58 @@ public class BossEnemigo extends EnemigoEntity {
         }
     }
 
+    @Override
     public String getName(){
-        return "Nave enemiga";
-    }
-    /**
-     * TODO: Desaparecer/eliminar enemigo.
-     */
-    public void destruirse() {
-        animacionExplo();
-        PantallaJuego.jugador.addPuntos(50);
-        GestorAssets.getInstance().getSound("explosion2.wav").play();
-        this.remove();
-        //Gdx.app.log("Enemy killed!", "");
+
+        return "Boss enemigo";
     }
 
-    public void animacionExplo()
-    {
+    @Override
+    public void animacionExplo(){
         ArrayList<Texture> explosionTextura = new ArrayList<Texture>();
         explosionTextura.add(GestorAssets.getInstance().getTexture("explo1.png"));
         explosionTextura.add(GestorAssets.getInstance().getTexture("explo2.png"));
         explosionTextura.add(GestorAssets.getInstance().getTexture("explo3.png"));
         explosionTextura.add(GestorAssets.getInstance().getTexture("explo4.png"));
         explosionTextura.add(GestorAssets.getInstance().getTexture("explo5.png"));
-        com.navejuego.Explosion explo = new com.navejuego.Explosion(explosionTextura, new Vector2(getX(),getY()),1.0f);
+        com.navejuego.ExplosionChain explo = new com.navejuego.ExplosionChain(explosionTextura, new Vector2(getX(),getY()),1.0f,3);
         PantallaJuego.stage.addActor(explo);
     }
+    @Override
+    public void destruirse() {
 
-    /**
-     * Si el enemigo se sale de la pantalla sin ser eliminado, se autodestruye
-     */
-    public void eliminarseOutOfBounds(){
-        if ((this.getY()+getHeight()) < 0){
-            this.remove();
-        }
+        animacionExplo();
+        PantallaJuego.jugador.addPuntos(puntuacion);
+
+        this.remove();
+        Gdx.app.log("Boss defeated!", "");
     }
 
-    /**
-     * Le pasa su puntuación al jugador para poder sumársela a su puntuación
-     */
-    public void darPuntuacion(){
-        PantallaJuego.jugador.getPuntuacion().incrementarPuntuacion(this.puntuacion);
-    }
 
     /**
      * Este método comprueba si ha colisionado con el jugador. De ser así, se autodestruye,
      * causándole daño.
      */
+    @Override
     public void comprobarColisionJugador() {
+
         if(this.getHitbox().overlaps(PantallaJuego.jugador.getHitbox())){
             PantallaJuego.jugador.recibirDmg(this.dañoColision, false);
-            Gdx.app.log("HitColision! a jugador!", "");
-            this.destruirse();
+            Gdx.app.log("HitColisionBoss! a jugador!", "");
         }
 
     }
-/*
-    public void cambiarPatron(ArrayList<MovementPattern> patternList){
-        int index = patternList.size();
-        if(vida)
+
+    public void cambiarPatron(){
+
+        if(vida < nextSegmentoVida && patternIndex < patternList.size()){
+            animacionExplo();
+            GestorAssets.getInstance().getSound("explosion2.wav").play();
+            movementPattern = patternList.get(patternIndex);
+            nextSegmentoVida -= segmentoVida;
+            patternIndex += 1;
+
+        }
 
     }
-
-    @Override
-    public Rectangle getHitbox(){
-        return this.hitbox;
-    }
-    */
 }

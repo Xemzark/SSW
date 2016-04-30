@@ -5,18 +5,14 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Circle;
-import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.navejuego.Constantes;
 import com.navejuego.GestorAssets;
-import com.navejuego.entidades.patrones.LinealMovement;
 import com.navejuego.entidades.powerups.PowerUpEntity;
 import com.navejuego.pantallas.PantallaJuego;
 
 import java.util.ArrayList;
 import java.util.Random;
-
-import static com.navejuego.Constantes.PIXELS_METRE;
 
 /**
  * Created by Andrés on 03/04/2016.
@@ -69,7 +65,9 @@ public class EnemigoEntity extends GameObjectEntity {
         tiempoSiguienteDisparo = enemyProperties.tiempoSiguienteDisparo;
         vivo = enemyProperties.vivo;
 
+        maxVida = enemyProperties.maxVida;
         vida = enemyProperties.vida;
+        maxEscudo = enemyProperties.maxEscudo;
         escudo = enemyProperties.escudo;
 
         dañoColision = enemyProperties.dañoColision ; //Daño que le hace la nave al jugador si colisionan
@@ -79,16 +77,16 @@ public class EnemigoEntity extends GameObjectEntity {
         //Valores iniciales del Actor
         setBounds(sprite.getX(), sprite.getY(), sprite.getWidth(), sprite.getHeight());
         //setSize(Gdx.graphics.getWidth()/8, Gdx.graphics.getHeight()/8);
-        setSize(PIXELS_METRE, PIXELS_METRE);
-        hitbox.set(getX()+getWidth()/2,getY()+getHeight()/2,getWidth()/2);
-
+        setSize(enemyProperties.sizeX * Constantes.resizeWidth, enemyProperties.sizeY * Constantes.resizeHeight);
 
         // Valores aleatorios
 
-
+        //System.out.print(Gdx.graphics.getWidth() - 2 * ((int) getWidth()) + "\n");
         posX = pos.nextInt(Gdx.graphics.getWidth() - 2 * ((int) getWidth())) + getWidth(); // Posición X aleatoria
+        //posX = Gdx.graphics.getWidth()/2;
         posY = Gdx.graphics.getHeight() + getHeight(); // Posición Y por encima de la pantalla
         setPosition(posX, posY);
+        hitbox.set(getX() + getWidth() / 2, getY() + getHeight() / 2, getWidth() / 2);
 
         hitbox.setPosition(posX, posY);
         //Fin valores iniciales del Actor
@@ -174,8 +172,7 @@ public class EnemigoEntity extends GameObjectEntity {
     public void destruirse() {
         generarPowerUp();
         animacionExplo();
-        PantallaJuego.jugador.addPuntos(50);
-        GestorAssets.getInstance().getSound("explosion2.wav").play();
+        PantallaJuego.jugador.addPuntos(puntuacion);
         this.remove();
         //Gdx.app.log("Enemy killed!", "");
     }
@@ -190,6 +187,7 @@ public class EnemigoEntity extends GameObjectEntity {
         explosionTextura.add(GestorAssets.getInstance().getTexture("explo5.png"));
         com.navejuego.Explosion explo = new com.navejuego.Explosion(explosionTextura, new Vector2(getX(),getY()),1.0f);
         PantallaJuego.stage.addActor(explo);
+        GestorAssets.getInstance().getSound("explosion2.wav").play();
     }
 
     /**
