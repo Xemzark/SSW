@@ -81,7 +81,7 @@ public class EnemyType {
                 vida = maxVida;
                 escudo = maxEscudo;
                 dañoColision = ((int)vida/2); //Daño que le hace la nave al jugador si colisionan
-                probabilidadPowerUp = 100;
+                probabilidadPowerUp = 10;
                 movementPattern =  new TargetMovement(200, Gdx.graphics.getWidth()/2, Gdx.graphics.getHeight()/2);
                 sizeX = 110.0f;
                 sizeY = 130.0f;
@@ -103,7 +103,7 @@ public class EnemyType {
                 vida = maxVida;
                 escudo = maxEscudo;
                 dañoColision = ((int)vida*3); //Daño que le hace la nave al jugador si colisionan
-                probabilidadPowerUp = 100;
+                probabilidadPowerUp = 10;
                 movementPattern =  new LinealMovement(400, false);
                 sizeX = 110.0f;
                 sizeY = 130.0f;

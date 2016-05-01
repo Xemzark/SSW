@@ -170,9 +170,13 @@ public class EnemigoEntity extends GameObjectEntity {
      * TODO: Desaparecer/eliminar enemigo.
      */
     public void destruirse() {
-        generarPowerUp();
+        int num_aleatorio = (int) (Math.random() *100);
+        if (num_aleatorio <= probabilidadPowerUp) {
+            generarPowerUp();
+        }
         animacionExplo();
-        PantallaJuego.jugador.addPuntos(puntuacion);
+        PantallaJuego.jugador.addPuntos(50);
+        GestorAssets.getInstance().getSound("explosion2.wav").play();
         this.remove();
         //Gdx.app.log("Enemy killed!", "");
     }
@@ -223,18 +227,49 @@ public class EnemigoEntity extends GameObjectEntity {
      * TODO: Tirar los dados para ver si genera o no genera el power up.
      */
     private void generarPowerUp() {
+
+        int s_powerup = (int) (Math.random() * 5);
         Vector2 posicion = new Vector2(getX(), getY());
-        Texture powerup;
-        //Power up vida
-       /* powerup = GestorAssets.getInstance().getTexture("powerup_vida.png");
-        PowerUpVida vida = new PowerUpVida(stage, powerup, posicion );
-        this.stage.addActor(vida);*/
 
-        //Power up escudo
-        powerup = GestorAssets.getInstance().getTexture("addShield.png");
-        com.navejuego.entidades.powerups.PowerUpASPD pUp = new com.navejuego.entidades.powerups.PowerUpASPD(powerup, posicion );
-        PantallaJuego.stage.addActor(pUp);
-
+        switch (s_powerup) {
+            case 0:
+                //Power up vida
+                Texture powerup1;
+                powerup1 = GestorAssets.getInstance().getTexture("powerup_vida.png");
+                com.navejuego.entidades.powerups.PowerUpVida pUp1 = new com.navejuego.entidades.powerups.PowerUpVida(powerup1, posicion);
+                PantallaJuego.stage.addActor(pUp1);
+                break;
+            case 1:
+                //Power up ASPD
+                Texture powerup2;
+                powerup2 = GestorAssets.getInstance().getTexture("addShield.png");
+                com.navejuego.entidades.powerups.PowerUpASPD pUp2 = new com.navejuego.entidades.powerups.PowerUpASPD(powerup2, posicion);
+                PantallaJuego.stage.addActor(pUp2);
+                break;
+            case 2:
+                //Power up Invulnerabilidad
+                Texture powerup3;
+                powerup3 = GestorAssets.getInstance().getTexture("powerup_vida.png");
+                com.navejuego.entidades.powerups.PowerUpInvulnerabilidad pUp3 = new com.navejuego.entidades.powerups.PowerUpInvulnerabilidad(powerup3, posicion);
+                PantallaJuego.stage.addActor(pUp3);
+                break;
+            //Power up Puntos
+            case 3:
+                Texture powerup4;
+                powerup4 = GestorAssets.getInstance().getTexture("addShield.png");
+                com.navejuego.entidades.powerups.PowerUpPuntos pUp4 = new com.navejuego.entidades.powerups.PowerUpPuntos(powerup4, posicion, 100);
+                PantallaJuego.stage.addActor(pUp4);
+                break;
+            //Power up Escudo
+            case 4:
+                Texture powerup5;
+                powerup5 = GestorAssets.getInstance().getTexture("powerup_vida.png");
+                com.navejuego.entidades.powerups.PowerUpEscudo pUp5 = new com.navejuego.entidades.powerups.PowerUpEscudo(powerup5, posicion);
+                PantallaJuego.stage.addActor(pUp5);
+                break;
+            default:
+                break;
+        }
     }
 
     @Override
