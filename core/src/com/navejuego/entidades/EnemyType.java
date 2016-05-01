@@ -12,6 +12,8 @@ import com.navejuego.entidades.patrones.MovementPattern;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.navejuego.entidades.patrones.NullMovement;
+import com.navejuego.entidades.patrones.TargetMovement;
+
 import java.util.ArrayList;
 
 
@@ -64,7 +66,7 @@ public class EnemyType {
     public EnemyType(int enemyType) {
 
         switch(enemyType){
-            case 11: //ENEMIGO DEMO
+            case 1: //ENEMIGO DEMO
                 texture = GestorAssets.getInstance().getTexture("alien.png");
                 sprite = new Sprite(texture);
                 textureEscudo = GestorAssets.getInstance().getTexture("escudoNave.png");
@@ -80,13 +82,13 @@ public class EnemyType {
                 escudo = maxEscudo;
                 dañoColision = ((int)vida/2); //Daño que le hace la nave al jugador si colisionan
                 probabilidadPowerUp = 100;
-                movementPattern =  new LinealMovement(150, false);
+                movementPattern =  new TargetMovement(200, Gdx.graphics.getWidth()/2, Gdx.graphics.getHeight()/2);
                 sizeX = 110.0f;
                 sizeY = 130.0f;
                 bulletMovement = new LinealMovement(150, false);
                 break;
 
-            case 12: //Kamikaze
+            case 2: //Kamikaze
                 texture = GestorAssets.getInstance().getTexture("boss.png");
                 sprite = new Sprite(texture);
                 textureEscudo = GestorAssets.getInstance().getTexture("escudoNave.png");
@@ -108,7 +110,7 @@ public class EnemyType {
                 bulletMovement = null;
                 break;
 
-            case 21: //BOSS DEMO
+            case 10: //BOSS DEMO
                 texture = GestorAssets.getInstance().getTexture("goku.png");
                 sprite = new Sprite(texture);
                 textureEscudo = GestorAssets.getInstance().getTexture("escudoNave.png");

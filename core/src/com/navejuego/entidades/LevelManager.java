@@ -3,6 +3,8 @@ package com.navejuego.entidades;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Texture;
 import com.navejuego.GestorAssets;
+import java.util.Random;
+
 
 import java.util.ArrayList;
 
@@ -16,9 +18,11 @@ public class LevelManager {
     public enum Nivel{
         NIVEL_1, NIVEL_2, NIVEL_3, NIVEL_4;
     }
-
-    public int bossList[] = {21,21,21,21};
+    public int enemySet[]; //tipos de enemigos que podran aparecer en un nivel
+    public int bossList[] = {10,10,10,10}; //Por orden, se corresponden al boss de cada nivel
     public int bossType;
+    public int waveAmount; //cantidad de oleadas que hay en un nivel
+    public Random rnd = new Random(); //se utiliza para cargar aleatoriamente los enemigos que se generan
 
     public LevelManager(Nivel nivel){
         this.setCurrentLevel(nivel);
@@ -37,8 +41,13 @@ public class LevelManager {
         switch (lvl) {
             case NIVEL_1:
 
-                waveArray.add(new Wave(11, 5, 1000));
-                waveArray.add(new Wave(12, 2, 3000));
+                enemySet = new int[] {1,2};
+                waveAmount = 3;
+
+                for(int i =0; i < waveAmount; i++ ) {
+                    waveArray.add(new Wave(enemySet[rnd.nextInt(enemySet.length)], 5, 1000));
+                }
+
                 bossType = bossList[0];
                 background = GestorAssets.getInstance().getTexture("background_1.png");
                 music = GestorAssets.getInstance().getMusic("SpaceLoungeLoop.wav");
@@ -47,8 +56,12 @@ public class LevelManager {
 
             case NIVEL_2:
 
-                waveArray.add(new Wave(11, 5, 1000));
-                waveArray.add(new Wave(12, 2, 3000));
+                enemySet = new int[] {1,2};
+                waveAmount = 3;
+
+                for(int i =0; i < waveAmount; i++ ) {
+                    waveArray.add(new Wave(enemySet[rnd.nextInt(enemySet.length)], 5, 1000));
+                }
                 bossType = bossList[1];
                 background = GestorAssets.getInstance().getTexture("background_3.png");
                 music = GestorAssets.getInstance().getMusic("SpaceCube.wav");
@@ -57,8 +70,13 @@ public class LevelManager {
 
             case NIVEL_3:
 
-                waveArray.add(new Wave(11, 5, 1000));
-                waveArray.add(new Wave(12, 2, 3000));
+                enemySet = new int[] {1,2};
+                waveAmount = 3;
+
+                for(int i =0; i < waveAmount; i++ ) {
+                    waveArray.add(new Wave(enemySet[rnd.nextInt(enemySet.length)], 5, 1000));
+                }
+
                 bossType = bossList[2];
                 background = GestorAssets.getInstance().getTexture("background_7.png");
                 music = GestorAssets.getInstance().getMusic("SpaceTrip.mp3");
@@ -67,8 +85,12 @@ public class LevelManager {
 
             case NIVEL_4:
 
-                waveArray.add(new Wave(11, 5, 1000));
-                waveArray.add(new Wave(12, 2, 3000));
+                enemySet = new int[] {1,2};
+                waveAmount = 3;
+
+                for(int i =0; i < waveAmount; i++ ) {
+                    waveArray.add(new Wave(enemySet[rnd.nextInt(enemySet.length)], 5, 1000));
+                }
                 bossType = bossList[3];
                 background = GestorAssets.getInstance().getTexture("background_6.png");
                 music = GestorAssets.getInstance().getMusic("SpaceGate.mp3");
