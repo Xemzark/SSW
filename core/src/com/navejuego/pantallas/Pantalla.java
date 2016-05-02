@@ -23,17 +23,14 @@ import com.navejuego.Main;
 public abstract class Pantalla implements Screen{
 
 
-    protected Main game; // Declaración de variable para instanciar la clase principal del juego
+    //protected Main game; // Declaración de variable para instanciar la clase principal del juego
 
 
     
-    /**
-     * Constructor
-     * Instanciar la variable game
-     * @param game
-     */
-    public Pantalla(Main game){
-        this.game = game;
+
+
+    public Pantalla(){
+
     }
 
     //Método que se invoca para mostrar una pantalla

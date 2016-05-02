@@ -4,6 +4,8 @@ import com.badlogic.gdx.Game;
 import com.navejuego.pantallas.PantallaJuego;
 import com.navejuego.GestorAssets;
 import com.navejuego.pantallas.PantallaMenu;
+import com.navejuego.pantallas.ScreenManager;
+import com.navejuego.pantallas.*;
 
 /**
  * Clase Main
@@ -16,7 +18,9 @@ public class Main extends Game {
 	@Override
 	public void create() {
 		Constantes.CalculateScreenConstants();
-		GestorAssets.getInstance(); //Inicializo el AssetManager
-		setScreen(new PantallaJuego(this));
+		ScreenManager.getInstance().initialize(this); //Inicializo el AssetManager
+		GestorAssets.getInstance().create();
+		ScreenManager.getInstance().showScreen(ScreenEnum.GAME_OVER);
 	}
+
 }
