@@ -12,6 +12,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.DragListener;
 import com.badlogic.gdx.utils.TimeUtils;
 import com.navejuego.Constantes;
 import com.navejuego.GestorAssets;
+import com.navejuego.Preferencias;
 import com.navejuego.entidades.ui.Barra;
 import com.navejuego.entidades.ui.Puntuacion;
 import com.navejuego.pantallas.PantallaJuego;
@@ -217,6 +218,9 @@ public class JugadorEntity extends GameObjectEntity {
 
         if (vida <= 0) {
             destruirse();
+        }
+        if(Preferencias.getInstance().vibrationOn()){
+            Gdx.input.vibrate(300);
         }
 
         updateUI();

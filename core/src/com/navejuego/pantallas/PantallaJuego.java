@@ -16,6 +16,7 @@ import com.navejuego.GestorAssets;
 import com.navejuego.entidades.LevelManager;
 import com.navejuego.entidades.Wave;
 import com.navejuego.entidades.WaveManager;
+import com.navejuego.Preferencias;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -38,7 +39,6 @@ public class PantallaJuego extends Pantalla {
     //private Texture background;
     //private Music music;
     private LevelManager levelManager;
-
     // Variables de Actores
     public static JugadorEntity jugador = null;
 
@@ -69,12 +69,22 @@ public class PantallaJuego extends Pantalla {
         waves = new WaveManager(waveArray, null, true);*/
 
         this.levelManager = new LevelManager(LevelManager.Nivel.NIVEL_4);
-        this.levelManager.getMusic().setLooping(true);
-        this.levelManager.getMusic().play();
+
+        //para desabilitar musica
+        Preferencias.getInstance().setMusic(true);
+        Preferencias.getInstance().setSound(true);
+        Preferencias.getInstance().setVibration(true);
+        Preferencias.getInstance().savePreferences();
+
+        //comprobamos si la musica esta habilitada
+        if(Preferencias.getInstance().musicOn()){
+            this.levelManager.getMusic().setLooping(true);
+            this.levelManager.getMusic().play();
+        }
+
         //this.music =  GestorAssets.getInstance().getMusic("SpaceLoungeLoop.wav");
        // this.music.setLooping(true);
         //this.music.play();
-
 
     }
 
