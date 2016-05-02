@@ -51,9 +51,11 @@ public enum ScreenEnum {
         }
     },
 
-
-
-
+    RANKING {
+        public Pantalla getScreen(Object... params) {
+            return new PantallaRanking();
+        }
+    },
 
     GAME {
         public Pantalla getScreen(Object... params) {
