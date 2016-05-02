@@ -79,6 +79,7 @@ public class EnemigoEntity extends GameObjectEntity {
         setBounds(sprite.getX(), sprite.getY(), sprite.getWidth(), sprite.getHeight());
         //setSize(Gdx.graphics.getWidth()/8, Gdx.graphics.getHeight()/8);
         setSize(enemyProperties.sizeX * Constantes.resizeWidth, enemyProperties.sizeY * Constantes.resizeHeight);
+        spriteEscudo.setSize(this.getWidth(), this.getHeight());
 
         // Valores aleatorios
 
@@ -88,7 +89,6 @@ public class EnemigoEntity extends GameObjectEntity {
         posY = Gdx.graphics.getHeight() + getHeight(); // Posición Y por encima de la pantalla
         setPosition(posX, posY);
         hitbox.set(getX() + getWidth() / 2, getY() + getHeight() / 2, getWidth() / 2);
-
         hitbox.setPosition(posX, posY);
         //Fin valores iniciales del Actor
 
@@ -130,8 +130,9 @@ public class EnemigoEntity extends GameObjectEntity {
     protected void generarDisparo(float delta) {
         tiempoSiguienteDisparo += delta;
         if (tiempoSiguienteDisparo > cadenciaDisparo) {
-            Texture bulletTextura = GestorAssets.getInstance().getTexture("bullet.png");
+            Texture bulletTextura = GestorAssets.getInstance().getTexture("proyectilEnemigo.png");
             com.navejuego.entidades.bullets.BulletEnemigo bullet = new com.navejuego.entidades.bullets.BulletEnemigo(bulletTextura, new Vector2(getX() + (getWidth() / 2), getY()));
+            bullet.setSize(10.0f, 10.0f);
             bullet.setName("Bala Enemigo");
             PantallaJuego.stage.addActor(bullet);
             tiempoSiguienteDisparo = 0;

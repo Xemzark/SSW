@@ -20,7 +20,7 @@ public class Barra extends Actor {
 
     private Sprite background;
     private Sprite foreground;
-    private Texture icon;
+    private Sprite icon;
     private float margenDeIcono = 22;
     private boolean horizontal;
     private float length;
@@ -32,7 +32,7 @@ public class Barra extends Actor {
 
         //TODO: Handle rotation of the sprite
 
-        this.icon = icon;
+        this.icon = new Sprite(icon);
         if (horizontal) {
             this.margenDeIcono = margenIcono * Constantes.resizeWidth;
         } else {
@@ -48,7 +48,7 @@ public class Barra extends Actor {
 
         if (horizontal) {
             this.background.setOrigin(this.background.getX(), this.background.getY() + this.background.getHeight()/2);
-            this.foreground.setOrigin(this.foreground.getX(), this.foreground.getY() + this.foreground.getHeight()/2);
+            this.foreground.setOrigin(this.foreground.getX(), this.foreground.getY() + this.foreground.getHeight() / 2);
         } else {
             this.background.setOrigin(this.background.getX() + this.background.getWidth() / 2, this.background.getY());
             this.foreground.setOrigin(this.foreground.getX() + this.foreground.getWidth() / 2, this.foreground.getY());
@@ -72,6 +72,13 @@ public class Barra extends Actor {
                     length * Constantes.resizeHeight);
         }
 
+        if (horizontal) {
+            this.icon.setPosition(this.background.getX() - this.margenDeIcono, this.background.getY());
+        } else {
+            this.icon.setPosition(this.background.getX(), this.background.getY() - this.margenDeIcono);
+        }
+        this.icon.setSize(this.icon.getWidth() * Constantes.resizeWidth, this.icon.getHeight() * Constantes.resizeHeight);
+
     }
 
     public void Update(float percent) {
@@ -85,12 +92,7 @@ public class Barra extends Actor {
     public void render(Batch batch){
         this.background.draw(batch);
         this.foreground.draw(batch);
-        if (horizontal) {
-            batch.draw(this.icon, this.background.getX() - this.margenDeIcono, this.background.getY());
-        } else {
-            batch.draw(this.icon, this.background.getX(), this.background.getY() - this.margenDeIcono);
-        }
-
+        this.icon.draw(batch);
     }
 }
 

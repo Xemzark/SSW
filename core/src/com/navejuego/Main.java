@@ -22,5 +22,4 @@ public class Main extends Game {
 		GestorAssets.getInstance().create();
 		ScreenManager.getInstance().showScreen(ScreenEnum.MAIN_MENU);
 	}
-
 }
