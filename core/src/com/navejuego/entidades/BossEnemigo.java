@@ -133,8 +133,7 @@ public class BossEnemigo extends EnemigoEntity {
         return "Boss enemigo";
     }
 
-    @Override
-    public void animacionExplo(){
+    public void animacionExploChain(){
         ArrayList<Texture> explosionTextura = new ArrayList<Texture>();
         explosionTextura.add(GestorAssets.getInstance().getTexture("explo1.png"));
         explosionTextura.add(GestorAssets.getInstance().getTexture("explo2.png"));
@@ -147,7 +146,7 @@ public class BossEnemigo extends EnemigoEntity {
     @Override
     public void destruirse() {
 
-        animacionExplo();
+        animacionExploChain();
         PantallaJuego.jugador.addPuntos(puntuacion);
 
         this.remove();
