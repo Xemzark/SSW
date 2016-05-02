@@ -16,6 +16,8 @@ import com.navejuego.Preferencias;
 import com.navejuego.entidades.ui.Barra;
 import com.navejuego.entidades.ui.Puntuacion;
 import com.navejuego.pantallas.PantallaJuego;
+import com.navejuego.pantallas.ScreenEnum;
+import com.navejuego.pantallas.ScreenManager;
 
 import java.util.ArrayList;
 
@@ -270,7 +272,8 @@ public class JugadorEntity extends GameObjectEntity {
         setPosition(-100, -100);
         hitbox.setPosition(-100, -100);
         //TODO: Animación de destrucción de nave
-        remove();
+        //remove();
+        ScreenManager.getInstance().showScreen(ScreenEnum.GAME_OVER);
     }
 
     public void animacionExplo()
