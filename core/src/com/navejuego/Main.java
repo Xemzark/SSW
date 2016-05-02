@@ -20,7 +20,7 @@ public class Main extends Game {
 		Constantes.CalculateScreenConstants();
 		ScreenManager.getInstance().initialize(this); //Inicializo el AssetManager
 		GestorAssets.getInstance().create();
-		ScreenManager.getInstance().showScreen(ScreenEnum.LOADING);
+		ScreenManager.getInstance().showScreen(ScreenEnum.MAIN_MENU);
 	}
 
 }

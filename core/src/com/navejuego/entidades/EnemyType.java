@@ -67,7 +67,7 @@ public class EnemyType {
 
         switch(enemyType){
             case 1: //ENEMIGO DEMO
-                texture = GestorAssets.getInstance().getTexture("alien.png");
+                texture = GestorAssets.getInstance().getTexture("alien1.png");
                 sprite = new Sprite(texture);
                 textureEscudo = GestorAssets.getInstance().getTexture("escudoNave.png");
                 spriteEscudo = new Sprite(textureEscudo);
@@ -89,7 +89,7 @@ public class EnemyType {
                 break;
 
             case 2: //Kamikaze
-                texture = GestorAssets.getInstance().getTexture("boss.png");
+                texture = GestorAssets.getInstance().getTexture("alien4.png");
                 sprite = new Sprite(texture);
                 textureEscudo = GestorAssets.getInstance().getTexture("escudoNave.png");
                 spriteEscudo = new Sprite(textureEscudo);
@@ -111,7 +111,7 @@ public class EnemyType {
                 break;
 
             case 3: //Tanque
-                texture = GestorAssets.getInstance().getTexture("heavyfreighter.png");
+                texture = GestorAssets.getInstance().getTexture("alien3.png");
                 sprite = new Sprite(texture);
                 textureEscudo = GestorAssets.getInstance().getTexture("escudoNave.png");
                 spriteEscudo = new Sprite(textureEscudo);
