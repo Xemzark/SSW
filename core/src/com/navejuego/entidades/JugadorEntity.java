@@ -82,16 +82,16 @@ public class JugadorEntity extends GameObjectEntity {
         this.barravida = new Barra (GestorAssets.getInstance().getTexture("vidabgv2.png"),
                 GestorAssets.getInstance().getTexture("vidafgv2.png"),
                 GestorAssets.getInstance().getTexture("corazon.png"),
-                22,
-                new Vector2(0, 5),
-                false);
+                50,
+                new Vector2(10, 50),
+                false, 200.0f);
         PantallaJuego.stage.addActor(barravida);
         this.barraescudo = new Barra (GestorAssets.getInstance().getTexture("escudobg.png"),
                 GestorAssets.getInstance().getTexture("escudofg.png"),
                 GestorAssets.getInstance().getTexture("shieldbar.png"),
-                22,
-                new Vector2(0, 300),
-                false);
+                60,
+                new Vector2(10, 325),
+                false, 200.0f);
         PantallaJuego.stage.addActor(barraescudo);
 
         this.tiempoSiguienteDisparo = 0;
