@@ -102,7 +102,7 @@ public class EnemyType {
                 maxEscudo = 0;
                 vida = maxVida;
                 escudo = maxEscudo;
-                dañoColision = ((int)vida*3); //Daño que le hace la nave al jugador si colisionan
+                dañoColision = (20); //Daño que le hace la nave al jugador si colisionan
                 probabilidadPowerUp = 10;
                 movementPattern =  new LinealMovement(400, false);
                 sizeX = 110.0f;
