@@ -110,6 +110,28 @@ public class EnemyType {
                 bulletMovement = null;
                 break;
 
+            case 3: //Tanque
+                texture = GestorAssets.getInstance().getTexture("heavyfreighter.png");
+                sprite = new Sprite(texture);
+                textureEscudo = GestorAssets.getInstance().getTexture("escudoNave.png");
+                spriteEscudo = new Sprite(textureEscudo);
+                hitbox = new Circle();
+                puntuacion = 350;
+                cadenciaDisparo = 4f;
+                tiempoSiguienteDisparo = 0;
+                vivo = true;
+                maxVida = 40;
+                maxEscudo = 20;
+                vida = maxVida;
+                escudo = maxEscudo;
+                dañoColision = ((int)vida/2); //Daño que le hace la nave al jugador si colisionan
+                probabilidadPowerUp = 10;
+                movementPattern =  new LinealMovement(75, false);
+                sizeX = 110.0f;
+                sizeY = 130.0f;
+                bulletMovement = null;
+                break;
+
             case 10: //BOSS DEMO
                 texture = GestorAssets.getInstance().getTexture("goku.png");
                 sprite = new Sprite(texture);
