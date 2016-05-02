@@ -59,6 +59,8 @@ public class GestorAssets {
         manager.load("explo5.png", Texture.class);
         manager.load("goku.png", Texture.class);
         manager.load("boss.png", Texture.class);
+        manager.load("heavyfreighter.png", Texture.class);
+
 
 
         //Link musica espacial gratis

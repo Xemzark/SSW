@@ -41,7 +41,7 @@ public class LevelManager {
         switch (lvl) {
             case NIVEL_1:
 
-                enemySet = new int[] {1,2};
+                enemySet = new int[] {1,2,3};
                 waveAmount = 3;
 
                 for(int i =0; i < waveAmount; i++ ) {
@@ -56,7 +56,7 @@ public class LevelManager {
 
             case NIVEL_2:
 
-                enemySet = new int[] {1,2};
+                enemySet = new int[] {1,2,3};
                 waveAmount = 3;
 
                 for(int i =0; i < waveAmount; i++ ) {
@@ -70,7 +70,7 @@ public class LevelManager {
 
             case NIVEL_3:
 
-                enemySet = new int[] {1,2};
+                enemySet = new int[] {1,2,3};
                 waveAmount = 3;
 
                 for(int i =0; i < waveAmount; i++ ) {
@@ -85,7 +85,7 @@ public class LevelManager {
 
             case NIVEL_4:
 
-                enemySet = new int[] {1,2};
+                enemySet = new int[] {1,2,3};
                 waveAmount = 3;
 
                 for(int i =0; i < waveAmount; i++ ) {
