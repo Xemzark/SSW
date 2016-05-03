@@ -69,6 +69,7 @@ public class PantallaJuego extends Pantalla {
         this.levelManager = new LevelManager(LevelManager.Nivel.NIVEL_4);
 
         //para desabilitar musica
+
         Preferencias.getInstance().setMusic(true);
         Preferencias.getInstance().setSound(true);
         Preferencias.getInstance().setVibration(true);
@@ -79,6 +80,7 @@ public class PantallaJuego extends Pantalla {
             this.levelManager.getMusic().setLooping(true);
             this.levelManager.getMusic().play();
         }
+
 
         //this.music =  GestorAssets.getInstance().getMusic("SpaceLoungeLoop.wav");
        // this.music.setLooping(true);
