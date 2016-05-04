@@ -147,7 +147,7 @@ public class PantallaMenu extends Pantalla {
             public void changed(ChangeListener.ChangeEvent event, Actor actor) {
                 //System.out.println("Clicked! Is checked: " + button.isChecked());
 
-                ScreenManager.getInstance().showScreen(ScreenEnum.GARAJE);
+                ScreenManager.getInstance().showScreen(ScreenEnum.RANKING);
 
             }
         });

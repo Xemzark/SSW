@@ -89,7 +89,7 @@ public class BossEnemigo extends EnemigoEntity {
     protected void generarDisparo(float delta) {
         tiempoSiguienteDisparo += delta;
         if (tiempoSiguienteDisparo > cadenciaDisparo) {
-            Texture bulletTextura = GestorAssets.getInstance().getTexture("bullet.png");
+            Texture bulletTextura = GestorAssets.getInstance().getTexture("proyectilEnemigo.png");
             com.navejuego.entidades.bullets.BulletEnemigo bullet1 = new com.navejuego.entidades.bullets.BulletEnemigo(bulletTextura, new Vector2(getX() + getWidth(), getY()));
             com.navejuego.entidades.bullets.BulletEnemigo bullet2 = new com.navejuego.entidades.bullets.BulletEnemigo(bulletTextura, new Vector2(getX(), getY()));
             bullet1.setName("Bala Enemigo 1");

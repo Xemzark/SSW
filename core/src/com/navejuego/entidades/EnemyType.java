@@ -76,7 +76,7 @@ public class EnemyType {
             case 1: //ENEMIGO DEMO
                 texture = GestorAssets.getInstance().getTexture("alien1.png");
                 sprite = new Sprite(texture);
-                textureEscudo = GestorAssets.getInstance().getTexture("escudoNave.png");
+                textureEscudo = GestorAssets.getInstance().getTexture("escudoEnemigo.png");
                 spriteEscudo = new Sprite(textureEscudo);
                 hitbox = new Circle();
                 puntuacion = 200;
@@ -98,7 +98,7 @@ public class EnemyType {
             case 2: //Kamikaze
                 texture = GestorAssets.getInstance().getTexture("alien4.png");
                 sprite = new Sprite(texture);
-                textureEscudo = GestorAssets.getInstance().getTexture("escudoNave.png");
+                textureEscudo = GestorAssets.getInstance().getTexture("escudoEnemigo.png");
                 spriteEscudo = new Sprite(textureEscudo);
                 hitbox = new Circle();
                 puntuacion = 50;
@@ -120,7 +120,7 @@ public class EnemyType {
             case 3: //Tanque
                 texture = GestorAssets.getInstance().getTexture("alien3.png");
                 sprite = new Sprite(texture);
-                textureEscudo = GestorAssets.getInstance().getTexture("escudoNave.png");
+                textureEscudo = GestorAssets.getInstance().getTexture("escudoEnemigo.png");
                 spriteEscudo = new Sprite(textureEscudo);
                 hitbox = new Circle();
                 puntuacion = 350;
@@ -441,7 +441,7 @@ public class EnemyType {
             case 20: //BOSS DEMO
                 texture = GestorAssets.getInstance().getTexture("goku.png");
                 sprite = new Sprite(texture);
-                textureEscudo = GestorAssets.getInstance().getTexture("escudoNave.png");
+                textureEscudo = GestorAssets.getInstance().getTexture("escudoEnemigo.png");
                 spriteEscudo = new Sprite(textureEscudo);
                 hitbox = new Circle();
                 puntuacion = 20000;
