@@ -130,7 +130,7 @@ public class EnemigoEntity extends GameObjectEntity {
     protected void generarDisparo(float delta) {
         tiempoSiguienteDisparo += delta;
         if (tiempoSiguienteDisparo > cadenciaDisparo) {
-            Texture bulletTextura = GestorAssets.getInstance().getTexture("bullet.png");
+            Texture bulletTextura = GestorAssets.getInstance().getTexture("proyectilEnemigo.png");
             com.navejuego.entidades.bullets.BulletEnemigo bullet = new com.navejuego.entidades.bullets.BulletEnemigo(bulletTextura, new Vector2(getX() + (getWidth() / 2), getY()));
             bullet.setSize(10.0f, 10.0f);
             bullet.setName("Bala Enemigo");
