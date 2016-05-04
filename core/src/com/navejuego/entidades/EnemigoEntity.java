@@ -8,6 +8,7 @@ import com.badlogic.gdx.math.Circle;
 import com.badlogic.gdx.math.Vector2;
 import com.navejuego.Constantes;
 import com.navejuego.GestorAssets;
+import com.navejuego.Preferencias;
 import com.navejuego.entidades.powerups.PowerUpEntity;
 import com.navejuego.pantallas.PantallaJuego;
 
@@ -50,7 +51,7 @@ public class EnemigoEntity extends GameObjectEntity {
      * posicion vector de coordenadas x, y para inicializar la posición
      */
 
-    public EnemigoEntity(int enemyType){
+    public EnemigoEntity(int enemyType) {
         // Debe conocer su stage, su textura y su sprite
 
         enemyProperties = new EnemyType(enemyType);
@@ -78,16 +79,16 @@ public class EnemigoEntity extends GameObjectEntity {
         setBounds(sprite.getX(), sprite.getY(), sprite.getWidth(), sprite.getHeight());
         //setSize(Gdx.graphics.getWidth()/8, Gdx.graphics.getHeight()/8);
         setSize(enemyProperties.sizeX * Constantes.resizeWidth, enemyProperties.sizeY * Constantes.resizeHeight);
+        spriteEscudo.setSize(this.getWidth(), this.getHeight());
 
         // Valores aleatorios
 
         //System.out.print(Gdx.graphics.getWidth() - 2 * ((int) getWidth()) + "\n");
-        posX = pos.nextInt(Gdx.graphics.getWidth() - 2 * ((int) getWidth())) + getWidth(); // Posición X aleatoria
+        posX = pos.nextInt(Gdx.graphics.getWidth() - 2 * ((int) getWidth())) + getWidth() + Constantes.lateralBarWidth; // Posición X aleatoria
         //posX = Gdx.graphics.getWidth()/2;
         posY = Gdx.graphics.getHeight() + getHeight(); // Posición Y por encima de la pantalla
         setPosition(posX, posY);
         hitbox.set(getX() + getWidth() / 2, getY() + getHeight() / 2, getWidth() / 2);
-
         hitbox.setPosition(posX, posY);
         //Fin valores iniciales del Actor
 
@@ -129,8 +130,9 @@ public class EnemigoEntity extends GameObjectEntity {
     protected void generarDisparo(float delta) {
         tiempoSiguienteDisparo += delta;
         if (tiempoSiguienteDisparo > cadenciaDisparo) {
-            Texture bulletTextura = GestorAssets.getInstance().getTexture("bullet.png");
+            Texture bulletTextura = GestorAssets.getInstance().getTexture("proyectilEnemigo.png");
             com.navejuego.entidades.bullets.BulletEnemigo bullet = new com.navejuego.entidades.bullets.BulletEnemigo(bulletTextura, new Vector2(getX() + (getWidth() / 2), getY()));
+            bullet.setSize(10.0f, 10.0f);
             bullet.setName("Bala Enemigo");
             PantallaJuego.stage.addActor(bullet);
             tiempoSiguienteDisparo = 0;
@@ -170,9 +172,18 @@ public class EnemigoEntity extends GameObjectEntity {
      * TODO: Desaparecer/eliminar enemigo.
      */
     public void destruirse() {
-        generarPowerUp();
+        int num_aleatorio = (int) (Math.random() *100);
+        if (num_aleatorio <= probabilidadPowerUp) {
+            generarPowerUp();
+        }
         animacionExplo();
-        PantallaJuego.jugador.addPuntos(puntuacion);
+        PantallaJuego.jugador.addPuntos(50);
+
+        if(Preferencias.getInstance().soundOn()){
+            GestorAssets.getInstance().getSound("explosion2.wav").play();
+        }
+
+
         this.remove();
         //Gdx.app.log("Enemy killed!", "");
     }
@@ -187,7 +198,10 @@ public class EnemigoEntity extends GameObjectEntity {
         explosionTextura.add(GestorAssets.getInstance().getTexture("explo5.png"));
         com.navejuego.Explosion explo = new com.navejuego.Explosion(explosionTextura, new Vector2(getX(),getY()),1.0f);
         PantallaJuego.stage.addActor(explo);
-        GestorAssets.getInstance().getSound("explosion2.wav").play();
+        if(Preferencias.getInstance().soundOn()){
+            GestorAssets.getInstance().getSound("explosion2.wav").play();
+        }
+        //GestorAssets.getInstance().getSound("explosion2.wav").play();
     }
 
     /**
@@ -223,18 +237,49 @@ public class EnemigoEntity extends GameObjectEntity {
      * TODO: Tirar los dados para ver si genera o no genera el power up.
      */
     private void generarPowerUp() {
+
+        int s_powerup = (int) (Math.random() * 5);
         Vector2 posicion = new Vector2(getX(), getY());
-        Texture powerup;
-        //Power up vida
-       /* powerup = GestorAssets.getInstance().getTexture("powerup_vida.png");
-        PowerUpVida vida = new PowerUpVida(stage, powerup, posicion );
-        this.stage.addActor(vida);*/
 
-        //Power up escudo
-        powerup = GestorAssets.getInstance().getTexture("addShield.png");
-        com.navejuego.entidades.powerups.PowerUpASPD pUp = new com.navejuego.entidades.powerups.PowerUpASPD(powerup, posicion );
-        PantallaJuego.stage.addActor(pUp);
-
+        switch (s_powerup) {
+            case 0:
+                //Power up vida
+                Texture powerup1;
+                powerup1 = GestorAssets.getInstance().getTexture("powerup_vida.png");
+                com.navejuego.entidades.powerups.PowerUpVida pUp1 = new com.navejuego.entidades.powerups.PowerUpVida(powerup1, posicion);
+                PantallaJuego.stage.addActor(pUp1);
+                break;
+            case 1:
+                //Power up ASPD
+                Texture powerup2;
+                powerup2 = GestorAssets.getInstance().getTexture("addShield.png");
+                com.navejuego.entidades.powerups.PowerUpASPD pUp2 = new com.navejuego.entidades.powerups.PowerUpASPD(powerup2, posicion);
+                PantallaJuego.stage.addActor(pUp2);
+                break;
+            case 2:
+                //Power up Invulnerabilidad
+                Texture powerup3;
+                powerup3 = GestorAssets.getInstance().getTexture("powerup_vida.png");
+                com.navejuego.entidades.powerups.PowerUpInvulnerabilidad pUp3 = new com.navejuego.entidades.powerups.PowerUpInvulnerabilidad(powerup3, posicion);
+                PantallaJuego.stage.addActor(pUp3);
+                break;
+            //Power up Puntos
+            case 3:
+                Texture powerup4;
+                powerup4 = GestorAssets.getInstance().getTexture("addShield.png");
+                com.navejuego.entidades.powerups.PowerUpPuntos pUp4 = new com.navejuego.entidades.powerups.PowerUpPuntos(powerup4, posicion, 100);
+                PantallaJuego.stage.addActor(pUp4);
+                break;
+            //Power up Escudo
+            case 4:
+                Texture powerup5;
+                powerup5 = GestorAssets.getInstance().getTexture("powerup_vida.png");
+                com.navejuego.entidades.powerups.PowerUpEscudo pUp5 = new com.navejuego.entidades.powerups.PowerUpEscudo(powerup5, posicion);
+                PantallaJuego.stage.addActor(pUp5);
+                break;
+            default:
+                break;
+        }
     }
 
     @Override

@@ -12,9 +12,12 @@ import com.badlogic.gdx.scenes.scene2d.utils.DragListener;
 import com.badlogic.gdx.utils.TimeUtils;
 import com.navejuego.Constantes;
 import com.navejuego.GestorAssets;
+import com.navejuego.Preferencias;
 import com.navejuego.entidades.ui.Barra;
 import com.navejuego.entidades.ui.Puntuacion;
 import com.navejuego.pantallas.PantallaJuego;
+import com.navejuego.pantallas.ScreenEnum;
+import com.navejuego.pantallas.ScreenManager;
 
 import java.util.ArrayList;
 
@@ -81,20 +84,20 @@ public class JugadorEntity extends GameObjectEntity {
         this.barravida = new Barra (GestorAssets.getInstance().getTexture("vidabgv2.png"),
                 GestorAssets.getInstance().getTexture("vidafgv2.png"),
                 GestorAssets.getInstance().getTexture("corazon.png"),
-                22,
-                new Vector2(0, 5),
-                false);
+                Constantes.lateralBarWidth * 1.5f,
+                new Vector2(5, 40),
+                false, 200.0f);
         PantallaJuego.stage.addActor(barravida);
         this.barraescudo = new Barra (GestorAssets.getInstance().getTexture("escudobg.png"),
                 GestorAssets.getInstance().getTexture("escudofg.png"),
                 GestorAssets.getInstance().getTexture("shieldbar.png"),
-                22,
-                new Vector2(0, 300),
-                false);
+                Constantes.lateralBarWidth * 1.5f,
+                new Vector2(5, 285),
+                false, 200.0f);
         PantallaJuego.stage.addActor(barraescudo);
 
         this.tiempoSiguienteDisparo = 0;
-        this.cadenciaDisparo = 0.5f;
+        this.cadenciaDisparo = 0.4f;
 
         //Valores iniciales del Actor
         setBounds(sprite.getX(), sprite.getY(), sprite.getWidth(), sprite.getHeight());
@@ -127,8 +130,8 @@ public class JugadorEntity extends GameObjectEntity {
                 float newX = getX() + dx;
                 float newY = getY() + dy;
                 //si se sale da pantalla, ajustar
-                if (newX < 0) {
-                    newX = 0;
+                if (newX < Constantes.lateralBarWidth + 10.0f) {
+                    newX = Constantes.lateralBarWidth + 10.0f;
                 } else if ((newX + getWidth()) > Gdx.graphics.getWidth()) {
                     newX = Gdx.graphics.getWidth() - getWidth();
                 }
@@ -218,6 +221,9 @@ public class JugadorEntity extends GameObjectEntity {
         if (vida <= 0) {
             destruirse();
         }
+        if(Preferencias.getInstance().vibrationOn()){
+            Gdx.input.vibrate(300);
+        }
 
         updateUI();
     }
@@ -266,7 +272,8 @@ public class JugadorEntity extends GameObjectEntity {
         setPosition(-100, -100);
         hitbox.setPosition(-100, -100);
         //TODO: Animación de destrucción de nave
-        remove();
+        //remove();
+        ScreenManager.getInstance().showScreen(ScreenEnum.GAME_OVER);
     }
 
     public void animacionExplo()

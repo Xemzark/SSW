@@ -16,6 +16,7 @@ import com.navejuego.GestorAssets;
 import com.navejuego.entidades.LevelManager;
 import com.navejuego.entidades.Wave;
 import com.navejuego.entidades.WaveManager;
+import com.navejuego.Preferencias;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -38,7 +39,6 @@ public class PantallaJuego extends Pantalla {
     //private Texture background;
     //private Music music;
     private LevelManager levelManager;
-
     // Variables de Actores
     public static JugadorEntity jugador = null;
 
@@ -51,10 +51,8 @@ public class PantallaJuego extends Pantalla {
     /**
      * Constructor
      *
-     * @param game
      */
-    public PantallaJuego(Main game){
-        super(game);
+    public PantallaJuego(){
 
         // Se inicializa el stage con un ViewPort para adaptar la pantalla a los márgenes del dispositivo
         this.stage = new Stage(new FitViewport(Gdx.graphics.getWidth(), Gdx.graphics.getHeight())); //fitviewport adapta la pantalla. tamaño y lo otro lo pone a negro
@@ -69,12 +67,24 @@ public class PantallaJuego extends Pantalla {
         waves = new WaveManager(waveArray, null, true);*/
 
         this.levelManager = new LevelManager(LevelManager.Nivel.NIVEL_4);
-        this.levelManager.getMusic().setLooping(true);
-        this.levelManager.getMusic().play();
+
+        //para desabilitar musica
+
+        Preferencias.getInstance().setMusic(true);
+        Preferencias.getInstance().setSound(true);
+        Preferencias.getInstance().setVibration(true);
+        Preferencias.getInstance().savePreferences();
+
+        //comprobamos si la musica esta habilitada
+        if(Preferencias.getInstance().musicOn()){
+            this.levelManager.getMusic().setLooping(true);
+            this.levelManager.getMusic().play();
+        }
+
+
         //this.music =  GestorAssets.getInstance().getMusic("SpaceLoungeLoop.wav");
        // this.music.setLooping(true);
         //this.music.play();
-
 
     }
 
@@ -104,7 +114,7 @@ public class PantallaJuego extends Pantalla {
          * input que sucedan sobre la pantalla actual
          */
         Gdx.input.setInputProcessor(stage);
-        stage.setDebugAll(true);
+        //stage.setDebugAll(true);
 
         /*
          * Añadir los actores al stage para que el stage pueda procesar eventos de input hacia
@@ -139,7 +149,7 @@ public class PantallaJuego extends Pantalla {
         batch.end();
 
         // Generar enemigos antes de actualizar
-        generarEnemigos();
+        levelManager.spawn();
 
         stage.act(delta);
 
@@ -151,7 +161,9 @@ public class PantallaJuego extends Pantalla {
 
     @Override
     public void dispose() {
-        stage.dispose();
+        stage.clear();
+        this.levelManager.getMusic().dispose();
+        //stage.dispose();
     }
 
     /**

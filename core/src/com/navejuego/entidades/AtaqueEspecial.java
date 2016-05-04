@@ -11,6 +11,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.SpriteDrawable;
 import com.badlogic.gdx.utils.Timer;
+import com.navejuego.Constantes;
 import com.navejuego.GestorAssets;
 import com.navejuego.pantallas.PantallaJuego;
 
@@ -91,12 +92,25 @@ public class AtaqueEspecial extends GameObjectEntity{
 
             Texture bulletTextura = GestorAssets.getInstance().getTexture("bulletespecial.png");
             com.navejuego.entidades.bullets.BulletEspecial bullet = new com.navejuego.entidades.bullets.BulletEspecial(bulletTextura, new Vector2(w, h));
-            com.navejuego.entidades.bullets.BulletEspecial bullet1 = new com.navejuego.entidades.bullets.BulletEspecial(bulletTextura, new Vector2(w+50, h-13));
-            com.navejuego.entidades.bullets.BulletEspecial bullet2 = new com.navejuego.entidades.bullets.BulletEspecial(bulletTextura, new Vector2(w-50, h -13));
-            com.navejuego.entidades.bullets.BulletEspecial bullet3 = new com.navejuego.entidades.bullets.BulletEspecial(bulletTextura, new Vector2(w+100, h -25));
-            com.navejuego.entidades.bullets.BulletEspecial bullet4 = new com.navejuego.entidades.bullets.BulletEspecial(bulletTextura, new Vector2(w-100, h -25));
-            com.navejuego.entidades.bullets.BulletEspecial bullet5 = new com.navejuego.entidades.bullets.BulletEspecial(bulletTextura, new Vector2(w+150, h -50));
-            com.navejuego.entidades.bullets.BulletEspecial bullet6 = new com.navejuego.entidades.bullets.BulletEspecial(bulletTextura, new Vector2(w-150, h-50));
+            bullet.setSize(bullet.getWidth() * Constantes.resizeWidth, bullet.getHeight() * Constantes.resizeHeight);
+
+        com.navejuego.entidades.bullets.BulletEspecial bullet1 = new com.navejuego.entidades.bullets.BulletEspecial(bulletTextura, new Vector2(w+50, h-13));
+        bullet1.setSize(bullet1.getWidth() * Constantes.resizeWidth, bullet1.getHeight() * Constantes.resizeHeight);
+
+        com.navejuego.entidades.bullets.BulletEspecial bullet2 = new com.navejuego.entidades.bullets.BulletEspecial(bulletTextura, new Vector2(w-50, h -13));
+        bullet2.setSize(bullet2.getWidth() * Constantes.resizeWidth, bullet2.getHeight() * Constantes.resizeHeight);
+
+        com.navejuego.entidades.bullets.BulletEspecial bullet3 = new com.navejuego.entidades.bullets.BulletEspecial(bulletTextura, new Vector2(w+100, h -25));
+        bullet3.setSize(bullet3.getWidth() * Constantes.resizeWidth, bullet3.getHeight() * Constantes.resizeHeight);
+
+        com.navejuego.entidades.bullets.BulletEspecial bullet4 = new com.navejuego.entidades.bullets.BulletEspecial(bulletTextura, new Vector2(w-100, h -25));
+        bullet4.setSize(bullet4.getWidth() * Constantes.resizeWidth, bullet4.getHeight() * Constantes.resizeHeight);
+
+        com.navejuego.entidades.bullets.BulletEspecial bullet5 = new com.navejuego.entidades.bullets.BulletEspecial(bulletTextura, new Vector2(w+150, h -50));
+        bullet5.setSize(bullet5.getWidth() * Constantes.resizeWidth, bullet5.getHeight() * Constantes.resizeHeight);
+
+        com.navejuego.entidades.bullets.BulletEspecial bullet6 = new com.navejuego.entidades.bullets.BulletEspecial(bulletTextura, new Vector2(w-150, h-50));
+        bullet6.setSize(bullet6.getWidth() * Constantes.resizeWidth, bullet6.getHeight() * Constantes.resizeHeight);
 
             PantallaJuego.stage.addActor(bullet);
             PantallaJuego.stage.addActor(bullet1);

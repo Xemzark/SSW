@@ -20,37 +20,68 @@ public class Barra extends Actor {
 
     private Sprite background;
     private Sprite foreground;
-    private Texture icon;
+    private Sprite icon;
     private float margenDeIcono = 22;
     private boolean horizontal;
+    private float length;
 
-    public Barra(Texture background, Texture foreground, Texture icon, float margenIcono, Vector2 posicion, boolean horizontal) {
+    public Barra(Texture background, Texture foreground, Texture icon, float margenIcono, Vector2 posicion, boolean horizontal, float length) {
 
         this.background = new Sprite(background);
         this.foreground = new Sprite(foreground);
-        this.icon = icon;
-        this.margenDeIcono = margenIcono;
-        this.horizontal = horizontal;
 
-        this.background.setPosition(posicion.x, posicion.y);
-        this.background.setSize(background.getWidth() * Constantes.resizeWidth,
-                background.getHeight() * Constantes.resizeHeight);
-        this.foreground.setPosition(posicion.x, posicion.y);
-        this.foreground.setSize(foreground.getWidth() * Constantes.resizeWidth,
-                foreground.getHeight() * Constantes.resizeHeight);
-        this.setPosition(posicion.x, posicion.y);;
+        //TODO: Handle rotation of the sprite
 
-       /* if (horizontal) {
-            this.background.setOrigin(getX(), getY()+getHeight()/2);
-            this.foreground.setOrigin(getX(), getY()+getHeight()/2);
+        this.icon = new Sprite(icon);
+        if (horizontal) {
+            this.margenDeIcono = margenIcono * Constantes.resizeWidth;
         } else {
-            this.background.setOrigin(getX()+background.getWidth()/2, getY());
-            this.foreground.setOrigin(getX()+foreground.getWidth()/2, getY());
-        }*/
+            this.margenDeIcono = margenIcono * Constantes.resizeHeight;
+        }
+
+        this.horizontal = horizontal;
+        this.length = length;
+
+        Vector2 adjustedPosition = new Vector2(posicion.x * Constantes.resizeWidth, posicion.y * Constantes.resizeHeight);
+
+        this.setPosition(adjustedPosition.x, adjustedPosition.y);
+
+        if (horizontal) {
+            this.background.setOrigin(this.background.getX(), this.background.getY() + this.background.getHeight()/2);
+            this.foreground.setOrigin(this.foreground.getX(), this.foreground.getY() + this.foreground.getHeight() / 2);
+        } else {
+            this.background.setOrigin(this.background.getX() + this.background.getWidth() / 2, this.background.getY());
+            this.foreground.setOrigin(this.foreground.getX() + this.foreground.getWidth() / 2, this.foreground.getY());
+        }
+
+        this.background.setPosition(adjustedPosition.x, adjustedPosition.y);
+        if (horizontal) {
+            this.background.setSize(length * Constantes.resizeWidth,
+                    background.getHeight() * Constantes.resizeHeight);
+        } else {
+            this.background.setSize(Constantes.lateralBarWidth * Constantes.resizeWidth,
+                    length * Constantes.resizeHeight);
+        }
+
+        this.foreground.setPosition(adjustedPosition.x, adjustedPosition.y);
+        if (horizontal) {
+            this.foreground.setSize(length * Constantes.resizeWidth,
+                    foreground.getHeight() * Constantes.resizeHeight);
+        } else {
+            this.foreground.setSize(Constantes.lateralBarWidth * Constantes.resizeWidth,
+                    length * Constantes.resizeHeight);
+        }
+
+        if (horizontal) {
+            this.icon.setPosition(this.background.getX() - this.margenDeIcono, this.background.getY());
+        } else {
+            this.icon.setPosition(this.background.getX(), this.background.getY() - this.margenDeIcono);
+        }
+        this.icon.setSize(Constantes.lateralBarWidth * Constantes.resizeWidth, Constantes.lateralBarWidth * Constantes.resizeHeight);
+
     }
 
     public void Update(float percent) {
-        //TODO: Llamar desde el jugador
         if (horizontal) {
             this.foreground.setScale(percent, 1f);
         } else {
@@ -61,7 +92,7 @@ public class Barra extends Actor {
     public void render(Batch batch){
         this.background.draw(batch);
         this.foreground.draw(batch);
-        batch.draw(this.icon, margenDeIcono/2, this.background.getY() - this.margenDeIcono / 4);
+        this.icon.draw(batch);
     }
 }
 

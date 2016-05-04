@@ -1,22 +1,24 @@
 package com.navejuego.pantallas;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.graphics.g2d.freetype.FreeType;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
-import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.scenes.scene2d.ui.TextArea;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.viewport.FitViewport;
-import com.navejuego.Main;
+import com.navejuego.GestorAssets;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton.TextButtonStyle;
+import com.navejuego.PartidaGuardada;
+
+import java.util.Arrays;
 
 
 /**
@@ -25,53 +27,159 @@ import com.navejuego.Main;
 public class PantallaMenu extends Pantalla {
 
 
+    private SpriteBatch batch;
     private Stage menuStage;
 
 
     private Skin skin;
+    private Texture background, sol;
 
-    private TextButton jugar, Ajustes, Ranking, Garaje, Salir;
+    private BitmapFont font;
+    private TextButton jugar, Ajustes, Ranking, Garaje;
+    private TextureAtlas buttonsAtlas; //** image of buttons **//
+    private Skin buttonSkin; //** images are used as skins of the button **//
+
+    private Image ajustess;
 
 
 
-    public PantallaMenu(Main game) {
-        super(game);
+    public PantallaMenu() {
+
+        Gdx.app.log("\n", "");
+
+        //prubas realizadas para guardar partida
+        PartidaGuardada.getInstance().fillPutuaciones();
+
+
+        //Gdx.app.log("\n Puntuacion 0, 0: " + String.valueOf(PartidaGuardada.getInstance().getPuntuacion(0, 0)), "");
+        //Pruebas puntuaciones
+        PartidaGuardada.getInstance().printPuntuaciones();
+        PartidaGuardada.getInstance().setPuntucion(1, 1000000);
+        Gdx.app.log("\n", "");
+        Gdx.app.log("\n", "");
+        PartidaGuardada.getInstance().printPuntuaciones();
+        Gdx.app.log("\n", "");
+        Gdx.app.log(String.valueOf(PartidaGuardada.getInstance().getPuntuacion(1,0)), "");
+
+
+
+        buttonsAtlas = new TextureAtlas("otherskin/button.pack"); //**button atlas image **//
+        buttonSkin = new Skin();
+        buttonSkin.addRegions(buttonsAtlas); //** skins for on and off **//
+        //font = new BitmapFont(Gdx.files.internal("otherskin/new.fnt"),Gdx.files.internal("otherskin/new.png"),true); //** font **//
+        font = new BitmapFont(Gdx.files.internal("otherfont/font.fnt"));
+
         menuStage = new Stage(new FitViewport(Gdx.graphics.getWidth(), Gdx.graphics.getHeight()));
         Gdx.input.setInputProcessor(menuStage);
         skin = new Skin(Gdx.files.internal("skin/uiskin.json"));
 
-        jugar = new TextButton("Jugar", skin);
-        Ajustes = new TextButton("Ajustes", skin);
-        Ranking = new TextButton("Ranking", skin);
-        Garaje = new TextButton("Garaje", skin);
-        Salir = new TextButton("Salir", skin);
+        TextButtonStyle style = new TextButtonStyle(); //** Button properties **//
+        style.up = buttonSkin.getDrawable("buttonOff");
+        style.down = buttonSkin.getDrawable("buttonOn");
+        style.font=font;
 
-        jugar.setSize(Gdx.graphics.getWidth() / 4, Gdx.graphics.getHeight() / 4);
-        jugar.setPosition(Gdx.graphics.getWidth() / 4 - Gdx.graphics.getWidth() / 8, 2.5f * Gdx.graphics.getHeight() / 4 - Gdx.graphics.getHeight() / 8);
-        jugar.getSkin().getFont("default-font").getData().setScale(2, 2); //cambia el tamaño de la fuente del boton
+
+
+        batch = new SpriteBatch();
+        background = GestorAssets.getInstance().getTexture("background_menuprincipal.png");
+        //sol = GestorAssets.getInstance().getTexture("sol.png");
+
+        //ajustess = new com.badlogic.gdx.scenes.scene2d.ui.Image(GestorAssets.getInstance().getTexture("otherskin/ajustess.png"));
+        //ajustess.setSize(Gdx.graphics.getWidth() / 6, Gdx.graphics.getHeight() / 12);
+        //ajustess.setPosition(Gdx.graphics.getWidth() / 4 + Gdx.graphics.getWidth() / 2, Gdx.graphics.getHeight() / 5);
+
+
+
+
+
+
+        jugar= new TextButton("Jugar", style);
+        Ajustes= new TextButton("Ajustes", style);
+        Ranking = new TextButton("Ranking", style);
+        Garaje = new TextButton("Garaje", style);
+
+        jugar.setSize(1.5f* Gdx.graphics.getWidth() / 4, Gdx.graphics.getHeight() / 12);
+        jugar.setPosition(Gdx.graphics.getWidth() / 2 - Gdx.graphics.getWidth() / 5.5f,   Gdx.graphics.getHeight() / 4 + Gdx.graphics.getHeight() / 4);
+        jugar.getLabel().setFontScale(0.5f*(Gdx.graphics.getWidth()/640.0f));
+
+        //jugar.getSkin().getFont("default-font").getData().setScale(2,2); //cambia el tamaño de la fuente del boton
         //Ajustes.setSize(Gdx.graphics.getWidth() / 4, Gdx.graphics.getHeight() / 4);
         //Ajustes.setPosition(Gdx.graphics.getWidth() / 4 + 100 , Gdx.graphics.getHeight() / 3);
 
+        Garaje.setSize(1.5f*Gdx.graphics.getWidth() / 4, Gdx.graphics.getHeight() / 12);
+        Garaje.setPosition(Gdx.graphics.getWidth() / 2 - Gdx.graphics.getWidth() /5.5f , Gdx.graphics.getHeight() / 4 + Gdx.graphics.getHeight() / 8);
+        Garaje.getLabel().setFontScale(0.5f*(Gdx.graphics.getWidth()/640.0f));
+
+        //Garaje.getSkin().getFont("default-font").getData().setScale(2, 2); //cambia el tamaño de la fuente
+
+        Ajustes.setSize(1.5f*Gdx.graphics.getWidth() / 4, Gdx.graphics.getHeight() / 12);
+        Ajustes.setPosition(Gdx.graphics.getWidth() / 2 - Gdx.graphics.getWidth() /5.5f, Gdx.graphics.getHeight() / 3 - Gdx.graphics.getHeight() / 14);
+        Ajustes.getLabel().setFontScale(0.5f*(Gdx.graphics.getWidth()/640.0f));
+
+        //Ajustes.getSkin().getFont("default-font").getData().setScale(2, 2); //cambia el tamaño de la fuente del boton
+
+        Ranking.setSize(1.5f/ 4 * Gdx.graphics.getWidth() , Gdx.graphics.getHeight() / 12);
+        Ranking.setPosition(Gdx.graphics.getWidth() / 2 - Gdx.graphics.getWidth() /5.5f, Gdx.graphics.getHeight() / 3 - Gdx.graphics.getHeight() / 5.5f);
+        Ranking.getLabel().setFontScale(0.5f*(Gdx.graphics.getWidth()/640.0f));
+
+        //Ranking.getSkin().getFont("default-font").getData().setScale(2, 2); //cambia el tamaño de la fuente
 
 
 
-       // jugar.addListener()
+
+
+
+
 
         jugar.addListener(new ChangeListener() {
             public void changed(ChangeListener.ChangeEvent event, Actor actor) {
                 //System.out.println("Clicked! Is checked: " + button.isChecked());
                 jugar.setText("Starting new game");
-                //ScreenManager.getInstance().showScreen(ScreenEnum.GAME);
+                ScreenManager.getInstance().showScreen(ScreenEnum.GAME);
 
             }
         });
 
 
+
+
+        Ranking.addListener(new ChangeListener() {
+            public void changed(ChangeListener.ChangeEvent event, Actor actor) {
+                //System.out.println("Clicked! Is checked: " + button.isChecked());
+
+                ScreenManager.getInstance().showScreen(ScreenEnum.RANKING);
+
+            }
+        });
+
+        Ajustes.addListener(new ChangeListener() {
+            public void changed(ChangeListener.ChangeEvent event, Actor actor) {
+                //System.out.println("Clicked! Is checked: " + button.isChecked());
+
+                ScreenManager.getInstance().showScreen(ScreenEnum.AJUSTES);
+
+            }
+        });
+
+
+        Garaje.addListener(new ChangeListener() {
+            public void changed(ChangeListener.ChangeEvent event, Actor actor) {
+                //System.out.println("Clicked! Is checked: " + button.isChecked());
+
+                ScreenManager.getInstance().showScreen(ScreenEnum.GARAJE);
+
+            }
+        });
+
+
+
         menuStage.addActor(Ajustes);
-        menuStage.addActor(Salir);
         menuStage.addActor(Garaje);
         menuStage.addActor(Ranking);
         menuStage.addActor(jugar);
+        //menuStage.addActor(ajustess);
+
+
 
 
     }
@@ -130,10 +238,17 @@ public class PantallaMenu extends Pantalla {
 
     @Override
     public void render(float delta) {
+        //menuStage.setDebugAll(true);
         Gdx.gl.glClearColor(0.4f, 0.5f, 0.8f, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
 
+        batch.begin();
+
+        batch.draw(background, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+        //batch.draw(sol, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+
+        batch.end();
 
         //pinta el menu
         menuStage.act();
@@ -149,4 +264,3 @@ public class PantallaMenu extends Pantalla {
 
     }
 }
-

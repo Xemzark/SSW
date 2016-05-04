@@ -3,8 +3,8 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.navejuego.entidades.GameObjectEntity;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,9 +29,11 @@ public class Explosion extends GameObjectEntity {
         indiceactual = 0;
         listatextura = texture;
 
+        sprite.setSize(sprite.getWidth() * Constantes.resizeWidth, sprite.getHeight() * Constantes.resizeWidth);
+
         //Valores iniciales del Actor
         setBounds(sprite.getX(), sprite.getY(), sprite.getWidth(), sprite.getHeight());
-        setPosition(x, y);
+        setPosition(x * Constantes.resizeWidth, y * Constantes.resizeHeight);
         duracionframe = duracion / texture.size();
     }
 

@@ -89,7 +89,7 @@ public class BossEnemigo extends EnemigoEntity {
     protected void generarDisparo(float delta) {
         tiempoSiguienteDisparo += delta;
         if (tiempoSiguienteDisparo > cadenciaDisparo) {
-            Texture bulletTextura = GestorAssets.getInstance().getTexture("bullet.png");
+            Texture bulletTextura = GestorAssets.getInstance().getTexture("proyectilEnemigo.png");
             com.navejuego.entidades.bullets.BulletEnemigo bullet1 = new com.navejuego.entidades.bullets.BulletEnemigo(bulletTextura, new Vector2(getX() + getWidth(), getY()));
             com.navejuego.entidades.bullets.BulletEnemigo bullet2 = new com.navejuego.entidades.bullets.BulletEnemigo(bulletTextura, new Vector2(getX(), getY()));
             bullet1.setName("Bala Enemigo 1");
@@ -133,8 +133,7 @@ public class BossEnemigo extends EnemigoEntity {
         return "Boss enemigo";
     }
 
-    @Override
-    public void animacionExplo(){
+    public void animacionExploChain(){
         ArrayList<Texture> explosionTextura = new ArrayList<Texture>();
         explosionTextura.add(GestorAssets.getInstance().getTexture("explo1.png"));
         explosionTextura.add(GestorAssets.getInstance().getTexture("explo2.png"));
@@ -147,7 +146,7 @@ public class BossEnemigo extends EnemigoEntity {
     @Override
     public void destruirse() {
 
-        animacionExplo();
+        animacionExploChain();
         PantallaJuego.jugador.addPuntos(puntuacion);
 
         this.remove();
