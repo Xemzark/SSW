@@ -84,15 +84,15 @@ public class JugadorEntity extends GameObjectEntity {
         this.barravida = new Barra (GestorAssets.getInstance().getTexture("vidabgv2.png"),
                 GestorAssets.getInstance().getTexture("vidafgv2.png"),
                 GestorAssets.getInstance().getTexture("corazon.png"),
-                50,
-                new Vector2(10, 50),
+                Constantes.lateralBarWidth * 1.5f,
+                new Vector2(5, 40),
                 false, 200.0f);
         PantallaJuego.stage.addActor(barravida);
         this.barraescudo = new Barra (GestorAssets.getInstance().getTexture("escudobg.png"),
                 GestorAssets.getInstance().getTexture("escudofg.png"),
                 GestorAssets.getInstance().getTexture("shieldbar.png"),
-                60,
-                new Vector2(10, 325),
+                Constantes.lateralBarWidth * 1.5f,
+                new Vector2(5, 285),
                 false, 200.0f);
         PantallaJuego.stage.addActor(barraescudo);
 
@@ -130,8 +130,8 @@ public class JugadorEntity extends GameObjectEntity {
                 float newX = getX() + dx;
                 float newY = getY() + dy;
                 //si se sale da pantalla, ajustar
-                if (newX < 0) {
-                    newX = 0;
+                if (newX < Constantes.lateralBarWidth + 10.0f) {
+                    newX = Constantes.lateralBarWidth + 10.0f;
                 } else if ((newX + getWidth()) > Gdx.graphics.getWidth()) {
                     newX = Gdx.graphics.getWidth() - getWidth();
                 }

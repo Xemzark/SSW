@@ -51,7 +51,7 @@ public class EnemigoEntity extends GameObjectEntity {
      * posicion vector de coordenadas x, y para inicializar la posición
      */
 
-    public EnemigoEntity(int enemyType){
+    public EnemigoEntity(int enemyType) {
         // Debe conocer su stage, su textura y su sprite
 
         enemyProperties = new EnemyType(enemyType);
@@ -84,7 +84,7 @@ public class EnemigoEntity extends GameObjectEntity {
         // Valores aleatorios
 
         //System.out.print(Gdx.graphics.getWidth() - 2 * ((int) getWidth()) + "\n");
-        posX = pos.nextInt(Gdx.graphics.getWidth() - 2 * ((int) getWidth())) + getWidth(); // Posición X aleatoria
+        posX = pos.nextInt(Gdx.graphics.getWidth() - 2 * ((int) getWidth())) + getWidth() + Constantes.lateralBarWidth; // Posición X aleatoria
         //posX = Gdx.graphics.getWidth()/2;
         posY = Gdx.graphics.getHeight() + getHeight(); // Posición Y por encima de la pantalla
         setPosition(posX, posY);
