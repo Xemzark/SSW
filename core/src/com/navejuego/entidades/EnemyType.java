@@ -416,7 +416,7 @@ public class EnemyType {
                 bulletMovement = new LinealMovement(150, false);
                 break;
 
-            case 1: //enemigo verde 1
+            case 16: //enemigo verde 1
                 texture = GestorAssets.getInstance().getTexture("greenship.png");
                 sprite = new Sprite(texture);
                 textureEscudo = GestorAssets.getInstance().getTexture("escudoNave.png");
