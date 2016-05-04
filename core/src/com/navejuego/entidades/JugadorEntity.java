@@ -5,20 +5,21 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Circle;
-import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.physics.box2d.Body;
-import com.badlogic.gdx.physics.box2d.BodyDef;
-import com.badlogic.gdx.physics.box2d.Box2D;
-import com.badlogic.gdx.physics.box2d.CircleShape;
-import com.badlogic.gdx.physics.box2d.FixtureDef;
-import com.badlogic.gdx.physics.box2d.World;
-import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.utils.DragListener;
+import com.badlogic.gdx.utils.TimeUtils;
+import com.navejuego.Constantes;
 import com.navejuego.GestorAssets;
+import com.navejuego.Preferencias;
+import com.navejuego.entidades.ui.Barra;
+import com.navejuego.entidades.ui.Puntuacion;
+import com.navejuego.pantallas.PantallaJuego;
+import com.navejuego.pantallas.ScreenEnum;
+import com.navejuego.pantallas.ScreenManager;
+
+import java.util.ArrayList;
 
 import static com.navejuego.Constantes.*;
 
@@ -34,28 +35,77 @@ import static com.navejuego.Constantes.*;
 public class JugadorEntity extends GameObjectEntity {
 
     protected float cadenciaDisparo;
-
     protected float tiempoSiguienteDisparo;
+
+    private AtaqueEspecial ataqueEspecial;
+
     private boolean invulnerabilidad;
-    private int contador = 0;
+    private long inicioInvulnerabilidad = 0;
+    private int duracionInvulnerabilidad = 0;
+
+    private boolean dobleASPD = false;
+    private long inicioDobleASPD = 0;
+    private int duracionDobleASPD = 0;
+
+    private Barra barravida;
+    private Barra barraescudo;
+    private Puntuacion puntuacion;
+    private Sprite spriteEscudo;
+
+
     /**
      * Constructor
      * Esta clase recibe una textura a asociarle y un vector de posición.
      * @param texture sprite a asociarle, gestionado por el assetManager
      * @param posicion vector de coordenadas x, y para inicializar la posición
      */
-    public JugadorEntity(Stage stage, Texture texture, Vector2 posicion){
-        this.stage = stage; //La nave jugador conoce el stage al que pertenece para añadirle bullets
+    public JugadorEntity(Texture texture, Vector2 posicion){
         this.texture = texture;
         this.sprite = new Sprite(this.texture);
+        this.hitbox = new Circle();
+
+        this.ataqueEspecial = new AtaqueEspecial();
+        PantallaJuego.stage.addActor(this.ataqueEspecial);
+
+        this.invulnerabilidad = false;
+        this.puntuacion = new com.navejuego.entidades.ui.Puntuacion();
+        this.maxVida = 100;
+        this.maxEscudo = 100;
+        this.vida = maxVida;
+        this.escudo = maxEscudo;
+        this.vida = 100;
+        this.escudo = 100;
+
+        // Sprite animación escudo
+        this.spriteEscudo = new Sprite(GestorAssets.getInstance().getTexture("escudoNave.png"));
+        spriteEscudo.setAlpha(0.7f);
+        //
+
+        this.barravida = new Barra (GestorAssets.getInstance().getTexture("vidabgv2.png"),
+                GestorAssets.getInstance().getTexture("vidafgv2.png"),
+                GestorAssets.getInstance().getTexture("corazon.png"),
+                50,
+                new Vector2(10, 50),
+                false, 200.0f);
+        PantallaJuego.stage.addActor(barravida);
+        this.barraescudo = new Barra (GestorAssets.getInstance().getTexture("escudobg.png"),
+                GestorAssets.getInstance().getTexture("escudofg.png"),
+                GestorAssets.getInstance().getTexture("shieldbar.png"),
+                60,
+                new Vector2(10, 325),
+                false, 200.0f);
+        PantallaJuego.stage.addActor(barraescudo);
 
         this.tiempoSiguienteDisparo = 0;
-        this.cadenciaDisparo = 0.05f;
+        this.cadenciaDisparo = 0.4f;
 
         //Valores iniciales del Actor
         setBounds(sprite.getX(), sprite.getY(), sprite.getWidth(), sprite.getHeight());
         setPosition(posicion.x - getWidth() / 2, posicion.y - getHeight() / 2);
-        setSize(PIXELS_METRE, PIXELS_METRE);
+        setSize(getWidth() * Constantes.resizeWidth, getHeight() * Constantes.resizeHeight);
+        hitbox.set(getX() + getWidth() / 2, getY() + getHeight() / 2, getWidth() / 2);
+        spriteEscudo.setPosition(getX(), getY());
+        spriteEscudo.setSize(getWidth(), getHeight());
         //Fin de valores iniciales del Actor
 
         //Inicio de reacción al drag
@@ -77,7 +127,25 @@ public class JugadorEntity extends GameObjectEntity {
                 float dx = x - getWidth() * 0.5f;
                 float dy = y - getHeight() * 0.5f;
                 //recalcular para que la posición sea relativa al objeto y no a la pantalla
-                setPosition(getX() + dx, getY() + dy);
+                float newX = getX() + dx;
+                float newY = getY() + dy;
+                //si se sale da pantalla, ajustar
+                if (newX < 0) {
+                    newX = 0;
+                } else if ((newX + getWidth()) > Gdx.graphics.getWidth()) {
+                    newX = Gdx.graphics.getWidth() - getWidth();
+                }
+                if (newY < 0) {
+                    newY = 0;
+                } else if ((newY + getHeight()) > Gdx.graphics.getHeight()) {
+                    //TODO: Ajustar por barra de acción
+                    newY = Gdx.graphics.getHeight() - getHeight();
+                }
+
+                MoveTo(newX, newY);
+                spriteEscudo.setPosition(newX, newY);
+
+
             }
         });
         //Fin de reacción al drag
@@ -85,16 +153,27 @@ public class JugadorEntity extends GameObjectEntity {
 
     @Override
     public void act(float delta) {
+
         generarDisparo(delta);
-        //
-            //BLABLABLA
-        //
-        eliminarDisparo();
+
+
+        if (invulnerabilidad){
+            contadorInvulnerabilidad();
+        }
+        if (dobleASPD) {
+            contadorDobleASPD();
+        }
     }
+
 
     @Override
     public void draw(Batch batch, float parentAlpha) {
         batch.draw(texture, getX(), getY(), getWidth(), getHeight());
+        spriteEscudo.draw(batch);
+        barravida.render(batch);
+        barraescudo.render(batch);
+        this.puntuacion.draw(batch);
+        this.ataqueEspecial.draw(batch,parentAlpha);
     }
 
 
@@ -102,69 +181,112 @@ public class JugadorEntity extends GameObjectEntity {
      * generarDisparo
      * Este método genera un disparo de la nave cada delta tiempo
      */
+
     protected void generarDisparo(float delta) {
         tiempoSiguienteDisparo += delta;
         if (tiempoSiguienteDisparo > cadenciaDisparo) {
             Texture bulletTextura = GestorAssets.getInstance().getTexture("bullet.png");
-            BulletNave bullet = new BulletNave(this.stage, bulletTextura, new Vector2(getX() + (getWidth() / 2), getY() + getHeight()));
-            bullet.setName("Bala " + contador);
-            this.stage.addActor(bullet);
+            com.navejuego.entidades.bullets.BulletNave bullet = new com.navejuego.entidades.bullets.BulletNave(bulletTextura, new Vector2(getX() + (getWidth() / 2), getY() + getHeight()));
+            PantallaJuego.stage.addActor(bullet);
+            //this.ataqueEspecial.generarDisparo(getX() + (getWidth() / 2), getY() + getHeight());
             tiempoSiguienteDisparo = 0;
         }
     }
 
-    /**
-     * eliminarDisparo
-     * Este método elimina los disparos que se salen por arriba de la pantalla
+    /*
+     * Primero daña escudos. Si están vacíos, daña la nave.
+     * No recibe daño si es invulnerable.
+     * Actualiza el estado del escudo (sprite)
+     * @param dmg Daño que aplica.
+     * @param ignoraEscudo Si es cierto, ignora escudo.
      */
-    private void eliminarDisparo(){
-        // No me gusta el INSTANCEOF!
-        for(Actor a : this.stage.getActors()){
-            if(a instanceof BulletEntity && (a.getY()>Gdx.graphics.getHeight())){
-                a.remove();
-            }
+    public void recibirDmg(int dmg, boolean ignoraEscudo) {
+        if (invulnerabilidad)
+            return;
+
+        if (ignoraEscudo || escudo <= 0) {
+            vida -= dmg;
+        } else {
+            int temp = dmg;
+            dmg -= escudo;
+            escudo -= temp;
+
+            if (escudo < 0)
+                escudo = 0;
+            if (dmg > 0)
+                vida -= dmg;
+            spriteEscudo.setAlpha(Math.min(this.escudo/this.maxEscudo, 0.7f));
+        }
+
+        if (vida <= 0) {
+            destruirse();
+        }
+        if(Preferencias.getInstance().vibrationOn()){
+            Gdx.input.vibrate(300);
+        }
+
+        updateUI();
+    }
+
+    public void updateUI(){
+        barravida.Update(vida/maxVida);
+        barraescudo.Update(escudo/maxEscudo);
+    }
+
+    public com.navejuego.entidades.ui.Puntuacion getPuntuacion() {
+        return puntuacion;
+    }
+
+    /**
+     * Incrementa la vida si el parametro de cura es positivo.
+     * Nunca la incrementa por encima del máximo.
+     * @param cura Putnos de vida a incrementar. Valores negativos no hacen efecto.
+     */
+    public void curarse(int cura) {
+        if (cura > 0) {
+            vida = Math.min(vida + cura, maxVida);
+            updateUI();
+        }
+
+    }
+
+    /**
+     * Incrementa el escudo si el parametro de escudo es positivo.
+     * Nunca lo incrementa por encima del máximo.
+     * Actualiza el estado del escudo (sprite)
+     * @param escudo  Putnos de escudo a incrementar. Valores negativos no hacen efecto.
+     */
+    public void subirEscudo(int escudo) {
+        if (escudo > 0) {
+            this.escudo = Math.min(this.escudo + escudo, maxEscudo);
+            updateUI();
+            spriteEscudo.setAlpha(Math.min(this.escudo/this.maxEscudo, 0.7f));
         }
     }
 
     /**
-     * TODO: Aplica daño al jugador si este no es invulnerable.
-     * Primero daña escudos. Si están vacíos, daña la nave.
-     * @param dmg
-     * @param ignoraEscudo
-     */
-    protected void recibirDmg(int dmg, boolean ignoraEscudo) {
-
-    }
-
-    /**
-     * TODO: Incrementa la vida.
-     * @param cura
-     */
-    public void curarse(int cura) {
-
-    }
-
-    /**
-     * TODO: Incrementa el escudo.
-     * @param escudo
-     */
-    public void subirEscudo(int escudo) {
-
-    }
-
-    /**
-     * TODO: Activa secuencia de destrucción de la nave.
+     * Destruye la nave.
      */
     public void destruirse() {
-
+        animacionExplo();
+        setPosition(-100, -100);
+        hitbox.setPosition(-100, -100);
+        //TODO: Animación de destrucción de nave
+        //remove();
+        ScreenManager.getInstance().showScreen(ScreenEnum.GAME_OVER);
     }
 
-    /**
-     * TODO: Dado un PowerUp, modifica las stats.
-     */
-    //public void modificarStats(PowerUpEntity powerUp) {
-
-    //}
+    public void animacionExplo()
+    {
+        ArrayList<Texture> explosionTextura = new ArrayList<Texture>();
+        explosionTextura.add(GestorAssets.getInstance().getTexture("explo1.png"));
+        explosionTextura.add(GestorAssets.getInstance().getTexture("explo2.png"));
+        explosionTextura.add(GestorAssets.getInstance().getTexture("explo3.png"));
+        explosionTextura.add(GestorAssets.getInstance().getTexture("explo4.png"));
+        explosionTextura.add(GestorAssets.getInstance().getTexture("explo5.png"));
+        com.navejuego.Explosion explo = new com.navejuego.Explosion(explosionTextura, new Vector2(getX(),getY()),1.0f);
+        PantallaJuego.stage.addActor(explo);
+    }
 
     /**
      * TODO: Si el ataque especial puede activarse, lo activa. Devuelve cierto si lo ha activado.
@@ -173,4 +295,54 @@ public class JugadorEntity extends GameObjectEntity {
         return false;
     }
 
+    public float getMaxVida(){
+        return this.maxVida;
+    }
+
+    public float getMaxEscudo() { return this.maxEscudo; }
+
+    public void setInvulnerabilidad (int duracion) {
+        if (!invulnerabilidad) {
+            this.invulnerabilidad = true;
+            this.inicioInvulnerabilidad = new TimeUtils().millis();
+            this.duracionInvulnerabilidad = duracion;
+        } else {
+            this.duracionInvulnerabilidad += duracion;
+        }
+    }
+
+    public void contadorInvulnerabilidad(){
+        if (TimeUtils.timeSinceMillis(inicioInvulnerabilidad) > duracionDobleASPD * 1000){
+            invulnerabilidad = false;
+            inicioInvulnerabilidad = 0;
+            duracionInvulnerabilidad = 0;
+        }
+    }
+
+    public void setDobleASPD(int duracion){
+
+        if (!this.dobleASPD) {
+            this.dobleASPD = true;
+            this.inicioDobleASPD = TimeUtils.millis();
+            this.duracionDobleASPD = duracion;
+            this.cadenciaDisparo /= 2;
+        } else {
+            duracionDobleASPD += duracion;
+        }
+    }
+
+    public void contadorDobleASPD() {
+
+        if (TimeUtils.timeSinceMillis(inicioDobleASPD) > duracionDobleASPD * 1000){
+            dobleASPD = false;
+            inicioDobleASPD = 0;
+            duracionDobleASPD = 0;
+            this.cadenciaDisparo *= 2;
+
+        }
+    }
+
+    public void addPuntos(int puntos){
+        this.puntuacion.incrementarPuntuacion(puntos);
+    }
 }

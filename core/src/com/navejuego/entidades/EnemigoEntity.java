@@ -1,15 +1,19 @@
 package com.navejuego.entidades;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.math.Rectangle;
-import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.math.Circle;
+import com.badlogic.gdx.math.Vector2;
+import com.navejuego.Constantes;
 import com.navejuego.GestorAssets;
+import com.navejuego.Preferencias;
+import com.navejuego.entidades.powerups.PowerUpEntity;
+import com.navejuego.pantallas.PantallaJuego;
 
+import java.util.ArrayList;
 import java.util.Random;
-
-import static com.navejuego.Constantes.PIXELS_METRE;
 
 /**
  * Created by Andrés on 03/04/2016.
@@ -22,18 +26,22 @@ import static com.navejuego.Constantes.PIXELS_METRE;
  */
 public class EnemigoEntity extends GameObjectEntity {
 
-    protected float cadenciaDisparo;
+    protected int puntuacion;
+    protected int dañoColision;
 
+    protected float cadenciaDisparo;
     protected float tiempoSiguienteDisparo;
-    private boolean vivo;
+    protected boolean vivo;
+    protected EnemyType enemyProperties;
+
     // Variable para generar su posición aleatoria
     Random pos = new Random();
 
     // Variables para sus posiciones
-    private float posX;
-    private float posY;
-
-    //private PowerUpEntity powerUp;
+    protected float posX;
+    protected float posY;
+    private Sprite spriteEscudo;
+    private PowerUpEntity powerUp;
     private int probabilidadPowerUp; //Entre 0% y 100%
 
     /**
@@ -42,27 +50,50 @@ public class EnemigoEntity extends GameObjectEntity {
      * texture sprite a asociarle, gestionado por el assetManager
      * posicion vector de coordenadas x, y para inicializar la posición
      */
-    public EnemigoEntity(Stage stage){
+
+    public EnemigoEntity(int enemyType){
         // Debe conocer su stage, su textura y su sprite
 
-        this.stage = stage;
-        this.texture = GestorAssets.getInstance().getTexture("addShield.png");
-        this.sprite = new Sprite(this.texture);
-        this.hitbox = new Rectangle();
-        this.vivo = true;
+        enemyProperties = new EnemyType(enemyType);
+        texture = enemyProperties.texture;
+        sprite = enemyProperties.sprite;
+        spriteEscudo = enemyProperties.spriteEscudo;
+        hitbox = enemyProperties.hitbox;
+        spriteEscudo.setAlpha(0.7f);
+
+        puntuacion = enemyProperties.puntuacion;
+        cadenciaDisparo = enemyProperties.cadenciaDisparo;
+        tiempoSiguienteDisparo = enemyProperties.tiempoSiguienteDisparo;
+        vivo = enemyProperties.vivo;
+
+        maxVida = enemyProperties.maxVida;
+        vida = enemyProperties.vida;
+        maxEscudo = enemyProperties.maxEscudo;
+        escudo = enemyProperties.escudo;
+
+        dañoColision = enemyProperties.dañoColision ; //Daño que le hace la nave al jugador si colisionan
+        this.powerUp = powerUp;
+        probabilidadPowerUp = enemyProperties.probabilidadPowerUp;
 
         //Valores iniciales del Actor
         setBounds(sprite.getX(), sprite.getY(), sprite.getWidth(), sprite.getHeight());
         //setSize(Gdx.graphics.getWidth()/8, Gdx.graphics.getHeight()/8);
-        setSize(PIXELS_METRE, PIXELS_METRE);
-        this.hitbox.setSize(getWidth(), getHeight());
+        setSize(enemyProperties.sizeX * Constantes.resizeWidth, enemyProperties.sizeY * Constantes.resizeHeight);
+        spriteEscudo.setSize(this.getWidth(), this.getHeight());
 
         // Valores aleatorios
-        this.posX = pos.nextInt(Gdx.graphics.getWidth()) - getWidth(); // Posición X aleatoria
-        this.posY = Gdx.graphics.getHeight() + getHeight(); // Posición Y por encima de la pantalla
+
+        //System.out.print(Gdx.graphics.getWidth() - 2 * ((int) getWidth()) + "\n");
+        posX = pos.nextInt(Gdx.graphics.getWidth() - 2 * ((int) getWidth())) + getWidth(); // Posición X aleatoria
+        //posX = Gdx.graphics.getWidth()/2;
+        posY = Gdx.graphics.getHeight() + getHeight(); // Posición Y por encima de la pantalla
         setPosition(posX, posY);
-        this.hitbox.setPosition(posX, posY);
+        hitbox.set(getX() + getWidth() / 2, getY() + getHeight() / 2, getWidth() / 2);
+        hitbox.setPosition(posX, posY);
         //Fin valores iniciales del Actor
+
+        //Set downwards movement at a speed of 150 per second
+        movementPattern = enemyProperties.movementPattern;
     }
 
     /**
@@ -72,8 +103,13 @@ public class EnemigoEntity extends GameObjectEntity {
      */
     @Override
     public void act(float delta) {
-        setPosition(getX(), getY() - (100 * delta));
-        hitbox.setPosition(getX(), getY());
+        comprobarColisionJugador();
+        eliminarseOutOfBounds();
+
+        movementPattern.Move(this, delta);
+        spriteEscudo.setPosition(getX(), getY());
+        //MoveTo(getX(), getY() - (100 * delta));
+        generarDisparo(delta);
     }
 
     @Override
@@ -81,20 +117,52 @@ public class EnemigoEntity extends GameObjectEntity {
         // Esto marca los límites de los bordes verdes del renderdebug
         // Debe corresponderse al tamaño
         batch.draw(texture, getX(), getY(), getWidth(), getHeight());
+        spriteEscudo.draw(batch);
     }
 
     /**
      * TODO: Crear disparos (similar a la función en JugadorEntity)
      */
+    /**
+     * generarDisparo
+     * Este método genera un disparo de la nave cada delta tiempo
+     */
     protected void generarDisparo(float delta) {
-
+        tiempoSiguienteDisparo += delta;
+        if (tiempoSiguienteDisparo > cadenciaDisparo) {
+            Texture bulletTextura = GestorAssets.getInstance().getTexture("proyectilEnemigo.png");
+            com.navejuego.entidades.bullets.BulletEnemigo bullet = new com.navejuego.entidades.bullets.BulletEnemigo(bulletTextura, new Vector2(getX() + (getWidth() / 2), getY()));
+            bullet.setSize(10.0f, 10.0f);
+            bullet.setName("Bala Enemigo");
+            PantallaJuego.stage.addActor(bullet);
+            tiempoSiguienteDisparo = 0;
+        }
     }
 
     /**
-     * TODO: Recibir daño.
+     * Esta función procesa el daño que recibe el enemigo en función de su escudo y de
+     * su vida. Si se derriba, debe pasarle su puntuación a la nave del jugador y destruirse.
+     * @param dmg
+     * @param ignoraEscudo
      */
-    protected void recibirDmg(int dmg, boolean ignoraEscudo) {
+    public void recibirDmg(int dmg, boolean ignoraEscudo) {
+        if (ignoraEscudo || escudo <= 0) {
+            vida -= dmg;
+        } else {
+            int temp = dmg;
+            dmg -= escudo;
+            escudo -= temp;
+            if (escudo < 0)
+                escudo = 0;
+            if (dmg > 0)
+                vida -= dmg;
+            spriteEscudo.setAlpha(Math.min(this.escudo/this.maxEscudo, 0.7f));
+        }
 
+        if (vida <= 0) {
+            darPuntuacion();
+            destruirse();
+        }
     }
 
     public String getName(){
@@ -104,16 +172,64 @@ public class EnemigoEntity extends GameObjectEntity {
      * TODO: Desaparecer/eliminar enemigo.
      */
     public void destruirse() {
+        int num_aleatorio = (int) (Math.random() *100);
+        if (num_aleatorio <= probabilidadPowerUp) {
+            generarPowerUp();
+        }
+        animacionExplo();
+        PantallaJuego.jugador.addPuntos(50);
 
-        generarPowerUp();
+        if(Preferencias.getInstance().soundOn()){
+            GestorAssets.getInstance().getSound("explosion2.wav").play();
+        }
+
+
         this.remove();
-        Gdx.app.log("Enemy killed!", "");
+        //Gdx.app.log("Enemy killed!", "");
+    }
+
+    public void animacionExplo()
+    {
+        ArrayList<Texture> explosionTextura = new ArrayList<Texture>();
+        explosionTextura.add(GestorAssets.getInstance().getTexture("explo1.png"));
+        explosionTextura.add(GestorAssets.getInstance().getTexture("explo2.png"));
+        explosionTextura.add(GestorAssets.getInstance().getTexture("explo3.png"));
+        explosionTextura.add(GestorAssets.getInstance().getTexture("explo4.png"));
+        explosionTextura.add(GestorAssets.getInstance().getTexture("explo5.png"));
+        com.navejuego.Explosion explo = new com.navejuego.Explosion(explosionTextura, new Vector2(getX(),getY()),1.0f);
+        PantallaJuego.stage.addActor(explo);
+        if(Preferencias.getInstance().soundOn()){
+            GestorAssets.getInstance().getSound("explosion2.wav").play();
+        }
+        //GestorAssets.getInstance().getSound("explosion2.wav").play();
     }
 
     /**
-     * TODO: Comprueba una colisión con el jugador. Si se da, se auto-destruye y le causa daño.
+     * Si el enemigo se sale de la pantalla sin ser eliminado, se autodestruye
+     */
+    public void eliminarseOutOfBounds(){
+        if ((this.getY()+getHeight()) < 0){
+            this.remove();
+        }
+    }
+
+    /**
+     * Le pasa su puntuación al jugador para poder sumársela a su puntuación
+     */
+    public void darPuntuacion(){
+        PantallaJuego.jugador.getPuntuacion().incrementarPuntuacion(this.puntuacion);
+    }
+
+    /**
+     * Este método comprueba si ha colisionado con el jugador. De ser así, se autodestruye,
+     * causándole daño.
      */
     public void comprobarColisionJugador() {
+        if(this.getHitbox().overlaps(PantallaJuego.jugador.getHitbox())){
+            PantallaJuego.jugador.recibirDmg(this.dañoColision, false);
+            Gdx.app.log("HitColision! a jugador!", "");
+            this.destruirse();
+        }
 
     }
 
@@ -122,10 +238,52 @@ public class EnemigoEntity extends GameObjectEntity {
      */
     private void generarPowerUp() {
 
+        int s_powerup = (int) (Math.random() * 5);
+        Vector2 posicion = new Vector2(getX(), getY());
+
+        switch (s_powerup) {
+            case 0:
+                //Power up vida
+                Texture powerup1;
+                powerup1 = GestorAssets.getInstance().getTexture("powerup_vida.png");
+                com.navejuego.entidades.powerups.PowerUpVida pUp1 = new com.navejuego.entidades.powerups.PowerUpVida(powerup1, posicion);
+                PantallaJuego.stage.addActor(pUp1);
+                break;
+            case 1:
+                //Power up ASPD
+                Texture powerup2;
+                powerup2 = GestorAssets.getInstance().getTexture("addShield.png");
+                com.navejuego.entidades.powerups.PowerUpASPD pUp2 = new com.navejuego.entidades.powerups.PowerUpASPD(powerup2, posicion);
+                PantallaJuego.stage.addActor(pUp2);
+                break;
+            case 2:
+                //Power up Invulnerabilidad
+                Texture powerup3;
+                powerup3 = GestorAssets.getInstance().getTexture("powerup_vida.png");
+                com.navejuego.entidades.powerups.PowerUpInvulnerabilidad pUp3 = new com.navejuego.entidades.powerups.PowerUpInvulnerabilidad(powerup3, posicion);
+                PantallaJuego.stage.addActor(pUp3);
+                break;
+            //Power up Puntos
+            case 3:
+                Texture powerup4;
+                powerup4 = GestorAssets.getInstance().getTexture("addShield.png");
+                com.navejuego.entidades.powerups.PowerUpPuntos pUp4 = new com.navejuego.entidades.powerups.PowerUpPuntos(powerup4, posicion, 100);
+                PantallaJuego.stage.addActor(pUp4);
+                break;
+            //Power up Escudo
+            case 4:
+                Texture powerup5;
+                powerup5 = GestorAssets.getInstance().getTexture("powerup_vida.png");
+                com.navejuego.entidades.powerups.PowerUpEscudo pUp5 = new com.navejuego.entidades.powerups.PowerUpEscudo(powerup5, posicion);
+                PantallaJuego.stage.addActor(pUp5);
+                break;
+            default:
+                break;
+        }
     }
 
     @Override
-    public Rectangle getHitbox(){
+    public Circle getHitbox(){
         return this.hitbox;
     }
 }
