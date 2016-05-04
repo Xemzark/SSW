@@ -102,6 +102,10 @@ public class GestorAssets {
         manager.load("corazon.png", Texture.class);
         manager.load("2xShield.png", Texture.class);
         manager.load("addShield.png", Texture.class);
+        manager.load("vidabossbg.png", Texture.class);
+        manager.load("vidabossfg.png", Texture.class);
+
+
 
         /**
          * Power Ups

@@ -9,6 +9,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.navejuego.Constantes;
 import com.navejuego.GestorAssets;
+import com.navejuego.entidades.patrones.LinealMovement;
 import com.navejuego.entidades.patrones.MovementPattern;
 import com.navejuego.entidades.powerups.PowerUpEntity;
 import com.navejuego.pantallas.PantallaJuego;
@@ -29,6 +30,7 @@ public class BossEnemigo extends EnemigoEntity {
     private int patternIndex;
     private float segmentoVida;
     private float nextSegmentoVida;
+    private boolean starting = true;
 
 
     public BossEnemigo (int enemyType) {
@@ -38,14 +40,14 @@ public class BossEnemigo extends EnemigoEntity {
         //System.out.print("Boss Size: " + getHeight() + ", " + getWidth());
 
         posX = Gdx.graphics.getWidth() / 2 - getWidth() / 2; // Centra al boss en el eje de las X
-        posY = Gdx.graphics.getHeight() - getHeight() * 2; // Situa al boss en la parte superior de la pantalla
         setPosition(posX, posY);
         this.hitbox.setPosition(posX, posY);
+        this.vida = 2147483647;
 
         //Carga la succesion de patrones de movimiento del boss
         patternList = new ArrayList<MovementPattern>();
         patternList = enemyProperties.patternList;
-        movementPattern = patternList.get(0);
+        movementPattern = new LinealMovement(100,false);
         patternIndex = 1;
         segmentoVida = maxVida/patternList.size();
         nextSegmentoVida = maxVida - segmentoVida;
@@ -68,8 +70,18 @@ public class BossEnemigo extends EnemigoEntity {
         eliminarseOutOfBounds();
 
         movementPattern.Move(this, delta);
-        //MoveTo(getX(), getY() - (100 * delta));
-        generarDisparo(delta);
+
+        if (starting){ //Hace que baje el boss hasta cierta altura, siendo invulnerable, y entonces comienza su funcionamiento normal
+            if(getY() < Gdx.graphics.getHeight() - getHeight() * 2){
+                System.out.print("estoy aqui");
+                vida = maxVida;
+                movementPattern = patternList.get(0);
+                starting = false;
+            }
+        }
+        if(!starting) {
+            generarDisparo(delta);
+        }
     }
 
     @Override

@@ -84,7 +84,7 @@ public class EnemigoEntity extends GameObjectEntity {
         // Valores aleatorios
 
         //System.out.print(Gdx.graphics.getWidth() - 2 * ((int) getWidth()) + "\n");
-        posX = pos.nextInt(Gdx.graphics.getWidth() - 2 * ((int) getWidth())) + getWidth() + Constantes.lateralBarWidth; // Posición X aleatoria
+        posX = pos.nextInt(Gdx.graphics.getWidth() - 1 * ((int) getWidth())) + Constantes.lateralBarWidth; // Posición X aleatoria
         //posX = Gdx.graphics.getWidth()/2;
         posY = Gdx.graphics.getHeight() + getHeight(); // Posición Y por encima de la pantalla
         setPosition(posX, posY);

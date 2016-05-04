@@ -73,7 +73,7 @@ public class EnemyType {
              *
              */
 
-            case 1: //ENEMIGO DEMO
+            case 1: //enemigo morado 1 y sujeto de pruebas
                 texture = GestorAssets.getInstance().getTexture("alien1.png");
                 sprite = new Sprite(texture);
                 textureEscudo = GestorAssets.getInstance().getTexture("escudoEnemigo.png");
@@ -89,13 +89,13 @@ public class EnemyType {
                 escudo = maxEscudo;
                 dañoColision = ((int)vida/2); //Daño que le hace la nave al jugador si colisionan
                 probabilidadPowerUp = 10;
-                movementPattern =  new TargetMovement(200, Gdx.graphics.getWidth()/2, Gdx.graphics.getHeight()/2);
+                movementPattern =  new LinealMovement(150,false);
                 sizeX = 110.0f;
                 sizeY = 130.0f;
                 bulletMovement = new LinealMovement(150, false);
                 break;
 
-            case 2: //Kamikaze
+            case 2: //enemigo morado 2, Kamikaze
                 texture = GestorAssets.getInstance().getTexture("alien4.png");
                 sprite = new Sprite(texture);
                 textureEscudo = GestorAssets.getInstance().getTexture("escudoEnemigo.png");
@@ -117,7 +117,7 @@ public class EnemyType {
                 bulletMovement = null;
                 break;
 
-            case 3: //Tanque
+            case 3: //enemigo morado 3, Tanque
                 texture = GestorAssets.getInstance().getTexture("alien3.png");
                 sprite = new Sprite(texture);
                 textureEscudo = GestorAssets.getInstance().getTexture("escudoEnemigo.png");

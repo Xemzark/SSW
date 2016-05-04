@@ -85,7 +85,7 @@ public class LevelManager {
 
             case NIVEL_4:
 
-                enemySet = new int[] {13,14,15,16};
+                enemySet = new int[] {1,2,3,4};
                 waveAmount = 3;
 
                 for(int i =0; i < waveAmount; i++ ) {
