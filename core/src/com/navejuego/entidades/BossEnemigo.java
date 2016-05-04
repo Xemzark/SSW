@@ -9,6 +9,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.navejuego.Constantes;
 import com.navejuego.GestorAssets;
+import com.navejuego.Preferencias;
 import com.navejuego.entidades.patrones.LinealMovement;
 import com.navejuego.entidades.patrones.MovementPattern;
 import com.navejuego.entidades.powerups.PowerUpEntity;
@@ -146,6 +147,10 @@ public class BossEnemigo extends EnemigoEntity {
     }
 
     public void animacionExploChain(){
+
+        if(Preferencias.getInstance().soundOn()) {
+            GestorAssets.getInstance().getSound("explosion2.wav").play();
+        }
         ArrayList<Texture> explosionTextura = new ArrayList<Texture>();
         explosionTextura.add(GestorAssets.getInstance().getTexture("explo1.png"));
         explosionTextura.add(GestorAssets.getInstance().getTexture("explo2.png"));

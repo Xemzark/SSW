@@ -25,11 +25,13 @@ public class ExplosionChain extends Explosion {
         if (indiceTotal < times) {
             ttrans += delta;
             if (ttrans >= duracion) {
-                GestorAssets.getInstance().getSound("explosion2.wav").stop();
                 indiceTotal += 1 ;
                 indiceactual = 0;
                 ttrans = 0.0f;
-                GestorAssets.getInstance().getSound("explosion2.wav").play();
+                if(Preferencias.getInstance().soundOn()) {
+                    GestorAssets.getInstance().getSound("explosion2.wav").stop();
+                    GestorAssets.getInstance().getSound("explosion2.wav").play();
+                }
             } else if (duracionframe * (indiceactual + 1) <= ttrans) {
                 indiceactual += 1;
                 texture = listatextura.get(indiceactual);
