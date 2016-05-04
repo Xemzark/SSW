@@ -66,6 +66,13 @@ public class EnemyType {
     public EnemyType(int enemyType) {
 
         switch(enemyType){
+
+            /**
+             *
+             * FACCION MORADA
+             *
+             */
+
             case 1: //ENEMIGO DEMO
                 texture = GestorAssets.getInstance().getTexture("alien1.png");
                 sprite = new Sprite(texture);
@@ -131,8 +138,307 @@ public class EnemyType {
                 sizeY = 130.0f;
                 bulletMovement = null;
                 break;
+            case 4: //enemigo morado 4
+                texture = GestorAssets.getInstance().getTexture("alien4.png");
+                sprite = new Sprite(texture);
+                textureEscudo = GestorAssets.getInstance().getTexture("escudoNave.png");
+                spriteEscudo = new Sprite(textureEscudo);
+                hitbox = new Circle();
+                puntuacion = 200;
+                cadenciaDisparo = 1f;
+                tiempoSiguienteDisparo = 0f;
+                vivo = true;
+                maxVida = 10;
+                maxEscudo = 20;
+                vida = maxVida;
+                escudo = maxEscudo;
+                dañoColision = ((int)vida/2); //Daño que le hace la nave al jugador si colisionan
+                probabilidadPowerUp = 10;
+                movementPattern =  new TargetMovement(200, Gdx.graphics.getWidth()/2, Gdx.graphics.getHeight()/2);
+                sizeX = 110.0f;
+                sizeY = 130.0f;
+                bulletMovement = new LinealMovement(150, false);
+                break;
 
-            case 10: //BOSS DEMO
+            /**
+             *
+             * FACCION AZUL
+             *
+             */
+            case 5: //enemigo azul 1
+                texture = GestorAssets.getInstance().getTexture("blueship1.png");
+                sprite = new Sprite(texture);
+                textureEscudo = GestorAssets.getInstance().getTexture("escudoNave.png");
+                spriteEscudo = new Sprite(textureEscudo);
+                hitbox = new Circle();
+                puntuacion = 200;
+                cadenciaDisparo = 1f;
+                tiempoSiguienteDisparo = 0f;
+                vivo = true;
+                maxVida = 10;
+                maxEscudo = 20;
+                vida = maxVida;
+                escudo = maxEscudo;
+                dañoColision = ((int)vida/2); //Daño que le hace la nave al jugador si colisionan
+                probabilidadPowerUp = 10;
+                movementPattern =  new TargetMovement(200, Gdx.graphics.getWidth()/2, Gdx.graphics.getHeight()/2);
+                sizeX = 110.0f;
+                sizeY = 130.0f;
+                bulletMovement = new LinealMovement(150, false);
+                break;
+            case 6: //enemigo azul 2
+                texture = GestorAssets.getInstance().getTexture("blueship2.png");
+                sprite = new Sprite(texture);
+                textureEscudo = GestorAssets.getInstance().getTexture("escudoNave.png");
+                spriteEscudo = new Sprite(textureEscudo);
+                hitbox = new Circle();
+                puntuacion = 200;
+                cadenciaDisparo = 1f;
+                tiempoSiguienteDisparo = 0f;
+                vivo = true;
+                maxVida = 10;
+                maxEscudo = 20;
+                vida = maxVida;
+                escudo = maxEscudo;
+                dañoColision = ((int)vida/2); //Daño que le hace la nave al jugador si colisionan
+                probabilidadPowerUp = 10;
+                movementPattern =  new TargetMovement(200, Gdx.graphics.getWidth()/2, Gdx.graphics.getHeight()/2);
+                sizeX = 110.0f;
+                sizeY = 130.0f;
+                bulletMovement = new LinealMovement(150, false);
+                break;
+            case 7: //enemigo azul 3
+                texture = GestorAssets.getInstance().getTexture("blueship3.png");
+                sprite = new Sprite(texture);
+                textureEscudo = GestorAssets.getInstance().getTexture("escudoNave.png");
+                spriteEscudo = new Sprite(textureEscudo);
+                hitbox = new Circle();
+                puntuacion = 200;
+                cadenciaDisparo = 1f;
+                tiempoSiguienteDisparo = 0f;
+                vivo = true;
+                maxVida = 10;
+                maxEscudo = 20;
+                vida = maxVida;
+                escudo = maxEscudo;
+                dañoColision = ((int)vida/2); //Daño que le hace la nave al jugador si colisionan
+                probabilidadPowerUp = 10;
+                movementPattern =  new TargetMovement(200, Gdx.graphics.getWidth()/2, Gdx.graphics.getHeight()/2);
+                sizeX = 110.0f;
+                sizeY = 130.0f;
+                bulletMovement = new LinealMovement(150, false);
+                break;
+            case 8: //enemigo azul 4
+                texture = GestorAssets.getInstance().getTexture("blueship4.png");
+                sprite = new Sprite(texture);
+                textureEscudo = GestorAssets.getInstance().getTexture("escudoNave.png");
+                spriteEscudo = new Sprite(textureEscudo);
+                hitbox = new Circle();
+                puntuacion = 200;
+                cadenciaDisparo = 1f;
+                tiempoSiguienteDisparo = 0f;
+                vivo = true;
+                maxVida = 10;
+                maxEscudo = 20;
+                vida = maxVida;
+                escudo = maxEscudo;
+                dañoColision = ((int)vida/2); //Daño que le hace la nave al jugador si colisionan
+                probabilidadPowerUp = 10;
+                movementPattern =  new TargetMovement(200, Gdx.graphics.getWidth()/2, Gdx.graphics.getHeight()/2);
+                sizeX = 110.0f;
+                sizeY = 130.0f;
+                bulletMovement = new LinealMovement(150, false);
+                break;
+
+            /**
+             *
+             *  FACCION NARANJA
+             *
+             */
+
+            case 9: //enemigo naranja 1
+                texture = GestorAssets.getInstance().getTexture("orangeship.png");
+                sprite = new Sprite(texture);
+                textureEscudo = GestorAssets.getInstance().getTexture("escudoNave.png");
+                spriteEscudo = new Sprite(textureEscudo);
+                hitbox = new Circle();
+                puntuacion = 200;
+                cadenciaDisparo = 1f;
+                tiempoSiguienteDisparo = 0f;
+                vivo = true;
+                maxVida = 10;
+                maxEscudo = 20;
+                vida = maxVida;
+                escudo = maxEscudo;
+                dañoColision = ((int)vida/2); //Daño que le hace la nave al jugador si colisionan
+                probabilidadPowerUp = 10;
+                movementPattern =  new TargetMovement(200, Gdx.graphics.getWidth()/2, Gdx.graphics.getHeight()/2);
+                sizeX = 110.0f;
+                sizeY = 130.0f;
+                bulletMovement = new LinealMovement(150, false);
+                break;
+
+            case 10: //enemigo naranja 2
+                texture = GestorAssets.getInstance().getTexture("orangeship2.png");
+                sprite = new Sprite(texture);
+                textureEscudo = GestorAssets.getInstance().getTexture("escudoNave.png");
+                spriteEscudo = new Sprite(textureEscudo);
+                hitbox = new Circle();
+                puntuacion = 200;
+                cadenciaDisparo = 1f;
+                tiempoSiguienteDisparo = 0f;
+                vivo = true;
+                maxVida = 10;
+                maxEscudo = 20;
+                vida = maxVida;
+                escudo = maxEscudo;
+                dañoColision = ((int)vida/2); //Daño que le hace la nave al jugador si colisionan
+                probabilidadPowerUp = 10;
+                movementPattern =  new TargetMovement(200, Gdx.graphics.getWidth()/2, Gdx.graphics.getHeight()/2);
+                sizeX = 110.0f;
+                sizeY = 130.0f;
+                bulletMovement = new LinealMovement(150, false);
+                break;
+
+            case 11: //enemigo naranja 3
+                texture = GestorAssets.getInstance().getTexture("orangeship3.png");
+                sprite = new Sprite(texture);
+                textureEscudo = GestorAssets.getInstance().getTexture("escudoNave.png");
+                spriteEscudo = new Sprite(textureEscudo);
+                hitbox = new Circle();
+                puntuacion = 200;
+                cadenciaDisparo = 1f;
+                tiempoSiguienteDisparo = 0f;
+                vivo = true;
+                maxVida = 10;
+                maxEscudo = 20;
+                vida = maxVida;
+                escudo = maxEscudo;
+                dañoColision = ((int)vida/2); //Daño que le hace la nave al jugador si colisionan
+                probabilidadPowerUp = 10;
+                movementPattern =  new TargetMovement(200, Gdx.graphics.getWidth()/2, Gdx.graphics.getHeight()/2);
+                sizeX = 110.0f;
+                sizeY = 130.0f;
+                bulletMovement = new LinealMovement(150, false);
+                break;
+
+            case 12: //enemigo naranja 4
+                texture = GestorAssets.getInstance().getTexture("smallorange.png");
+                sprite = new Sprite(texture);
+                textureEscudo = GestorAssets.getInstance().getTexture("escudoNave.png");
+                spriteEscudo = new Sprite(textureEscudo);
+                hitbox = new Circle();
+                puntuacion = 200;
+                cadenciaDisparo = 1f;
+                tiempoSiguienteDisparo = 0f;
+                vivo = true;
+                maxVida = 10;
+                maxEscudo = 20;
+                vida = maxVida;
+                escudo = maxEscudo;
+                dañoColision = ((int)vida/2); //Daño que le hace la nave al jugador si colisionan
+                probabilidadPowerUp = 10;
+                movementPattern =  new TargetMovement(200, Gdx.graphics.getWidth()/2, Gdx.graphics.getHeight()/2);
+                sizeX = 110.0f;
+                sizeY = 130.0f;
+                bulletMovement = new LinealMovement(150, false);
+                break;
+
+            /**
+             *
+             *  FACCION VERDE
+             *
+             */
+
+            case 13: //enemigo verde 1
+                texture = GestorAssets.getInstance().getTexture("greenship1.png");
+                sprite = new Sprite(texture);
+                textureEscudo = GestorAssets.getInstance().getTexture("escudoNave.png");
+                spriteEscudo = new Sprite(textureEscudo);
+                hitbox = new Circle();
+                puntuacion = 200;
+                cadenciaDisparo = 1f;
+                tiempoSiguienteDisparo = 0f;
+                vivo = true;
+                maxVida = 10;
+                maxEscudo = 20;
+                vida = maxVida;
+                escudo = maxEscudo;
+                dañoColision = ((int)vida/2); //Daño que le hace la nave al jugador si colisionan
+                probabilidadPowerUp = 10;
+                movementPattern =  new TargetMovement(200, Gdx.graphics.getWidth()/2, Gdx.graphics.getHeight()/2);
+                sizeX = 110.0f;
+                sizeY = 130.0f;
+                bulletMovement = new LinealMovement(150, false);
+                break;
+
+            case 14: //enemigo verde 2
+                texture = GestorAssets.getInstance().getTexture("greenship2.png");
+                sprite = new Sprite(texture);
+                textureEscudo = GestorAssets.getInstance().getTexture("escudoNave.png");
+                spriteEscudo = new Sprite(textureEscudo);
+                hitbox = new Circle();
+                puntuacion = 200;
+                cadenciaDisparo = 1f;
+                tiempoSiguienteDisparo = 0f;
+                vivo = true;
+                maxVida = 10;
+                maxEscudo = 20;
+                vida = maxVida;
+                escudo = maxEscudo;
+                dañoColision = ((int)vida/2); //Daño que le hace la nave al jugador si colisionan
+                probabilidadPowerUp = 10;
+                movementPattern =  new TargetMovement(200, Gdx.graphics.getWidth()/2, Gdx.graphics.getHeight()/2);
+                sizeX = 110.0f;
+                sizeY = 130.0f;
+                bulletMovement = new LinealMovement(150, false);
+                break;
+
+            case 15: //enemigo verde 3
+                texture = GestorAssets.getInstance().getTexture("greenship3.png");
+                sprite = new Sprite(texture);
+                textureEscudo = GestorAssets.getInstance().getTexture("escudoNave.png");
+                spriteEscudo = new Sprite(textureEscudo);
+                hitbox = new Circle();
+                puntuacion = 200;
+                cadenciaDisparo = 1f;
+                tiempoSiguienteDisparo = 0f;
+                vivo = true;
+                maxVida = 10;
+                maxEscudo = 20;
+                vida = maxVida;
+                escudo = maxEscudo;
+                dañoColision = ((int)vida/2); //Daño que le hace la nave al jugador si colisionan
+                probabilidadPowerUp = 10;
+                movementPattern =  new TargetMovement(200, Gdx.graphics.getWidth()/2, Gdx.graphics.getHeight()/2);
+                sizeX = 110.0f;
+                sizeY = 130.0f;
+                bulletMovement = new LinealMovement(150, false);
+                break;
+
+            case 1: //enemigo verde 1
+                texture = GestorAssets.getInstance().getTexture("greenship.png");
+                sprite = new Sprite(texture);
+                textureEscudo = GestorAssets.getInstance().getTexture("escudoNave.png");
+                spriteEscudo = new Sprite(textureEscudo);
+                hitbox = new Circle();
+                puntuacion = 200;
+                cadenciaDisparo = 1f;
+                tiempoSiguienteDisparo = 0f;
+                vivo = true;
+                maxVida = 10;
+                maxEscudo = 20;
+                vida = maxVida;
+                escudo = maxEscudo;
+                dañoColision = ((int)vida/2); //Daño que le hace la nave al jugador si colisionan
+                probabilidadPowerUp = 10;
+                movementPattern =  new TargetMovement(200, Gdx.graphics.getWidth()/2, Gdx.graphics.getHeight()/2);
+                sizeX = 110.0f;
+                sizeY = 130.0f;
+                bulletMovement = new LinealMovement(150, false);
+                break;
+
+            case 20: //BOSS DEMO
                 texture = GestorAssets.getInstance().getTexture("goku.png");
                 sprite = new Sprite(texture);
                 textureEscudo = GestorAssets.getInstance().getTexture("escudoNave.png");

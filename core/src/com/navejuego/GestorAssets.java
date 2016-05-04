@@ -53,6 +53,18 @@ public class GestorAssets {
         manager.load("alien2.png", Texture.class);
         manager.load("alien3.png", Texture.class);
         manager.load("alien4.png", Texture.class);
+        manager.load("orangeship.png", Texture.class);
+        manager.load("orangeship2.png", Texture.class);
+        manager.load("orangeship3.png", Texture.class);
+        manager.load("smallorange.png", Texture.class);
+        manager.load("greenship1.png", Texture.class);
+        manager.load("greenship2.png", Texture.class);
+        manager.load("greenship3.png", Texture.class);
+        manager.load("greenship4.png", Texture.class);
+        manager.load("blueship1.png", Texture.class);
+        manager.load("blueship2.png", Texture.class);
+        manager.load("blueship3.png", Texture.class);
+        manager.load("blueship4.png", Texture.class);
 
 
         /**
