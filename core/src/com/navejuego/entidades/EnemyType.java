@@ -417,7 +417,7 @@ public class EnemyType {
                 break;
 
             case 16: //enemigo verde 1
-                texture = GestorAssets.getInstance().getTexture("greenship.png");
+                texture = GestorAssets.getInstance().getTexture("greenship1.png");
                 sprite = new Sprite(texture);
                 textureEscudo = GestorAssets.getInstance().getTexture("escudoNave.png");
                 spriteEscudo = new Sprite(textureEscudo);
