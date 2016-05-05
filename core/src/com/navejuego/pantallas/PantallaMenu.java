@@ -45,24 +45,6 @@ public class PantallaMenu extends Pantalla {
 
     public PantallaMenu() {
 
-        Gdx.app.log("\n", "");
-
-        //prubas realizadas para guardar partida
-        PartidaGuardada.getInstance().fillPutuaciones();
-
-
-        //Gdx.app.log("\n Puntuacion 0, 0: " + String.valueOf(PartidaGuardada.getInstance().getPuntuacion(0, 0)), "");
-        //Pruebas puntuaciones
-        PartidaGuardada.getInstance().printPuntuaciones();
-        PartidaGuardada.getInstance().setPuntucion(1, 1000000);
-        Gdx.app.log("\n", "");
-        Gdx.app.log("\n", "");
-        PartidaGuardada.getInstance().printPuntuaciones();
-        Gdx.app.log("\n", "");
-        Gdx.app.log(String.valueOf(PartidaGuardada.getInstance().getPuntuacion(1,0)), "");
-
-
-
         buttonsAtlas = new TextureAtlas("otherskin/button.pack"); //**button atlas image **//
         buttonSkin = new Skin();
         buttonSkin.addRegions(buttonsAtlas); //** skins for on and off **//
@@ -135,7 +117,7 @@ public class PantallaMenu extends Pantalla {
             public void changed(ChangeListener.ChangeEvent event, Actor actor) {
                 //System.out.println("Clicked! Is checked: " + button.isChecked());
                 jugar.setText("Starting new game");
-                ScreenManager.getInstance().showScreen(ScreenEnum.GAME);
+                ScreenManager.getInstance().showScreen(ScreenEnum.NIVELES);
 
             }
         });

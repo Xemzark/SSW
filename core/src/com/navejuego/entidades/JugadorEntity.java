@@ -230,11 +230,15 @@ public class JugadorEntity extends GameObjectEntity {
 
     public void updateUI(){
         barravida.Update(vida/maxVida);
-        barraescudo.Update(escudo/maxEscudo);
+        barraescudo.Update(escudo / maxEscudo);
     }
 
-    public com.navejuego.entidades.ui.Puntuacion getPuntuacion() {
+    public Puntuacion getPuntuacion() {
         return puntuacion;
+    }
+
+    public Puntuacion getPuntuacionInt() {
+        return getPuntuacionInt();
     }
 
     /**

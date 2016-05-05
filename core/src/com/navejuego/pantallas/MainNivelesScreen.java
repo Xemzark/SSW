@@ -15,7 +15,10 @@ import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton.TextButtonStyle;
 
+import com.navejuego.Constantes;
 import com.navejuego.GestorAssets;
+import com.navejuego.PartidaGuardada;
+import com.navejuego.entidades.LevelManager;
 import com.navejuego.pantallas.Pantalla;
 
 import java.awt.ScrollPane;
@@ -116,16 +119,21 @@ public class MainNivelesScreen extends Pantalla {
             public void changed(ChangeListener.ChangeEvent event, Actor actor) {
                 //System.out.println("Clicked! Is checked: " + button.isChecked());
 
-                ScreenManager.getInstance().showScreen(ScreenEnum.GAME);
-
+                    Constantes.selectedLevel = LevelManager.Nivel.NIVEL_1;
+                    ScreenManager.getInstance().showScreen(ScreenEnum.GAME);
             }
         });
 
         button2.addListener(new ChangeListener() {
             public void changed(ChangeListener.ChangeEvent event, Actor actor) {
                 //System.out.println("Clicked! Is checked: " + button.isChecked());
+                if(PartidaGuardada.getInstance().getNivelDesbloqueado() >1){
+                    Constantes.selectedLevel = LevelManager.Nivel.NIVEL_2;
+                    ScreenManager.getInstance().showScreen(ScreenEnum.GAME);
+                }else{
+                    System.out.println("Nivel 2 no desbloqueado");
+                }
 
-                ScreenManager.getInstance().showScreen(ScreenEnum.GAME);
 
             }
         });
@@ -133,8 +141,13 @@ public class MainNivelesScreen extends Pantalla {
         button3.addListener(new ChangeListener() {
             public void changed(ChangeListener.ChangeEvent event, Actor actor) {
                 //System.out.println("Clicked! Is checked: " + button.isChecked());
+                if(PartidaGuardada.getInstance().getNivelDesbloqueado() >2){
+                    Constantes.selectedLevel = LevelManager.Nivel.NIVEL_3;
+                    ScreenManager.getInstance().showScreen(ScreenEnum.GAME);
+                }else{
+                    System.out.println("Nivel 3 no desbloqueado");
+                }
 
-                ScreenManager.getInstance().showScreen(ScreenEnum.GAME);
 
             }
         });
@@ -142,8 +155,13 @@ public class MainNivelesScreen extends Pantalla {
         button4.addListener(new ChangeListener() {
             public void changed(ChangeListener.ChangeEvent event, Actor actor) {
                 //System.out.println("Clicked! Is checked: " + button.isChecked());
+                if(PartidaGuardada.getInstance().getNivelDesbloqueado() >3){
+                    Constantes.selectedLevel = LevelManager.Nivel.NIVEL_4;
+                    ScreenManager.getInstance().showScreen(ScreenEnum.GAME);
+                }else{
+                    System.out.println("Nivel 4 no desbloqueado");
+                }
 
-                ScreenManager.getInstance().showScreen(ScreenEnum.GAME);
 
             }
         });

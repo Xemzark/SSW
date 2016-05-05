@@ -14,6 +14,8 @@ import com.navejuego.entidades.patrones.LinealMovement;
 import com.navejuego.entidades.patrones.MovementPattern;
 import com.navejuego.entidades.powerups.PowerUpEntity;
 import com.navejuego.pantallas.PantallaJuego;
+import com.navejuego.pantallas.ScreenEnum;
+import com.navejuego.pantallas.ScreenManager;
 
 import java.util.ArrayList;
 
@@ -168,6 +170,9 @@ public class BossEnemigo extends EnemigoEntity {
 
         this.remove();
         Gdx.app.log("Boss defeated!", "");
+        Constantes.lastScore = Integer.parseInt(PantallaJuego.jugador.getPuntuacion().getPuntuacion());
+        System.out.println("Score final: " + Constantes.lastScore);
+        ScreenManager.getInstance().showScreen(ScreenEnum.VICTORY);
     }
 
 

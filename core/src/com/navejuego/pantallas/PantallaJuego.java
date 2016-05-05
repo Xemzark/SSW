@@ -1,21 +1,16 @@
 package com.navejuego.pantallas;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.navejuego.Main;
-import com.navejuego.entidades.EnemigoEntity;
+import com.navejuego.Constantes;
 import com.navejuego.entidades.JugadorEntity;
 import com.navejuego.GestorAssets;
 import com.navejuego.entidades.LevelManager;
-import com.navejuego.entidades.Wave;
-import com.navejuego.entidades.WaveManager;
 import com.navejuego.Preferencias;
 
 import java.util.ArrayList;
@@ -56,36 +51,15 @@ public class PantallaJuego extends Pantalla {
 
         // Se inicializa el stage con un ViewPort para adaptar la pantalla a los márgenes del dispositivo
         this.stage = new Stage(new FitViewport(Gdx.graphics.getWidth(), Gdx.graphics.getHeight())); //fitviewport adapta la pantalla. tamaño y lo otro lo pone a negro
-
         this.acumulableTiempo = 0.0f;
         this.enemigoSi = true;
-
-        //TODO: Cuando se terminen las Waves, reemplazar estos null por lo que corresponda.
-        /*ArrayList<Wave> waveArray = new ArrayList<Wave>();
-        waveArray.add(new Wave(null, 5, 1000));
-        waveArray.add(new Wave(null, 2, 3000));
-        waves = new WaveManager(waveArray, null, true);*/
-
-        this.levelManager = new LevelManager(LevelManager.Nivel.NIVEL_4);
-
-        //para desabilitar musica
-
-        Preferencias.getInstance().setMusic(true);
-        Preferencias.getInstance().setSound(true);
-        Preferencias.getInstance().setVibration(true);
-        Preferencias.getInstance().savePreferences();
+        this.levelManager = new LevelManager(Constantes.selectedLevel);
 
         //comprobamos si la musica esta habilitada
         if(Preferencias.getInstance().musicOn()){
             this.levelManager.getMusic().setLooping(true);
             this.levelManager.getMusic().play();
         }
-
-
-        //this.music =  GestorAssets.getInstance().getMusic("SpaceLoungeLoop.wav");
-       // this.music.setLooping(true);
-        //this.music.play();
-
     }
 
     @Override

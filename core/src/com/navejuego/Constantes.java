@@ -1,6 +1,7 @@
 package com.navejuego;
 
 import com.badlogic.gdx.Gdx;
+import com.navejuego.entidades.LevelManager;
 
 /**
  * Created by Andrés on 03/04/2016.
@@ -16,6 +17,9 @@ public class Constantes {
 
     public static float resizeWidth;
     public static float resizeHeight;
+
+    public static LevelManager.Nivel selectedLevel;
+    public static int lastScore = 0;
 
     public static void CalculateScreenConstants() {
         resizeWidth = Gdx.graphics.getWidth() / logicalWidth;
