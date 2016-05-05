@@ -8,6 +8,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.navejuego.Constantes;
+import com.navejuego.PartidaGuardada;
 import com.navejuego.entidades.JugadorEntity;
 import com.navejuego.GestorAssets;
 import com.navejuego.entidades.LevelManager;
@@ -79,9 +80,9 @@ public class PantallaJuego extends Pantalla {
         //background = GestorAssets.getInstance().getTexture("background_1.png");
 
 
-        Texture naveTextura = GestorAssets.getInstance().getTexture("nave.png");
+        //Texture naveTextura = GestorAssets.getInstance().getTexture("nave.png");
 
-        jugador = new JugadorEntity(naveTextura, new Vector2(Gdx.graphics.getWidth()/2, Gdx.graphics.getHeight()/2));
+        jugador = new JugadorEntity(new Vector2(Gdx.graphics.getWidth()/2, Gdx.graphics.getHeight()/2), PartidaGuardada.getInstance().getNaveSeleccionada());
 
         /*
          * Se de la la propiedad al stage de procesar inputs. El stage estará escuchando eventos de

@@ -7,6 +7,7 @@ import com.badlogic.gdx.math.Circle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.navejuego.Constantes;
+import com.navejuego.GestorAssets;
 import com.navejuego.entidades.GameObjectEntity;
 import com.navejuego.pantallas.PantallaJuego;
 
@@ -57,6 +58,7 @@ public abstract class PowerUpEntity extends GameObjectEntity {
     public void comprobarColisionJugador() {
         if (PantallaJuego.jugador.getHitbox().overlaps(this.getHitbox())){
             this.aplicarEfectosSobreJugador();
+            GestorAssets.getInstance().getSound("powerup.wav").play();
             this.destruirse();
         }
     }

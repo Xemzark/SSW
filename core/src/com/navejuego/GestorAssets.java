@@ -41,6 +41,10 @@ public class GestorAssets {
          */
         manager = new AssetManager();
         manager.load("nave.png", Texture.class);
+        manager.load("medfrighter.png", Texture.class);
+        manager.load("ship3.png", Texture.class);
+        manager.load("destroyer.png", Texture.class);
+
         manager.load("enemigo.png", Texture.class);
         manager.load("alien.png", Texture.class);
         manager.load("bullet.png", Texture.class);
@@ -130,6 +134,7 @@ public class GestorAssets {
         //Sonidos gratis
         //http://soundbible.com/tags-explosion.html
         manager.load("explosion.wav", Sound.class);
+        manager.load("powerup.wav", Sound.class);
         manager.load("explosion2.wav", Sound.class);
 
 

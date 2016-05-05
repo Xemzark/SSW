@@ -51,17 +51,23 @@ public class JugadorEntity extends GameObjectEntity {
     private Barra barraescudo;
     private Puntuacion puntuacion;
     private Sprite spriteEscudo;
+    private JugadorType jugadorProperties;
 
 
     /**
      * Constructor
      * Esta clase recibe una textura a asociarle y un vector de posición.
-     * @param texture sprite a asociarle, gestionado por el assetManager
      * @param posicion vector de coordenadas x, y para inicializar la posición
      */
-    public JugadorEntity(Texture texture, Vector2 posicion){
-        this.texture = texture;
+    public JugadorEntity(Vector2 posicion, int jtype){
+
+        this.jugadorProperties = new JugadorType(jtype);
+
+        this.texture = this.jugadorProperties.textura;
+
+
         this.sprite = new Sprite(this.texture);
+        this.sprite.setSize((float)Gdx.app.getGraphics().getWidth()*0.2f,Gdx.app.getGraphics().getWidth()*0.2f);
         this.hitbox = new Circle();
 
         this.ataqueEspecial = new AtaqueEspecial();
@@ -69,15 +75,15 @@ public class JugadorEntity extends GameObjectEntity {
 
         this.invulnerabilidad = false;
         this.puntuacion = new com.navejuego.entidades.ui.Puntuacion();
-        this.maxVida = 100;
-        this.maxEscudo = 100;
+        this.maxVida = jugadorProperties.maxVida;
+        this.maxEscudo = jugadorProperties.maxEscudo;
         this.vida = maxVida;
         this.escudo = maxEscudo;
-        this.vida = 100;
-        this.escudo = 100;
+        this.vida = jugadorProperties.vida;
+        this.escudo = jugadorProperties.escudo;
 
         // Sprite animación escudo
-        this.spriteEscudo = new Sprite(GestorAssets.getInstance().getTexture("escudoNave.png"));
+        this.spriteEscudo = new Sprite(jugadorProperties.texturaEscudo);
         spriteEscudo.setAlpha(0.7f);
         //
 
@@ -97,7 +103,7 @@ public class JugadorEntity extends GameObjectEntity {
         PantallaJuego.stage.addActor(barraescudo);
 
         this.tiempoSiguienteDisparo = 0;
-        this.cadenciaDisparo = 0.4f;
+        this.cadenciaDisparo = jugadorProperties.cadenciaDisparo;
 
         //Valores iniciales del Actor
         setBounds(sprite.getX(), sprite.getY(), sprite.getWidth(), sprite.getHeight());

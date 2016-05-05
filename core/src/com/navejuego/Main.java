@@ -31,7 +31,7 @@ public class Main extends Game {
 			PartidaGuardada.getInstance().setFirstime(false);
 			PartidaGuardada.getInstance().setNivelDesbloqueado(0);
 			PartidaGuardada.getInstance().setNaveDesbloqueada(0);
-			PartidaGuardada.getInstance().setNaveSeleccionada(0);
+			PartidaGuardada.getInstance().setNaveSeleccionada(2);
 			Preferencias.getInstance().setMusic(true);
 			Preferencias.getInstance().setSound(true);
 			Preferencias.getInstance().setVibration(true);
