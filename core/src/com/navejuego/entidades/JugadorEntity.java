@@ -277,6 +277,7 @@ public class JugadorEntity extends GameObjectEntity {
         hitbox.setPosition(-100, -100);
         //TODO: Animación de destrucción de nave
         //remove();
+        Constantes.lastScore = Integer.parseInt(this.getPuntuacion().getPuntuacion());
         ScreenManager.getInstance().showScreen(ScreenEnum.GAME_OVER);
     }
 

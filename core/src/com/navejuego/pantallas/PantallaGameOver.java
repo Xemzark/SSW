@@ -12,7 +12,9 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.viewport.FitViewport;
+import com.navejuego.Constantes;
 import com.navejuego.GestorAssets;
+import com.navejuego.PartidaGuardada;
 
 import java.awt.Image;
 
@@ -35,9 +37,39 @@ private BitmapFont font;
     private TextButton retry, volvermenu;
     private TextureAtlas buttonsAtlas;
     private Skin buttonSkin;
-
+    private int score = 0;
+    private int bestScore;
 
     public PantallaGameOver() {
+
+        int nivel = 0;
+        switch(Constantes.selectedLevel){
+            case NIVEL_1 :
+                //Statements
+                nivel = 0;
+                break; //optional
+            case NIVEL_2 :
+                //Statements
+                nivel = 1;
+                break; //optional
+            case NIVEL_3 :
+                //Statements
+                nivel = 2;
+                break; //optional
+            case NIVEL_4 :
+                //Statements
+                nivel = 3;
+                break; //optional
+            //You can have any number of case statements.
+            default : //Optional
+                //Statements
+        }
+
+        this.score = Constantes.lastScore;
+        this.bestScore = PartidaGuardada.getInstance().getPuntuacion(nivel,0);
+        //PartidaGuardada.getInstance().setPuntucion(nivel,this.score);
+        //PartidaGuardada.getInstance().saveGameData();
+
 
         buttonsAtlas = new TextureAtlas("otherskin/button.pack"); //**button atlas image **//
         buttonSkin = new Skin();
@@ -112,8 +144,8 @@ private BitmapFont font;
         batchGameOver.begin();
 
         batchGameOver.draw(backgroundGameOver, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-        font.draw(batchGameOver, "100", (Gdx.graphics.getWidth() / 2 - Gdx.graphics.getWidth() / 14), Gdx.graphics.getHeight() / 2 + Gdx.graphics.getHeight() / 29);
-        font.draw(batchGameOver, "12034", (Gdx.graphics.getWidth() / 2 - Gdx.graphics.getWidth()/8), Gdx.graphics.getHeight()/2 -Gdx.graphics.getHeight() / 9);
+        font.draw(batchGameOver, String.valueOf(this.score), (Gdx.graphics.getWidth() / 2 - Gdx.graphics.getWidth() / 14), Gdx.graphics.getHeight() / 2 + Gdx.graphics.getHeight() / 29);
+        font.draw(batchGameOver, String.valueOf(this.bestScore), (Gdx.graphics.getWidth() / 2 - Gdx.graphics.getWidth()/8), Gdx.graphics.getHeight()/2 -Gdx.graphics.getHeight() / 9);
 
 
 
