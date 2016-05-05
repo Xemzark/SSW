@@ -130,6 +130,7 @@ public class GestorAssets {
         manager.load("SpaceCube.wav", Music.class);
         manager.load("SpaceTrip.mp3", Music.class);
         manager.load("SpaceGate.mp3", Music.class);
+        manager.load("Starlight.wav", Music.class);
 
         //Sonidos gratis
         //http://soundbible.com/tags-explosion.html

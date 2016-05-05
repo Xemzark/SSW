@@ -17,6 +17,7 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.navejuego.GestorAssets;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton.TextButtonStyle;
 import com.navejuego.PartidaGuardada;
+import com.navejuego.Preferencias;
 
 import java.util.Arrays;
 
@@ -44,6 +45,11 @@ public class PantallaMenu extends Pantalla {
 
 
     public PantallaMenu() {
+
+        if(Preferencias.getInstance().musicOn()){
+            GestorAssets.getInstance().getMusic("Starlight.wav").setLooping(true);
+            GestorAssets.getInstance().getMusic("Starlight.wav").play();
+        }
 
         buttonsAtlas = new TextureAtlas("otherskin/button.pack"); //**button atlas image **//
         buttonSkin = new Skin();
