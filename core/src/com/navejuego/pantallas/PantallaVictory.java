@@ -12,7 +12,10 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.viewport.FitViewport;
+import com.navejuego.Constantes;
 import com.navejuego.GestorAssets;
+import com.navejuego.PartidaGuardada;
+import com.navejuego.entidades.LevelManager;
 
 import java.awt.Image;
 
@@ -21,23 +24,46 @@ import java.awt.Image;
  */
 public class PantallaVictory extends Pantalla{
 
-
     private Stage victoryStage;
-
-
     private SpriteBatch batchVictory;
-
-
     private BitmapFont font;
-
     private Texture backgroundVictory;
-
     private TextButton Menu, volvermenu;
     private TextureAtlas buttonsAtlas;
     private Skin buttonSkin;
-
+    private int bestScore;
+    private int score;
 
     public PantallaVictory() {
+
+        int nivel = 0;
+        switch(Constantes.selectedLevel){
+            case NIVEL_1 :
+                //Statements
+                nivel = 0;
+                break; //optional
+            case NIVEL_2 :
+                //Statements
+                nivel = 1;
+                break; //optional
+            case NIVEL_3 :
+                //Statements
+                nivel = 2;
+                break; //optional
+            case NIVEL_4 :
+                //Statements
+                nivel = 3;
+                break; //optional
+            //You can have any number of case statements.
+            default : //Optional
+                //Statements
+        }
+
+        this.score = Constantes.lastScore;
+        this.bestScore = PartidaGuardada.getInstance().getPuntuacion(nivel,0);
+        PartidaGuardada.getInstance().setPuntucion(nivel,this.score);
+        PartidaGuardada.getInstance().saveGameData();
+        PartidaGuardada.getInstance().printPuntuaciones();
 
         buttonsAtlas = new TextureAtlas("otherskin/button.pack"); //**button atlas image **//
         buttonSkin = new Skin();
@@ -65,9 +91,6 @@ public class PantallaVictory extends Pantalla{
 
         volvermenu = new TextButton("Menu", style);
 
-
-
-
         volvermenu.setSize(Gdx.graphics.getWidth() / 2, Gdx.graphics.getHeight() / 8);
         volvermenu.setPosition(Gdx.graphics.getWidth() / 2 - volvermenu.getWidth()/2, Gdx.graphics.getHeight() / 3 - Gdx.graphics.getHeight() / 4);
         volvermenu.getLabel().setFontScale(0.5f * (Gdx.graphics.getWidth() / 640.0f));
@@ -80,20 +103,9 @@ public class PantallaVictory extends Pantalla{
 
             }
         });
-
-
-
-
-
         victoryStage.addActor(volvermenu);
 
-
-
-
-
-
     }
-
 
     public void render(float delta) {
         //gameoverStage.setDebugAll(true);
@@ -104,8 +116,8 @@ public class PantallaVictory extends Pantalla{
         batchVictory.begin();
 
         batchVictory.draw(backgroundVictory, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-        font.draw(batchVictory, "100", (Gdx.graphics.getWidth() / 2 - Gdx.graphics.getWidth() / 14), Gdx.graphics.getHeight() / 2 + Gdx.graphics.getHeight() / 11);
-        font.draw(batchVictory, "12034", (Gdx.graphics.getWidth() / 2 - Gdx.graphics.getWidth()/8), Gdx.graphics.getHeight()/2 -Gdx.graphics.getHeight() / 20);
+        font.draw(batchVictory, String.valueOf(this.score), (Gdx.graphics.getWidth() / 2 - Gdx.graphics.getWidth() / 14), Gdx.graphics.getHeight() / 2 + Gdx.graphics.getHeight() / 11);
+        font.draw(batchVictory, String.valueOf(this.bestScore), (Gdx.graphics.getWidth() / 2 - Gdx.graphics.getWidth()/8), Gdx.graphics.getHeight()/2 -Gdx.graphics.getHeight() / 20);
 
 
         batchVictory.end();
@@ -113,13 +125,7 @@ public class PantallaVictory extends Pantalla{
         //pinta el menu
         victoryStage.act();
         victoryStage.draw();
-
-
-
-
-
     }
-
 
     public void dispose() {
         victoryStage.dispose();

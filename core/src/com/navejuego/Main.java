@@ -22,6 +22,7 @@ public class Main extends Game {
 		GestorAssets.getInstance().create();
 
 		if(PartidaGuardada.getInstance().firstTime()){
+			System.out.println("Iniciando juego por primera vez");
 			PartidaGuardada.getInstance().fillPutuaciones();
 			PartidaGuardada.getInstance().setFirstime(false);
 			Preferencias.getInstance().setMusic(true);
@@ -30,6 +31,15 @@ public class Main extends Game {
 			PartidaGuardada.getInstance().saveGameData();
 			Preferencias.getInstance().savePreferences();
 		}
+
+		//temporal
+		PartidaGuardada.getInstance().setNivelDesbloqueado(4);
+		Preferencias.getInstance().setMusic(true);
+        Preferencias.getInstance().setSound(true);
+        Preferencias.getInstance().setVibration(true);
+        Preferencias.getInstance().savePreferences();
+
+		PartidaGuardada.getInstance().printPuntuaciones();
 
 		ScreenManager.getInstance().showScreen(ScreenEnum.MAIN_MENU);
 	}
