@@ -9,6 +9,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.navejuego.Constantes;
 import com.navejuego.GestorAssets;
+import com.navejuego.PartidaGuardada;
 import com.navejuego.Preferencias;
 import com.navejuego.entidades.patrones.LinealMovement;
 import com.navejuego.entidades.patrones.MovementPattern;
@@ -172,6 +173,17 @@ public class BossEnemigo extends EnemigoEntity {
         Gdx.app.log("Boss defeated!", "");
         Constantes.lastScore = Integer.parseInt(PantallaJuego.jugador.getPuntuacion().getPuntuacion());
         System.out.println("Score final: " + Constantes.lastScore);
+
+        //Desbloquear siguiente nivel
+        if(!Constantes.unlockAllLevels){
+            int nivel = Constantes.getLevelInt();
+            if(nivel < 3){
+                nivel = nivel + 1;
+                PartidaGuardada.getInstance().setNivelDesbloqueado(nivel);
+                PartidaGuardada.getInstance().saveGameData();
+            }
+
+        }
         ScreenManager.getInstance().showScreen(ScreenEnum.VICTORY);
     }
 
