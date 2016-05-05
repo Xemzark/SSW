@@ -23,6 +23,7 @@ public class Constantes {
 
     public static final boolean unlockAllLevels = true;
     public static final boolean forceFirstTimeGameData = true;
+    public static final boolean fillTestRanking = true;
 
     public static void CalculateScreenConstants() {
         resizeWidth = Gdx.graphics.getWidth() / logicalWidth;

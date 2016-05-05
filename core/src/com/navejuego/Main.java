@@ -23,7 +23,11 @@ public class Main extends Game {
 
 		if(PartidaGuardada.getInstance().firstTime() || Constantes.forceFirstTimeGameData){
 			System.out.println("Iniciando juego por primera vez");
-			PartidaGuardada.getInstance().fillPutuaciones();
+			if(Constantes.fillTestRanking){
+				PartidaGuardada.getInstance().fillPutuacionesPrueba();
+			}else{
+				PartidaGuardada.getInstance().fillPutuaciones();
+			}
 			PartidaGuardada.getInstance().setFirstime(false);
 			PartidaGuardada.getInstance().setNivelDesbloqueado(0);
 			PartidaGuardada.getInstance().setNaveDesbloqueada(0);
@@ -43,7 +47,7 @@ public class Main extends Game {
 		Preferencias.getInstance().setMusic(true);
         Preferencias.getInstance().setSound(true);
         Preferencias.getInstance().setVibration(true);
-        Preferencias.getInstance().savePreferences();
+		Preferencias.getInstance().savePreferences();
 
 		PartidaGuardada.getInstance().printPuntuaciones();
 
