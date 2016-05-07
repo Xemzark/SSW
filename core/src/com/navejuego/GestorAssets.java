@@ -93,6 +93,7 @@ public class GestorAssets {
         manager.load("background_gameover.png", Texture.class);
         manager.load("background_niveles.png", Texture.class);
         manager.load("background_victory.png", Texture.class);
+        manager.load("background_ranking.png", Texture.class);
 
         /**
          * UI

@@ -116,7 +116,7 @@ public class PantallaRanking extends Pantalla {
         buttonsAtlas = new TextureAtlas("otherskin/checkbox.pack"); //**button atlas image **//
 
         batchRanking = new SpriteBatch();
-        backgroundRanking = GestorAssets.getInstance().getTexture("background_8.png");
+        backgroundRanking = GestorAssets.getInstance().getTexture("background_ranking.png");
 
         TextButton.TextButtonStyle style = new TextButton.TextButtonStyle(); //** Button properties **//
         style.up = buttonSkin.getDrawable("buttonOff");
