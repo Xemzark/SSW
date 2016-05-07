@@ -8,6 +8,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.navejuego.Constantes;
+import com.navejuego.PartidaGuardada;
 import com.navejuego.entidades.JugadorEntity;
 import com.navejuego.GestorAssets;
 import com.navejuego.entidades.LevelManager;
@@ -49,11 +50,13 @@ public class PantallaJuego extends Pantalla {
      */
     public PantallaJuego(){
 
+        GestorAssets.getInstance().getMusic("Starlight.wav").stop();
         // Se inicializa el stage con un ViewPort para adaptar la pantalla a los márgenes del dispositivo
         this.stage = new Stage(new FitViewport(Gdx.graphics.getWidth(), Gdx.graphics.getHeight())); //fitviewport adapta la pantalla. tamaño y lo otro lo pone a negro
         this.acumulableTiempo = 0.0f;
         this.enemigoSi = true;
         this.levelManager = new LevelManager(Constantes.selectedLevel);
+
 
         //comprobamos si la musica esta habilitada
         if(Preferencias.getInstance().musicOn()){
@@ -79,9 +82,9 @@ public class PantallaJuego extends Pantalla {
         //background = GestorAssets.getInstance().getTexture("background_1.png");
 
 
-        Texture naveTextura = GestorAssets.getInstance().getTexture("nave.png");
+        //Texture naveTextura = GestorAssets.getInstance().getTexture("nave.png");
 
-        jugador = new JugadorEntity(naveTextura, new Vector2(Gdx.graphics.getWidth()/2, Gdx.graphics.getHeight()/2));
+        jugador = new JugadorEntity(new Vector2(Gdx.graphics.getWidth()/2, Gdx.graphics.getHeight()/2), PartidaGuardada.getInstance().getNaveSeleccionada());
 
         /*
          * Se de la la propiedad al stage de procesar inputs. El stage estará escuchando eventos de

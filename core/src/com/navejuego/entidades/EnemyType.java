@@ -439,7 +439,7 @@ public class EnemyType {
                 break;
 
             case 20: //BOSS DEMO
-                texture = GestorAssets.getInstance().getTexture("goku.png");
+                texture = GestorAssets.getInstance().getTexture("aliensprite2.png");
                 sprite = new Sprite(texture);
                 textureEscudo = GestorAssets.getInstance().getTexture("escudoEnemigo.png");
                 spriteEscudo = new Sprite(textureEscudo);

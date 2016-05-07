@@ -96,6 +96,21 @@ public class PartidaGuardada {
     }
 
     /**
+     * Devuelve array de puntuaciones de un nivel
+     * @param nivel
+     * @return
+     */
+    public int[] getPuntuaciones(int nivel){
+
+        int[] puntuaciones = new int[this.maxPuntuaciones];
+
+        for(int i = 0; i < this.maxPuntuaciones; i++){
+            puntuaciones[i]= this.getPuntuacion(nivel,i);
+        }
+        return puntuaciones;
+    }
+
+    /**
      * Muestra todas las puntuaciones por consola
      */
     public void printPuntuaciones(){
@@ -119,6 +134,29 @@ public class PartidaGuardada {
     /**
      * Precarga todas las puntuaciones
      */
+    public void fillPutuacionesPrueba(){
+
+        Hashtable<String, String> hashTable = new Hashtable<String, String>();
+
+        for(int i = 0; i < this.maxNiveles; i++){
+            int maxValue = 4000;
+
+            int[] ints = new int[this.maxPuntuaciones];
+
+            for(int x = 0; x < this.maxPuntuaciones; x++){
+
+                //ints[x] = 500 + i + x*2;
+                ints[x] = maxValue;
+                maxValue = maxValue - 100;
+            }
+
+            Json json = new Json();
+            ints = this.ordenarArray(ints);
+            hashTable.put(String.valueOf(i) , json.toJson(ints));
+        }
+        this.gameData.put(hashTable);
+    }
+
     public void fillPutuaciones(){
 
         Hashtable<String, String> hashTable = new Hashtable<String, String>();
@@ -202,6 +240,14 @@ public class PartidaGuardada {
      */
     public boolean firstTime() {
         return this.gameData.getBoolean("first",true);
+    }
+
+    /**
+     *
+     * @return
+     */
+    public int getMaxPuntuaciones(){
+        return this.maxPuntuaciones;
     }
 
     /**

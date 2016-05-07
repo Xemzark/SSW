@@ -41,12 +41,16 @@ public class GestorAssets {
          */
         manager = new AssetManager();
         manager.load("nave.png", Texture.class);
+        manager.load("medfrighter.png", Texture.class);
+        manager.load("ship3.png", Texture.class);
+        manager.load("destroyer.png", Texture.class);
+
         manager.load("enemigo.png", Texture.class);
         manager.load("alien.png", Texture.class);
         manager.load("bullet.png", Texture.class);
         manager.load("proyectilEnemigo.png", Texture.class);
         manager.load("escudoEnemigo.png", Texture.class);
-        manager.load("goku.png", Texture.class);
+        manager.load("aliensprite2.png", Texture.class);
         manager.load("boss.png", Texture.class);
         manager.load("heavyfreighter.png", Texture.class);
         manager.load("alien1.png", Texture.class);
@@ -104,6 +108,8 @@ public class GestorAssets {
         manager.load("addShield.png", Texture.class);
         manager.load("vidabossbg.png", Texture.class);
         manager.load("vidabossfg.png", Texture.class);
+        manager.load("boss_corazon.png", Texture.class);
+
 
 
 
@@ -126,10 +132,12 @@ public class GestorAssets {
         manager.load("SpaceCube.wav", Music.class);
         manager.load("SpaceTrip.mp3", Music.class);
         manager.load("SpaceGate.mp3", Music.class);
+        manager.load("Starlight.wav", Music.class);
 
         //Sonidos gratis
         //http://soundbible.com/tags-explosion.html
         manager.load("explosion.wav", Sound.class);
+        manager.load("powerup.wav", Sound.class);
         manager.load("explosion2.wav", Sound.class);
 
 

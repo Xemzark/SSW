@@ -52,6 +52,7 @@ public class MainNivelesScreen extends Pantalla {
 
     public MainNivelesScreen() {
 
+        System.out.println("Nivel desbloqueado actualmente: "+ PartidaGuardada.getInstance().getNivelDesbloqueado());
         buttonsAtlas = new TextureAtlas("otherskin/button.pack"); //**button atlas image **//
         buttonSkin = new Skin();
         buttonSkin.addRegions(buttonsAtlas); //** skins for on and off **//
@@ -127,7 +128,7 @@ public class MainNivelesScreen extends Pantalla {
         button2.addListener(new ChangeListener() {
             public void changed(ChangeListener.ChangeEvent event, Actor actor) {
                 //System.out.println("Clicked! Is checked: " + button.isChecked());
-                if(PartidaGuardada.getInstance().getNivelDesbloqueado() >1){
+                if(PartidaGuardada.getInstance().getNivelDesbloqueado() >0){
                     Constantes.selectedLevel = LevelManager.Nivel.NIVEL_2;
                     ScreenManager.getInstance().showScreen(ScreenEnum.GAME);
                 }else{
@@ -141,7 +142,7 @@ public class MainNivelesScreen extends Pantalla {
         button3.addListener(new ChangeListener() {
             public void changed(ChangeListener.ChangeEvent event, Actor actor) {
                 //System.out.println("Clicked! Is checked: " + button.isChecked());
-                if(PartidaGuardada.getInstance().getNivelDesbloqueado() >2){
+                if(PartidaGuardada.getInstance().getNivelDesbloqueado() >1){
                     Constantes.selectedLevel = LevelManager.Nivel.NIVEL_3;
                     ScreenManager.getInstance().showScreen(ScreenEnum.GAME);
                 }else{
@@ -155,7 +156,7 @@ public class MainNivelesScreen extends Pantalla {
         button4.addListener(new ChangeListener() {
             public void changed(ChangeListener.ChangeEvent event, Actor actor) {
                 //System.out.println("Clicked! Is checked: " + button.isChecked());
-                if(PartidaGuardada.getInstance().getNivelDesbloqueado() >3){
+                if(PartidaGuardada.getInstance().getNivelDesbloqueado() >2){
                     Constantes.selectedLevel = LevelManager.Nivel.NIVEL_4;
                     ScreenManager.getInstance().showScreen(ScreenEnum.GAME);
                 }else{
