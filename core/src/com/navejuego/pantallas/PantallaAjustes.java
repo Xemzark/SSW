@@ -49,6 +49,7 @@ public class PantallaAjustes extends Pantalla {
         checkboxSkin = new Skin();
         checkboxSkin.addRegions(buttonsAtlas); //** skins for on and off **//
 
+
         font = new BitmapFont(Gdx.files.internal("otherfont/font.fnt"));
 
         ajustesStage = new Stage(new FitViewport(Gdx.graphics.getWidth(), Gdx.graphics.getHeight()));
