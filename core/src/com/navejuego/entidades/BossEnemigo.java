@@ -3,17 +3,14 @@ package com.navejuego.entidades;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
-import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.navejuego.Constantes;
 import com.navejuego.GestorAssets;
 import com.navejuego.PartidaGuardada;
 import com.navejuego.Preferencias;
 import com.navejuego.entidades.patrones.LinealMovement;
 import com.navejuego.entidades.patrones.MovementPattern;
-import com.navejuego.entidades.powerups.PowerUpEntity;
+import com.navejuego.entidades.ui.Barra;
 import com.navejuego.pantallas.PantallaJuego;
 import com.navejuego.pantallas.ScreenEnum;
 import com.navejuego.pantallas.ScreenManager;
@@ -21,7 +18,6 @@ import com.navejuego.pantallas.ScreenManager;
 import java.util.ArrayList;
 
 
-import static com.navejuego.Constantes.PIXELS_METRE;
 
 /**
  * Created by Elias on 09/04/2016.
@@ -35,13 +31,12 @@ public class BossEnemigo extends EnemigoEntity {
     private float segmentoVida;
     private float nextSegmentoVida;
     private boolean starting = true;
+    private Barra barraVida;
 
 
     public BossEnemigo (int enemyType) {
         // Debe conocer su stage, su textura y su sprite
         super(enemyType);
-
-        //System.out.print("Boss Size: " + getHeight() + ", " + getWidth());
 
         posX = Gdx.graphics.getWidth() / 2 - getWidth() / 2; // Centra al boss en el eje de las X
         setPosition(posX, posY);
@@ -55,6 +50,12 @@ public class BossEnemigo extends EnemigoEntity {
         patternIndex = 1;
         segmentoVida = maxVida/patternList.size();
         nextSegmentoVida = maxVida - segmentoVida;
+        this.barraVida = new Barra (GestorAssets.getInstance().getTexture("vidabossbg.png"),
+                GestorAssets.getInstance().getTexture("vidabossfg.png"),
+                GestorAssets.getInstance().getTexture("boss_corazon.png"),
+                Constantes.lateralBarWidth * 1.5f,
+                new Vector2((Gdx.graphics.getWidth() / 2) - (GestorAssets.getInstance().getTexture("vidabossbg.png").getWidth()/3), (float)(Gdx.graphics.getHeight()*0.8)),
+                true, 200.0f);
     }
 
 
@@ -81,6 +82,7 @@ public class BossEnemigo extends EnemigoEntity {
                 vida = maxVida;
                 movementPattern = patternList.get(0);
                 starting = false;
+                PantallaJuego.stage.addActor(barraVida);
             }
         }
         if(!starting) {
@@ -93,6 +95,9 @@ public class BossEnemigo extends EnemigoEntity {
         // Esto marca los límites de los bordes verdes del renderdebug
         // Debe corresponderse al tamaño
         batch.draw(texture, getX(), getY(), getWidth(), getHeight());
+        if (!starting){
+            barraVida.render(batch);
+        }
     }
 
     /**
@@ -135,6 +140,9 @@ public class BossEnemigo extends EnemigoEntity {
             if (dmg > 0)
                 vida -= dmg;
         }
+        if(!starting){
+            barraVida.Update(vida/maxVida);
+        }
         cambiarPatron();
 
         if (vida <= 0) {
@@ -163,6 +171,7 @@ public class BossEnemigo extends EnemigoEntity {
         com.navejuego.ExplosionChain explo = new com.navejuego.ExplosionChain(explosionTextura, new Vector2(getX(),getY()),1.0f,3);
         PantallaJuego.stage.addActor(explo);
     }
+
     @Override
     public void destruirse() {
 
