@@ -78,7 +78,6 @@ public class BossEnemigo extends EnemigoEntity {
 
         if (starting){ //Hace que baje el boss hasta cierta altura, siendo invulnerable, y entonces comienza su funcionamiento normal
             if(getY() < Gdx.graphics.getHeight() - getHeight() * 2){
-                System.out.print("estoy aqui");
                 vida = maxVida;
                 movementPattern = patternList.get(0);
                 starting = false;
