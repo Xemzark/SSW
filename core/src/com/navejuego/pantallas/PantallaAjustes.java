@@ -16,6 +16,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton.TextButtonStyle;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.navejuego.GestorAssets;
+import com.navejuego.Preferencias;
 
 /**
  * Created by albertmoreno on 14/4/16.
@@ -30,6 +31,7 @@ public class PantallaAjustes extends Pantalla {
     private Skin buttonSkin,checkboxSkin;
     private BitmapFont font;
     private TextButton aceptar;
+    private CheckBox checkbox1,checkbox2,checkbox3;
 
     private Texture backgroundAjustes;
 
@@ -47,6 +49,7 @@ public class PantallaAjustes extends Pantalla {
         checkboxSkin = new Skin();
         checkboxSkin.addRegions(buttonsAtlas); //** skins for on and off **//
 
+
         font = new BitmapFont(Gdx.files.internal("otherfont/font.fnt"));
 
         ajustesStage = new Stage(new FitViewport(Gdx.graphics.getWidth(), Gdx.graphics.getHeight()));
@@ -60,18 +63,63 @@ public class PantallaAjustes extends Pantalla {
         checkstyle.checkboxOn=checkboxSkin.getDrawable("checkboxon");
         checkstyle.checkboxOff=checkboxSkin.getDrawable("checkboxoff");
 
-        CheckBox checkbox1 =new CheckBox(null,checkstyle);
+        checkbox1 =new CheckBox(null,checkstyle);
         checkbox1.setPosition(0.65f*Gdx.graphics.getWidth(), 0.55f*Gdx.graphics.getHeight());
         checkbox1=resizeCheckbox(checkbox1, 50 * (Gdx.graphics.getWidth() / 360.f), 50 * (Gdx.graphics.getHeight() / 640.0f));
+        checkbox1.setChecked(Preferencias.getInstance().musicOn());
 
-        CheckBox checkbox2 =new CheckBox(null,checkstyle);
+        checkbox2 =new CheckBox(null,checkstyle);
         checkbox2.setPosition(0.65f * Gdx.graphics.getWidth(), 0.43f * Gdx.graphics.getHeight());
         checkbox2=resizeCheckbox(checkbox2,50*(Gdx.graphics.getWidth()/360.f),50*(Gdx.graphics.getHeight()/640.0f));
+        checkbox2.setChecked(Preferencias.getInstance().soundOn());
 
-        CheckBox checkbox3 =new CheckBox(null,checkstyle);
+        checkbox3 =new CheckBox(null,checkstyle);
         checkbox3.setPosition(0.65f*Gdx.graphics.getWidth(), 0.32f*Gdx.graphics.getHeight());
         checkbox3=resizeCheckbox(checkbox3,50*(Gdx.graphics.getWidth()/360.f),50*(Gdx.graphics.getHeight()/640.0f));
+        checkbox3.setChecked(Preferencias.getInstance().vibrationOn());
 
+
+        checkbox1.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                if (checkbox1.isChecked()) {
+                    Preferencias.getInstance().setMusic(true);
+                    System.out.println("Music: "+Preferencias.getInstance().musicOn());
+
+                } else {
+                    Preferencias.getInstance().setMusic(false);
+                    System.out.println("Music: "+Preferencias.getInstance().musicOn());
+                }
+            }
+        });
+        checkbox2.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                if(checkbox2.isChecked())
+                {
+                    Preferencias.getInstance().setSound(true);
+                    System.out.println("Sound: "+Preferencias.getInstance().soundOn());
+
+                }else{
+                    Preferencias.getInstance().setSound(false);
+                    System.out.println("Sound: "+Preferencias.getInstance().soundOn());
+                }
+            }
+        });
+        checkbox3.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                if(checkbox3.isChecked())
+                {
+                    Preferencias.getInstance().setVibration(true);
+                    System.out.println("Vibration: "+Preferencias.getInstance().vibrationOn());
+
+                }else{
+                    Preferencias.getInstance().setVibration(false);
+                    System.out.println("Vibration: " + Preferencias.getInstance().vibrationOn());
+                }
+            }
+        });
 
         ajustesStage.addActor(checkbox3);
 
