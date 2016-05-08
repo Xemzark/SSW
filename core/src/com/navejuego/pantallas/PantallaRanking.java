@@ -109,9 +109,6 @@ public class PantallaRanking extends Pantalla {
         skinRanking = new Skin(Gdx.files.internal("skin/uiskin.json"));
 
 
-        PartidaGuardada.getInstance().setPuntucion(1,8888);
-
-
         font = new BitmapFont(Gdx.files.internal("otherfont/font.fnt"));
         Label.LabelStyle ls = new Label.LabelStyle(font, null);
 
@@ -123,16 +120,16 @@ public class PantallaRanking extends Pantalla {
 
         title = new Label("Nivel "+(nivelACargar+1),ls);
         title.setPosition(0.27f * Gdx.graphics.getWidth(), 0.58f * Gdx.graphics.getHeight());
-        title.setFontScale(0.5f);
+        title.setFontScale(0.5f * Gdx.graphics.getWidth()/360.0f);
         title.setSize(title.getWidth() * title.getFontScaleX(), title.getHeight() * title.getFontScaleY());
 
-        ImageButton leftarrow=new ImageButton(new TextureRegionDrawable(new TextureRegion(new Texture("otherskin/left-pointing-arrow.png"))));
-        leftarrow.setSize(50,50);
-        leftarrow.setPosition(0, 0);
+        ImageButton leftarrow=new ImageButton(new TextureRegionDrawable(new TextureRegion(new Texture("otherskin/left-pointing-arrow-white.png"))));
+        leftarrow=resizebutton(leftarrow,50*Gdx.graphics.getWidth()/340.0f,50*Gdx.graphics.getHeight()/640.f);
+        leftarrow.setPosition(0, 0.58f * Gdx.graphics.getHeight());
 
-        ImageButton rightarrow = new ImageButton(new TextureRegionDrawable(new TextureRegion(new Texture("otherskin/left-pointing-arrow.png"))));
-        rightarrow.setSize(50,50);
-        rightarrow.setPosition(Gdx.graphics.getWidth() - 128, 0);
+        ImageButton rightarrow = new ImageButton(new TextureRegionDrawable(new TextureRegion(new Texture("otherskin/right-pointing-arrow-white.png"))));
+        rightarrow=resizebutton(rightarrow, 50*Gdx.graphics.getWidth()/340.0f,50*Gdx.graphics.getHeight()/640.f);
+        rightarrow.setPosition(Gdx.graphics.getWidth() - rightarrow.getWidth(), 0.58f * Gdx.graphics.getHeight());
 
         leftarrow.addListener(new ChangeListener() {
             @Override
@@ -141,7 +138,7 @@ public class PantallaRanking extends Pantalla {
                     nivelACargar -= 1;
                     setNivelACargar(nivelACargar);
                     fillScrollTable();
-                    title.setText("Nivel "+(nivelACargar+1));
+                    title.setText("Nivel " + (nivelACargar + 1));
 
                 }
             }
@@ -222,6 +219,14 @@ public class PantallaRanking extends Pantalla {
     @Override
     public void dispose() {
         rankingStage.dispose();
+    }
+
+    private ImageButton resizebutton(ImageButton b, float x, float y){
+
+        b.getImage().setSize(x, y);
+        b.setSize(x,y);
+
+        return b;
     }
 
 }
