@@ -40,6 +40,7 @@ public class EnemyType {
     protected boolean vivo;
     protected float vida;
     protected float escudo;
+    protected int damage;
 
     protected float maxVida;
     protected float maxEscudo;
@@ -83,6 +84,7 @@ public class EnemyType {
                 cadenciaDisparo = 1f;
                 tiempoSiguienteDisparo = 0f;
                 vivo = true;
+                damage = 10;
                 maxVida = 10;
                 maxEscudo = 20;
                 vida = maxVida;
@@ -105,6 +107,7 @@ public class EnemyType {
                 cadenciaDisparo = 100000000000f;
                 tiempoSiguienteDisparo = 0;
                 vivo = true;
+                damage = 10;
                 maxVida = 1;
                 maxEscudo = 0;
                 vida = maxVida;
@@ -127,6 +130,7 @@ public class EnemyType {
                 cadenciaDisparo = 4f;
                 tiempoSiguienteDisparo = 0;
                 vivo = true;
+                damage = 10;
                 maxVida = 40;
                 maxEscudo = 20;
                 vida = maxVida;
@@ -148,6 +152,7 @@ public class EnemyType {
                 cadenciaDisparo = 1f;
                 tiempoSiguienteDisparo = 0f;
                 vivo = true;
+                damage = 10;
                 maxVida = 10;
                 maxEscudo = 20;
                 vida = maxVida;
@@ -175,6 +180,7 @@ public class EnemyType {
                 cadenciaDisparo = 1f;
                 tiempoSiguienteDisparo = 0f;
                 vivo = true;
+                damage = 10;
                 maxVida = 10;
                 maxEscudo = 20;
                 vida = maxVida;
@@ -196,6 +202,7 @@ public class EnemyType {
                 cadenciaDisparo = 100000000000f;
                 tiempoSiguienteDisparo = 0;
                 vivo = true;
+                damage = 10;
                 maxVida = 1;
                 maxEscudo = 0;
                 vida = maxVida;
@@ -217,6 +224,7 @@ public class EnemyType {
                 cadenciaDisparo = 4f;
                 tiempoSiguienteDisparo = 0;
                 vivo = true;
+                damage = 10;
                 maxVida = 40;
                 maxEscudo = 20;
                 vida = maxVida;
@@ -238,6 +246,7 @@ public class EnemyType {
                 cadenciaDisparo = 1f;
                 tiempoSiguienteDisparo = 0f;
                 vivo = true;
+                damage = 10;
                 maxVida = 10;
                 maxEscudo = 20;
                 vida = maxVida;
@@ -266,6 +275,7 @@ public class EnemyType {
                 cadenciaDisparo = 1f;
                 tiempoSiguienteDisparo = 0f;
                 vivo = true;
+                damage = 10;
                 maxVida = 10;
                 maxEscudo = 20;
                 vida = maxVida;
@@ -288,6 +298,7 @@ public class EnemyType {
                 cadenciaDisparo = 100000000000f;
                 tiempoSiguienteDisparo = 0;
                 vivo = true;
+                damage = 10;
                 maxVida = 1;
                 maxEscudo = 0;
                 vida = maxVida;
@@ -310,6 +321,7 @@ public class EnemyType {
                 cadenciaDisparo = 4f;
                 tiempoSiguienteDisparo = 0;
                 vivo = true;
+                damage = 10;
                 maxVida = 40;
                 maxEscudo = 20;
                 vida = maxVida;
@@ -332,6 +344,7 @@ public class EnemyType {
                 cadenciaDisparo = 1f;
                 tiempoSiguienteDisparo = 0f;
                 vivo = true;
+                damage = 10;
                 maxVida = 10;
                 maxEscudo = 20;
                 vida = maxVida;
@@ -360,6 +373,7 @@ public class EnemyType {
                 cadenciaDisparo = 1f;
                 tiempoSiguienteDisparo = 0f;
                 vivo = true;
+                damage = 10;
                 maxVida = 30;
                 maxEscudo = 20;
                 vida = maxVida;
@@ -382,6 +396,7 @@ public class EnemyType {
                 cadenciaDisparo = 100000000000f;
                 tiempoSiguienteDisparo = 0;
                 vivo = true;
+                damage = 10;
                 maxVida = 1;
                 maxEscudo = 0;
                 vida = maxVida;
@@ -404,6 +419,7 @@ public class EnemyType {
                 cadenciaDisparo = 4f;
                 tiempoSiguienteDisparo = 0;
                 vivo = true;
+                damage = 10;
                 maxVida = 60;
                 maxEscudo = 30;
                 vida = maxVida;
@@ -426,6 +442,7 @@ public class EnemyType {
                 cadenciaDisparo = 0.5f;
                 tiempoSiguienteDisparo = 0f;
                 vivo = true;
+                damage = 10;
                 maxVida = 10;
                 maxEscudo = 20;
                 vida = maxVida;
@@ -448,6 +465,7 @@ public class EnemyType {
                 cadenciaDisparo = 0.5f;
                 tiempoSiguienteDisparo = 0f;
                 vivo = true;
+                damage = 10;
                 maxVida = 200;
                 maxEscudo = 0;
                 vida = maxVida;
@@ -469,6 +487,7 @@ public class EnemyType {
                 cadenciaDisparo = 0.5f;
                 tiempoSiguienteDisparo = 0f;
                 vivo = true;
+                damage = 10;
                 maxVida = 200;
                 maxEscudo = 0;
                 vida = maxVida;
@@ -490,6 +509,7 @@ public class EnemyType {
                 cadenciaDisparo = 0.5f;
                 tiempoSiguienteDisparo = 0f;
                 vivo = true;
+                damage = 10;
                 maxVida = 200;
                 maxEscudo = 0;
                 vida = maxVida;
@@ -512,6 +532,7 @@ public class EnemyType {
                 cadenciaDisparo = 0.5f;
                 tiempoSiguienteDisparo = 0f;
                 vivo = true;
+                damage = 10;
                 maxVida = 500;
                 maxEscudo = 0;
                 vida = maxVida;

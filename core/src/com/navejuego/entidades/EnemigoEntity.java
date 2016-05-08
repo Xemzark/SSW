@@ -28,7 +28,7 @@ public class EnemigoEntity extends GameObjectEntity {
 
     protected int puntuacion;
     protected int dañoColision;
-
+    protected int damage = 0;
     protected float cadenciaDisparo;
     protected float tiempoSiguienteDisparo;
     protected boolean vivo;
@@ -65,7 +65,7 @@ public class EnemigoEntity extends GameObjectEntity {
         cadenciaDisparo = enemyProperties.cadenciaDisparo;
         tiempoSiguienteDisparo = enemyProperties.tiempoSiguienteDisparo;
         vivo = enemyProperties.vivo;
-
+        damage = enemyProperties.damage;
         maxVida = enemyProperties.maxVida;
         vida = enemyProperties.vida;
         maxEscudo = enemyProperties.maxEscudo;
@@ -131,7 +131,7 @@ public class EnemigoEntity extends GameObjectEntity {
         tiempoSiguienteDisparo += delta;
         if (tiempoSiguienteDisparo > cadenciaDisparo) {
             Texture bulletTextura = GestorAssets.getInstance().getTexture("proyectilEnemigo.png");
-            com.navejuego.entidades.bullets.BulletEnemigo bullet = new com.navejuego.entidades.bullets.BulletEnemigo(bulletTextura, new Vector2(getX() + (getWidth() / 2), getY()));
+            com.navejuego.entidades.bullets.BulletEnemigo bullet = new com.navejuego.entidades.bullets.BulletEnemigo(bulletTextura, new Vector2(getX() + (getWidth() / 2), getY()),damage);
             bullet.setSize(10.0f, 10.0f);
             bullet.setName("Bala Enemigo");
             PantallaJuego.stage.addActor(bullet);

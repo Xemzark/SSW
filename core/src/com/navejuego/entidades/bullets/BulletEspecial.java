@@ -15,8 +15,8 @@ import com.navejuego.pantallas.PantallaJuego;
  */
 public class BulletEspecial extends BulletEntity {
 
-    public BulletEspecial(Texture texture, Vector2 posicion){
-        super(texture, posicion);
+    public BulletEspecial(Texture texture, Vector2 posicion, int damage){
+        super(texture, posicion, damage);
         movementPattern = new LinealMovement(900.0f, true);
         setSize(50 * Constantes.resizeWidth,70 * Constantes.resizeHeight);
     }

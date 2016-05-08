@@ -42,6 +42,7 @@ public class JugadorEntity extends GameObjectEntity {
     private boolean invulnerabilidad;
     private long inicioInvulnerabilidad = 0;
     private int duracionInvulnerabilidad = 0;
+    private int damage;
 
     private boolean dobleASPD = false;
     private long inicioDobleASPD = 0;
@@ -64,7 +65,7 @@ public class JugadorEntity extends GameObjectEntity {
         this.jugadorProperties = new JugadorType(jtype);
 
         this.texture = this.jugadorProperties.textura;
-
+        this.damage = this.jugadorProperties.damage;
 
         this.sprite = new Sprite(this.texture);
         this.sprite.setSize((float)Gdx.app.getGraphics().getWidth()*0.2f,Gdx.app.getGraphics().getWidth()*0.2f);
@@ -192,7 +193,7 @@ public class JugadorEntity extends GameObjectEntity {
         tiempoSiguienteDisparo += delta;
         if (tiempoSiguienteDisparo > cadenciaDisparo) {
             Texture bulletTextura = GestorAssets.getInstance().getTexture("bullet.png");
-            com.navejuego.entidades.bullets.BulletNave bullet = new com.navejuego.entidades.bullets.BulletNave(bulletTextura, new Vector2(getX() + (getWidth() / 2), getY() + getHeight()));
+            com.navejuego.entidades.bullets.BulletNave bullet = new com.navejuego.entidades.bullets.BulletNave(bulletTextura, new Vector2(getX() + (getWidth() / 2), getY() + getHeight()),this.damage);
             PantallaJuego.stage.addActor(bullet);
             //this.ataqueEspecial.generarDisparo(getX() + (getWidth() / 2), getY() + getHeight());
             tiempoSiguienteDisparo = 0;

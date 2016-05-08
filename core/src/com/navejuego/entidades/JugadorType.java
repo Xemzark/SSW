@@ -13,6 +13,7 @@ public class JugadorType{
     protected float maxEscudo;
     protected float vida;
     protected float escudo;
+    protected int damage;
     protected Texture textura;
     protected Texture texturaEscudo;
 
@@ -27,6 +28,7 @@ public class JugadorType{
                 this.escudo = 100;
                 this.maxEscudo = 100;
                 this.maxVida = 100;
+                this.damage = 10;
                 this.texturaEscudo = GestorAssets.getInstance().getTexture("escudoNave.png");
                 this.textura = GestorAssets.getInstance().getTexture("nave.png");
                 this.cadenciaDisparo = 0.4f;
@@ -36,6 +38,7 @@ public class JugadorType{
                 this.escudo = 70;
                 this.maxEscudo = 70;
                 this.maxVida = 70;
+                this.damage = 12;
                 this.texturaEscudo = GestorAssets.getInstance().getTexture("escudoNave.png");
                 this.textura = GestorAssets.getInstance().getTexture("destroyer.png");
                 this.cadenciaDisparo = 0.2f;
@@ -45,6 +48,7 @@ public class JugadorType{
                 this.escudo = 40;
                 this.maxEscudo = 40;
                 this.maxVida = 40;
+                this.damage = 15;
                 this.texturaEscudo = GestorAssets.getInstance().getTexture("escudoNave.png");
                 this.textura = GestorAssets.getInstance().getTexture("ship3.png");
                 this.cadenciaDisparo = 0.1f;
