@@ -50,7 +50,9 @@ public class PantallaJuego extends Pantalla {
      */
     public PantallaJuego(){
 
-        GestorAssets.getInstance().getMusic("Starlight.wav").stop();
+        if(Preferencias.getInstance().musicOn()){
+            GestorAssets.getInstance().getMusic("Starlight.wav").stop();
+        }
         // Se inicializa el stage con un ViewPort para adaptar la pantalla a los márgenes del dispositivo
         this.stage = new Stage(new FitViewport(Gdx.graphics.getWidth(), Gdx.graphics.getHeight())); //fitviewport adapta la pantalla. tamaño y lo otro lo pone a negro
         this.acumulableTiempo = 0.0f;
