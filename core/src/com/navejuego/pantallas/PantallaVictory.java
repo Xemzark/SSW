@@ -54,7 +54,7 @@ public class PantallaVictory extends Pantalla{
 
 
         font = new BitmapFont(Gdx.files.internal("otherfont/font.fnt"));
-        font.getData().setScale(0.5f,0.5f);
+        font.getData().setScale(0.5f*Gdx.graphics.getWidth()/360.f,0.5f*Gdx.graphics.getHeight()/640.0f);
 
         TextButton.TextButtonStyle style = new TextButton.TextButtonStyle(); //** Button properties **//
         style.up = buttonSkin.getDrawable("buttonOff");
