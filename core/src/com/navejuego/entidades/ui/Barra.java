@@ -75,13 +75,14 @@ public class Barra extends Actor {
                     length * Constantes.resizeHeight);
         }
 
-        if (horizontal) {
-            this.icon.setPosition(this.background.getX() - this.margenDeIcono, this.background.getY());
-        } else {
-            this.icon.setPosition(this.background.getX(), this.background.getY() - this.margenDeIcono);
+        if (icon != null) {
+            if (horizontal) {
+                this.icon.setPosition(this.background.getX() - this.margenDeIcono, this.background.getY());
+            } else {
+                this.icon.setPosition(this.background.getX(), this.background.getY() - this.margenDeIcono);
+            }
+            this.icon.setSize(Constantes.lateralBarWidth * Constantes.resizeWidth, Constantes.lateralBarWidth * Constantes.resizeHeight);
         }
-        this.icon.setSize(Constantes.lateralBarWidth * Constantes.resizeWidth, Constantes.lateralBarWidth * Constantes.resizeHeight);
-
     }
 
     public void Update(float percent) {
