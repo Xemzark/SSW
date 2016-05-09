@@ -42,7 +42,7 @@ public class LevelManager {
             case NIVEL_1:
 
                 enemySet = new int[] {1,2,3,4};
-                waveAmount = 3;
+                waveAmount = 1;
 
                 for(int i =0; i < waveAmount; i++ ) {
                     waveArray.add(new Wave(enemySet[rnd.nextInt(enemySet.length)], 5, 1000));
@@ -57,7 +57,7 @@ public class LevelManager {
             case NIVEL_2:
 
                 enemySet = new int[] {5,6,7,8};
-                waveAmount = 3;
+                waveAmount = 1;
 
                 for(int i =0; i < waveAmount; i++ ) {
                     waveArray.add(new Wave(enemySet[rnd.nextInt(enemySet.length)], 5, 1000));
@@ -71,7 +71,7 @@ public class LevelManager {
             case NIVEL_3:
 
                 enemySet = new int[] {9,10,11,12};
-                waveAmount = 3;
+                waveAmount = 1;
 
                 for(int i =0; i < waveAmount; i++ ) {
                     waveArray.add(new Wave(enemySet[rnd.nextInt(enemySet.length)], 5, 1000));
@@ -86,7 +86,7 @@ public class LevelManager {
             case NIVEL_4:
 
                 enemySet = new int[] {13,14,15,16};
-                waveAmount = 3;
+                waveAmount = 1;
 
                 for(int i =0; i < waveAmount; i++ ) {
                     waveArray.add(new Wave(enemySet[rnd.nextInt(enemySet.length)], 5, 1000));
