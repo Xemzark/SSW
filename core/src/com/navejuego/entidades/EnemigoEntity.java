@@ -59,7 +59,6 @@ public class EnemigoEntity extends GameObjectEntity {
         sprite = enemyProperties.sprite;
         spriteEscudo = enemyProperties.spriteEscudo;
         hitbox = enemyProperties.hitbox;
-        spriteEscudo.setAlpha(0.7f);
 
         puntuacion = enemyProperties.puntuacion;
         cadenciaDisparo = enemyProperties.cadenciaDisparo;
@@ -70,6 +69,7 @@ public class EnemigoEntity extends GameObjectEntity {
         vida = enemyProperties.vida;
         maxEscudo = enemyProperties.maxEscudo;
         escudo = enemyProperties.escudo;
+        spriteEscudo.setAlpha(Math.min(this.escudo/this.maxEscudo, 0.7f));
 
         dañoColision = enemyProperties.dañoColision ; //Daño que le hace la nave al jugador si colisionan
         this.powerUp = powerUp;
