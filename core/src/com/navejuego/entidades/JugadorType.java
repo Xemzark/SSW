@@ -48,7 +48,7 @@ public class JugadorType{
                 this.escudo = 40;
                 this.maxEscudo = 40;
                 this.maxVida = 40;
-                this.damage = 15;
+                this.damage = 3;
                 this.texturaEscudo = GestorAssets.getInstance().getTexture("escudoNave.png");
                 this.textura = GestorAssets.getInstance().getTexture("ship3.png");
                 this.cadenciaDisparo = 0.1f;

@@ -1,6 +1,8 @@
 package com.navejuego.entidades;
 
 
+import com.navejuego.pantallas.PantallaJuego;
+
 import java.util.List;
 
 /**
@@ -39,39 +41,29 @@ public class WaveManager {
     /**
      * @return True if it can spawn something, false if there's nothing to spawn.
      */
-    public boolean Spawn () {
-        if (bossMode) {
-            //TODO: Devolver si el boss ha sido derrotado o no
-            return false;
-        }
+    public void Spawn () {
+        if (bossMode)
+            return;
 
         //TODO: Convertir boss es una wave
 
         if (!waveList.get(currentWave).isDone()) {
             //Quedan enemigos por spawnear en la oleada.
             waveList.get(currentWave).Spawn();
-            return true;
         } else {
             System.out.print("Wave " + currentWave + " ended.\n");
-            if (currentWave < waveList.size() -1) {
+            if (currentWave < waveList.size()-1) {
+                currentWave += 1;
                 waveList.get(currentWave).GetReady();
                 waveList.get(currentWave).Spawn();
-                currentWave += 1;
-                return true;
             } else {
+                System.out.print("All waves ended.\n");
                 if (bossType != 0) {
-                    System.out.print(currentWave);
-
-                    waveList.get(currentWave).SpawnBoss(bossType);
-                    bossMode= true;
-                    return true;
+                    SpawnBoss(bossType);
+                    bossMode = true;
                 } else if (loop) {
                     //Looping waves
                     Reset ();
-                    return true;
-                } else {
-                    //Waves over
-                    return false;
                 }
             }
         }
@@ -83,6 +75,10 @@ public class WaveManager {
             wave.Reset();
         }
         currentWave = 0;
+    }
+
+    public void SpawnBoss (int bossType) {
+        PantallaJuego.stage.addActor(new BossEnemigo(bossType));
     }
 
 }

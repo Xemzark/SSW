@@ -34,7 +34,6 @@ public class Wave {
      */
     private long nextSpawn;
 
-    //TODO: Reemplazar "enemigo" por un factory class o lo que sea
     public Wave(int enemyType, int cantidadDeEnemgios, long tiempoEntreEnemigos) {
         enemy = enemyType;
         spawnTargetAmount = cantidadDeEnemgios;
@@ -56,12 +55,8 @@ public class Wave {
             spawnCount += 1;
         }
     }
-    public void SpawnBoss (int bossType) {
-            PantallaJuego.stage.addActor(new BossEnemigo(bossType));
-        }
 
     public boolean isDone() {
-        //TODO: Que esto devuelva "True" solo cuando todas las naves de la oleada sean destruidas.
         return spawnTargetAmount <= spawnCount;
     }
 
