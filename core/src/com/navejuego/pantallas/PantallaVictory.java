@@ -13,6 +13,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.navejuego.Constantes;
+import com.navejuego.Dialog;
 import com.navejuego.GestorAssets;
 import com.navejuego.PartidaGuardada;
 import com.navejuego.entidades.LevelManager;
@@ -83,6 +84,52 @@ public class PantallaVictory extends Pantalla{
             }
         });
         victoryStage.addActor(volvermenu);
+
+        if(!Constantes.unlockAllLevels){
+            int nivels = Constantes.getLevelInt();
+
+            if(nivels < 3 && nivels == PartidaGuardada.getInstance().getNivelDesbloqueado() ){
+
+                System.out.println("Desbloqueando nivel......!!!!");
+                System.out.println("nivel actual: " + nivels);
+                System.out.println("Nivel maximo: " + PartidaGuardada.getInstance().getNivelDesbloqueado());
+
+                nivels = nivels + 1;
+                PartidaGuardada.getInstance().setNivelDesbloqueado(nivels);
+                PartidaGuardada.getInstance().saveGameData();
+                PartidaGuardada.getInstance().saveGameData();
+
+                String texto;
+
+                //En estos niveles desbloqueas una nave, en los demas no!
+                if(nivels == 1 || nivels == 3){
+                    texto = "\n Felicidades!! \n \n Has desbloqueado el nivel "+ String.valueOf(nivels + 1) + "! \n" +
+                            " Has desbloqueado una nueva nave! \n";
+
+                    int navedesbloqueada = 0;
+                    if(nivels == 1){
+                        navedesbloqueada = 1;
+                    }else if(nivels == 3){
+                        navedesbloqueada = 2;
+                    }
+                    PartidaGuardada.getInstance().setNaveDesbloqueada(navedesbloqueada);
+                    System.out.println("Nave debloqueada: " + navedesbloqueada);
+
+
+                }else{
+                    texto = "\n Felicidades!! \n \n Has desbloqueado el nivel "+ String.valueOf(nivels + 1) + "! \n";
+                }
+
+                Skin uiSkin = new Skin(Gdx.files.internal("skin/uiskin.json"));
+                Dialog d = new Dialog("Recompensa!",uiSkin);
+                d.text(texto);
+                d.button("Aceptar");
+
+                d.show(victoryStage);
+
+            }
+
+        }
 
     }
 

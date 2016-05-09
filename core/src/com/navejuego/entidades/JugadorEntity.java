@@ -68,7 +68,7 @@ public class JugadorEntity extends GameObjectEntity {
         this.damage = this.jugadorProperties.damage;
 
         this.sprite = new Sprite(this.texture);
-        this.sprite.setSize((float)Gdx.app.getGraphics().getWidth()*0.2f,Gdx.app.getGraphics().getWidth()*0.2f);
+        this.sprite.setSize(80 * Constantes.resizeWidth, 80 * Constantes.resizeHeight);
         this.hitbox = new Circle();
 
         this.ataqueEspecial = new AtaqueEspecial();

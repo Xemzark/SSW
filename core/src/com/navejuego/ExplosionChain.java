@@ -2,6 +2,8 @@ package com.navejuego;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Vector2;
+import com.navejuego.pantallas.ScreenEnum;
+import com.navejuego.pantallas.ScreenManager;
 
 import java.util.ArrayList;
 
@@ -12,11 +14,15 @@ public class ExplosionChain extends Explosion {
     int times; //Veces que se repite la animacion
     int indiceTotal = 0;
 
+    boolean triggerVictoryOnEnd = true;
 
     public ExplosionChain(ArrayList<Texture> texture, Vector2 posicion, float duracion, int times) {
         super(texture, posicion, duracion);
         this.times = times;
+    }
 
+    public void setTriggerVictoryOnEnd(boolean victoryOnEnd) {
+        triggerVictoryOnEnd = victoryOnEnd;
     }
 
     @Override
@@ -39,6 +45,10 @@ public class ExplosionChain extends Explosion {
 
         }
         else{
+            //Desbloquear siguiente nivel
+            if (triggerVictoryOnEnd)
+                ScreenManager.getInstance().showScreen(ScreenEnum.VICTORY);
+
             destruirse();
         }
     }
