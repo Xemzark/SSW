@@ -54,8 +54,8 @@ public class AtaqueEspecial extends GameObjectEntity{
         this.texture = GestorAssets.getInstance().getTexture("botonespecial.png");
 
         this.boton = new botonEspecial(this.texture,GestorAssets.getInstance().getTexture("explo1.png"),GestorAssets.getInstance().getTexture("corazon.png"));
-        this.boton.sizeBy(2, 2);
-        this.boton.setPosition((float) (Gdx.graphics.getWidth() * 0.75), 0.0f);
+        this.boton.setSize(Gdx.graphics.getWidth() * 0.25f, Gdx.graphics.getHeight() * 0.25f);
+        this.boton.setPosition(Gdx.graphics.getWidth() * -0.1f, Gdx.graphics.getWidth() * -0.05f);
 
         this.boton.addListener(new ClickListener() {
             @Override
