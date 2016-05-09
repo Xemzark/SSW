@@ -14,15 +14,24 @@ public class ExplosionChain extends Explosion {
     int times; //Veces que se repite la animacion
     int indiceTotal = 0;
 
-    boolean triggerVictoryOnEnd = true;
+    boolean triggerSceneCHangeOnEnd = false;
+    boolean triggerIsVictory = false;
 
     public ExplosionChain(ArrayList<Texture> texture, Vector2 posicion, float duracion, int times) {
         super(texture, posicion, duracion);
         this.times = times;
     }
 
-    public void setTriggerVictoryOnEnd(boolean victoryOnEnd) {
-        triggerVictoryOnEnd = victoryOnEnd;
+    public void setOnEndVictory(boolean victoryOnEnd)
+    {
+        triggerSceneCHangeOnEnd = victoryOnEnd;
+        triggerIsVictory = true;
+    }
+
+    public void setOnEndDefeat(boolean defeatOnEnd)
+    {
+        triggerSceneCHangeOnEnd = defeatOnEnd;
+        triggerIsVictory = false;
     }
 
     @Override
@@ -46,9 +55,12 @@ public class ExplosionChain extends Explosion {
         }
         else{
             //Desbloquear siguiente nivel
-            if (triggerVictoryOnEnd)
-                ScreenManager.getInstance().showScreen(ScreenEnum.VICTORY);
-
+            if (triggerSceneCHangeOnEnd) {
+                if (triggerIsVictory)
+                    ScreenManager.getInstance().showScreen(ScreenEnum.VICTORY);
+                else
+                    ScreenManager.getInstance().showScreen(ScreenEnum.GAME_OVER);
+            }
             destruirse();
         }
     }

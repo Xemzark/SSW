@@ -170,6 +170,7 @@ public class BossEnemigo extends EnemigoEntity {
         explosionTextura.add(GestorAssets.getInstance().getTexture("explo4.png"));
         explosionTextura.add(GestorAssets.getInstance().getTexture("explo5.png"));
         com.navejuego.ExplosionChain explo = new com.navejuego.ExplosionChain(explosionTextura, new Vector2(getX(),getY()),1.0f,3);
+        explo.setOnEndVictory(true);
         PantallaJuego.stage.addActor(explo);
     }
 

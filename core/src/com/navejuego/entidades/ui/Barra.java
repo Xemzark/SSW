@@ -32,7 +32,10 @@ public class Barra extends Actor {
 
         //TODO: Handle rotation of the sprite
 
-        this.icon = new Sprite(icon);
+        if (icon != null) {
+            this.icon = new Sprite(icon);
+        }
+
         if (horizontal) {
             this.margenDeIcono = margenIcono * Constantes.resizeWidth;
         } else {
@@ -92,7 +95,8 @@ public class Barra extends Actor {
     public void render(Batch batch){
         this.background.draw(batch);
         this.foreground.draw(batch);
-        this.icon.draw(batch);
+        if (icon != null)
+            this.icon.draw(batch);
     }
 }
 
