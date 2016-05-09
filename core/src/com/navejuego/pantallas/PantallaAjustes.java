@@ -85,12 +85,14 @@ public class PantallaAjustes extends Pantalla {
             public void changed(ChangeEvent event, Actor actor) {
                 if (checkbox1.isChecked()) {
                     Preferencias.getInstance().setMusic(true);
-                    System.out.println("Music: "+Preferencias.getInstance().musicOn());
+                    System.out.println("Music: " + Preferencias.getInstance().musicOn());
+                    Preferencias.getInstance().savePreferences();
 
                 } else {
                     Preferencias.getInstance().setMusic(false);
                     System.out.println("Music: " + Preferencias.getInstance().musicOn());
                     GestorAssets.getInstance().getMusic("Starlight.wav").stop();
+                    Preferencias.getInstance().savePreferences();
                 }
             }
         });
@@ -100,11 +102,13 @@ public class PantallaAjustes extends Pantalla {
                 if(checkbox2.isChecked())
                 {
                     Preferencias.getInstance().setSound(true);
-                    System.out.println("Sound: "+Preferencias.getInstance().soundOn());
+                    System.out.println("Sound: " + Preferencias.getInstance().soundOn());
+                    Preferencias.getInstance().savePreferences();
 
                 }else{
                     Preferencias.getInstance().setSound(false);
-                    System.out.println("Sound: "+Preferencias.getInstance().soundOn());
+                    System.out.println("Sound: " + Preferencias.getInstance().soundOn());
+                    Preferencias.getInstance().savePreferences();
                 }
             }
         });
@@ -114,11 +118,13 @@ public class PantallaAjustes extends Pantalla {
                 if(checkbox3.isChecked())
                 {
                     Preferencias.getInstance().setVibration(true);
-                    System.out.println("Vibration: "+Preferencias.getInstance().vibrationOn());
+                    System.out.println("Vibration: " + Preferencias.getInstance().vibrationOn());
+                    Preferencias.getInstance().savePreferences();
 
                 }else{
                     Preferencias.getInstance().setVibration(false);
                     System.out.println("Vibration: " + Preferencias.getInstance().vibrationOn());
+                    Preferencias.getInstance().savePreferences();
                 }
             }
         });
