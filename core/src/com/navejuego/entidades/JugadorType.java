@@ -10,15 +10,15 @@ import com.navejuego.entidades.especiales.EspecialMisiles;
  */
 public class JugadorType{
 
-    protected float cadenciaDisparo;
-    protected float maxVida;
-    protected float maxEscudo;
-    protected float vida;
-    protected float escudo;
-    protected AtaqueEspecial especial;
-    protected int damage;
-    protected Texture textura;
-    protected Texture texturaEscudo;
+    public float cadenciaDisparo;
+    public float maxVida;
+    public float maxEscudo;
+    public float vida;
+    public float escudo;
+    public AtaqueEspecial especial;
+    public int damage;
+    public Texture textura;
+    public Texture texturaEscudo;
 
     public JugadorType(int type){
 
