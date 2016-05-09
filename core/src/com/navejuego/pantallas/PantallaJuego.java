@@ -93,7 +93,7 @@ public class PantallaJuego extends Pantalla {
          * input que sucedan sobre la pantalla actual
          */
         Gdx.input.setInputProcessor(stage);
-        //stage.setDebugAll(true);
+        stage.setDebugAll(true);
 
         /*
          * Añadir los actores al stage para que el stage pueda procesar eventos de input hacia

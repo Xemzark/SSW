@@ -22,6 +22,8 @@ public class Explosion extends GameObjectEntity {
 
         this.texture = texture.get(0);
         this.sprite = new Sprite(this.texture);
+        this.sprite.setSize(100 * Constantes.resizeWidth, 100 * Constantes.resizeHeight);
+        setSize(sprite.getWidth(), sprite.getHeight());
         ttrans = 0.0f;
         this.duracion = duracion;
         float x = posicion.x;

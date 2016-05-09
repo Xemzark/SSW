@@ -14,7 +14,7 @@ public class BulletEnemigo extends BulletEntity {
 
     public BulletEnemigo(Texture texture, Vector2 posicion, int damage) {
         super(texture, posicion, damage);
-        movementPattern = new LinealMovement(900.0f, false);
+        movementPattern = new LinealMovement(700.0f, false);
     }
 
     /**
