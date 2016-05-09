@@ -39,6 +39,7 @@ public class EspecialMisiles extends AtaqueEspecial {
         float playerY = PantallaJuego.jugador.getY();
 
         int centralMissile = missileAmount/2;
+
         float bulletX = playerX - distanceBetweenMissilesX*centralMissile;
         float bulletY = playerY - distanceBetweenMissilesY*centralMissile;;
 
@@ -49,10 +50,11 @@ public class EspecialMisiles extends AtaqueEspecial {
 
             bulletX += distanceBetweenMissilesX;
 
-            if (disparo <= centralMissile)
+            if (disparo < centralMissile) {
                 bulletY += distanceBetweenMissilesY;
-            else
+            } else {
                 bulletY -= distanceBetweenMissilesY;
+            }
         }
     }
 
