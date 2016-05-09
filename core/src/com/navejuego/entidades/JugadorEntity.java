@@ -16,12 +16,8 @@ import com.navejuego.Preferencias;
 import com.navejuego.entidades.ui.Barra;
 import com.navejuego.entidades.ui.Puntuacion;
 import com.navejuego.pantallas.PantallaJuego;
-import com.navejuego.pantallas.ScreenEnum;
-import com.navejuego.pantallas.ScreenManager;
 
 import java.util.ArrayList;
-
-import static com.navejuego.Constantes.*;
 
 /**
  * Created by Andrés on 03/04/2016.
@@ -254,7 +250,7 @@ public class JugadorEntity extends GameObjectEntity {
      * @param cura Putnos de vida a incrementar. Valores negativos no hacen efecto.
      */
     public void curarse(int cura) {
-        if (cura > 0) {
+        if (cura > 0 && vida > 0) {
             vida = Math.min(vida + cura, maxVida);
             updateUI();
         }
@@ -282,8 +278,8 @@ public class JugadorEntity extends GameObjectEntity {
         animacionExploChain();
         setPosition(-100, -100);
         hitbox.setPosition(-100, -100);
-        //remove();
         Constantes.lastScore = Integer.parseInt(this.getPuntuacion().getPuntuacion());
+        remove();
     }
 
     public void animacionExplo()
