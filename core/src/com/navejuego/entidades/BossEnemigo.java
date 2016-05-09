@@ -183,8 +183,6 @@ public class BossEnemigo extends EnemigoEntity {
         Gdx.app.log("Boss defeated!", "");
         Constantes.lastScore = Integer.parseInt(PantallaJuego.jugador.getPuntuacion().getPuntuacion());
         System.out.println("Score final: " + Constantes.lastScore);
-        //Desbloquear siguiente nivel
-        ScreenManager.getInstance().showScreen(ScreenEnum.VICTORY);
     }
 
 
