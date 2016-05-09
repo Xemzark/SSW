@@ -12,16 +12,18 @@ public class ZigZagMovement implements MovementPattern {
     private float speed;
     private float ZigSpeed;
     private boolean goRight;
+    private boolean bossMode;
     /**
      * If this is set to true, the ship moves upwards.
      * Otherwise, it moves downwards.
      */
     private boolean goUp = false;
 
-    public ZigZagMovement(float speed, float ZigSpeed, boolean goUp) {
+    public ZigZagMovement(float speed, float ZigSpeed, boolean goUp, boolean bossMode) {
         this.speed = speed * Constantes.resizeHeight;
         this.goUp = goUp;
         this.ZigSpeed = ZigSpeed * Constantes.resizeWidth;
+        this.bossMode = bossMode;
     }
 
     @Override
@@ -50,8 +52,17 @@ public class ZigZagMovement implements MovementPattern {
         float newY =  entity.getY();
         if (goUp) {
             newY += speed * delta;
+            //Si es el boss, que no salga de pantalla!
+            if(bossMode && (newY + (speed * delta)) > Gdx.graphics.getHeight()*0.7){
+                goUp = false;
+            }
         } else {
             newY -= speed * delta;
+            //Si es el boss, que no salga de pantalla!
+            if(bossMode && (newY - (speed * delta)) < 0){
+                goUp = true;
+            }
+
         }
         float newX =  entity.getX();
         /**

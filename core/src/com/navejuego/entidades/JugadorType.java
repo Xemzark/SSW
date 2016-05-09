@@ -2,20 +2,23 @@ package com.navejuego.entidades;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.navejuego.GestorAssets;
+import com.navejuego.entidades.especiales.AtaqueEspecial;
+import com.navejuego.entidades.especiales.EspecialMisiles;
 
 /**
  * Created by beno_ on 05/05/2016.
  */
 public class JugadorType{
 
-    public float cadenciaDisparo;
-    public float maxVida;
-    public float maxEscudo;
-    public float vida;
-    public float escudo;
-    public int damage;
-    public Texture textura;
-    public Texture texturaEscudo;
+    protected float cadenciaDisparo;
+    protected float maxVida;
+    protected float maxEscudo;
+    protected float vida;
+    protected float escudo;
+    protected AtaqueEspecial especial;
+    protected int damage;
+    protected Texture textura;
+    protected Texture texturaEscudo;
 
     public JugadorType(int type){
 
@@ -32,6 +35,7 @@ public class JugadorType{
                 this.texturaEscudo = GestorAssets.getInstance().getTexture("escudoNave.png");
                 this.textura = GestorAssets.getInstance().getTexture("nave.png");
                 this.cadenciaDisparo = 0.4f;
+                this.especial = new EspecialMisiles(5, 20, 7, 40.0f, 50.0f);
                 break;
             case 1:
                 this.vida = 70;
@@ -42,6 +46,7 @@ public class JugadorType{
                 this.texturaEscudo = GestorAssets.getInstance().getTexture("escudoNave.png");
                 this.textura = GestorAssets.getInstance().getTexture("destroyer.png");
                 this.cadenciaDisparo = 0.2f;
+                this.especial = new EspecialMisiles(5, 20, 7, 40.0f, 50.0f);
                 break;
             case 2:
                 this.vida = 40;
@@ -52,6 +57,7 @@ public class JugadorType{
                 this.texturaEscudo = GestorAssets.getInstance().getTexture("escudoNave.png");
                 this.textura = GestorAssets.getInstance().getTexture("ship3.png");
                 this.cadenciaDisparo = 0.1f;
+                this.especial = new EspecialMisiles(5, 20, 7, 35.0f, 30.0f);
                 break;
             default:
                 this.vida = 200;
@@ -61,7 +67,7 @@ public class JugadorType{
                 this.texturaEscudo = GestorAssets.getInstance().getTexture("escudoNave.png");
                 this.textura = GestorAssets.getInstance().getTexture("medfrighter.png");
                 this.cadenciaDisparo = 0.6f;
-
+                this.especial = new EspecialMisiles(5, 20, 7, 40.0f, 50.0f);
                 break;
         }
     }

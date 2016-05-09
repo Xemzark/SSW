@@ -132,7 +132,7 @@ public class EnemigoEntity extends GameObjectEntity {
         if (tiempoSiguienteDisparo > cadenciaDisparo) {
             Texture bulletTextura = GestorAssets.getInstance().getTexture("proyectilEnemigo.png");
             com.navejuego.entidades.bullets.BulletEnemigo bullet = new com.navejuego.entidades.bullets.BulletEnemigo(bulletTextura, new Vector2(getX() + (getWidth() / 2), getY()),damage);
-            bullet.setSize(10.0f, 10.0f);
+            bullet.setSize(10.0f * Constantes.resizeWidth, 10.0f * Constantes.resizeHeight);
             bullet.setName("Bala Enemigo");
             PantallaJuego.stage.addActor(bullet);
             tiempoSiguienteDisparo = 0;

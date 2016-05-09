@@ -69,6 +69,8 @@ public class GestorAssets {
         manager.load("blueship2.png", Texture.class);
         manager.load("blueship3.png", Texture.class);
         manager.load("blueship4.png", Texture.class);
+        manager.load("bgbattleship.png", Texture.class);
+
 
 
         /**

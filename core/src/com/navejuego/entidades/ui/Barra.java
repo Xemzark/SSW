@@ -23,7 +23,6 @@ public class Barra extends Actor {
     private Sprite icon;
     private float margenDeIcono = 22;
     private boolean horizontal;
-    private float length;
 
     public Barra(Texture background, Texture foreground, Texture icon, float margenIcono, Vector2 posicion, boolean horizontal, float length) {
 
@@ -43,7 +42,6 @@ public class Barra extends Actor {
         }
 
         this.horizontal = horizontal;
-        this.length = length;
 
         Vector2 adjustedPosition = new Vector2(posicion.x * Constantes.resizeWidth, posicion.y * Constantes.resizeHeight);
 

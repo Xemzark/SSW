@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.navejuego.Constantes;
 
 /**
  * Created by beno_ on 13/04/2016.
@@ -22,7 +23,7 @@ public class Puntuacion extends Actor {
     public Puntuacion(){
         this.font=new BitmapFont();
         this.font.setColor(Color.WHITE);
-        this.font.getData().setScale((float)1.7, (float)1.7);
+        this.font.getData().setScale(1.7f * Constantes.resizeWidth, 1.7f * Constantes.resizeHeight);
         this.puntuacion = "0";
     }
 
@@ -56,7 +57,7 @@ public class Puntuacion extends Actor {
 
     public void draw (Batch batch)
     {
-        font.draw(batch, "HIGH SCORE", (Gdx.graphics.getWidth()/2)-this.buffer*7 ,Gdx.graphics.getHeight()- this.buffer);
-        font.draw(batch, this.puntuacion, (Gdx.graphics.getWidth()/2)- this.buffer*7, Gdx.graphics.getHeight()-buffer*4);
+        font.draw(batch, "SCORE", Gdx.graphics.getWidth() * 0.4f ,Gdx.graphics.getHeight() * 0.98f);
+        font.draw(batch, this.puntuacion,  Gdx.graphics.getWidth() * 0.4f ,Gdx.graphics.getHeight() * 0.93f);
     }
 }

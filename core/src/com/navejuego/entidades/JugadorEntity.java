@@ -16,12 +16,9 @@ import com.navejuego.Preferencias;
 import com.navejuego.entidades.ui.Barra;
 import com.navejuego.entidades.ui.Puntuacion;
 import com.navejuego.pantallas.PantallaJuego;
-import com.navejuego.pantallas.ScreenEnum;
-import com.navejuego.pantallas.ScreenManager;
+import com.navejuego.entidades.especiales.AtaqueEspecial;
 
 import java.util.ArrayList;
-
-import static com.navejuego.Constantes.*;
 
 /**
  * Created by Andrés on 03/04/2016.
@@ -71,9 +68,6 @@ public class JugadorEntity extends GameObjectEntity {
         this.sprite.setSize(80 * Constantes.resizeWidth, 80 * Constantes.resizeHeight);
         this.hitbox = new Circle();
 
-        this.ataqueEspecial = new AtaqueEspecial();
-        PantallaJuego.stage.addActor(this.ataqueEspecial);
-
         this.invulnerabilidad = false;
         this.puntuacion = new com.navejuego.entidades.ui.Puntuacion();
         this.maxVida = jugadorProperties.maxVida;
@@ -82,7 +76,8 @@ public class JugadorEntity extends GameObjectEntity {
         this.escudo = maxEscudo;
         this.vida = jugadorProperties.vida;
         this.escudo = jugadorProperties.escudo;
-
+        this.ataqueEspecial = jugadorProperties.especial;
+        PantallaJuego.stage.addActor(this.ataqueEspecial);
         // Sprite animación escudo
         this.spriteEscudo = new Sprite(jugadorProperties.texturaEscudo);
         spriteEscudo.setAlpha(0.7f);
@@ -109,7 +104,7 @@ public class JugadorEntity extends GameObjectEntity {
         //Valores iniciales del Actor
         setBounds(sprite.getX(), sprite.getY(), sprite.getWidth(), sprite.getHeight());
         setPosition(posicion.x - getWidth() / 2, posicion.y - getHeight() / 2);
-        setSize(getWidth() * Constantes.resizeWidth, getHeight() * Constantes.resizeHeight);
+        setSize(sprite.getWidth(), sprite.getHeight());
         hitbox.set(getX() + getWidth() / 2, getY() + getHeight() / 2, getWidth() / 2);
         spriteEscudo.setPosition(getX(), getY());
         spriteEscudo.setSize(getWidth(), getHeight());
@@ -254,7 +249,7 @@ public class JugadorEntity extends GameObjectEntity {
      * @param cura Putnos de vida a incrementar. Valores negativos no hacen efecto.
      */
     public void curarse(int cura) {
-        if (cura > 0) {
+        if (cura > 0 && vida > 0) {
             vida = Math.min(vida + cura, maxVida);
             updateUI();
         }
@@ -282,8 +277,8 @@ public class JugadorEntity extends GameObjectEntity {
         animacionExploChain();
         setPosition(-100, -100);
         hitbox.setPosition(-100, -100);
-        //remove();
         Constantes.lastScore = Integer.parseInt(this.getPuntuacion().getPuntuacion());
+        remove();
     }
 
     public void animacionExplo()
