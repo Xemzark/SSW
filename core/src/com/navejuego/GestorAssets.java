@@ -82,7 +82,7 @@ public class GestorAssets {
         manager.load("background_6.png", Texture.class);
         manager.load("background_7.png", Texture.class);
         manager.load("background_8.png", Texture.class);
-        manager.load("backgroundgaraje.png", Texture.class);
+        manager.load("background_garaje.png", Texture.class);
         manager.load("game_over.png", Texture.class);
         manager.load("otherskin/ajustess.png", Texture.class);
         manager.load("logo2.png", Texture.class);
@@ -110,6 +110,7 @@ public class GestorAssets {
         manager.load("vidabossbg.png", Texture.class);
         manager.load("vidabossfg.png", Texture.class);
         manager.load("boss_corazon.png", Texture.class);
+        manager.load("barraloca.png", Texture.class);
 
 
 
