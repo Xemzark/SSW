@@ -32,7 +32,10 @@ public class Barra extends Actor {
 
         //TODO: Handle rotation of the sprite
 
-        this.icon = new Sprite(icon);
+        if (icon != null) {
+            this.icon = new Sprite(icon);
+        }
+
         if (horizontal) {
             this.margenDeIcono = margenIcono * Constantes.resizeWidth;
         } else {
@@ -72,13 +75,14 @@ public class Barra extends Actor {
                     length * Constantes.resizeHeight);
         }
 
-        if (horizontal) {
-            this.icon.setPosition(this.background.getX() - this.margenDeIcono, this.background.getY());
-        } else {
-            this.icon.setPosition(this.background.getX(), this.background.getY() - this.margenDeIcono);
+        if (icon != null) {
+            if (horizontal) {
+                this.icon.setPosition(this.background.getX() - this.margenDeIcono, this.background.getY());
+            } else {
+                this.icon.setPosition(this.background.getX(), this.background.getY() - this.margenDeIcono);
+            }
+            this.icon.setSize(Constantes.lateralBarWidth * Constantes.resizeWidth, Constantes.lateralBarWidth * Constantes.resizeHeight);
         }
-        this.icon.setSize(Constantes.lateralBarWidth * Constantes.resizeWidth, Constantes.lateralBarWidth * Constantes.resizeHeight);
-
     }
 
     public void Update(float percent) {
@@ -92,7 +96,8 @@ public class Barra extends Actor {
     public void render(Batch batch){
         this.background.draw(batch);
         this.foreground.draw(batch);
-        this.icon.draw(batch);
+        if (icon != null)
+            this.icon.draw(batch);
     }
 }
 

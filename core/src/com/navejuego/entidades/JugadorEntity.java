@@ -68,7 +68,7 @@ public class JugadorEntity extends GameObjectEntity {
         this.damage = this.jugadorProperties.damage;
 
         this.sprite = new Sprite(this.texture);
-        this.sprite.setSize((float)Gdx.app.getGraphics().getWidth()*0.2f,Gdx.app.getGraphics().getWidth()*0.2f);
+        this.sprite.setSize(80 * Constantes.resizeWidth, 80 * Constantes.resizeHeight);
         this.hitbox = new Circle();
 
         this.ataqueEspecial = new AtaqueEspecial();
@@ -92,14 +92,14 @@ public class JugadorEntity extends GameObjectEntity {
                 GestorAssets.getInstance().getTexture("vidafgv2.png"),
                 GestorAssets.getInstance().getTexture("corazon.png"),
                 Constantes.lateralBarWidth * 1.5f,
-                new Vector2(5, 40),
+                new Vector2(5, 150),
                 false, 200.0f);
         PantallaJuego.stage.addActor(barravida);
         this.barraescudo = new Barra (GestorAssets.getInstance().getTexture("escudobg.png"),
                 GestorAssets.getInstance().getTexture("escudofg.png"),
                 GestorAssets.getInstance().getTexture("shieldbar.png"),
                 Constantes.lateralBarWidth * 1.5f,
-                new Vector2(5, 285),
+                new Vector2(5, 395),
                 false, 200.0f);
         PantallaJuego.stage.addActor(barraescudo);
 
@@ -271,7 +271,7 @@ public class JugadorEntity extends GameObjectEntity {
         if (escudo > 0) {
             this.escudo = Math.min(this.escudo + escudo, maxEscudo);
             updateUI();
-            spriteEscudo.setAlpha(Math.min(this.escudo/this.maxEscudo, 0.7f));
+            spriteEscudo.setAlpha(Math.min(this.escudo / this.maxEscudo, 0.7f));
         }
     }
 
@@ -279,13 +279,11 @@ public class JugadorEntity extends GameObjectEntity {
      * Destruye la nave.
      */
     public void destruirse() {
-        animacionExplo();
+        animacionExploChain();
         setPosition(-100, -100);
         hitbox.setPosition(-100, -100);
-        //TODO: Animación de destrucción de nave
         //remove();
         Constantes.lastScore = Integer.parseInt(this.getPuntuacion().getPuntuacion());
-        ScreenManager.getInstance().showScreen(ScreenEnum.GAME_OVER);
     }
 
     public void animacionExplo()
@@ -352,6 +350,22 @@ public class JugadorEntity extends GameObjectEntity {
             this.cadenciaDisparo *= 2;
 
         }
+    }
+
+    public void animacionExploChain(){
+
+        if(Preferencias.getInstance().soundOn()) {
+            GestorAssets.getInstance().getSound("explosion2.wav").play();
+        }
+        ArrayList<Texture> explosionTextura = new ArrayList<Texture>();
+        explosionTextura.add(GestorAssets.getInstance().getTexture("explo1.png"));
+        explosionTextura.add(GestorAssets.getInstance().getTexture("explo2.png"));
+        explosionTextura.add(GestorAssets.getInstance().getTexture("explo3.png"));
+        explosionTextura.add(GestorAssets.getInstance().getTexture("explo4.png"));
+        explosionTextura.add(GestorAssets.getInstance().getTexture("explo5.png"));
+        com.navejuego.ExplosionChain explo = new com.navejuego.ExplosionChain(explosionTextura, new Vector2(getX(),getY()),1.0f,3);
+        explo.setOnEndDefeat(true);
+        PantallaJuego.stage.addActor(explo);
     }
 
     public void addPuntos(int puntos){

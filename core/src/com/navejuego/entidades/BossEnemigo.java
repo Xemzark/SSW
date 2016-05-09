@@ -170,6 +170,7 @@ public class BossEnemigo extends EnemigoEntity {
         explosionTextura.add(GestorAssets.getInstance().getTexture("explo4.png"));
         explosionTextura.add(GestorAssets.getInstance().getTexture("explo5.png"));
         com.navejuego.ExplosionChain explo = new com.navejuego.ExplosionChain(explosionTextura, new Vector2(getX(),getY()),1.0f,3);
+        explo.setOnEndVictory(true);
         PantallaJuego.stage.addActor(explo);
     }
 
@@ -183,8 +184,6 @@ public class BossEnemigo extends EnemigoEntity {
         Gdx.app.log("Boss defeated!", "");
         Constantes.lastScore = Integer.parseInt(PantallaJuego.jugador.getPuntuacion().getPuntuacion());
         System.out.println("Score final: " + Constantes.lastScore);
-        //Desbloquear siguiente nivel
-        ScreenManager.getInstance().showScreen(ScreenEnum.VICTORY);
     }
 
 

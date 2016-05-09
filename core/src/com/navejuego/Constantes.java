@@ -21,7 +21,7 @@ public class Constantes {
     public static LevelManager.Nivel selectedLevel;
     public static int lastScore = 0;
 
-    public static final boolean unlockAllLevels = false;
+    public static final boolean unlockAllLevels = true;
     public static final boolean forceFirstTimeGameData = true;
     public static final boolean fillTestRanking = true;
 
