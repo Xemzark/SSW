@@ -54,9 +54,9 @@ public class BossEnemigo extends EnemigoEntity {
         nextSegmentoVida = maxVida - segmentoVida;
         this.barraVida = new Barra (GestorAssets.getInstance().getTexture("vidabossbg.png"),
                 GestorAssets.getInstance().getTexture("vidabossfg.png"),
-                GestorAssets.getInstance().getTexture("boss_corazon.png"),
-                Constantes.lateralBarWidth * 1.5f,
-                new Vector2((Gdx.graphics.getWidth() / 2) - (GestorAssets.getInstance().getTexture("vidabossbg.png").getWidth()/3), (float)(Gdx.graphics.getHeight()*0.8)),
+                null,
+                0,
+                new Vector2(180- (GestorAssets.getInstance().getTexture("vidabossbg.png").getWidth()/3), 530),
                 true, 200.0f);
     }
 
