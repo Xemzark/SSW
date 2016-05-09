@@ -16,6 +16,7 @@ import com.navejuego.Preferencias;
 import com.navejuego.entidades.ui.Barra;
 import com.navejuego.entidades.ui.Puntuacion;
 import com.navejuego.pantallas.PantallaJuego;
+import com.navejuego.entidades.especiales.AtaqueEspecial;
 
 import java.util.ArrayList;
 
@@ -67,9 +68,6 @@ public class JugadorEntity extends GameObjectEntity {
         this.sprite.setSize(80 * Constantes.resizeWidth, 80 * Constantes.resizeHeight);
         this.hitbox = new Circle();
 
-        this.ataqueEspecial = new AtaqueEspecial();
-        PantallaJuego.stage.addActor(this.ataqueEspecial);
-
         this.invulnerabilidad = false;
         this.puntuacion = new com.navejuego.entidades.ui.Puntuacion();
         this.maxVida = jugadorProperties.maxVida;
@@ -78,7 +76,8 @@ public class JugadorEntity extends GameObjectEntity {
         this.escudo = maxEscudo;
         this.vida = jugadorProperties.vida;
         this.escudo = jugadorProperties.escudo;
-
+        this.ataqueEspecial = jugadorProperties.especial;
+        PantallaJuego.stage.addActor(this.ataqueEspecial);
         // Sprite animación escudo
         this.spriteEscudo = new Sprite(jugadorProperties.texturaEscudo);
         spriteEscudo.setAlpha(0.7f);
