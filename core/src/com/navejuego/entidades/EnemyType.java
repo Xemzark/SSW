@@ -366,7 +366,7 @@ public class EnemyType {
             case 13: //enemigo verde 1
                 texture = GestorAssets.getInstance().getTexture("greenship1.png");
                 sprite = new Sprite(texture);
-                textureEscudo = GestorAssets.getInstance().getTexture("escudoNave.png");
+                textureEscudo = GestorAssets.getInstance().getTexture("escudoEnemigo.png");
                 spriteEscudo = new Sprite(textureEscudo);
                 hitbox = new Circle();
                 puntuacion = 400;
