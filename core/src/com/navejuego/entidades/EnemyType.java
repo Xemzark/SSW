@@ -13,6 +13,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.navejuego.entidades.patrones.NullMovement;
 import com.navejuego.entidades.patrones.TargetMovement;
+import com.navejuego.entidades.patrones.ZigZagMovement;
 
 import java.util.ArrayList;
 
@@ -432,7 +433,7 @@ public class EnemyType {
                 bulletMovement = null;
                 break;
 
-            case 16: //enemigo verde 1
+            case 16: //enemigo verde 4
                 texture = GestorAssets.getInstance().getTexture("greenship4.png");
                 sprite = new Sprite(texture);
                 textureEscudo = GestorAssets.getInstance().getTexture("escudoEnemigo.png");
@@ -455,7 +456,7 @@ public class EnemyType {
                 bulletMovement = new LinealMovement(150, false);
                 break;
 
-            case 21: //BOSS DEMO
+            case 21: //BOSS DEMO Morado
                 texture = GestorAssets.getInstance().getTexture("aliensprite2.png");
                 sprite = new Sprite(texture);
                 textureEscudo = GestorAssets.getInstance().getTexture("escudoEnemigo.png");
@@ -477,29 +478,31 @@ public class EnemyType {
                 sizeY = 130.0f;
                 bulletMovement = new LinealMovement(150,false);
                 break;
-            case 22: //BOSS PANTALLA 2
-                texture = GestorAssets.getInstance().getTexture("aliensprite2.png");
+            case 22: //BOSS PANTALLA 2 Azul
+                texture = GestorAssets.getInstance().getTexture("bgbattleship.png");
                 sprite = new Sprite(texture);
                 textureEscudo = GestorAssets.getInstance().getTexture("escudoEnemigo.png");
                 spriteEscudo = new Sprite(textureEscudo);
                 hitbox = new Circle();
                 puntuacion = 20000;
-                cadenciaDisparo = 0.5f;
+                cadenciaDisparo = 100000000000f;
                 tiempoSiguienteDisparo = 0f;
                 vivo = true;
-                damage = 10;
-                maxVida = 200;
+                damage = 5000;
+                maxVida = 500;
                 maxEscudo = 0;
                 vida = maxVida;
                 escudo = maxEscudo;
-                dañoColision = 1000; //Daño que le hace la nave al jugador si colisionan
-                patternList.add(new NullMovement());
-                patternList.add(new HoritzontalMovement(150));
+                dañoColision = 30; //Daño que le hace la nave al jugador si colisionan
+                patternList.add(new ZigZagMovement(100,100,false, true));
+                patternList.add(new ZigZagMovement(150,150,true, true));
+                patternList.add(new ZigZagMovement(250,250,false, true));
                 sizeX = 150.0f;
                 sizeY = 130.0f;
                 bulletMovement = new LinealMovement(150,false);
                 break;
-            case 23: //BOSS PANTALLA 3
+
+            case 23: //BOSS PANTALLA 3 Naranja
                 texture = GestorAssets.getInstance().getTexture("aliensprite2.png");
                 sprite = new Sprite(texture);
                 textureEscudo = GestorAssets.getInstance().getTexture("escudoEnemigo.png");
@@ -522,7 +525,7 @@ public class EnemyType {
                 bulletMovement = new LinealMovement(150,false);
                 break;
 
-            case 24: //BOSS PANTALLA 4
+            case 24: //BOSS PANTALLA 4 Verde
                 texture = GestorAssets.getInstance().getTexture("aliensprite2.png");
                 sprite = new Sprite(texture);
                 textureEscudo = GestorAssets.getInstance().getTexture("escudoEnemigo.png");
