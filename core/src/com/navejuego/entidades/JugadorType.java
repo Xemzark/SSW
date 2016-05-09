@@ -3,7 +3,9 @@ package com.navejuego.entidades;
 import com.badlogic.gdx.graphics.Texture;
 import com.navejuego.GestorAssets;
 import com.navejuego.entidades.especiales.AtaqueEspecial;
+import com.navejuego.entidades.especiales.EspecialMasa;
 import com.navejuego.entidades.especiales.EspecialMisiles;
+import com.navejuego.entidades.especiales.EspecialRegeneracion;
 
 /**
  * Created by beno_ on 05/05/2016.
@@ -46,7 +48,7 @@ public class JugadorType{
                 this.texturaEscudo = GestorAssets.getInstance().getTexture("escudoNave.png");
                 this.textura = GestorAssets.getInstance().getTexture("destroyer.png");
                 this.cadenciaDisparo = 0.2f;
-                this.especial = new EspecialMisiles(5, 20, 7, 40.0f, 50.0f);
+                this.especial = new EspecialMasa(5);
                 break;
             case 2:
                 this.vida = 40;
@@ -57,7 +59,7 @@ public class JugadorType{
                 this.texturaEscudo = GestorAssets.getInstance().getTexture("escudoNave.png");
                 this.textura = GestorAssets.getInstance().getTexture("ship3.png");
                 this.cadenciaDisparo = 0.1f;
-                this.especial = new EspecialMisiles(5, 20, 7, 35.0f, 30.0f);
+                this.especial = new EspecialRegeneracion(3);
                 break;
             default:
                 this.vida = 200;

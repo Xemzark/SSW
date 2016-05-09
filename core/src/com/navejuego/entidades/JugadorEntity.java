@@ -11,6 +11,7 @@ import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.utils.DragListener;
 import com.badlogic.gdx.utils.TimeUtils;
 import com.navejuego.Constantes;
+import com.navejuego.ExplosionChain;
 import com.navejuego.GestorAssets;
 import com.navejuego.Preferencias;
 import com.navejuego.entidades.ui.Barra;
@@ -289,7 +290,7 @@ public class JugadorEntity extends GameObjectEntity {
         explosionTextura.add(GestorAssets.getInstance().getTexture("explo3.png"));
         explosionTextura.add(GestorAssets.getInstance().getTexture("explo4.png"));
         explosionTextura.add(GestorAssets.getInstance().getTexture("explo5.png"));
-        com.navejuego.Explosion explo = new com.navejuego.Explosion(explosionTextura, new Vector2(getX(),getY()),1.0f);
+        com.navejuego.Explosion explo = new com.navejuego.Explosion(explosionTextura, new Vector2(getX(),getY()),1.0f, 100);
         PantallaJuego.stage.addActor(explo);
     }
 
@@ -358,9 +359,13 @@ public class JugadorEntity extends GameObjectEntity {
         explosionTextura.add(GestorAssets.getInstance().getTexture("explo3.png"));
         explosionTextura.add(GestorAssets.getInstance().getTexture("explo4.png"));
         explosionTextura.add(GestorAssets.getInstance().getTexture("explo5.png"));
-        com.navejuego.ExplosionChain explo = new com.navejuego.ExplosionChain(explosionTextura, new Vector2(getX(),getY()),1.0f,3);
+        ExplosionChain explo = new ExplosionChain(explosionTextura, new Vector2(getX(),getY()),1.0f,3, 100);
         explo.setOnEndDefeat(true);
         PantallaJuego.stage.addActor(explo);
+    }
+
+    public JugadorType getJugadorType(){
+        return this.jugadorProperties;
     }
 
     public void addPuntos(int puntos){
