@@ -35,7 +35,7 @@ public class JugadorType{
                 this.texturaEscudo = GestorAssets.getInstance().getTexture("escudoNave.png");
                 this.textura = GestorAssets.getInstance().getTexture("nave.png");
                 this.cadenciaDisparo = 0.4f;
-                this.especial = new EspecialMisiles(5, 20, 9, 40.0f, 50.0f);
+                this.especial = new EspecialMisiles(5, 20, 7, 40.0f, 50.0f);
                 break;
             case 1:
                 this.vida = 70;
@@ -46,7 +46,7 @@ public class JugadorType{
                 this.texturaEscudo = GestorAssets.getInstance().getTexture("escudoNave.png");
                 this.textura = GestorAssets.getInstance().getTexture("destroyer.png");
                 this.cadenciaDisparo = 0.2f;
-                this.especial = new EspecialMisiles(5, 20, 9, 40.0f, 50.0f);
+                this.especial = new EspecialMisiles(5, 20, 7, 40.0f, 50.0f);
                 break;
             case 2:
                 this.vida = 40;
@@ -67,7 +67,7 @@ public class JugadorType{
                 this.texturaEscudo = GestorAssets.getInstance().getTexture("escudoNave.png");
                 this.textura = GestorAssets.getInstance().getTexture("medfrighter.png");
                 this.cadenciaDisparo = 0.6f;
-                this.especial = new EspecialMisiles(5, 20, 9, 40.0f, 50.0f);
+                this.especial = new EspecialMisiles(5, 20, 7, 40.0f, 50.0f);
                 break;
         }
     }
