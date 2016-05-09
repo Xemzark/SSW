@@ -14,6 +14,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextArea;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.viewport.FitViewport;
+import com.navejuego.Dialog;
 import com.navejuego.GestorAssets;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton.TextButtonStyle;
 import com.navejuego.PartidaGuardada;
@@ -166,9 +167,6 @@ public class PantallaMenu extends Pantalla {
         menuStage.addActor(Ranking);
         menuStage.addActor(jugar);
         //menuStage.addActor(ajustess);
-
-
-
 
     }
 

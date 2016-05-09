@@ -19,7 +19,7 @@ public class LevelManager {
         NIVEL_1, NIVEL_2, NIVEL_3, NIVEL_4;
     }
     public int enemySet[]; //tipos de enemigos que podran aparecer en un nivel
-    public int bossList[] = {20,20,20,20}; //Por orden, se corresponden al boss de cada nivel
+    public int bossList[] = {21,22,23,24}; //Por orden, se corresponden al boss de cada nivel
     public int bossType;
     public int waveAmount; //cantidad de oleadas que hay en un nivel
     public Random rnd = new Random(); //se utiliza para cargar aleatoriamente los enemigos que se generan
@@ -41,8 +41,8 @@ public class LevelManager {
         switch (lvl) {
             case NIVEL_1:
 
-                enemySet = new int[] {5,6,7,8};
-                waveAmount = 3;
+                enemySet = new int[] {1,2,3,4};
+                waveAmount = 1;
 
                 for(int i =0; i < waveAmount; i++ ) {
                     waveArray.add(new Wave(enemySet[rnd.nextInt(enemySet.length)], 5, 1000));
@@ -56,8 +56,8 @@ public class LevelManager {
 
             case NIVEL_2:
 
-                enemySet = new int[] {9,10,11,12};
-                waveAmount = 3;
+                enemySet = new int[] {5,6,7,8};
+                waveAmount = 1;
 
                 for(int i =0; i < waveAmount; i++ ) {
                     waveArray.add(new Wave(enemySet[rnd.nextInt(enemySet.length)], 5, 1000));
@@ -70,8 +70,8 @@ public class LevelManager {
 
             case NIVEL_3:
 
-                enemySet = new int[] {13,14,15,16};
-                waveAmount = 3;
+                enemySet = new int[] {9,10,11,12};
+                waveAmount = 1;
 
                 for(int i =0; i < waveAmount; i++ ) {
                     waveArray.add(new Wave(enemySet[rnd.nextInt(enemySet.length)], 5, 1000));
@@ -85,8 +85,8 @@ public class LevelManager {
 
             case NIVEL_4:
 
-                enemySet = new int[] {1,2,3,4};
-                waveAmount = 3;
+                enemySet = new int[] {13,14,15,16};
+                waveAmount = 1;
 
                 for(int i =0; i < waveAmount; i++ ) {
                     waveArray.add(new Wave(enemySet[rnd.nextInt(enemySet.length)], 5, 1000));

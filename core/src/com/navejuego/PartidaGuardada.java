@@ -256,4 +256,8 @@ public class PartidaGuardada {
     public void saveGameData(){
         this.gameData.flush();
     }
+
+    public int getMaxNiveles(){
+        return maxNiveles;
+    }
 }

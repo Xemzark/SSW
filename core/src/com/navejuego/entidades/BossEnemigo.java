@@ -4,7 +4,9 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.navejuego.Constantes;
+import com.navejuego.Dialog;
 import com.navejuego.GestorAssets;
 import com.navejuego.PartidaGuardada;
 import com.navejuego.Preferencias;
@@ -78,7 +80,6 @@ public class BossEnemigo extends EnemigoEntity {
 
         if (starting){ //Hace que baje el boss hasta cierta altura, siendo invulnerable, y entonces comienza su funcionamiento normal
             if(getY() < Gdx.graphics.getHeight() - getHeight() * 2){
-                System.out.print("estoy aqui");
                 vida = maxVida;
                 movementPattern = patternList.get(0);
                 starting = false;
@@ -111,8 +112,8 @@ public class BossEnemigo extends EnemigoEntity {
         tiempoSiguienteDisparo += delta;
         if (tiempoSiguienteDisparo > cadenciaDisparo) {
             Texture bulletTextura = GestorAssets.getInstance().getTexture("proyectilEnemigo.png");
-            com.navejuego.entidades.bullets.BulletEnemigo bullet1 = new com.navejuego.entidades.bullets.BulletEnemigo(bulletTextura, new Vector2(getX() + getWidth(), getY()));
-            com.navejuego.entidades.bullets.BulletEnemigo bullet2 = new com.navejuego.entidades.bullets.BulletEnemigo(bulletTextura, new Vector2(getX(), getY()));
+            com.navejuego.entidades.bullets.BulletEnemigo bullet1 = new com.navejuego.entidades.bullets.BulletEnemigo(bulletTextura, new Vector2(getX() + getWidth(), getY()),damage);
+            com.navejuego.entidades.bullets.BulletEnemigo bullet2 = new com.navejuego.entidades.bullets.BulletEnemigo(bulletTextura, new Vector2(getX(), getY()),damage);
             bullet1.setName("Bala Enemigo 1");
             PantallaJuego.stage.addActor(bullet1);
             bullet1.setName("Bala Enemigo 2");
@@ -182,17 +183,7 @@ public class BossEnemigo extends EnemigoEntity {
         Gdx.app.log("Boss defeated!", "");
         Constantes.lastScore = Integer.parseInt(PantallaJuego.jugador.getPuntuacion().getPuntuacion());
         System.out.println("Score final: " + Constantes.lastScore);
-
         //Desbloquear siguiente nivel
-        if(!Constantes.unlockAllLevels){
-            int nivel = Constantes.getLevelInt();
-            if(nivel < 3){
-                nivel = nivel + 1;
-                PartidaGuardada.getInstance().setNivelDesbloqueado(nivel);
-                PartidaGuardada.getInstance().saveGameData();
-            }
-
-        }
         ScreenManager.getInstance().showScreen(ScreenEnum.VICTORY);
     }
 

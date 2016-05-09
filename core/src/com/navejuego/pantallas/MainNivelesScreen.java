@@ -16,6 +16,7 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton.TextButtonStyle;
 
 import com.navejuego.Constantes;
+import com.navejuego.Dialog;
 import com.navejuego.GestorAssets;
 import com.navejuego.PartidaGuardada;
 import com.navejuego.entidades.LevelManager;
@@ -133,6 +134,11 @@ public class MainNivelesScreen extends Pantalla {
                     ScreenManager.getInstance().showScreen(ScreenEnum.GAME);
                 }else{
                     System.out.println("Nivel 2 no desbloqueado");
+                    Skin uiSkin = new Skin(Gdx.files.internal("skin/uiskin.json"));
+                    Dialog d = new Dialog("Nivel 2 no desbloqueado",uiSkin);
+                    d.text("\n Acaba el nivel 1 para desbloquear este nivel! \n");
+                    d.button("Aceptar");
+                    d.show(nivelesStage);
                 }
 
 
@@ -147,6 +153,11 @@ public class MainNivelesScreen extends Pantalla {
                     ScreenManager.getInstance().showScreen(ScreenEnum.GAME);
                 }else{
                     System.out.println("Nivel 3 no desbloqueado");
+                    Skin uiSkin = new Skin(Gdx.files.internal("skin/uiskin.json"));
+                    Dialog d = new Dialog("Nivel 3 no desbloqueado",uiSkin);
+                    d.text("\n Acaba el nivel 2 para desbloquear este nivel! \n");
+                    d.button("Aceptar");
+                    d.show(nivelesStage);
                 }
 
 
@@ -161,6 +172,11 @@ public class MainNivelesScreen extends Pantalla {
                     ScreenManager.getInstance().showScreen(ScreenEnum.GAME);
                 }else{
                     System.out.println("Nivel 4 no desbloqueado");
+                    Skin uiSkin = new Skin(Gdx.files.internal("skin/uiskin.json"));
+                    Dialog d = new Dialog("Nivel 4 no desbloqueado",uiSkin);
+                    d.text("\n Acaba el nivel 3 para desbloquear este nivel! \n");
+                    d.button("Aceptar");
+                    d.show(nivelesStage);
                 }
 
 

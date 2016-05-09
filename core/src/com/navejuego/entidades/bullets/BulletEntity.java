@@ -22,7 +22,7 @@ import com.navejuego.entidades.GameObjectEntity;
  */
 public abstract class BulletEntity extends GameObjectEntity {
 
-    protected int damage = 10; //Daño que aplica al golpear
+    protected int damage = 0; //Daño que aplica al golpear
     protected boolean ignoraEscudo = false;
 
     /**
@@ -31,13 +31,14 @@ public abstract class BulletEntity extends GameObjectEntity {
      * @param texture sprite a asociarle, gestionado por el assetManager
      * @param posicion vector de coordenadas x, y para inicializar la posición
      */
-    public BulletEntity(Texture texture, Vector2 posicion){
+    public BulletEntity(Texture texture, Vector2 posicion, int damage){
         this.texture = texture;
         this.hitbox = new Circle();
         this.sprite = new Sprite(this.texture);
-
+        this.damage = damage;
         float x = posicion.x;
         float y = posicion.y;
+
 
         //Valores iniciales del Actor
         setSize(10 * Constantes.resizeWidth, 20 * Constantes.resizeHeight);

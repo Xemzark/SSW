@@ -14,8 +14,8 @@ import com.navejuego.pantallas.PantallaJuego;
  */
 public class BulletNave extends BulletEntity {
 
-    public BulletNave(Texture texture, Vector2 posicion) {
-        super(texture, posicion);
+    public BulletNave(Texture texture, Vector2 posicion, int damage) {
+        super(texture, posicion, damage);
         movementPattern = new LinealMovement(900.0f, true);
     }
 

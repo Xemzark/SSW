@@ -8,6 +8,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.navejuego.Constantes;
 import com.navejuego.GestorAssets;
+import com.navejuego.Preferencias;
 import com.navejuego.entidades.GameObjectEntity;
 import com.navejuego.pantallas.PantallaJuego;
 
@@ -50,7 +51,7 @@ public abstract class PowerUpEntity extends GameObjectEntity {
 
     public void movimiento(float delta){
         setPosition(getX(), getY() - (velocidad * delta));
-        hitbox.set(getX()+getWidth()/2,getY()+getHeight()/2,getWidth()/2);
+        hitbox.set(getX() + getWidth() / 2, getY() + getHeight() / 2, getWidth() / 2);
     }
     /**
      * TODO: Comprobar si ha colisionado con el jugador. Si ha colisionado, se auto-destruye y le aplica el efecto.
@@ -58,7 +59,10 @@ public abstract class PowerUpEntity extends GameObjectEntity {
     public void comprobarColisionJugador() {
         if (PantallaJuego.jugador.getHitbox().overlaps(this.getHitbox())){
             this.aplicarEfectosSobreJugador();
-            GestorAssets.getInstance().getSound("powerup.wav").play();
+            if(Preferencias.getInstance().soundOn()){
+                GestorAssets.getInstance().getSound("powerup.wav").play();
+            }
+
             this.destruirse();
         }
     }
