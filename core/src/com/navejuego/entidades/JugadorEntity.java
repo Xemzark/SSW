@@ -77,7 +77,7 @@ public class JugadorEntity extends GameObjectEntity {
         this.escudo = maxEscudo;
         this.vida = jugadorProperties.vida;
         this.escudo = jugadorProperties.escudo;
-        this.ataqueEspecial = jugadorProperties.especial;
+        this.ataqueEspecial = jugadorProperties.getEspecial(jugadorProperties.especial);
         PantallaJuego.stage.addActor(this.ataqueEspecial);
         // Sprite animación escudo
         this.spriteEscudo = new Sprite(jugadorProperties.texturaEscudo);
