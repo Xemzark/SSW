@@ -58,29 +58,29 @@ public class JugadorType{
                 this.damage = 10;
                 this.texturaEscudo = GestorAssets.getInstance().getTexture("escudoNave.png");
                 this.textura = GestorAssets.getInstance().getTexture("nave.png");
-                this.cadenciaDisparo = 0.4f;
+                this.cadenciaDisparo = 0.3f;
                 this.especial = 0;
                 break;
             case 1:
-                this.vida = 70;
-                this.escudo = 70;
-                this.maxEscudo = 70;
-                this.maxVida = 70;
+                this.vida = 120;
+                this.escudo = 120;
+                this.maxEscudo = 120;
+                this.maxVida = 120;
                 this.damage = 12;
                 this.texturaEscudo = GestorAssets.getInstance().getTexture("escudoNave.png");
                 this.textura = GestorAssets.getInstance().getTexture("destroyer.png");
-                this.cadenciaDisparo = 0.2f;
+                this.cadenciaDisparo = 0.4f;
                 this.especial = 1;
                 break;
             case 2:
-                this.vida = 40;
-                this.escudo = 40;
-                this.maxEscudo = 40;
-                this.maxVida = 40;
-                this.damage = 3;
+                this.vida = 150;
+                this.escudo = 150;
+                this.maxEscudo = 150;
+                this.maxVida = 150;
+                this.damage = 15;
                 this.texturaEscudo = GestorAssets.getInstance().getTexture("escudoNave.png");
                 this.textura = GestorAssets.getInstance().getTexture("ship3.png");
-                this.cadenciaDisparo = 0.1f;
+                this.cadenciaDisparo = 0.5f;
                 this.especial = 2;
                 break;
             default:

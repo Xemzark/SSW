@@ -41,7 +41,7 @@ public class MainNivelesScreen extends Pantalla {
     // private Table menuNiveles;
     private Skin skin;
     private Texture backgroundNiveles;
-    private TextButton button1, button2,button3,button4;
+    private TextButton button1, button2,button3,button4,buttonatras;
     private BitmapFont font;
 
     private TextureAtlas buttonsAtlas;
@@ -87,14 +87,14 @@ public class MainNivelesScreen extends Pantalla {
 
         button2 = new TextButton("2", style);
         button2.setSize(1.5f * Gdx.graphics.getWidth() / 4, Gdx.graphics.getHeight() / 12);
-        button2.setPosition(Gdx.graphics.getWidth() / 2 - Gdx.graphics.getWidth() /5.5f , Gdx.graphics.getHeight() / 4 + Gdx.graphics.getHeight() / 8);
+        button2.setPosition(Gdx.graphics.getWidth() / 2 - Gdx.graphics.getWidth() / 5.5f, Gdx.graphics.getHeight() / 4 + Gdx.graphics.getHeight() / 8);
         button2.getLabel().setFontScale(0.5f * (Gdx.graphics.getWidth() / 640.0f));
 
 
 
         button3 = new TextButton("3", style);
         button3.setSize(1.5f * Gdx.graphics.getWidth() / 4, Gdx.graphics.getHeight() / 12);
-        button3.setPosition(Gdx.graphics.getWidth() / 2 - Gdx.graphics.getWidth() /5.5f, Gdx.graphics.getHeight() / 3 - Gdx.graphics.getHeight() / 14);
+        button3.setPosition(Gdx.graphics.getWidth() / 2 - Gdx.graphics.getWidth() / 5.5f, Gdx.graphics.getHeight() / 3 - Gdx.graphics.getHeight() / 14);
         button3.getLabel().setFontScale(0.5f * (Gdx.graphics.getWidth() / 640.0f));
 
 
@@ -102,14 +102,20 @@ public class MainNivelesScreen extends Pantalla {
 
         button4 = new TextButton("4", style);
         button4.setSize(1.5f * Gdx.graphics.getWidth() / 4, Gdx.graphics.getHeight() / 12);
-        button4.setPosition(Gdx.graphics.getWidth() / 2 - Gdx.graphics.getWidth() /5.5f, Gdx.graphics.getHeight() / 3 - Gdx.graphics.getHeight() / 5.5f);
+        button4.setPosition(Gdx.graphics.getWidth() / 2 - Gdx.graphics.getWidth() / 5.5f, Gdx.graphics.getHeight() / 3 - Gdx.graphics.getHeight() / 5.5f);
         button4.getLabel().setFontScale(0.5f * (Gdx.graphics.getWidth() / 640.0f));
+
+        buttonatras = new TextButton("Atras", style);
+        buttonatras.setSize(1.5f * Gdx.graphics.getWidth() / 4, Gdx.graphics.getHeight() / 12);
+        buttonatras.setPosition(Gdx.graphics.getWidth() / 2 - Gdx.graphics.getWidth() / 5.5f, Gdx.graphics.getHeight() / 3 - Gdx.graphics.getHeight() / 8);
+        buttonatras.getLabel().setFontScale(0.5f * (Gdx.graphics.getWidth() / 640.0f));
 
 
         nivelesStage.addActor(button1);
         nivelesStage.addActor(button2);
         nivelesStage.addActor(button3);
         nivelesStage.addActor(button4);
+        nivelesStage.addActor(buttonatras);
         //     nivelesStage.addActor(menuNiveles);
 
 
@@ -175,6 +181,15 @@ public class MainNivelesScreen extends Pantalla {
                     d.button("Aceptar");
                     d.show(nivelesStage);
                 }
+
+                buttonatras.addListener(new ChangeListener() {
+                    public void changed(ChangeListener.ChangeEvent event, Actor actor) {
+                        //System.out.println("Clicked! Is checked: " + button.isChecked());
+
+
+                        ScreenManager.getInstance().showScreen(ScreenEnum.MAIN_MENU);
+                    }
+                });
 
 
             }

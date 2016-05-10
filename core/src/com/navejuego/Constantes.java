@@ -21,6 +21,12 @@ public class Constantes {
     public static LevelManager.Nivel selectedLevel;
     public static int lastScore = 0;
 
+
+
+
+
+    public static int opcion;
+
     public static final boolean unlockAllLevels = true;
     public static final boolean forceFirstTimeGameData = true;
     public static final boolean fillTestRanking = true;
@@ -30,6 +36,13 @@ public class Constantes {
         resizeHeight = Gdx.graphics.getHeight() / logicalHeight;
         System.out.print("W: " + resizeWidth + ", H: " + resizeHeight);
     }
+
+
+
+
+
+
+
 
     public static int getLevelInt(){
         int nivel = 0;

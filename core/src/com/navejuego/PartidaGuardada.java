@@ -21,6 +21,8 @@ public class PartidaGuardada {
     private static final int maxNiveles = 4;
     //int[] puntuaciones = new int[this.maxPuntuaciones];
 
+
+
     //Singleton
     private PartidaGuardada(){
         this.gameData  = Gdx.app.getPreferences("GameData");
@@ -33,12 +35,17 @@ public class PartidaGuardada {
         return instance;
     }
 
+
+
+
+
     /**
      * Colorca una puntuacion en el nivel seleccionado. La funcion ya se encarga de reordenar el array de puntuaciones
      * I de eliminar puntuaciones para hacer espacio(la menor puntuacion).
      * Recordar Nivel 1 = 0 en la BD;
      * @param nivel
      * @param puntuacion
+
      */
 
     public void setPuntucion(Integer nivel, Integer puntuacion){
