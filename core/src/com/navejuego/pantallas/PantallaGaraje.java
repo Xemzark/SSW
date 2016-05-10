@@ -70,7 +70,7 @@ public class PantallaGaraje extends Pantalla {
         font = new BitmapFont(Gdx.files.internal("otherfont/font.fnt"));
 
        opcion= PartidaGuardada.getInstance().getNaveSeleccionada();
-        System.out.println(opcion);
+        System.out.println("Nave numero:" + opcion);
 
 
         batchGaraje = new SpriteBatch();
@@ -191,6 +191,7 @@ public class PantallaGaraje extends Pantalla {
 
                 }
                 PartidaGuardada.getInstance().setNaveSeleccionada(opcion);
+                PartidaGuardada.getInstance().saveGameData();
                 ScreenManager.getInstance().showScreen(ScreenEnum.GARAJE);
             }
         });
@@ -213,6 +214,7 @@ public class PantallaGaraje extends Pantalla {
 
                 }
                 PartidaGuardada.getInstance().setNaveSeleccionada(opcion);
+                PartidaGuardada.getInstance().saveGameData();
 
                 ScreenManager.getInstance().showScreen(ScreenEnum.GARAJE);
 
@@ -242,7 +244,7 @@ public class PantallaGaraje extends Pantalla {
     private ImageButton resizebutton(ImageButton b, float x, float y){
 
         b.getImage().setSize(x, y);
-        b.setSize(x,y);
+        b.setSize(x, y);
 
         return b;
     }
@@ -251,7 +253,7 @@ public class PantallaGaraje extends Pantalla {
 
     @Override
     public void render(float delta) {
-        //garajeStage.setDebugAll(true);
+        garajeStage.setDebugAll(true);
         Gdx.gl.glClearColor(0.4f, 0.5f, 0.8f, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
