@@ -51,6 +51,7 @@ public class EnemigoEntity extends GameObjectEntity {
      * posicion vector de coordenadas x, y para inicializar la posición
      */
 
+
     public EnemigoEntity(int enemyType) {
         // Debe conocer su stage, su textura y su sprite
 
@@ -196,7 +197,7 @@ public class EnemigoEntity extends GameObjectEntity {
         explosionTextura.add(GestorAssets.getInstance().getTexture("explo3.png"));
         explosionTextura.add(GestorAssets.getInstance().getTexture("explo4.png"));
         explosionTextura.add(GestorAssets.getInstance().getTexture("explo5.png"));
-        com.navejuego.Explosion explo = new com.navejuego.Explosion(explosionTextura, new Vector2(getX(),getY()),1.0f);
+        com.navejuego.Explosion explo = new com.navejuego.Explosion(explosionTextura, new Vector2(getX(),getY()),1.0f,100);
         PantallaJuego.stage.addActor(explo);
         if(Preferencias.getInstance().soundOn()){
             GestorAssets.getInstance().getSound("explosion2.wav").play();

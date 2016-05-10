@@ -114,9 +114,6 @@ public class GestorAssets {
         manager.load("boss_corazon.png", Texture.class);
         manager.load("barraloca.png", Texture.class);
 
-
-
-
         /**
          * Power Ups
          */
@@ -124,11 +121,30 @@ public class GestorAssets {
         manager.load("bulletespecial.png", Texture.class);
         manager.load("botonespecial.png", Texture.class);
         manager.load("botonespecial_no.png", Texture.class);
+        manager.load("missil_especial.png", Texture.class);
+
+        manager.load("especial_curacion_off.png", Texture.class);
+        manager.load("especial_curacion_on.png", Texture.class);
+
+        manager.load("especialexplosion_off.png", Texture.class);
+        manager.load("especialexplosion_on.png", Texture.class);
+
+
         manager.load("explo1.png", Texture.class);
         manager.load("explo2.png", Texture.class);
         manager.load("explo3.png", Texture.class);
         manager.load("explo4.png", Texture.class);
         manager.load("explo5.png", Texture.class);
+
+        manager.load("electric1.png", Texture.class);
+        manager.load("electric2.png", Texture.class);
+        manager.load("electric3.png", Texture.class);
+        manager.load("electric4.png", Texture.class);
+        manager.load("electric5.png", Texture.class);
+
+        manager.load("blue4.png", Texture.class);
+        manager.load("blue2.png", Texture.class);
+
 
         //Link musica espacial gratis
         //http://www.dl-sounds.com/royalty-free/category/space/
@@ -143,6 +159,8 @@ public class GestorAssets {
         manager.load("explosion.wav", Sound.class);
         manager.load("powerup.wav", Sound.class);
         manager.load("explosion2.wav", Sound.class);
+        manager.load("laser.wav", Sound.class);
+        manager.load("especialdestruir.wav", Sound.class);
 
 
         manager.finishLoading();

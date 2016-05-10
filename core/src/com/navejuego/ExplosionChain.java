@@ -17,8 +17,8 @@ public class ExplosionChain extends Explosion {
     boolean triggerSceneCHangeOnEnd = false;
     boolean triggerIsVictory = false;
 
-    public ExplosionChain(ArrayList<Texture> texture, Vector2 posicion, float duracion, int times) {
-        super(texture, posicion, duracion);
+    public ExplosionChain(ArrayList<Texture> texture, Vector2 posicion, float duracion, int times, float size) {
+        super(texture, posicion, duracion, size);
         this.times = times;
     }
 

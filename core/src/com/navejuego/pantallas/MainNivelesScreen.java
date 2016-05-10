@@ -106,9 +106,6 @@ public class MainNivelesScreen extends Pantalla {
         button4.getLabel().setFontScale(0.5f * (Gdx.graphics.getWidth() / 640.0f));
 
 
-
-
-
         nivelesStage.addActor(button1);
         nivelesStage.addActor(button2);
         nivelesStage.addActor(button3);

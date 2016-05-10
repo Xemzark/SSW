@@ -26,7 +26,7 @@ public class EspecialMisiles extends AtaqueEspecial {
      * @param distanceBetweenMissilesY Distancia en Y con el misil mas lejano, desde el central.
      */
     public EspecialMisiles (int delay, int damage, int missileAmount, float distanceBetweenMissilesX, float distanceBetweenMissilesY){
-        super(delay);
+        super(delay, GestorAssets.getInstance().getTexture("botonespecial.png"),GestorAssets.getInstance().getTexture("botonespecial_no.png"));
         this.damage = damage;
         this.missileAmount = missileAmount;
         this.distanceBetweenMissilesX = distanceBetweenMissilesX * Constantes.resizeWidth;
@@ -34,7 +34,7 @@ public class EspecialMisiles extends AtaqueEspecial {
     }
 
     public void activar() {
-        Texture bulletTextura = GestorAssets.getInstance().getTexture("bulletespecial.png");
+        Texture bulletTextura = GestorAssets.getInstance().getTexture("missil_especial.png");
         float playerX = PantallaJuego.jugador.getX();
         float playerY = PantallaJuego.jugador.getY();
 

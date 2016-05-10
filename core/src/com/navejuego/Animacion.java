@@ -8,16 +8,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Xavi on 22/04/2016.
+ * Created by Alejandro on 22/04/2016.
  */
-public class Explosion extends GameObjectEntity {
+public class Animacion extends GameObjectEntity {
     float duracion; //segundos
     float ttrans; // segundos
     protected int indiceactual;
     List<Texture> listatextura;
     float duracionframe; //segundos
 
-    public Explosion(ArrayList<Texture> texture, Vector2 posicion, float duracion, float size) {
+    public Animacion(ArrayList<Texture> texture, Vector2 posicion, float duracion, float size) {
 
         this.texture = texture.get(0);
         this.sprite = new Sprite(this.texture);

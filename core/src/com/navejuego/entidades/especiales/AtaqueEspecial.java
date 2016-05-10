@@ -22,38 +22,42 @@ public abstract class AtaqueEspecial extends GameObjectEntity {
     private int delay;
     private botonEspecial boton;
 
+
     public class botonEspecial extends ImageButton
     {
-        public botonEspecial(Texture texture_up, Texture texture_down, Texture background) {
-            super(new SpriteDrawable(new Sprite(texture_up)),
-                    new SpriteDrawable(new Sprite(texture_down)));
-            this.setBackground(new SpriteDrawable(new Sprite(background)));
+        private Texture textureOn;
+        private Texture textureOff;
+
+        public botonEspecial(Texture texture_up, Texture textureOn, Texture textureoff) {
+            super(new SpriteDrawable(new Sprite(texture_up)));
+            this.textureOn = textureOn;
+            this.textureOff = textureoff;
         }
 
         public void setDisponible(){
-            Texture t = GestorAssets.getInstance().getTexture("botonespecial.png");
+            //Texture t = GestorAssets.getInstance().getTexture("botonespecial.png");
             ImageButtonStyle style = new ImageButtonStyle();
-            style.imageUp = new SpriteDrawable(new Sprite(t));
+            style.imageUp = new SpriteDrawable(new Sprite(this.textureOn));
             this.setStyle(style);
         }
 
         public void setNoDisponible(){
-            Texture t = GestorAssets.getInstance().getTexture("botonespecial_no.png");
+            //Texture t = GestorAssets.getInstance().getTexture("botonespecial_no.png");
             ImageButtonStyle style = new ImageButtonStyle();
-            style.imageUp = new SpriteDrawable(new Sprite(t));
+            style.imageUp = new SpriteDrawable(new Sprite(this.textureOff));
             this.setStyle(style);
         }
     }
 
-    public AtaqueEspecial (int delay) {
+    public AtaqueEspecial (int delay, Texture textureOn, Texture textureOff) {
 
         this.delay = delay;
         this.disponible = false;
         startTimer();
 
-        this.texture = GestorAssets.getInstance().getTexture("botonespecial.png");
+        this.texture = textureOn;
 
-        this.boton = new botonEspecial(this.texture,GestorAssets.getInstance().getTexture("explo1.png"),GestorAssets.getInstance().getTexture("corazon.png"));
+        this.boton = new botonEspecial(this.texture,textureOn, textureOff);
         this.boton.setSize(Gdx.graphics.getWidth() * 0.25f, Gdx.graphics.getHeight() * 0.25f);
         this.boton.setPosition(Gdx.graphics.getWidth() * -0.1f, Gdx.graphics.getWidth() * -0.05f);
 
