@@ -2,7 +2,6 @@ package com.navejuego.pantallas;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.FitViewport;
@@ -13,9 +12,6 @@ import com.navejuego.entidades.JugadorEntity;
 import com.navejuego.GestorAssets;
 import com.navejuego.entidades.LevelManager;
 import com.navejuego.Preferencias;
-
-import java.util.ArrayList;
-import java.util.Random;
 
 /**
  * Created by Andrés on 03/04/2016.

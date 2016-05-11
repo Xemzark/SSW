@@ -16,9 +16,6 @@ import com.navejuego.Constantes;
 import com.navejuego.Dialog;
 import com.navejuego.GestorAssets;
 import com.navejuego.PartidaGuardada;
-import com.navejuego.entidades.LevelManager;
-
-import java.awt.Image;
 
 /**
  * Created by albert on 16/4/16.

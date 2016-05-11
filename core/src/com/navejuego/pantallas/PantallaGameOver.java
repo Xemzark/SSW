@@ -16,8 +16,6 @@ import com.navejuego.Constantes;
 import com.navejuego.GestorAssets;
 import com.navejuego.PartidaGuardada;
 
-import java.awt.Image;
-
 /**
  * Created by albert on 16/4/16.
  */

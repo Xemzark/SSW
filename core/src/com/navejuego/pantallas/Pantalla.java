@@ -1,8 +1,6 @@
 package com.navejuego.pantallas;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
-import com.navejuego.Main;
 
 /**
  * Created by Andrés on 30/03/2016.

@@ -1,16 +1,11 @@
 package com.navejuego.entidades.ui;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.navejuego.Constantes;
-import com.navejuego.GestorAssets;
-import com.navejuego.pantallas.PantallaJuego;
-
-//TODO: Crear clase "Barra"
 
 /**
  * Created by beno_ on 11/04/2016.

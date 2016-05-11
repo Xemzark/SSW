@@ -2,7 +2,6 @@ package com.navejuego.entidades.powerups;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.navejuego.GestorAssets;
 import com.navejuego.pantallas.PantallaJuego;
 

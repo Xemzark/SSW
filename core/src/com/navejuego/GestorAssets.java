@@ -4,10 +4,7 @@ import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
-import com.navejuego.pantallas.LoadingScreen;
 import com.navejuego.pantallas.Pantalla;
-import com.navejuego.pantallas.ScreenEnum;
-import com.navejuego.pantallas.ScreenManager;
 
 /**
  * Created by root on 4/04/16.

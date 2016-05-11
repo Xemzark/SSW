@@ -1,6 +1,5 @@
 package com.navejuego.entidades;
 
-import com.navejuego.entidades.powerups.PowerUpASPD;
 import com.navejuego.pantallas.PantallaJuego;
 
 /**

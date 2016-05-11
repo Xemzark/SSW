@@ -4,18 +4,13 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.navejuego.Constantes;
-import com.navejuego.Dialog;
 import com.navejuego.GestorAssets;
-import com.navejuego.PartidaGuardada;
 import com.navejuego.Preferencias;
 import com.navejuego.entidades.patrones.LinealMovement;
 import com.navejuego.entidades.patrones.MovementPattern;
 import com.navejuego.entidades.ui.Barra;
 import com.navejuego.pantallas.PantallaJuego;
-import com.navejuego.pantallas.ScreenEnum;
-import com.navejuego.pantallas.ScreenManager;
 
 import java.util.ArrayList;
 
