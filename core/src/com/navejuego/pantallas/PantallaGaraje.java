@@ -19,10 +19,12 @@ import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.navejuego.Constantes;
+import com.navejuego.Dialog;
 import com.navejuego.GestorAssets;
 import com.navejuego.PartidaGuardada;
 import com.navejuego.entidades.JugadorType;
 import com.navejuego.entidades.ui.Barra;
+
 
 /**
  * Created by albertmoreno on 14/4/16.
@@ -69,7 +71,7 @@ public class PantallaGaraje extends Pantalla {
 
         font = new BitmapFont(Gdx.files.internal("otherfont/font.fnt"));
 
-       opcion= PartidaGuardada.getInstance().getNaveSeleccionada();
+       opcion= Constantes.naveUltimaSeleccion;
         System.out.println("Nave numero:" + opcion);
 
 
@@ -101,6 +103,8 @@ public class PantallaGaraje extends Pantalla {
                 nave1 = new Image(GestorAssets.getInstance().getTexture("nave.png"));
                 nave1.setPosition(Gdx.graphics.getWidth() / 2 - 2 * 80 * Constantes.resizeWidth / 2, Gdx.graphics.getHeight() / 3 + Gdx.graphics.getHeight() / 8);
                 nave1.setSize(2 * 80 * Constantes.resizeWidth, 2 * 80 * Constantes.resizeHeight);
+
+
                 break;
             case 1:
                 jugador = new JugadorType(opcion);
@@ -149,7 +153,12 @@ public class PantallaGaraje extends Pantalla {
 
         }
 
+        if(opcion > PartidaGuardada.getInstance().getNaveDesbloqueada()){
+            nave1.setColor(0,0,0,1);
 
+
+
+        }
         TextButton.TextButtonStyle style = new TextButton.TextButtonStyle(); //** Button properties **//
         style.up = buttonSkin.getDrawable("buttonOff");
         style.down = buttonSkin.getDrawable("buttonOn");
@@ -165,7 +174,20 @@ public class PantallaGaraje extends Pantalla {
         aceptar.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                ScreenManager.getInstance().showScreen(ScreenEnum.MAIN_MENU);
+
+                if(opcion> PartidaGuardada.getInstance().getNaveDesbloqueada()){
+                    Dialog d = new Dialog("Nave Bloqueada",skin);
+
+                    d.setPosition(Gdx.graphics.getWidth()/2- 100, Gdx.graphics.getHeight()/2);
+                    d.button("Aceptar");
+                    d.setScale(5, 5);
+                    d.show(garajeStage);
+                }else {
+
+                    PartidaGuardada.getInstance().setNaveSeleccionada(opcion);
+                    PartidaGuardada.getInstance().saveGameData();
+                    ScreenManager.getInstance().showScreen(ScreenEnum.MAIN_MENU);
+                }
             }
         });
 
@@ -190,8 +212,7 @@ public class PantallaGaraje extends Pantalla {
 
 
                 }
-                PartidaGuardada.getInstance().setNaveSeleccionada(opcion);
-                PartidaGuardada.getInstance().saveGameData();
+                Constantes.naveUltimaSeleccion = opcion;
                 ScreenManager.getInstance().showScreen(ScreenEnum.GARAJE);
             }
         });
@@ -213,8 +234,7 @@ public class PantallaGaraje extends Pantalla {
 
 
                 }
-                PartidaGuardada.getInstance().setNaveSeleccionada(opcion);
-                PartidaGuardada.getInstance().saveGameData();
+                Constantes.naveUltimaSeleccion= opcion;
 
                 ScreenManager.getInstance().showScreen(ScreenEnum.GARAJE);
 

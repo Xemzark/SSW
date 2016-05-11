@@ -177,7 +177,7 @@ public class PantallaRanking extends Pantalla {
 
         style.font=font;
 
-        TextButton aceptar = new TextButton("Aceptar", style);
+        TextButton aceptar = new TextButton("Volver", style);
 
         aceptar.setSize(1.5f* Gdx.graphics.getWidth() / 4, Gdx.graphics.getHeight() / 12);
         aceptar.setPosition(Gdx.graphics.getWidth() / 2 - Gdx.graphics.getWidth() / 5.5f, Gdx.graphics.getHeight() / 4 - Gdx.graphics.getHeight() / 5.5f);

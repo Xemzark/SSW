@@ -109,8 +109,11 @@ public class PantallaVictory extends Pantalla{
                     }else if(nivels == 3){
                         navedesbloqueada = 2;
                     }
-                    PartidaGuardada.getInstance().setNaveDesbloqueada(navedesbloqueada);
-                    System.out.println("Nave debloqueada: " + navedesbloqueada);
+
+                    if (navedesbloqueada > PartidaGuardada.getInstance().getNaveDesbloqueada()) {
+                        PartidaGuardada.getInstance().setNaveDesbloqueada(navedesbloqueada);
+                        System.out.println("Nave debloqueada: " + navedesbloqueada);
+                    }
 
 
                 }else{

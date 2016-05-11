@@ -101,9 +101,9 @@ public class MainNivelesScreen extends Pantalla {
 
         buttonatras = new TextButton("Atras", style);
         buttonatras.setSize(1.5f * Gdx.graphics.getWidth() / 4, Gdx.graphics.getHeight() / 12);
-        buttonatras.setPosition(Gdx.graphics.getWidth() / 2 - Gdx.graphics.getWidth() / 5.5f, Gdx.graphics.getHeight() / 3 - Gdx.graphics.getHeight() / 8);
+        buttonatras.setPosition(Gdx.graphics.getWidth() / 2 - Gdx.graphics.getWidth() / 5.5f, Gdx.graphics.getHeight() / 4 - Gdx.graphics.getHeight() / 4);
         buttonatras.getLabel().setFontScale(0.5f * (Gdx.graphics.getWidth() / 640.0f));
-
+        buttonatras.setColor(0,0,0,1);
 
         nivelesStage.addActor(button1);
         nivelesStage.addActor(button2);

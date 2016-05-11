@@ -20,6 +20,7 @@ public class Constantes {
 
     public static LevelManager.Nivel selectedLevel;
     public static int lastScore = 0;
+    public static int naveUltimaSeleccion = PartidaGuardada.getInstance().getNaveSeleccionada();
 
 
 
@@ -27,8 +28,8 @@ public class Constantes {
 
     public static int opcion;
 
-    public static final boolean unlockAllLevels = true;
-    public static final boolean forceFirstTimeGameData = true;
+    public static final boolean unlockAllLevels = false;
+    public static final boolean forceFirstTimeGameData = false;
     public static final boolean fillTestRanking = true;
 
     public static void CalculateScreenConstants() {
