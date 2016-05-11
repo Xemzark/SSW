@@ -9,8 +9,8 @@ import com.navejuego.entidades.LevelManager;
 public class Constantes {
     //Constantes para libGDX
 
-    private static final float logicalHeight = 640.0f;
-    private static final float logicalWidth = 360.0f;
+    public static final float logicalHeight = 640.0f;
+    public static final float logicalWidth = 360.0f;
 
     public static final float lateralBarWidth = 20.0f;
     public static final float PIXELS_METRE = 110.0f;

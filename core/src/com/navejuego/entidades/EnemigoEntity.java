@@ -9,6 +9,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.navejuego.Constantes;
 import com.navejuego.GestorAssets;
 import com.navejuego.Preferencias;
+import com.navejuego.entidades.patrones.MovementPattern;
 import com.navejuego.entidades.powerups.PowerUpEntity;
 import com.navejuego.pantallas.PantallaJuego;
 
@@ -34,6 +35,10 @@ public class EnemigoEntity extends GameObjectEntity {
     protected boolean vivo;
     protected EnemyType enemyProperties;
 
+    protected float duracion; //segundos
+    protected float ttrans; // segundos
+    protected int indexmove;
+    private ArrayList<MovementPattern> patternList;
     // Variable para generar su posición aleatoria
     Random pos = new Random();
 
@@ -72,6 +77,16 @@ public class EnemigoEntity extends GameObjectEntity {
         escudo = enemyProperties.escudo;
         spriteEscudo.setAlpha(Math.min(this.escudo/this.maxEscudo, 0.7f));
 
+
+        patternList = new ArrayList<MovementPattern>();
+        patternList = enemyProperties.patternList;
+        movementPattern = patternList.get(0);
+        //segundos que tarda en recorrer la pantalla /  cantidad de patrones
+        duracion = (Constantes.logicalHeight / movementPattern.getSpeed()) / patternList.size();
+        ttrans = 0.0f;
+        indexmove=0;
+
+
         dañoColision = enemyProperties.dañoColision ; //Daño que le hace la nave al jugador si colisionan
         this.powerUp = powerUp;
         probabilidadPowerUp = enemyProperties.probabilidadPowerUp;
@@ -93,8 +108,6 @@ public class EnemigoEntity extends GameObjectEntity {
         hitbox.setPosition(posX, posY);
         //Fin valores iniciales del Actor
 
-        //Set downwards movement at a speed of 150 per second
-        movementPattern = enemyProperties.movementPattern;
     }
 
     /**
@@ -106,7 +119,14 @@ public class EnemigoEntity extends GameObjectEntity {
     public void act(float delta) {
         comprobarColisionJugador();
         eliminarseOutOfBounds();
-
+        ttrans += delta;
+        if ((indexmove+1<patternList.size()) && (ttrans >= duracion)) {
+            System.out.println("HEEEEY");
+            indexmove += 1;
+            movementPattern = patternList.get(indexmove);
+            duracion = (Constantes.logicalHeight / movementPattern.getSpeed()) / patternList.size();
+            ttrans = 0.0f;
+        }
         movementPattern.Move(this, delta);
         spriteEscudo.setPosition(getX(), getY());
         //MoveTo(getX(), getY() - (100 * delta));
