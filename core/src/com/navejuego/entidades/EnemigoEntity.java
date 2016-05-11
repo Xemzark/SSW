@@ -10,6 +10,7 @@ import com.navejuego.Constantes;
 import com.navejuego.GestorAssets;
 import com.navejuego.Preferencias;
 import com.navejuego.entidades.patrones.MovementPattern;
+import com.navejuego.entidades.patrones.TargetPlayerMovement;
 import com.navejuego.entidades.powerups.PowerUpEntity;
 import com.navejuego.pantallas.PantallaJuego;
 
@@ -34,6 +35,8 @@ public class EnemigoEntity extends GameObjectEntity {
     protected float tiempoSiguienteDisparo;
     protected boolean vivo;
     protected EnemyType enemyProperties;
+    protected MovementPattern bulletMovement;
+    protected float bulletSpeed;
 
     protected float duracion; //segundos
     protected float ttrans; // segundos
@@ -90,6 +93,8 @@ public class EnemigoEntity extends GameObjectEntity {
         dañoColision = enemyProperties.dañoColision ; //Daño que le hace la nave al jugador si colisionan
         this.powerUp = powerUp;
         probabilidadPowerUp = enemyProperties.probabilidadPowerUp;
+        bulletMovement = enemyProperties.bulletMovement;
+        bulletSpeed = enemyProperties.bulletSpeed;
 
         //Valores iniciales del Actor
         setBounds(sprite.getX(), sprite.getY(), sprite.getWidth(), sprite.getHeight());
@@ -152,7 +157,10 @@ public class EnemigoEntity extends GameObjectEntity {
         tiempoSiguienteDisparo += delta;
         if (tiempoSiguienteDisparo > cadenciaDisparo) {
             Texture bulletTextura = GestorAssets.getInstance().getTexture("proyectilEnemigo.png");
-            com.navejuego.entidades.bullets.BulletEnemigo bullet = new com.navejuego.entidades.bullets.BulletEnemigo(bulletTextura, new Vector2(getX() + (getWidth() / 2), getY()),damage);
+            if(bulletMovement instanceof TargetPlayerMovement){
+                bulletMovement = new TargetPlayerMovement(bulletSpeed);
+            }
+            com.navejuego.entidades.bullets.BulletEnemigo bullet = new com.navejuego.entidades.bullets.BulletEnemigo(bulletTextura, new Vector2(getX() + (getWidth() / 2), getY()),damage, bulletMovement);
             bullet.setSize(10.0f * Constantes.resizeWidth, 10.0f * Constantes.resizeHeight);
             bullet.setName("Bala Enemigo");
             PantallaJuego.stage.addActor(bullet);

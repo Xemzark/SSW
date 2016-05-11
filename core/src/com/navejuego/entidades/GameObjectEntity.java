@@ -12,7 +12,7 @@ import com.navejuego.entidades.patrones.MovementPattern;
 public abstract class GameObjectEntity extends Actor {
     protected Texture texture;
 
-    protected Sprite sprite;
+    public Sprite sprite;
 
     protected float vida;
     protected float escudo;

@@ -3,6 +3,7 @@ package com.navejuego.entidades.bullets;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Vector2;
 import com.navejuego.entidades.patrones.LinealMovement;
+import com.navejuego.entidades.patrones.MovementPattern;
 import com.navejuego.pantallas.PantallaJuego;
 
 /**
@@ -10,9 +11,9 @@ import com.navejuego.pantallas.PantallaJuego;
  */
 public class BulletEnemigo extends BulletEntity {
 
-    public BulletEnemigo(Texture texture, Vector2 posicion, int damage) {
+    public BulletEnemigo(Texture texture, Vector2 posicion, int damage,MovementPattern pattern) {
         super(texture, posicion, damage);
-        movementPattern = new LinealMovement(700.0f, false);
+        movementPattern = pattern;
     }
 
     /**

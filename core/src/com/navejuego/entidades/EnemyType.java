@@ -14,6 +14,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.navejuego.entidades.patrones.NullMovement;
 import com.navejuego.entidades.patrones.SinusMovement;
 import com.navejuego.entidades.patrones.TargetMovement;
+import com.navejuego.entidades.patrones.TargetPlayerMovement;
 import com.navejuego.entidades.patrones.ZigZagMovement;
 
 import java.util.ArrayList;
@@ -61,6 +62,7 @@ public class EnemyType {
     protected MovementPattern movementPattern;
     protected ArrayList<MovementPattern> patternList = new ArrayList<MovementPattern>();
     protected MovementPattern bulletMovement;
+    protected float bulletSpeed;
 
     /**
      * Mediante un swithc/case, se selecciona el tipo de enemigo deseado y se obtienen sus datos
@@ -97,7 +99,8 @@ public class EnemyType {
                 patternList.add(new LinealMovement(100,false));
                 sizeX = 110.0f;
                 sizeY = 130.0f;
-                bulletMovement = new LinealMovement(150, false);
+                bulletSpeed = 200;
+                bulletMovement = new TargetPlayerMovement(bulletSpeed);
                 break;
 
             case 2: //enemigo morado 2, Kamikaze
@@ -120,7 +123,7 @@ public class EnemyType {
                 patternList.add(new LinealMovement(400,false));
                 sizeX = 110.0f;
                 sizeY = 130.0f;
-                bulletMovement = null;
+                bulletMovement = new LinealMovement(250,false);
                 break;
 
             case 3: //enemigo morado 3, Tanque
@@ -143,7 +146,7 @@ public class EnemyType {
                 patternList.add(new SinusMovement(100,1,false));;
                 sizeX = 110.0f;
                 sizeY = 130.0f;
-                bulletMovement = null;
+                bulletMovement = new LinealMovement(250,false);
                 break;
             case 4: //enemigo morado 4
                 texture = GestorAssets.getInstance().getTexture("alien4.png");
@@ -165,7 +168,7 @@ public class EnemyType {
                 patternList.add(new LinealMovement(100,false));
                 sizeX = 110.0f;
                 sizeY = 130.0f;
-                bulletMovement = new LinealMovement(150, false);
+                bulletMovement = new LinealMovement(250,false);
                 break;
 
             /**
@@ -195,7 +198,8 @@ public class EnemyType {
                 patternList.add(new LinealMovement(100,false));
                 sizeX = 110.0f;
                 sizeY = 130.0f;
-                bulletMovement = new LinealMovement(150, false);
+                bulletSpeed = 200;
+                bulletMovement = new TargetPlayerMovement(bulletSpeed);
                 break;
             case 6: //enemigo azul 2 kamikaze
                 texture = GestorAssets.getInstance().getTexture("blueship2.png");
@@ -219,7 +223,7 @@ public class EnemyType {
                 patternList.add(new LinealMovement(100,false));
                 sizeX = 110.0f;
                 sizeY = 130.0f;
-                bulletMovement = null;
+                bulletMovement = new LinealMovement(250,false);
                 break;
             case 7: //enemigo azul 3 tanque
                 texture = GestorAssets.getInstance().getTexture("blueship3.png");
@@ -243,7 +247,7 @@ public class EnemyType {
                 patternList.add(new LinealMovement(100,false));
                 sizeX = 110.0f;
                 sizeY = 130.0f;
-                bulletMovement = null;
+                bulletMovement = new LinealMovement(250,false);
                 break;
             case 8: //enemigo azul 4
                 texture = GestorAssets.getInstance().getTexture("blueship4.png");
@@ -267,7 +271,7 @@ public class EnemyType {
                 patternList.add(new LinealMovement(100,false));
                 sizeX = 110.0f;
                 sizeY = 130.0f;
-                bulletMovement = new LinealMovement(150, false);
+                bulletMovement = new LinealMovement(250,false);
                 break;
 
             /**
@@ -298,7 +302,8 @@ public class EnemyType {
                 patternList.add(new LinealMovement(100,false));
                 sizeX = 110.0f;
                 sizeY = 130.0f;
-                bulletMovement = new LinealMovement(150, false);
+                bulletSpeed = 200;
+                bulletMovement = new TargetPlayerMovement(bulletSpeed);
                 break;
 
             case 10: //enemigo naranja 2 kamikaze
@@ -323,7 +328,7 @@ public class EnemyType {
                 patternList.add(new LinealMovement(100,false));
                 sizeX = 110.0f;
                 sizeY = 130.0f;
-                bulletMovement = null;
+                bulletMovement = new LinealMovement(250,false);
                 break;
 
             case 11: //enemigo naranja 3 tanque
@@ -348,7 +353,7 @@ public class EnemyType {
                 patternList.add(new LinealMovement(100,false));
                 sizeX = 110.0f;
                 sizeY = 130.0f;
-                bulletMovement = null;
+                bulletMovement = new LinealMovement(250,false);
                 break;
 
             case 12: //enemigo naranja 4
@@ -373,7 +378,7 @@ public class EnemyType {
                 patternList.add(new LinealMovement(100,false));
                 sizeX = 110.0f;
                 sizeY = 130.0f;
-                bulletMovement = new LinealMovement(150, false);
+                bulletMovement = new LinealMovement(250,false);
                 break;
 
             /**
@@ -404,7 +409,8 @@ public class EnemyType {
                 patternList.add(new LinealMovement(100,false));
                 sizeX = 110.0f;
                 sizeY = 130.0f;
-                bulletMovement = new LinealMovement(150, false);
+                bulletSpeed = 200;
+                bulletMovement = new TargetPlayerMovement(bulletSpeed);
                 break;
 
             case 14: //enemigo verde 2 kamikaze
@@ -429,7 +435,7 @@ public class EnemyType {
                 patternList.add(new LinealMovement(100,false));
                 sizeX = 110.0f;
                 sizeY = 130.0f;
-                bulletMovement = null;
+                bulletMovement = new LinealMovement(250,false);
                 break;
 
             case 15: //enemigo verde 3 tanque
@@ -454,7 +460,7 @@ public class EnemyType {
                 patternList.add(new LinealMovement(100,false));
                 sizeX = 110.0f;
                 sizeY = 130.0f;
-                bulletMovement = null;
+                bulletMovement = new LinealMovement(250,false);
                 break;
 
             case 16: //enemigo verde 4
@@ -479,7 +485,7 @@ public class EnemyType {
                 patternList.add(new LinealMovement(100,false));
                 sizeX = 110.0f;
                 sizeY = 130.0f;
-                bulletMovement = new LinealMovement(150, false);
+                bulletMovement = new LinealMovement(250,false);
                 break;
 
             case 21: //BOSS DEMO Morado
