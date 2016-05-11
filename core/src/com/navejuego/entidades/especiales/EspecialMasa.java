@@ -32,7 +32,7 @@ public class EspecialMasa extends AtaqueEspecial {
         System.out.println("Mostrando actores: \n");
         int len = PantallaJuego.stage.getActors().size;
 
-        for(int i =0; i<len; i++){
+        for(int i = len-1; i >= 0; i--){
 
             Actor a =PantallaJuego.stage.getActors().get(i);
             System.out.println(a.getName());
