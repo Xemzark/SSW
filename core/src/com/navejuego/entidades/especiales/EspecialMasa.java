@@ -41,10 +41,10 @@ public class EspecialMasa extends AtaqueEspecial {
 
                 EnemigoEntity enemy = (EnemigoEntity)a;
 
-                float x1 = enemy.getX()-(enemy.getWidth()/2);
-                float y1 = enemy.getY()-(enemy.getHeight()/2);
+                float x1 = enemy.getX();
+                float y1 = enemy.getY();
                 GestorAssets.getInstance().getSound("especialdestruir.wav").play();
-                AnimacionChain animacion = new AnimacionChain(this.animacion, new Vector2(x1,y1),0.3f,2,180);
+                AnimacionChain animacion = new AnimacionChain(this.animacion, new Vector2(x1,y1),0.3f,2,enemy.getWidth());
                 PantallaJuego.stage.addActor(animacion);
                 enemy.destruirse();
             }
