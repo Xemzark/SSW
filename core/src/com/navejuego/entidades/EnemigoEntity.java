@@ -82,6 +82,8 @@ public class EnemigoEntity extends GameObjectEntity {
         patternList = enemyProperties.patternList;
         movementPattern = patternList.get(0);
         //segundos que tarda en recorrer la pantalla /  cantidad de patrones
+        //No toma en cuenta que las naves salen por encima de la pantalla! Eso puede ser un problema.
+        //De momento se queda así porque no queda mal a la práctica
         duracion = (Constantes.logicalHeight / movementPattern.getSpeed()) / patternList.size();
         ttrans = 0.0f;
         indexmove=0;
