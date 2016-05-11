@@ -12,7 +12,7 @@ public class TargetPlayerMovement implements MovementPattern{
     /**
      *
      *
-     * Si funciona !!!!! (creo)
+     *
      * Se crea la recta que cruza los puntos de la posicion del jugador y el del objeto
      * a mover, y a partir de ahi, se desplaza a traves de dicha recta.
      *

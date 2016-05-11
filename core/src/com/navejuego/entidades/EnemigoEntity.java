@@ -159,7 +159,7 @@ public class EnemigoEntity extends GameObjectEntity {
         tiempoSiguienteDisparo += delta;
         if (tiempoSiguienteDisparo > cadenciaDisparo) {
             Texture bulletTextura = GestorAssets.getInstance().getTexture("proyectilEnemigo.png");
-            if(bulletMovement instanceof TargetPlayerMovement){
+            if (bulletMovement instanceof TargetPlayerMovement){ //si el patron es el dirigido hacia el jugador, queremos que cada bala vaya a su posicion actual
                 bulletMovement = new TargetPlayerMovement(bulletSpeed);
             }
             com.navejuego.entidades.bullets.BulletEnemigo bullet = new com.navejuego.entidades.bullets.BulletEnemigo(bulletTextura, new Vector2(getX() + (getWidth() / 2), getY()),damage, bulletMovement);
