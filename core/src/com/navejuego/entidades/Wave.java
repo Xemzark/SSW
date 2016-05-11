@@ -1,6 +1,9 @@
 package com.navejuego.entidades;
 
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.navejuego.pantallas.PantallaJuego;
+
+import java.util.ArrayList;
 
 /**
  * Created by Elias on 21/04/2016.
@@ -33,12 +36,15 @@ public class Wave {
      */
     private long nextSpawn;
 
+    private ArrayList<EnemigoEntity> spawnedEnemies;
+
     public Wave(int enemyType, int cantidadDeEnemgios, long tiempoEntreEnemigos) {
         enemy = enemyType;
         spawnTargetAmount = cantidadDeEnemgios;
         spawnDelay = tiempoEntreEnemigos;
         spawnCount = 0;
         nextSpawn = System.currentTimeMillis() + tiempoEntreEnemigos;
+        spawnedEnemies = new ArrayList<EnemigoEntity>();
     }
 
     public void GetReady() {
@@ -48,20 +54,32 @@ public class Wave {
     public void Spawn () {
 
         if (spawnCount < spawnTargetAmount && nextSpawn <= System.currentTimeMillis()) {
-
-            PantallaJuego.stage.addActor(new EnemigoEntity(enemy));
+            EnemigoEntity enemyRef = new EnemigoEntity(enemy);
+            PantallaJuego.stage.addActor(enemyRef);
+            spawnedEnemies.add(enemyRef);
             nextSpawn = System.currentTimeMillis() + spawnDelay;
             spawnCount += 1;
         }
     }
 
     public boolean isDone() {
-        return spawnTargetAmount <= spawnCount;
+        if (spawnTargetAmount > spawnCount) {
+            return false;
+        }
+
+        for (EnemigoEntity enemyRef : spawnedEnemies) {
+            if (PantallaJuego.stage.getActors().contains(enemyRef, false)) {
+                return false;
+            }
+        }
+
+        return true;
     }
 
     public void Reset() {
         spawnCount = 0;
         nextSpawn = System.currentTimeMillis() + spawnDelay;
+        spawnedEnemies = new ArrayList<EnemigoEntity>();
     }
 
 }
