@@ -44,8 +44,6 @@ public class Puntuacion extends Actor {
 
         this.puntuacionInt += puntuacion;
 
-        System.out.print(this.puntuacionInt);
-
         String s = Integer.toString(this.puntuacionInt);
         this.puntuacion = s;
     }

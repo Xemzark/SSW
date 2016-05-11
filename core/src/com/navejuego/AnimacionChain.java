@@ -14,7 +14,7 @@ public class AnimacionChain extends Animacion {
     private int indiceTotal = 0;
     private Sound sound;
 
-    public AnimacionChain(ArrayList<Texture> texture, Vector2 posicion, float duracion, int times, float size, Sound sound) {
+    public AnimacionChain(ArrayList<Texture> texture, Vector2 posicion, float duracion, int times, float size) {
         super(texture, posicion, duracion, size);
         this.times = times;
         this.sound = sound;
@@ -29,10 +29,6 @@ public class AnimacionChain extends Animacion {
                 indiceTotal += 1 ;
                 indiceactual = 0;
                 ttrans = 0.0f;
-                if(Preferencias.getInstance().soundOn()) {
-                    this.sound.stop();
-                    this.sound.play();
-                }
             } else if (duracionframe * (indiceactual + 1) <= ttrans) {
                 indiceactual += 1;
                 texture = listatextura.get(indiceactual);

@@ -41,7 +41,10 @@ public class Main extends Game {
 
 		//temporal
 		if(Constantes.unlockAllLevels){
-			PartidaGuardada.getInstance().setNivelDesbloqueado(4);
+			PartidaGuardada.getInstance().setNivelDesbloqueado(3);
+		}
+		if(Constantes.unLockAllShips){
+			PartidaGuardada.getInstance().setNaveDesbloqueada(2);
 		}
 
 		//Preferencias.getInstance().setMusic(true);

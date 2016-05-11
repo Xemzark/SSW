@@ -42,8 +42,9 @@ public class EspecialRegeneracion extends AtaqueEspecial {
         float x2 = PantallaJuego.jugador.getX() - (80 * Constantes.resizeWidth/2)*3.7f;
         float y2 = PantallaJuego.jugador.getY() - (80 * Constantes.resizeHeight/2);
 
-        AnimacionChain animacion = new AnimacionChain(arrayTextura, new Vector2(x1,y1),0.3f,2,180,GestorAssets.getInstance().getSound("laser.wav"));
-        AnimacionChain animacion2 = new AnimacionChain(arrayTextura2, new Vector2(x2,y2),0.3f,2,180,GestorAssets.getInstance().getSound("laser.wav"));
+        GestorAssets.getInstance().getSound("laser.wav").play();
+        AnimacionChain animacion = new AnimacionChain(arrayTextura, new Vector2(x1,y1),0.3f,2,180);
+        AnimacionChain animacion2 = new AnimacionChain(arrayTextura2, new Vector2(x2,y2),0.3f,2,180);
         //explo.setOnEndVictory(true);
         PantallaJuego.stage.addActor(animacion);
         PantallaJuego.stage.addActor(animacion2);
