@@ -17,7 +17,7 @@ public class SinusMovement implements MovementPattern {
      */
     private boolean goUp = false;
 
-    public SinusMovement(float speed, float horizontal, float SinSpeed, boolean goUp) {
+    public SinusMovement(float speed, float SinSpeed, boolean goUp) {
         this.speed = speed * Constantes.resizeHeight;
         this.goUp = goUp;
         deltaAcum = 0;

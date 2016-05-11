@@ -9,6 +9,7 @@ import com.navejuego.entidades.patrones.HoritzontalMovement;
 import com.navejuego.entidades.patrones.LinealMovement;
 import com.navejuego.entidades.patrones.MovementPattern;
 import com.navejuego.entidades.patrones.NullMovement;
+import com.navejuego.entidades.patrones.SinusMovement;
 import com.navejuego.entidades.patrones.TargetMovement;
 import com.navejuego.entidades.patrones.ZigZagMovement;
 
@@ -113,8 +114,7 @@ public class EnemyType {
                 escudo = maxEscudo;
                 dañoColision = (20); //Daño que le hace la nave al jugador si colisionan
                 probabilidadPowerUp = 10;
-                patternList.add(new ZigZagMovement(100,100,false,false));
-                patternList.add(new LinealMovement(100,false));
+                patternList.add(new LinealMovement(400,false));
                 sizeX = 110.0f;
                 sizeY = 130.0f;
                 bulletMovement = null;
@@ -137,8 +137,7 @@ public class EnemyType {
                 escudo = maxEscudo;
                 dañoColision = ((int)vida/2); //Daño que le hace la nave al jugador si colisionan
                 probabilidadPowerUp = 10;
-                patternList.add(new ZigZagMovement(100,100,false,false));
-                patternList.add(new LinealMovement(100,false));
+                patternList.add(new SinusMovement(100,1,false));;
                 sizeX = 110.0f;
                 sizeY = 130.0f;
                 bulletMovement = null;
@@ -160,7 +159,6 @@ public class EnemyType {
                 escudo = maxEscudo;
                 dañoColision = ((int)vida/2); //Daño que le hace la nave al jugador si colisionan
                 probabilidadPowerUp = 10;
-                patternList.add(new ZigZagMovement(100,100,false,false));
                 patternList.add(new LinealMovement(100,false));
                 sizeX = 110.0f;
                 sizeY = 130.0f;
