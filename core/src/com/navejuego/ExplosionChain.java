@@ -45,6 +45,10 @@ public class ExplosionChain extends Explosion {
                 ttrans = 0.0f;
 
             } else if (duracionframe * (indiceactual + 1) <= ttrans) {
+                if(Preferencias.getInstance().soundOn()) {
+                    GestorAssets.getInstance().getSound("explosion2.wav").stop();
+                    GestorAssets.getInstance().getSound("explosion2.wav").play();
+                }
                 indiceactual += 1;
                 texture = listatextura.get(indiceactual);
             }

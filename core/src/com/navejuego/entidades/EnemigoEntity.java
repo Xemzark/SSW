@@ -29,7 +29,7 @@ import java.util.Random;
 public class EnemigoEntity extends GameObjectEntity {
 
     protected int puntuacion;
-    protected int dañoColision;
+    protected int danoColision;
     protected int damage = 0;
     protected float cadenciaDisparo;
     protected float tiempoSiguienteDisparo;
@@ -92,7 +92,7 @@ public class EnemigoEntity extends GameObjectEntity {
         indexmove=0;
 
 
-        dañoColision = enemyProperties.dañoColision ; //Daño que le hace la nave al jugador si colisionan
+        danoColision = enemyProperties.danoColision; //Daño que le hace la nave al jugador si colisionan
         this.powerUp = powerUp;
         probabilidadPowerUp = enemyProperties.probabilidadPowerUp;
         bulletMovement = enemyProperties.bulletMovement;
@@ -257,7 +257,7 @@ public class EnemigoEntity extends GameObjectEntity {
      */
     public void comprobarColisionJugador() {
         if(this.getHitbox().overlaps(PantallaJuego.jugador.getHitbox())){
-            PantallaJuego.jugador.recibirDmg(this.dañoColision, false);
+            PantallaJuego.jugador.recibirDmg(this.danoColision, false);
             Gdx.app.log("HitColision! a jugador!", "");
             this.destruirse();
         }

@@ -53,7 +53,7 @@ public class ZigZagMovement implements MovementPattern {
         if (goUp) {
             newY += speed * delta;
             //Si es el boss, que no salga de pantalla!
-            if(bossMode && (newY + (speed * delta)) > Gdx.graphics.getHeight()*0.7){
+            if(bossMode && (newY + (speed * delta)) > Gdx.graphics.getHeight()*0.65){
                 goUp = false;
             }
         } else {

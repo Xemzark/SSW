@@ -6,7 +6,6 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.math.Vector2;
 import com.navejuego.Constantes;
 import com.navejuego.GestorAssets;
-import com.navejuego.Preferencias;
 import com.navejuego.entidades.patrones.LinealMovement;
 import com.navejuego.entidades.patrones.MovementPattern;
 import com.navejuego.entidades.ui.Barra;
@@ -155,9 +154,6 @@ public class BossEnemigo extends EnemigoEntity {
 
     public void animacionExploChain(){
 
-        if(Preferencias.getInstance().soundOn()) {
-            GestorAssets.getInstance().getSound("explosion2.wav").play();
-        }
         ArrayList<Texture> explosionTextura = new ArrayList<Texture>();
         explosionTextura.add(GestorAssets.getInstance().getTexture("explo1.png"));
         explosionTextura.add(GestorAssets.getInstance().getTexture("explo2.png"));
@@ -190,8 +186,11 @@ public class BossEnemigo extends EnemigoEntity {
     public void comprobarColisionJugador() {
 
         if(this.getHitbox().overlaps(PantallaJuego.jugador.getHitbox())){
-            PantallaJuego.jugador.recibirDmg(this.dañoColision, false);
-            Gdx.app.log("HitColisionBoss! a jugador!", "");
+            PantallaJuego.jugador.recibirDmg(this.danoColision, false);
+            if(!PantallaJuego.jugador.getInvulnerabilidad()){ //controla que el jugador no sea invulnerable y despues de causarle daño le
+                Gdx.app.log("HitColisionBoss! a jugador!", "");//asigna un periodo, no queremos que muera demasiado rapido!
+                PantallaJuego.jugador.setInvulnerabilidad(0.5f);
+            }
         }
 
     }

@@ -37,12 +37,12 @@ public class JugadorEntity extends GameObjectEntity {
 
     private AtaqueEspecial ataqueEspecial;
 
-    private boolean invulnerabilidad;
+    private boolean invulnerabilidad; //tiene periodo de invulnerabilidad?
     private long inicioInvulnerabilidad = 0;
-    private int duracionInvulnerabilidad = 0;
+    private float duracionInvulnerabilidad = 0;
     private int damage;
 
-    private boolean dobleASPD = false;
+    private boolean dobleASPD = false; //tiene powerup doble velocidad disparo?
     private long inicioDobleASPD = 0;
     private int duracionDobleASPD = 0;
 
@@ -307,7 +307,11 @@ public class JugadorEntity extends GameObjectEntity {
 
     public float getMaxEscudo() { return this.maxEscudo; }
 
-    public void setInvulnerabilidad (int duracion) {
+    public boolean getInvulnerabilidad (){
+        return invulnerabilidad;
+    }
+
+    public void setInvulnerabilidad (float duracion) {
         if (!invulnerabilidad) {
             this.invulnerabilidad = true;
             this.inicioInvulnerabilidad = new TimeUtils().millis();
@@ -318,7 +322,7 @@ public class JugadorEntity extends GameObjectEntity {
     }
 
     public void contadorInvulnerabilidad(){
-        if (TimeUtils.timeSinceMillis(inicioInvulnerabilidad) > duracionDobleASPD * 1000){
+        if (TimeUtils.timeSinceMillis(inicioInvulnerabilidad) > duracionInvulnerabilidad * 1000){
             invulnerabilidad = false;
             inicioInvulnerabilidad = 0;
             duracionInvulnerabilidad = 0;
@@ -350,9 +354,6 @@ public class JugadorEntity extends GameObjectEntity {
 
     public void animacionExploChain(){
 
-        if(Preferencias.getInstance().soundOn()) {
-            GestorAssets.getInstance().getSound("explosion2.wav").play();
-        }
         ArrayList<Texture> explosionTextura = new ArrayList<Texture>();
         explosionTextura.add(GestorAssets.getInstance().getTexture("explo1.png"));
         explosionTextura.add(GestorAssets.getInstance().getTexture("explo2.png"));
