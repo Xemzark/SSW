@@ -40,6 +40,7 @@ public class JugadorEntity extends GameObjectEntity {
     private boolean invulnerabilidad; //tiene periodo de invulnerabilidad?
     private long inicioInvulnerabilidad = 0;
     private float duracionInvulnerabilidad = 0;
+    private boolean parpadeo; //controla el parpadeo de la nave mientras es invulnerable
     private int damage;
 
     private boolean dobleASPD = false; //tiene powerup doble velocidad disparo?
@@ -49,6 +50,9 @@ public class JugadorEntity extends GameObjectEntity {
     private Barra barravida;
     private Barra barraescudo;
     private Puntuacion puntuacion;
+
+    private Texture noNave; //textura "en blanco" para hacer desaparecer la nave (invencibilidad)
+    private Texture currentTexture; //textura en uso actualmente (para invencibilidad)
     private Sprite spriteEscudo;
     private JugadorType jugadorProperties;
 
@@ -63,11 +67,13 @@ public class JugadorEntity extends GameObjectEntity {
         this.jugadorProperties = new JugadorType(jtype);
 
         this.texture = this.jugadorProperties.textura;
+        this.currentTexture = this.texture;
         this.damage = this.jugadorProperties.damage;
 
         this.sprite = new Sprite(this.texture);
         this.sprite.setSize(80 * Constantes.resizeWidth, 80 * Constantes.resizeHeight);
         this.hitbox = new Circle();
+        this.noNave = GestorAssets.getInstance().getTexture("noNave.png");
 
         this.invulnerabilidad = false;
         this.puntuacion = new com.navejuego.entidades.ui.Puntuacion();
@@ -161,6 +167,14 @@ public class JugadorEntity extends GameObjectEntity {
 
 
         if (invulnerabilidad){
+            if (!parpadeo){ //cambia el sprite por uno en blanco, para indicar que se es invulnerable
+                currentTexture = noNave;
+                parpadeo = true;
+            }
+            else{
+                currentTexture = texture;
+                parpadeo = false;
+            }
             contadorInvulnerabilidad();
         }
         if (dobleASPD) {
@@ -171,7 +185,7 @@ public class JugadorEntity extends GameObjectEntity {
 
     @Override
     public void draw(Batch batch, float parentAlpha) {
-        batch.draw(texture, getX(), getY(), getWidth(), getHeight());
+        batch.draw(currentTexture, getX(), getY(), getWidth(), getHeight());
         spriteEscudo.draw(batch);
         barravida.render(batch);
         barraescudo.render(batch);
@@ -317,6 +331,7 @@ public class JugadorEntity extends GameObjectEntity {
             this.inicioInvulnerabilidad = new TimeUtils().millis();
             this.duracionInvulnerabilidad = duracion;
         } else {
+
             this.duracionInvulnerabilidad += duracion;
         }
     }
@@ -324,6 +339,8 @@ public class JugadorEntity extends GameObjectEntity {
     public void contadorInvulnerabilidad(){
         if (TimeUtils.timeSinceMillis(inicioInvulnerabilidad) > duracionInvulnerabilidad * 1000){
             invulnerabilidad = false;
+            parpadeo = false;
+            currentTexture = texture;
             inicioInvulnerabilidad = 0;
             duracionInvulnerabilidad = 0;
         }

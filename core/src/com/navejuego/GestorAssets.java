@@ -41,6 +41,8 @@ public class GestorAssets {
         manager.load("medfrighter.png", Texture.class);
         manager.load("ship3.png", Texture.class);
         manager.load("destroyer.png", Texture.class);
+        manager.load("noNave.png", Texture.class);
+
 
         manager.load("enemigo.png", Texture.class);
         manager.load("alien.png", Texture.class);
