@@ -16,6 +16,7 @@ import com.navejuego.Constantes;
 import com.navejuego.Dialog;
 import com.navejuego.GestorAssets;
 import com.navejuego.PartidaGuardada;
+import com.navejuego.Preferencias;
 
 /**
  * Created by albert on 16/4/16.
@@ -33,6 +34,11 @@ public class PantallaVictory extends Pantalla{
     private int score;
 
     public PantallaVictory() {
+
+        if(Preferencias.getInstance().musicOn()){
+            GestorAssets.getInstance().getMusic("victory.wav").setLooping(true);
+            GestorAssets.getInstance().getMusic("victory.wav").play();
+        }
 
         int nivel = Constantes.getLevelInt();
 
@@ -76,6 +82,9 @@ public class PantallaVictory extends Pantalla{
             public void changed(ChangeListener.ChangeEvent event, Actor actor) {
                 //System.out.println("Clicked! Is checked: " + button.isChecked());
 
+                if(Preferencias.getInstance().musicOn()){
+                    GestorAssets.getInstance().getMusic("victory.wav").stop();
+                }
                 ScreenManager.getInstance().showScreen(ScreenEnum.MAIN_MENU);
 
             }

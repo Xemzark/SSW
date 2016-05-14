@@ -36,21 +36,26 @@ public class GestorAssets {
         /**
          * Entidades
          */
+
+        //naves
         manager = new AssetManager();
-        manager.load("nave.png", Texture.class);
-        manager.load("medfrighter.png", Texture.class);
-        manager.load("ship3.png", Texture.class);
-        manager.load("destroyer.png", Texture.class);
+        manager.load("nave1.png", Texture.class);
+        manager.load("nave2.png", Texture.class);
+        manager.load("nave3.png", Texture.class);
         manager.load("noNave.png", Texture.class);
 
+       //bosses
+        manager.load("boss1.png", Texture.class);
+        manager.load("boss2.png", Texture.class);
+        manager.load("boss3.png", Texture.class);
+        manager.load("boss4.png", Texture.class);
 
-        manager.load("enemigo.png", Texture.class);
-        manager.load("alien.png", Texture.class);
+        //balas
         manager.load("bullet.png", Texture.class);
         manager.load("proyectilEnemigo.png", Texture.class);
         manager.load("escudoEnemigo.png", Texture.class);
-        manager.load("aliensprite2.png", Texture.class);
-        manager.load("boss.png", Texture.class);
+
+        //enemigos
         manager.load("heavyfreighter.png", Texture.class);
         manager.load("alien1.png", Texture.class);
         manager.load("alien2.png", Texture.class);
@@ -68,9 +73,6 @@ public class GestorAssets {
         manager.load("blueship2.png", Texture.class);
         manager.load("blueship3.png", Texture.class);
         manager.load("blueship4.png", Texture.class);
-        manager.load("bgbattleship.png", Texture.class);
-
-
 
         /**
          * Background
@@ -103,7 +105,6 @@ public class GestorAssets {
         manager.load("shieldbar.png", Texture.class);
         manager.load("corazon.png", Texture.class);
         manager.load("2xShield.png", Texture.class);
-        manager.load("addShield.png", Texture.class);
         manager.load("vidabossbg.png", Texture.class);
         manager.load("vidabossfg.png", Texture.class);
         manager.load("boss_corazon.png", Texture.class);
@@ -113,6 +114,12 @@ public class GestorAssets {
          * Power Ups
          */
         manager.load("powerup_vida.png", Texture.class);
+        manager.load("powerup_shield.png", Texture.class);
+        manager.load("powerup_cadencia.png", Texture.class);
+        manager.load("powerup_score3.png", Texture.class);
+        manager.load("powerup_invulnerable.png", Texture.class);
+
+        //ataques especiales
         manager.load("bulletespecial.png", Texture.class);
         manager.load("botonespecial.png", Texture.class);
         manager.load("botonespecial_no.png", Texture.class);
@@ -125,6 +132,7 @@ public class GestorAssets {
         manager.load("especialexplosion_on.png", Texture.class);
 
 
+        //animaciones
         manager.load("explo1.png", Texture.class);
         manager.load("explo2.png", Texture.class);
         manager.load("explo3.png", Texture.class);
@@ -148,6 +156,10 @@ public class GestorAssets {
         manager.load("SpaceTrip.mp3", Music.class);
         manager.load("SpaceGate.mp3", Music.class);
         manager.load("Starlight.wav", Music.class);
+        //manager.load("victory.wav", Music.class);
+        manager.load("defeat.wav", Music.class);
+        manager.load("victory.wav", Music.class);
+
 
         //Sonidos gratis
         //http://soundbible.com/tags-explosion.html
@@ -156,14 +168,11 @@ public class GestorAssets {
         manager.load("explosion2.wav", Sound.class);
         manager.load("laser.wav", Sound.class);
         manager.load("especialdestruir.wav", Sound.class);
+        manager.load("misiles.wav", Sound.class);
 
 
         manager.finishLoading();
            // ScreenManager.getInstance().showScreen(ScreenEnum.LOADING);
-
-
-
-
 
         //asÃ­ se cargan todos los assets. puede tardar, asÃ­ que mejor hacer pantalla de carga
     }

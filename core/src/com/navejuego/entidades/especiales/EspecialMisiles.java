@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Vector2;
 import com.navejuego.Constantes;
 import com.navejuego.GestorAssets;
+import com.navejuego.Preferencias;
 import com.navejuego.pantallas.PantallaJuego;
 import com.navejuego.entidades.bullets.BulletEspecial;
 
@@ -34,6 +35,11 @@ public class EspecialMisiles extends AtaqueEspecial {
     }
 
     public void activar() {
+
+        if(Preferencias.getInstance().soundOn()){
+            GestorAssets.getInstance().getSound("misiles.wav").play();
+        }
+
         Texture bulletTextura = GestorAssets.getInstance().getTexture("missil_especial.png");
         float playerX = PantallaJuego.jugador.getX();
         float playerY = PantallaJuego.jugador.getY();
@@ -43,11 +49,12 @@ public class EspecialMisiles extends AtaqueEspecial {
         float bulletX = playerX - distanceBetweenMissilesX*centralMissile;
         float bulletY = playerY - distanceBetweenMissilesY*centralMissile;;
 
+        System.out.println("Realizando disparo! \n");
         for (int disparo = 0; disparo < missileAmount; disparo++) {
             BulletEspecial bullet = new BulletEspecial(bulletTextura, new Vector2(bulletX, bulletY), damage);
             bullet.setSize(45 * Constantes.resizeWidth, 60 * Constantes.resizeHeight);
             PantallaJuego.stage.addActor(bullet);
-
+            System.out.println("bala!");
             bulletX += distanceBetweenMissilesX;
 
             if (disparo < centralMissile) {

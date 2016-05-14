@@ -29,13 +29,13 @@ public class EspecialMasa extends AtaqueEspecial {
     @Override
     public void activar() {
 
-        System.out.println("Mostrando actores: \n");
+        //System.out.println("Mostrando actores: \n");
         int len = PantallaJuego.stage.getActors().size;
 
         for(int i = len-1; i >= 0; i--){
 
             Actor a =PantallaJuego.stage.getActors().get(i);
-            System.out.println(a.getName());
+            //System.out.println(a.getName());
 
             if(a.getName()!= null && a.getName().equals("Nave enemiga")){
 

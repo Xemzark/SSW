@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Circle;
 import com.badlogic.gdx.math.Vector2;
 import com.navejuego.Constantes;
+import com.navejuego.Explosion;
 import com.navejuego.GestorAssets;
 import com.navejuego.Preferencias;
 import com.navejuego.entidades.patrones.MovementPattern;
@@ -227,7 +228,7 @@ public class EnemigoEntity extends GameObjectEntity {
         explosionTextura.add(GestorAssets.getInstance().getTexture("explo3.png"));
         explosionTextura.add(GestorAssets.getInstance().getTexture("explo4.png"));
         explosionTextura.add(GestorAssets.getInstance().getTexture("explo5.png"));
-        com.navejuego.Explosion explo = new com.navejuego.Explosion(explosionTextura, new Vector2(getX(),getY()),1.0f,100);
+        Explosion explo = new Explosion(explosionTextura, new Vector2(getX(),getY()),1.0f,100);
         PantallaJuego.stage.addActor(explo);
         /*if(Preferencias.getInstance().soundOn()){
             GestorAssets.getInstance().getSound("explosion2.wav").play();
@@ -270,6 +271,8 @@ public class EnemigoEntity extends GameObjectEntity {
     private void generarPowerUp() {
 
         int s_powerup = (int) (Math.random() * 5);
+        //System.out.println("Power up" + s_powerup);
+
         Vector2 posicion = new Vector2(getX(), getY());
 
         switch (s_powerup) {
@@ -283,28 +286,28 @@ public class EnemigoEntity extends GameObjectEntity {
             case 1:
                 //Power up ASPD
                 Texture powerup2;
-                powerup2 = GestorAssets.getInstance().getTexture("addShield.png");
+                powerup2 = GestorAssets.getInstance().getTexture("powerup_cadencia.png");
                 com.navejuego.entidades.powerups.PowerUpASPD pUp2 = new com.navejuego.entidades.powerups.PowerUpASPD(powerup2, posicion);
                 PantallaJuego.stage.addActor(pUp2);
                 break;
             case 2:
                 //Power up Invulnerabilidad
                 Texture powerup3;
-                powerup3 = GestorAssets.getInstance().getTexture("powerup_vida.png");
+                powerup3 = GestorAssets.getInstance().getTexture("powerup_invulnerable.png");
                 com.navejuego.entidades.powerups.PowerUpInvulnerabilidad pUp3 = new com.navejuego.entidades.powerups.PowerUpInvulnerabilidad(powerup3, posicion);
                 PantallaJuego.stage.addActor(pUp3);
                 break;
             //Power up Puntos
             case 3:
                 Texture powerup4;
-                powerup4 = GestorAssets.getInstance().getTexture("addShield.png");
-                com.navejuego.entidades.powerups.PowerUpPuntos pUp4 = new com.navejuego.entidades.powerups.PowerUpPuntos(powerup4, posicion, 100);
+                powerup4 = GestorAssets.getInstance().getTexture("powerup_score3.png");
+                com.navejuego.entidades.powerups.PowerUpPuntos pUp4 = new com.navejuego.entidades.powerups.PowerUpPuntos(powerup4, posicion, 1234);
                 PantallaJuego.stage.addActor(pUp4);
                 break;
             //Power up Escudo
             case 4:
                 Texture powerup5;
-                powerup5 = GestorAssets.getInstance().getTexture("powerup_vida.png");
+                powerup5 = GestorAssets.getInstance().getTexture("powerup_shield.png");
                 com.navejuego.entidades.powerups.PowerUpEscudo pUp5 = new com.navejuego.entidades.powerups.PowerUpEscudo(powerup5, posicion);
                 PantallaJuego.stage.addActor(pUp5);
                 break;

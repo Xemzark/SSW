@@ -100,7 +100,7 @@ public class PantallaGaraje extends Pantalla {
                 barraCadencia.setPosition(Gdx.graphics.getWidth() / 2 - Gdx.graphics.getWidth() / 8, Gdx.graphics.getHeight() / 3 - Gdx.graphics.getHeight() / 8);
                 barraCadencia.setSize(Gdx.graphics.getWidth() / 2 * jugador.cadenciaDisparo, Gdx.graphics.getHeight() / 16);
 
-                nave1 = new Image(GestorAssets.getInstance().getTexture("nave.png"));
+                nave1 = new Image(GestorAssets.getInstance().getTexture("nave1.png"));
                 nave1.setPosition(Gdx.graphics.getWidth() / 2 - 2 * 80 * Constantes.resizeWidth / 2, Gdx.graphics.getHeight() / 3 + Gdx.graphics.getHeight() / 8);
                 nave1.setSize(2 * 80 * Constantes.resizeWidth, 2 * 80 * Constantes.resizeHeight);
 
@@ -123,7 +123,7 @@ public class PantallaGaraje extends Pantalla {
                 barraCadencia.setPosition(Gdx.graphics.getWidth() / 2 - Gdx.graphics.getWidth() / 8, Gdx.graphics.getHeight() / 3 - Gdx.graphics.getHeight() / 8);
                 barraCadencia.setSize(Gdx.graphics.getWidth() / 2 * jugador.cadenciaDisparo, Gdx.graphics.getHeight() / 16);
 
-                nave1 = new Image(GestorAssets.getInstance().getTexture("destroyer.png"));
+                nave1 = new Image(GestorAssets.getInstance().getTexture("nave2.png"));
                 nave1.setPosition(Gdx.graphics.getWidth() / 2 - 2 * 80 * Constantes.resizeWidth / 2, Gdx.graphics.getHeight() / 3 + Gdx.graphics.getHeight() / 8);
                 nave1.setSize(2 * 80 * Constantes.resizeWidth, 2 * 80 * Constantes.resizeHeight);
                 break;
@@ -146,7 +146,7 @@ public class PantallaGaraje extends Pantalla {
                 barraCadencia.setPosition(Gdx.graphics.getWidth() / 2 - Gdx.graphics.getWidth() / 8, Gdx.graphics.getHeight() / 3 - Gdx.graphics.getHeight() / 8);
                 barraCadencia.setSize(Gdx.graphics.getWidth() / 2 * jugador.cadenciaDisparo, Gdx.graphics.getHeight() / 16);
 
-                nave1 = new Image(GestorAssets.getInstance().getTexture("ship3.png"));
+                nave1 = new Image(GestorAssets.getInstance().getTexture("nave3.png"));
                 nave1.setPosition(Gdx.graphics.getWidth() / 2 - 2 * 80 * Constantes.resizeWidth / 2, Gdx.graphics.getHeight() / 3 + Gdx.graphics.getHeight() / 8);
                 nave1.setSize(2 * 80 * Constantes.resizeWidth, 2 * 80 * Constantes.resizeHeight);
                 break;

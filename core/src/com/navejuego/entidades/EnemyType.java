@@ -83,7 +83,7 @@ public class EnemyType {
                 vida = maxVida;
                 escudo = maxEscudo;
                 danoColision = ((int)vida/2); //Daño que le hace la nave al jugador si colisionan
-                probabilidadPowerUp = 10;
+                probabilidadPowerUp = 20;
                 patternList.add(new ZigZagMovement(100,100,false,false));
                 patternList.add(new LinealMovement(100,false));
                 sizeX = 110.0f;
@@ -108,7 +108,7 @@ public class EnemyType {
                 vida = maxVida;
                 escudo = maxEscudo;
                 danoColision = (20); //Daño que le hace la nave al jugador si colisionan
-                probabilidadPowerUp = 10;
+                probabilidadPowerUp = 15;
                 patternList.add(new LinealMovement(400,false));
                 sizeX = 110.0f;
                 sizeY = 130.0f;
@@ -131,7 +131,7 @@ public class EnemyType {
                 vida = maxVida;
                 escudo = maxEscudo;
                 danoColision = ((int)vida/2); //Daño que le hace la nave al jugador si colisionan
-                probabilidadPowerUp = 10;
+                probabilidadPowerUp = 25;
                 patternList.add(new SinusMovement(100,1,false));;
                 sizeX = 110.0f;
                 sizeY = 130.0f;
@@ -153,7 +153,7 @@ public class EnemyType {
                 vida = maxVida;
                 escudo = maxEscudo;
                 danoColision = ((int)vida/2); //Daño que le hace la nave al jugador si colisionan
-                probabilidadPowerUp = 10;
+                probabilidadPowerUp = 20;
                 patternList.add(new LinealMovement(100,false));
                 sizeX = 110.0f;
                 sizeY = 130.0f;
@@ -181,7 +181,7 @@ public class EnemyType {
                 vida = maxVida;
                 escudo = maxEscudo;
                 danoColision = ((int)vida/2); //Daño que le hace la nave al jugador si colisionan
-                probabilidadPowerUp = 10;
+                probabilidadPowerUp = 20;
                 //movementPattern =  new TargetMovement(200, Gdx.graphics.getWidth()/2, Gdx.graphics.getHeight()/2);
                 patternList.add(new ZigZagMovement(100,100,false,false));
                 patternList.add(new LinealMovement(100,false));
@@ -206,7 +206,7 @@ public class EnemyType {
                 vida = maxVida;
                 escudo = maxEscudo;
                 danoColision = (20); //Daño que le hace la nave al jugador si colisionan
-                probabilidadPowerUp = 10;
+                probabilidadPowerUp = 15;
                 //movementPattern =  new LinealMovement(400, false);
                 patternList.add(new ZigZagMovement(100,100,false,false));
                 patternList.add(new LinealMovement(100,false));
@@ -230,7 +230,7 @@ public class EnemyType {
                 vida = maxVida;
                 escudo = maxEscudo;
                 danoColision = ((int)vida/2); //Daño que le hace la nave al jugador si colisionan
-                probabilidadPowerUp = 10;
+                probabilidadPowerUp = 25;
                 //movementPattern =  new LinealMovement(75, false);
                 patternList.add(new ZigZagMovement(100,100,false,false));
                 patternList.add(new LinealMovement(100,false));
@@ -254,7 +254,7 @@ public class EnemyType {
                 vida = maxVida;
                 escudo = maxEscudo;
                 danoColision = ((int)vida/2); //Daño que le hace la nave al jugador si colisionan
-                probabilidadPowerUp = 10;
+                probabilidadPowerUp = 20;
                 //movementPattern =  new TargetMovement(200, Gdx.graphics.getWidth()/2, Gdx.graphics.getHeight()/2);
                 patternList.add(new ZigZagMovement(100,100,false,false));
                 patternList.add(new LinealMovement(100,false));
@@ -285,7 +285,7 @@ public class EnemyType {
                 vida = maxVida;
                 escudo = maxEscudo;
                 danoColision = ((int)vida/2); //Daño que le hace la nave al jugador si colisionan
-                probabilidadPowerUp = 10;
+                probabilidadPowerUp = 20;
                 //movementPattern =  new TargetMovement(200, Gdx.graphics.getWidth()/2, Gdx.graphics.getHeight()/2);
                 patternList.add(new ZigZagMovement(100,100,false,false));
                 patternList.add(new LinealMovement(100,false));
@@ -311,7 +311,7 @@ public class EnemyType {
                 vida = maxVida;
                 escudo = maxEscudo;
                 danoColision = (20); //Daño que le hace la nave al jugador si colisionan
-                probabilidadPowerUp = 10;
+                probabilidadPowerUp = 15;
                 //movementPattern =  new LinealMovement(400, false);
                 patternList.add(new ZigZagMovement(100,100,false,false));
                 patternList.add(new LinealMovement(100,false));
@@ -336,7 +336,7 @@ public class EnemyType {
                 vida = maxVida;
                 escudo = maxEscudo;
                 danoColision = ((int)vida/2); //Daño que le hace la nave al jugador si colisionan
-                probabilidadPowerUp = 10;
+                probabilidadPowerUp = 20;
                 //movementPattern =  new LinealMovement(75, false);
                 patternList.add(new ZigZagMovement(100,100,false,false));
                 patternList.add(new LinealMovement(100,false));
@@ -361,7 +361,7 @@ public class EnemyType {
                 vida = maxVida;
                 escudo = maxEscudo;
                 danoColision = ((int)vida/2); //Daño que le hace la nave al jugador si colisionan
-                probabilidadPowerUp = 10;
+                probabilidadPowerUp = 20;
                 //movementPattern =  new TargetMovement(200, Gdx.graphics.getWidth()/2, Gdx.graphics.getHeight()/2);
                 patternList.add(new ZigZagMovement(100,100,false,false));
                 patternList.add(new LinealMovement(100,false));
@@ -392,7 +392,7 @@ public class EnemyType {
                 vida = maxVida;
                 escudo = maxEscudo;
                 danoColision = ((int)vida/2); //Daño que le hace la nave al jugador si colisionan
-                probabilidadPowerUp = 10;
+                probabilidadPowerUp = 20;
                 //movementPattern =  new TargetMovement(200, Gdx.graphics.getWidth()/2, Gdx.graphics.getHeight()/2);
                 patternList.add(new ZigZagMovement(100,100,false,false));
                 patternList.add(new LinealMovement(100,false));
@@ -418,7 +418,7 @@ public class EnemyType {
                 vida = maxVida;
                 escudo = maxEscudo;
                 danoColision = (40); //Daño que le hace la nave al jugador si colisionan
-                probabilidadPowerUp = 10;
+                probabilidadPowerUp = 15;
                 //movementPattern =  new LinealMovement(400, false);
                 patternList.add(new ZigZagMovement(100,100,false,false));
                 patternList.add(new LinealMovement(100,false));
@@ -443,7 +443,7 @@ public class EnemyType {
                 vida = maxVida;
                 escudo = maxEscudo;
                 danoColision = ((int)vida/2); //Daño que le hace la nave al jugador si colisionan
-                probabilidadPowerUp = 10;
+                probabilidadPowerUp = 25;
                 //movementPattern =  new LinealMovement(75, false);
                 patternList.add(new ZigZagMovement(100,100,false,false));
                 patternList.add(new LinealMovement(100,false));
@@ -468,7 +468,7 @@ public class EnemyType {
                 vida = maxVida;
                 escudo = maxEscudo;
                 danoColision = ((int)vida/2); //Daño que le hace la nave al jugador si colisionan
-                probabilidadPowerUp = 10;
+                probabilidadPowerUp = 20;
                // movementPattern =  new TargetMovement(200, Gdx.graphics.getWidth()/2, Gdx.graphics.getHeight()/2);
                 patternList.add(new ZigZagMovement(100,100,false,false));
                 patternList.add(new LinealMovement(100,false));
@@ -478,7 +478,7 @@ public class EnemyType {
                 break;
 
             case 21: //BOSS DEMO Morado
-                texture = GestorAssets.getInstance().getTexture("aliensprite2.png");
+                texture = GestorAssets.getInstance().getTexture("boss1.png");
                 sprite = new Sprite(texture);
                 textureEscudo = GestorAssets.getInstance().getTexture("escudoEnemigo.png");
                 spriteEscudo = new Sprite(textureEscudo);
@@ -500,7 +500,7 @@ public class EnemyType {
                 bulletMovement = new LinealMovement(150,false);
                 break;
             case 22: //BOSS PANTALLA 2 Azul
-                texture = GestorAssets.getInstance().getTexture("bgbattleship.png");
+                texture = GestorAssets.getInstance().getTexture("boss2.png");
                 sprite = new Sprite(texture);
                 textureEscudo = GestorAssets.getInstance().getTexture("escudoEnemigo.png");
                 spriteEscudo = new Sprite(textureEscudo);
@@ -524,7 +524,7 @@ public class EnemyType {
                 break;
 
             case 23: //BOSS PANTALLA 3 Naranja
-                texture = GestorAssets.getInstance().getTexture("aliensprite2.png");
+                texture = GestorAssets.getInstance().getTexture("boss3.png");
                 sprite = new Sprite(texture);
                 textureEscudo = GestorAssets.getInstance().getTexture("escudoEnemigo.png");
                 spriteEscudo = new Sprite(textureEscudo);
@@ -547,7 +547,7 @@ public class EnemyType {
                 break;
 
             case 24: //BOSS PANTALLA 4 Verde
-                texture = GestorAssets.getInstance().getTexture("aliensprite2.png");
+                texture = GestorAssets.getInstance().getTexture("boss4.png");
                 sprite = new Sprite(texture);
                 textureEscudo = GestorAssets.getInstance().getTexture("escudoEnemigo.png");
                 spriteEscudo = new Sprite(textureEscudo);

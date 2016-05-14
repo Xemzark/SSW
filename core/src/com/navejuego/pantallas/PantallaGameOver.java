@@ -15,6 +15,7 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.navejuego.Constantes;
 import com.navejuego.GestorAssets;
 import com.navejuego.PartidaGuardada;
+import com.navejuego.Preferencias;
 
 /**
  * Created by albert on 16/4/16.
@@ -39,6 +40,11 @@ private BitmapFont font;
     private int bestScore;
 
     public PantallaGameOver() {
+
+        if(Preferencias.getInstance().musicOn()){
+            GestorAssets.getInstance().getMusic("defeat.wav").setLooping(true);
+            GestorAssets.getInstance().getMusic("defeat.wav").play();
+        }
 
         //buscando datos de puntuacion y nivel
         int nivel = Constantes.getLevelInt();
@@ -83,6 +89,10 @@ private BitmapFont font;
             public void changed(ChangeListener.ChangeEvent event, Actor actor) {
                 //System.out.println("Clicked! Is checked: " + button.isChecked());
 
+                if(Preferencias.getInstance().musicOn()){
+                    GestorAssets.getInstance().getMusic("defeat.wav").stop();
+                }
+
                 ScreenManager.getInstance().showScreen(ScreenEnum.MAIN_MENU);
 
             }
@@ -92,7 +102,13 @@ private BitmapFont font;
             public void changed(ChangeListener.ChangeEvent event, Actor actor) {
                 //System.out.println("Clicked! Is checked: " + button.isChecked());
 
+                if(Preferencias.getInstance().musicOn()){
+                    GestorAssets.getInstance().getMusic("defeat.wav").stop();
+                }
+
                 ScreenManager.getInstance().showScreen(ScreenEnum.GAME);
+
+
 
             }
         });
