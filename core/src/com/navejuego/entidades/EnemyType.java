@@ -86,8 +86,8 @@ public class EnemyType {
                 probabilidadPowerUp = 20;
                 patternList.add(new ZigZagMovement(100,100,false,false));
                 patternList.add(new LinealMovement(100,false));
-                sizeX = 110.0f;
-                sizeY = 130.0f;
+                sizeX = 80.0f;
+                sizeY = 90.0f;
                 bulletSpeed = 200;
                 bulletMovement = new TargetPlayerMovement(bulletSpeed);
                 break;
@@ -110,8 +110,8 @@ public class EnemyType {
                 danoColision = (20); //Daño que le hace la nave al jugador si colisionan
                 probabilidadPowerUp = 15;
                 patternList.add(new LinealMovement(400,false));
-                sizeX = 110.0f;
-                sizeY = 130.0f;
+                sizeX = 90.0f;
+                sizeY = 100.0f;
                 bulletMovement = new LinealMovement(250,false);
                 break;
 
@@ -133,8 +133,8 @@ public class EnemyType {
                 danoColision = ((int)vida/2); //Daño que le hace la nave al jugador si colisionan
                 probabilidadPowerUp = 25;
                 patternList.add(new SinusMovement(100,1,false));;
-                sizeX = 110.0f;
-                sizeY = 130.0f;
+                sizeX = 100.0f;
+                sizeY = 120.0f;
                 bulletMovement = new LinealMovement(250,false);
                 break;
             case 4: //enemigo morado 4
@@ -155,8 +155,8 @@ public class EnemyType {
                 danoColision = ((int)vida/2); //Daño que le hace la nave al jugador si colisionan
                 probabilidadPowerUp = 20;
                 patternList.add(new LinealMovement(100,false));
-                sizeX = 110.0f;
-                sizeY = 130.0f;
+                sizeX = 80.0f;
+                sizeY = 90.0f;
                 bulletMovement = new LinealMovement(250,false);
                 break;
 
@@ -185,8 +185,8 @@ public class EnemyType {
                 //movementPattern =  new TargetMovement(200, Gdx.graphics.getWidth()/2, Gdx.graphics.getHeight()/2);
                 patternList.add(new ZigZagMovement(100,100,false,false));
                 patternList.add(new LinealMovement(100,false));
-                sizeX = 110.0f;
-                sizeY = 130.0f;
+                sizeX = 80.0f;
+                sizeY = 90.0f;
                 bulletSpeed = 200;
                 bulletMovement = new TargetPlayerMovement(bulletSpeed);
                 break;
@@ -210,8 +210,8 @@ public class EnemyType {
                 //movementPattern =  new LinealMovement(400, false);
                 patternList.add(new ZigZagMovement(100,100,false,false));
                 patternList.add(new LinealMovement(100,false));
-                sizeX = 110.0f;
-                sizeY = 130.0f;
+                sizeX = 90.0f;
+                sizeY = 100.0f;
                 bulletMovement = new LinealMovement(250,false);
                 break;
             case 7: //enemigo azul 3 tanque
@@ -234,8 +234,8 @@ public class EnemyType {
                 //movementPattern =  new LinealMovement(75, false);
                 patternList.add(new ZigZagMovement(100,100,false,false));
                 patternList.add(new LinealMovement(100,false));
-                sizeX = 110.0f;
-                sizeY = 130.0f;
+                sizeX = 100.0f;
+                sizeY = 120.0f;
                 bulletMovement = new LinealMovement(250,false);
                 break;
             case 8: //enemigo azul 4
@@ -258,8 +258,8 @@ public class EnemyType {
                 //movementPattern =  new TargetMovement(200, Gdx.graphics.getWidth()/2, Gdx.graphics.getHeight()/2);
                 patternList.add(new ZigZagMovement(100,100,false,false));
                 patternList.add(new LinealMovement(100,false));
-                sizeX = 110.0f;
-                sizeY = 130.0f;
+                sizeX = 80.0f;
+                sizeY = 90.0f;
                 bulletMovement = new LinealMovement(250,false);
                 break;
 
@@ -289,8 +289,8 @@ public class EnemyType {
                 //movementPattern =  new TargetMovement(200, Gdx.graphics.getWidth()/2, Gdx.graphics.getHeight()/2);
                 patternList.add(new ZigZagMovement(100,100,false,false));
                 patternList.add(new LinealMovement(100,false));
-                sizeX = 110.0f;
-                sizeY = 130.0f;
+                sizeX = 80.0f;
+                sizeY = 90.0f;
                 bulletSpeed = 200;
                 bulletMovement = new TargetPlayerMovement(bulletSpeed);
                 break;
@@ -315,8 +315,8 @@ public class EnemyType {
                 //movementPattern =  new LinealMovement(400, false);
                 patternList.add(new ZigZagMovement(100,100,false,false));
                 patternList.add(new LinealMovement(100,false));
-                sizeX = 110.0f;
-                sizeY = 130.0f;
+                sizeX = 90.0f;
+                sizeY = 100.0f;
                 bulletMovement = new LinealMovement(250,false);
                 break;
 
@@ -340,8 +340,8 @@ public class EnemyType {
                 //movementPattern =  new LinealMovement(75, false);
                 patternList.add(new ZigZagMovement(100,100,false,false));
                 patternList.add(new LinealMovement(100,false));
-                sizeX = 110.0f;
-                sizeY = 130.0f;
+                sizeX = 100.0f;
+                sizeY = 120.0f;
                 bulletMovement = new LinealMovement(250,false);
                 break;
 
@@ -365,8 +365,8 @@ public class EnemyType {
                 //movementPattern =  new TargetMovement(200, Gdx.graphics.getWidth()/2, Gdx.graphics.getHeight()/2);
                 patternList.add(new ZigZagMovement(100,100,false,false));
                 patternList.add(new LinealMovement(100,false));
-                sizeX = 110.0f;
-                sizeY = 130.0f;
+                sizeX = 80.0f;
+                sizeY = 90.0f;
                 bulletMovement = new LinealMovement(250,false);
                 break;
 
@@ -396,8 +396,8 @@ public class EnemyType {
                 //movementPattern =  new TargetMovement(200, Gdx.graphics.getWidth()/2, Gdx.graphics.getHeight()/2);
                 patternList.add(new ZigZagMovement(100,100,false,false));
                 patternList.add(new LinealMovement(100,false));
-                sizeX = 110.0f;
-                sizeY = 130.0f;
+                sizeX = 80.0f;
+                sizeY = 90.0f;
                 bulletSpeed = 200;
                 bulletMovement = new TargetPlayerMovement(bulletSpeed);
                 break;
@@ -422,8 +422,8 @@ public class EnemyType {
                 //movementPattern =  new LinealMovement(400, false);
                 patternList.add(new ZigZagMovement(100,100,false,false));
                 patternList.add(new LinealMovement(100,false));
-                sizeX = 110.0f;
-                sizeY = 130.0f;
+                sizeX = 90.0f;
+                sizeY = 100.0f;
                 bulletMovement = new LinealMovement(250,false);
                 break;
 
@@ -447,8 +447,8 @@ public class EnemyType {
                 //movementPattern =  new LinealMovement(75, false);
                 patternList.add(new ZigZagMovement(100,100,false,false));
                 patternList.add(new LinealMovement(100,false));
-                sizeX = 110.0f;
-                sizeY = 130.0f;
+                sizeX = 100.0f;
+                sizeY = 120.0f;
                 bulletMovement = new LinealMovement(250,false);
                 break;
 
@@ -472,8 +472,8 @@ public class EnemyType {
                // movementPattern =  new TargetMovement(200, Gdx.graphics.getWidth()/2, Gdx.graphics.getHeight()/2);
                 patternList.add(new ZigZagMovement(100,100,false,false));
                 patternList.add(new LinealMovement(100,false));
-                sizeX = 110.0f;
-                sizeY = 130.0f;
+                sizeX = 80.0f;
+                sizeY = 90.0f;
                 bulletMovement = new LinealMovement(250,false);
                 break;
 
