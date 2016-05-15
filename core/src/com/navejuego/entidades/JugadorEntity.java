@@ -56,6 +56,8 @@ public class JugadorEntity extends GameObjectEntity {
     private Sprite spriteEscudo;
     private JugadorType jugadorProperties;
 
+    private float parpadeoInvulnerabilidad;
+
 
     /**
      * Constructor
@@ -165,15 +167,17 @@ public class JugadorEntity extends GameObjectEntity {
 
         generarDisparo(delta);
 
-
-        if (invulnerabilidad){
-            if (!parpadeo){ //cambia el sprite por uno en blanco, para indicar que se es invulnerable
+        if (invulnerabilidad) {
+            parpadeoInvulnerabilidad += delta;
+            if (!parpadeo && parpadeoInvulnerabilidad >= 0.2f){ //cambia el sprite por uno en blanco, para indicar que se es invulnerabl
                 currentTexture = noNave;
                 parpadeo = true;
+                parpadeoInvulnerabilidad = 0.0f;
             }
-            else{
+            else if (parpadeo && parpadeoInvulnerabilidad >= 0.2f){
                 currentTexture = texture;
                 parpadeo = false;
+                parpadeoInvulnerabilidad = 0.0f;
             }
             contadorInvulnerabilidad();
         }
@@ -217,9 +221,9 @@ public class JugadorEntity extends GameObjectEntity {
      * @param dmg Daño que aplica.
      * @param ignoraEscudo Si es cierto, ignora escudo.
      */
-    public void recibirDmg(int dmg, boolean ignoraEscudo) {
+    public boolean recibirDmg(int dmg, boolean ignoraEscudo) {
         if (invulnerabilidad)
-            return;
+            return false;
 
         if (ignoraEscudo || escudo <= 0) {
             vida -= dmg;
@@ -243,6 +247,7 @@ public class JugadorEntity extends GameObjectEntity {
         }
 
         updateUI();
+        return true;
     }
 
     public void updateUI(){
@@ -328,10 +333,11 @@ public class JugadorEntity extends GameObjectEntity {
     public void setInvulnerabilidad (float duracion) {
         if (!invulnerabilidad) {
             this.invulnerabilidad = true;
-            this.inicioInvulnerabilidad = new TimeUtils().millis();
+            this.inicioInvulnerabilidad = TimeUtils.millis();
             this.duracionInvulnerabilidad = duracion;
+            this.parpadeo = false;
+            this.parpadeoInvulnerabilidad = 0.0f;
         } else {
-
             this.duracionInvulnerabilidad += duracion;
         }
     }

@@ -257,11 +257,15 @@ public class EnemigoEntity extends GameObjectEntity {
      * causándole daño.
      */
     public void comprobarColisionJugador() {
+
         if(this.getHitbox().overlaps(PantallaJuego.jugador.getHitbox())){
-            PantallaJuego.jugador.recibirDmg(this.danoColision, false);
-            Gdx.app.log("HitColision! a jugador!", "");
-            this.destruirse();
+            if (PantallaJuego.jugador.recibirDmg(this.danoColision, false)) {
+                this.destruirse();
+                Gdx.app.log("HitColision! a jugador!", "");
+            }
         }
+
+
 
     }
 

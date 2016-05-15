@@ -23,9 +23,10 @@ public class BulletEnemigo extends BulletEntity {
     protected void comprobarColision() {
             //TODO: Comprobar colisión aquí y aplicar efectos de choque si corresponde.
         if (PantallaJuego.jugador.getHitbox().overlaps(this.getHitbox())) {
-            PantallaJuego.jugador.recibirDmg(damage, ignoraEscudo);
-            //Gdx.app.log("Hit a jugador!", "");
-            this.destruirse();
+            if (PantallaJuego.jugador.recibirDmg(damage, ignoraEscudo)) {
+                this.destruirse();
+            }
+            //Gdx.app.log("Hit a jugador!", "")
         }
     }
 }
