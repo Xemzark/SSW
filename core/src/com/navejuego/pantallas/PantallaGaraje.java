@@ -71,81 +71,44 @@ public class PantallaGaraje extends Pantalla {
 
         font = new BitmapFont(Gdx.files.internal("otherfont/font.fnt"));
 
-       opcion= Constantes.naveUltimaSeleccion;
+       opcion = Constantes.naveUltimaSeleccion;
         System.out.println("Nave numero:" + opcion);
 
 
         batchGaraje = new SpriteBatch();
         backgroundGaraje = GestorAssets.getInstance().getTexture("background_garaje.png");
 
+        jugador = new JugadorType(opcion);
 
+        barraAtaque = new Image(GestorAssets.getInstance().getTexture("barraloca.png"));
+        barraAtaque.setPosition(Gdx.graphics.getWidth() / 2 - Gdx.graphics.getWidth() / 8, Gdx.graphics.getHeight() / 3 - Gdx.graphics.getHeight() / 50);
+        barraAtaque.setSize(Gdx.graphics.getWidth() / 2 * jugador.damage/17, Gdx.graphics.getHeight() / 16);
+
+        barraEscudo = new Image(GestorAssets.getInstance().getTexture("barraloca.png"));
+        barraEscudo.setPosition(Gdx.graphics.getWidth() / 2 - Gdx.graphics.getWidth() / 8, Gdx.graphics.getHeight() / 3 - Gdx.graphics.getHeight() / 18);
+        barraEscudo.setSize(Gdx.graphics.getWidth() / 3 * jugador.maxEscudo/140, Gdx.graphics.getHeight() / 16);
+
+        barraVida = new Image(GestorAssets.getInstance().getTexture("barraloca.png"));
+        barraVida.setPosition(Gdx.graphics.getWidth() / 2 - Gdx.graphics.getWidth() / 8, Gdx.graphics.getHeight() / 3 - Gdx.graphics.getHeight() / 11);
+        barraVida.setSize(Gdx.graphics.getWidth() / 3 * jugador.maxVida/140, Gdx.graphics.getHeight() / 16);
+
+        barraCadencia = new Image(GestorAssets.getInstance().getTexture("barraloca.png"));
+        barraCadencia.setPosition(Gdx.graphics.getWidth() / 2 - Gdx.graphics.getWidth() / 8, Gdx.graphics.getHeight() / 3 - Gdx.graphics.getHeight() / 8);
+        barraCadencia.setSize(Gdx.graphics.getWidth() / 2 * (1.1f - jugador.cadenciaDisparo), Gdx.graphics.getHeight() / 16);
 
         switch (opcion) {
 
             case 0:
-                jugador = new JugadorType(opcion);
-                barraAtaque = new Image(GestorAssets.getInstance().getTexture("barraloca.png"));
-                barraAtaque.setPosition(Gdx.graphics.getWidth() / 2 - Gdx.graphics.getWidth() / 8, Gdx.graphics.getHeight() / 3 - Gdx.graphics.getHeight() / 50);
-                barraAtaque.setSize(Gdx.graphics.getWidth() / 2 * jugador.damage/17, Gdx.graphics.getHeight() / 16);
-
-                barraEscudo = new Image(GestorAssets.getInstance().getTexture("barraloca.png"));
-                barraEscudo.setPosition(Gdx.graphics.getWidth() / 2 - Gdx.graphics.getWidth() / 8, Gdx.graphics.getHeight() / 3 - Gdx.graphics.getHeight() / 18);
-                barraEscudo.setSize(Gdx.graphics.getWidth() / 2* jugador.escudo/140, Gdx.graphics.getHeight() / 16);
-
-                barraVida = new Image(GestorAssets.getInstance().getTexture("barraloca.png"));
-                barraVida.setPosition(Gdx.graphics.getWidth() / 2 - Gdx.graphics.getWidth() / 8, Gdx.graphics.getHeight() / 3 - Gdx.graphics.getHeight() / 11);
-                barraVida.setSize(Gdx.graphics.getWidth() / 3 * jugador.vida/140, Gdx.graphics.getHeight() / 16);
-
-                barraCadencia = new Image(GestorAssets.getInstance().getTexture("barraloca.png"));
-                barraCadencia.setPosition(Gdx.graphics.getWidth() / 2 - Gdx.graphics.getWidth() / 8, Gdx.graphics.getHeight() / 3 - Gdx.graphics.getHeight() / 8);
-                barraCadencia.setSize(Gdx.graphics.getWidth() / 2 * jugador.cadenciaDisparo, Gdx.graphics.getHeight() / 16);
-
                 nave1 = new Image(GestorAssets.getInstance().getTexture("nave1.png"));
                 nave1.setPosition(Gdx.graphics.getWidth() / 2 - 2 * 80 * Constantes.resizeWidth / 2, Gdx.graphics.getHeight() / 3 + Gdx.graphics.getHeight() / 8);
                 nave1.setSize(2 * 80 * Constantes.resizeWidth, 2 * 80 * Constantes.resizeHeight);
-
-
                 break;
             case 1:
-                jugador = new JugadorType(opcion);
-                barraAtaque = new Image(GestorAssets.getInstance().getTexture("barraloca.png"));
-                barraAtaque.setPosition(Gdx.graphics.getWidth() / 2 - Gdx.graphics.getWidth() / 8, Gdx.graphics.getHeight() / 3 - Gdx.graphics.getHeight() / 50);
-                barraAtaque.setSize(Gdx.graphics.getWidth() / 2 * jugador.damage/17, Gdx.graphics.getHeight() / 16);
-                barraEscudo = new Image(GestorAssets.getInstance().getTexture("barraloca.png"));
-                barraEscudo.setPosition(Gdx.graphics.getWidth() / 2 - Gdx.graphics.getWidth() / 8, Gdx.graphics.getHeight() / 3 - Gdx.graphics.getHeight() / 18);
-                barraEscudo.setSize(Gdx.graphics.getWidth() / 2 * jugador.escudo/140, Gdx.graphics.getHeight() / 16);
-
-                barraVida = new Image(GestorAssets.getInstance().getTexture("barraloca.png"));
-                barraVida.setPosition(Gdx.graphics.getWidth() / 2 - Gdx.graphics.getWidth() / 8, Gdx.graphics.getHeight() / 3 - Gdx.graphics.getHeight() / 11);
-                barraVida.setSize(Gdx.graphics.getWidth() / 2 * jugador.vida/140, Gdx.graphics.getHeight() / 16);
-
-                barraCadencia = new Image(GestorAssets.getInstance().getTexture("barraloca.png"));
-                barraCadencia.setPosition(Gdx.graphics.getWidth() / 2 - Gdx.graphics.getWidth() / 8, Gdx.graphics.getHeight() / 3 - Gdx.graphics.getHeight() / 8);
-                barraCadencia.setSize(Gdx.graphics.getWidth() / 2 * jugador.cadenciaDisparo, Gdx.graphics.getHeight() / 16);
-
                 nave1 = new Image(GestorAssets.getInstance().getTexture("nave2.png"));
                 nave1.setPosition(Gdx.graphics.getWidth() / 2 - 2 * 80 * Constantes.resizeWidth / 2, Gdx.graphics.getHeight() / 3 + Gdx.graphics.getHeight() / 8);
                 nave1.setSize(2 * 80 * Constantes.resizeWidth, 2 * 80 * Constantes.resizeHeight);
                 break;
             case 2:
-                jugador = new JugadorType(opcion);
-
-                barraAtaque = new Image(GestorAssets.getInstance().getTexture("barraloca.png"));
-                barraAtaque.setPosition(Gdx.graphics.getWidth() / 2 - Gdx.graphics.getWidth() / 8, Gdx.graphics.getHeight() / 3 - Gdx.graphics.getHeight() / 50);
-                barraAtaque.setSize(Gdx.graphics.getWidth() / 2 * jugador.damage/17, Gdx.graphics.getHeight() / 16);
-
-                barraEscudo = new Image(GestorAssets.getInstance().getTexture("barraloca.png"));
-                barraEscudo.setPosition(Gdx.graphics.getWidth() / 2 - Gdx.graphics.getWidth() / 8, Gdx.graphics.getHeight() / 3 - Gdx.graphics.getHeight() / 18);
-                barraEscudo.setSize(Gdx.graphics.getWidth() / 2 * jugador.escudo/140, Gdx.graphics.getHeight() / 16);
-
-                barraVida = new Image(GestorAssets.getInstance().getTexture("barraloca.png"));
-                barraVida.setPosition(Gdx.graphics.getWidth() / 2 - Gdx.graphics.getWidth() / 8, Gdx.graphics.getHeight() / 3 - Gdx.graphics.getHeight() / 11);
-                barraVida.setSize(Gdx.graphics.getWidth() / 2 * jugador.vida/140, Gdx.graphics.getHeight() / 16);
-
-                barraCadencia = new Image(GestorAssets.getInstance().getTexture("barraloca.png"));
-                barraCadencia.setPosition(Gdx.graphics.getWidth() / 2 - Gdx.graphics.getWidth() / 8, Gdx.graphics.getHeight() / 3 - Gdx.graphics.getHeight() / 8);
-                barraCadencia.setSize(Gdx.graphics.getWidth() / 2 * jugador.cadenciaDisparo, Gdx.graphics.getHeight() / 16);
-
                 nave1 = new Image(GestorAssets.getInstance().getTexture("nave3.png"));
                 nave1.setPosition(Gdx.graphics.getWidth() / 2 - 2 * 80 * Constantes.resizeWidth / 2, Gdx.graphics.getHeight() / 3 + Gdx.graphics.getHeight() / 8);
                 nave1.setSize(2 * 80 * Constantes.resizeWidth, 2 * 80 * Constantes.resizeHeight);

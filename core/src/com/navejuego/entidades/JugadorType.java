@@ -71,22 +71,22 @@ public class JugadorType{
                 this.pasiva = PasivasNave.BLINK_TIME_ON_HIT;
                 break;
             case 1: //Tank
-                this.vida = 120;
-                this.escudo = 150;
-                this.maxEscudo = 150;
-                this.maxVida = 120;
+                this.vida = 150;
+                this.escudo = 120;
+                this.maxEscudo = 120;
+                this.maxVida = 150;
                 this.damage = 20;
                 this.texturaEscudo = GestorAssets.getInstance().getTexture("escudoNave.png");
                 this.textura = GestorAssets.getInstance().getTexture("nave2.png");
                 this.cadenciaDisparo = 1f; //DPS: 20
                 this.especial = 1;
-                this.pasiva = PasivasNave.DUAL_SHOTS; //DPS: 40 (por 2 segundos despues de matar un enemigo)
+                this.pasiva = PasivasNave.DUAL_SHOTS; //DPS: 40 (si los dos disparos dan al mismo enemigo)
                 break;
             case 2: //Risky
                 this.vida = 50;
                 this.escudo = 25;
-                this.maxEscudo = 50;
-                this.maxVida = 50;
+                this.maxEscudo = 60;
+                this.maxVida = 40;
                 this.damage = 4;
                 this.texturaEscudo = GestorAssets.getInstance().getTexture("escudoNave.png");
                 this.textura = GestorAssets.getInstance().getTexture("nave3.png");
