@@ -37,6 +37,7 @@ public class BossEnemigo extends EnemigoEntity {
         posX = Gdx.graphics.getWidth() / 2 - getWidth() / 2; // Centra al boss en el eje de las X
         setPosition(posX, posY);
         this.hitbox.setPosition(posX, posY);
+        hitbox.setRadius(getWidth()/2);
         this.vida = 2147483647;
 
         //Carga la succesion de patrones de movimiento del boss

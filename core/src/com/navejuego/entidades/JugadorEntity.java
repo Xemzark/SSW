@@ -114,7 +114,7 @@ public class JugadorEntity extends GameObjectEntity {
         setBounds(sprite.getX(), sprite.getY(), sprite.getWidth(), sprite.getHeight());
         setPosition(posicion.x - getWidth() / 2, posicion.y - getHeight() / 2);
         setSize(sprite.getWidth(), sprite.getHeight());
-        hitbox.set(getX() + getWidth() / 2, getY() + getHeight() / 2, getWidth() / 2);
+        hitbox.set(getX() + getWidth() / 2, getY() + getHeight() / 2, getWidth() / 5); //x, y, radio (20% del ancho de la nave)
         spriteEscudo.setPosition(getX(), getY());
         spriteEscudo.setSize(getWidth(), getHeight());
         //Fin de valores iniciales del Actor
