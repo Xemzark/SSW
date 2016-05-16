@@ -501,7 +501,7 @@ public class EnemyType {
                 tiempoSiguienteDisparo = 0f;
                 vivo = true;
                 damage = 10;
-                maxVida = 200;
+                maxVida = 300;
                 maxEscudo = 0;
                 vida = maxVida;
                 escudo = maxEscudo;
@@ -547,7 +547,7 @@ public class EnemyType {
                 tiempoSiguienteDisparo = 0f;
                 vivo = true;
                 damage = 10;
-                maxVida = 200;
+                maxVida = 1000;
                 maxEscudo = 0;
                 vida = maxVida;
                 escudo = maxEscudo;
@@ -566,22 +566,21 @@ public class EnemyType {
                 spriteEscudo = new Sprite(textureEscudo);
                 hitbox = new Circle();
                 puntuacion = 20000;
-                cadenciaDisparo = 0.5f;
+                cadenciaDisparo = 0.75f;
                 tiempoSiguienteDisparo = 0f;
                 vivo = true;
                 damage = 10;
-                maxVida = 500;
+                maxVida = 1500;
                 maxEscudo = 0;
                 vida = maxVida;
                 escudo = maxEscudo;
-                danoColision = 1000; //Daño que le hace la nave al jugador si colisionan
-                patternList.add(new NullMovement());
-                patternList.add(new HoritzontalMovement(150));
-                patternList.add(new NullMovement());
-                patternList.add(new HoritzontalMovement(150));
+                danoColision = 25; //Daño que le hace la nave al jugador si colisionan
+                patternList.add(new ZigZagMovement(100,100,false, true));
+                patternList.add(new ZigZagMovement(150,150,true, true));
+                patternList.add(new ZigZagMovement(200,200,false, true));
                 sizeX = 150.0f;
                 sizeY = 130.0f;
-                bulletMovement = new LinealMovement(150,false);
+                bulletMovement = new LinealMovement(125, false);
                 break;
         }
     }

@@ -37,7 +37,7 @@ public class JugadorType{
 
         switch (especial){
             case 0:
-                aEspecial = new EspecialMisiles(10, 25, 7, 40.0f, 50.0f);
+                aEspecial = new EspecialMisiles(10, 20, 7, 40.0f, 50.0f);
                 break;
             case 1:
                 aEspecial = new EspecialMasa(25);
@@ -53,20 +53,16 @@ public class JugadorType{
     }
 
     public JugadorType(int type){
-
-        //manager.load("medfrighter.png", Texture.class);
-        //manager.load("ship3.png", Texture.class);
-        //manager.load("destroyer.png", Texture.class);
         switch (type){
             case 0: //Balanced
                 this.vida = 100;
                 this.escudo = 100;
                 this.maxEscudo = 100;
                 this.maxVida = 100;
-                this.damage = 12;
+                this.damage = 10;
                 this.texturaEscudo = GestorAssets.getInstance().getTexture("escudoNave.png");
                 this.textura = GestorAssets.getInstance().getTexture("nave1.png");
-                this.cadenciaDisparo = 0.4f; //DPS: 30
+                this.cadenciaDisparo = 0.4f; //DPS: 25
                 this.especial = 0;
                 this.pasiva = PasivasNave.BLINK_TIME_ON_HIT;
                 break;
@@ -78,9 +74,9 @@ public class JugadorType{
                 this.damage = 20;
                 this.texturaEscudo = GestorAssets.getInstance().getTexture("escudoNave.png");
                 this.textura = GestorAssets.getInstance().getTexture("nave2.png");
-                this.cadenciaDisparo = 1f; //DPS: 20
+                this.cadenciaDisparo = 1f; //DPS: 20x2 (dual shots)
                 this.especial = 1;
-                this.pasiva = PasivasNave.DUAL_SHOTS; //DPS: 40 (si los dos disparos dan al mismo enemigo)
+                this.pasiva = PasivasNave.DUAL_SHOTS;
                 break;
             case 2: //Risky
                 this.vida = 50;

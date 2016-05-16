@@ -28,10 +28,10 @@ public class Constantes {
 
     public static int opcion;
 
-    public static final boolean unlockAllLevels = true;
-    public static final boolean unLockAllShips = true;
+    public static final boolean unlockAllLevels = false;
+    public static final boolean unLockAllShips = false;
     public static final boolean forceFirstTimeGameData = false;
-    public static final boolean fillTestRanking = true;
+    public static final boolean fillTestRanking = false;
 
     public static void CalculateScreenConstants() {
         resizeWidth = Gdx.graphics.getWidth() / logicalWidth;
