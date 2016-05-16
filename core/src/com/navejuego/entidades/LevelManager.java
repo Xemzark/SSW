@@ -45,7 +45,7 @@ public class LevelManager {
                 waveAmount = 5;
 
                 for(int i =0; i < waveAmount; i++ ) {
-                    waveArray.add(new Wave(enemySet[rnd.nextInt(enemySet.length)], 5, 1000));
+                    waveArray.add(new Wave(enemySet[rnd.nextInt(enemySet.length)]));
                 }
 
                 bossType = bossList[0];
@@ -60,7 +60,7 @@ public class LevelManager {
                 waveAmount = 10;
 
                 for(int i =0; i < waveAmount; i++ ) {
-                    waveArray.add(new Wave(enemySet[rnd.nextInt(enemySet.length)], 5, 1000));
+                    waveArray.add(new Wave(enemySet[rnd.nextInt(enemySet.length)]));
                 }
                 bossType = bossList[1];
                 background = GestorAssets.getInstance().getTexture("background_3.png");
@@ -74,7 +74,7 @@ public class LevelManager {
                 waveAmount = 15;
 
                 for(int i =0; i < waveAmount; i++ ) {
-                    waveArray.add(new Wave(enemySet[rnd.nextInt(enemySet.length)], 5, 1000));
+                    waveArray.add(new Wave(enemySet[rnd.nextInt(enemySet.length)]));
                 }
 
                 bossType = bossList[2];
@@ -89,7 +89,7 @@ public class LevelManager {
                 waveAmount = 20;
 
                 for(int i =0; i < waveAmount; i++ ) {
-                    waveArray.add(new Wave(enemySet[rnd.nextInt(enemySet.length)], 5, 1000));
+                    waveArray.add(new Wave(enemySet[rnd.nextInt(enemySet.length)]));
                 }
                 bossType = bossList[3];
                 background = GestorAssets.getInstance().getTexture("background_6.png");

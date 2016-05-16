@@ -90,6 +90,7 @@ public class EnemyType {
                 sizeY = 90.0f;
                 bulletSpeed = 200;
                 bulletMovement = new TargetPlayerMovement(bulletSpeed);
+
                 break;
 
             case 2: //enemigo morado 2, Kamikaze
@@ -113,6 +114,7 @@ public class EnemyType {
                 sizeX = 90.0f;
                 sizeY = 100.0f;
                 bulletMovement = new LinealMovement(250,false);
+
                 break;
 
             case 3: //enemigo morado 3, Tanque
@@ -136,6 +138,7 @@ public class EnemyType {
                 sizeX = 100.0f;
                 sizeY = 120.0f;
                 bulletMovement = new LinealMovement(250,false);
+
                 break;
             case 4: //enemigo morado 4
                 texture = GestorAssets.getInstance().getTexture("alien4.png");
@@ -143,13 +146,13 @@ public class EnemyType {
                 textureEscudo = GestorAssets.getInstance().getTexture("escudoEnemigo.png");
                 spriteEscudo = new Sprite(textureEscudo);
                 hitbox = new Circle();
-                puntuacion = 200;
+                puntuacion = 210;
                 cadenciaDisparo = 1f;
                 tiempoSiguienteDisparo = 0f;
                 vivo = true;
-                damage = 10;
+                damage = 12;
                 maxVida = 10;
-                maxEscudo = 20;
+                maxEscudo = 30;
                 vida = maxVida;
                 escudo = maxEscudo;
                 danoColision = ((int)vida/2); //Daño que le hace la nave al jugador si colisionan
@@ -158,6 +161,7 @@ public class EnemyType {
                 sizeX = 80.0f;
                 sizeY = 90.0f;
                 bulletMovement = new LinealMovement(250,false);
+
                 break;
 
             /**
@@ -189,6 +193,7 @@ public class EnemyType {
                 sizeY = 90.0f;
                 bulletSpeed = 200;
                 bulletMovement = new TargetPlayerMovement(bulletSpeed);
+
                 break;
             case 6: //enemigo azul 2 kamikaze
                 texture = GestorAssets.getInstance().getTexture("blueship2.png");
@@ -213,6 +218,7 @@ public class EnemyType {
                 sizeX = 90.0f;
                 sizeY = 100.0f;
                 bulletMovement = new LinealMovement(250,false);
+
                 break;
             case 7: //enemigo azul 3 tanque
                 texture = GestorAssets.getInstance().getTexture("blueship3.png");
@@ -237,6 +243,7 @@ public class EnemyType {
                 sizeX = 100.0f;
                 sizeY = 120.0f;
                 bulletMovement = new LinealMovement(250,false);
+
                 break;
             case 8: //enemigo azul 4
                 texture = GestorAssets.getInstance().getTexture("blueship4.png");
@@ -261,6 +268,7 @@ public class EnemyType {
                 sizeX = 80.0f;
                 sizeY = 90.0f;
                 bulletMovement = new LinealMovement(250,false);
+
                 break;
 
             /**
@@ -293,6 +301,7 @@ public class EnemyType {
                 sizeY = 90.0f;
                 bulletSpeed = 200;
                 bulletMovement = new TargetPlayerMovement(bulletSpeed);
+
                 break;
 
             case 10: //enemigo naranja 2 kamikaze
@@ -318,6 +327,7 @@ public class EnemyType {
                 sizeX = 90.0f;
                 sizeY = 100.0f;
                 bulletMovement = new LinealMovement(250,false);
+
                 break;
 
             case 11: //enemigo naranja 3 tanque
@@ -343,6 +353,7 @@ public class EnemyType {
                 sizeX = 100.0f;
                 sizeY = 120.0f;
                 bulletMovement = new LinealMovement(250,false);
+
                 break;
 
             case 12: //enemigo naranja 4
@@ -368,6 +379,7 @@ public class EnemyType {
                 sizeX = 80.0f;
                 sizeY = 90.0f;
                 bulletMovement = new LinealMovement(250,false);
+
                 break;
 
             /**
@@ -400,6 +412,7 @@ public class EnemyType {
                 sizeY = 90.0f;
                 bulletSpeed = 200;
                 bulletMovement = new TargetPlayerMovement(bulletSpeed);
+
                 break;
 
             case 14: //enemigo verde 2 kamikaze
@@ -425,6 +438,7 @@ public class EnemyType {
                 sizeX = 90.0f;
                 sizeY = 100.0f;
                 bulletMovement = new LinealMovement(250,false);
+
                 break;
 
             case 15: //enemigo verde 3 tanque
@@ -450,6 +464,7 @@ public class EnemyType {
                 sizeX = 100.0f;
                 sizeY = 120.0f;
                 bulletMovement = new LinealMovement(250,false);
+
                 break;
 
             case 16: //enemigo verde 4
@@ -475,6 +490,7 @@ public class EnemyType {
                 sizeX = 80.0f;
                 sizeY = 90.0f;
                 bulletMovement = new LinealMovement(250,false);
+
                 break;
 
             case 21: //BOSS DEMO Morado
@@ -571,5 +587,64 @@ public class EnemyType {
                 bulletMovement = new LinealMovement(150,false);
                 break;
         }
+    }
+
+    public static int getSpawnAmount(int type) {
+        switch(type) {
+            case 1: //Naves normales
+            case 4:
+                return 5;
+            case 5:
+            case 8:
+                return 6;
+            case 9:
+            case 12:
+                return 7;
+            case 13:
+            case 16:
+                return 8;
+            case 2: //Naves kamikaze
+                return 7;
+            case 6:
+                return 8;
+            case 10:
+                return 9;
+            case 14:
+                return 10;
+            case 3: //Naves tank
+                return 4;
+            case 7:
+                return 5;
+            case 11:
+                return 6;
+            case 15:
+                return 7;
+        }
+        return -1;
+    }
+
+    public static long getSpawnDelay(int type) {
+        switch(type) {
+            case 1: //Naves normales
+            case 4:
+            case 5:
+            case 8:
+            case 9:
+            case 12:
+            case 13:
+            case 16:
+                return 1000;
+            case 2: //Naves kamikaze
+            case 6:
+            case 10:
+            case 14:
+                return 500;
+            case 3: //Naves tank
+            case 7:
+            case 11:
+            case 15:
+                return 1500;
+        }
+        return -1;
     }
 }

@@ -38,12 +38,12 @@ public class Wave {
 
     private ArrayList<EnemigoEntity> spawnedEnemies;
 
-    public Wave(int enemyType, int cantidadDeEnemgios, long tiempoEntreEnemigos) {
+    public Wave(int enemyType) {
         enemy = enemyType;
-        spawnTargetAmount = cantidadDeEnemgios;
-        spawnDelay = tiempoEntreEnemigos;
+        spawnTargetAmount = EnemyType.getSpawnAmount(enemyType);
+        spawnDelay = EnemyType.getSpawnDelay(enemyType);
         spawnCount = 0;
-        nextSpawn = System.currentTimeMillis() + tiempoEntreEnemigos;
+        nextSpawn = System.currentTimeMillis() + spawnDelay;
         spawnedEnemies = new ArrayList<EnemigoEntity>();
     }
 
