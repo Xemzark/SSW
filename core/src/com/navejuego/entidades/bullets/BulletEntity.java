@@ -44,7 +44,8 @@ public abstract class BulletEntity extends GameObjectEntity {
         setSize(10 * Constantes.resizeWidth, 20 * Constantes.resizeHeight);
         setPosition(x - getWidth() / 2, y);
         setBounds(getX(), getY(), getWidth(), getHeight());
-        hitbox.set(getX() + getWidth() / 2, getY() + getHeight() / 2, getWidth() / 2);
+        hitbox.setPosition(getX() + getWidth() / 2, getY() + getHeight() / 2);
+        RecalculateHitboxSize();
 
         movementPattern = null;
         //Fin de valores iniciales del Actor
@@ -69,9 +70,6 @@ public abstract class BulletEntity extends GameObjectEntity {
         batch.draw(texture, getX(), getY(), getWidth(), getHeight());
     }
 
-    /**
-     * TODO: Metodo de auto-destruccion
-     */
     @Override
     public void destruirse() {
         this.remove();

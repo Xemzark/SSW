@@ -16,7 +16,8 @@ public class JugadorType{
         NONE,
         SHIELD_ON_KILL,
         BLINK_TIME_ON_HIT,
-        NOVA_WHEN_SHIELD_OFF
+        SPEEDUP_ON_KILL,
+        DUAL_SHOTS
     }
 
     public float cadenciaDisparo;
@@ -36,13 +37,13 @@ public class JugadorType{
 
         switch (especial){
             case 0:
-                aEspecial = new EspecialMisiles(8, 20, 7, 40.0f, 50.0f);
+                aEspecial = new EspecialMisiles(10, 25, 7, 40.0f, 50.0f);
                 break;
             case 1:
-                aEspecial = new EspecialMasa(15);
+                aEspecial = new EspecialMasa(25);
                 break;
             case 2:
-                aEspecial = new EspecialRegeneracion(20);
+                aEspecial = new EspecialRegeneracion(30);
                 break;
             default:
                 aEspecial = new EspecialMisiles(5, 20, 7, 40.0f, 50.0f);
@@ -67,19 +68,19 @@ public class JugadorType{
                 this.textura = GestorAssets.getInstance().getTexture("nave1.png");
                 this.cadenciaDisparo = 0.3f; //DPS: 30
                 this.especial = 0;
-                this.pasiva = PasivasNave.NOVA_WHEN_SHIELD_OFF;
+                this.pasiva = PasivasNave.BLINK_TIME_ON_HIT;
                 break;
             case 1: //Tank
                 this.vida = 120;
-                this.escudo = 120;
-                this.maxEscudo = 120;
+                this.escudo = 150;
+                this.maxEscudo = 150;
                 this.maxVida = 120;
-                this.damage = 15;
+                this.damage = 20;
                 this.texturaEscudo = GestorAssets.getInstance().getTexture("escudoNave.png");
                 this.textura = GestorAssets.getInstance().getTexture("nave2.png");
-                this.cadenciaDisparo = 0.6f; //DPS: 25
+                this.cadenciaDisparo = 1f; //DPS: 20
                 this.especial = 1;
-                this.pasiva = PasivasNave.BLINK_TIME_ON_HIT;
+                this.pasiva = PasivasNave.DUAL_SHOTS; //DPS: 40 (por 2 segundos despues de matar un enemigo)
                 break;
             case 2: //Risky
                 this.vida = 50;

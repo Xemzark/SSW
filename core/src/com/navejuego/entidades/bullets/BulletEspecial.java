@@ -25,7 +25,6 @@ public class BulletEspecial extends BulletEntity {
     @Override
     protected void comprobarColision() {
         for(Actor b : PantallaJuego.stage.getActors()){
-            //TODO: Comprobar colisión aquí y aplicar efectos de choque si corresponde.
             //Gdx.app.log("comprovando colision", b.getName());
             if (b instanceof EnemigoEntity){
                 EnemigoEntity enemigo = (EnemigoEntity) b;

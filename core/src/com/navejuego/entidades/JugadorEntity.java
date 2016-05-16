@@ -14,6 +14,7 @@ import com.navejuego.Constantes;
 import com.navejuego.ExplosionChain;
 import com.navejuego.GestorAssets;
 import com.navejuego.Preferencias;
+import com.navejuego.entidades.bullets.BulletNave;
 import com.navejuego.entidades.ui.Barra;
 import com.navejuego.entidades.ui.Puntuacion;
 import com.navejuego.pantallas.PantallaJuego;
@@ -115,7 +116,8 @@ public class JugadorEntity extends GameObjectEntity {
         setBounds(sprite.getX(), sprite.getY(), sprite.getWidth(), sprite.getHeight());
         setPosition(posicion.x - getWidth() / 2, posicion.y - getHeight() / 2);
         setSize(sprite.getWidth(), sprite.getHeight());
-        hitbox.set(getX() + getWidth() / 2, getY() + getHeight() / 2, getWidth() / 5); //x, y, radio (20% del ancho de la nave)
+        hitbox.setPosition(getX() + getWidth() / 2, getY() + getHeight() / 2); //x, y, radio (20% del ancho de la nave)
+        RecalculateHitboxSize();
         spriteEscudo.setPosition(getX(), getY());
         spriteEscudo.setSize(getWidth(), getHeight());
 
@@ -206,9 +208,26 @@ public class JugadorEntity extends GameObjectEntity {
         tiempoSiguienteDisparo += delta;
         if (tiempoSiguienteDisparo > cadenciaDisparo) {
             Texture bulletTextura = GestorAssets.getInstance().getTexture("bullet.png");
-            com.navejuego.entidades.bullets.BulletNave bullet = new com.navejuego.entidades.bullets.BulletNave(bulletTextura, new Vector2(getX() + (getWidth() / 2), getY() + getHeight()),this.damage);
-            PantallaJuego.stage.addActor(bullet);
-            //this.ataqueEspecial.generarDisparo(getX() + (getWidth() / 2), getY() + getHeight());
+            if (jugadorProperties.pasiva == JugadorType.PasivasNave.DUAL_SHOTS) {
+                //Bullet 1
+                BulletNave bullet = new BulletNave(bulletTextura,
+                        new Vector2(getX() + getWidth() * 0.2f,
+                                getY() + getHeight()),
+                        this.damage);
+                PantallaJuego.stage.addActor(bullet);
+                //Bullet 2
+                bullet = new BulletNave(bulletTextura,
+                        new Vector2(getX() + getWidth() * 0.8f,
+                                getY() + getHeight()),
+                        this.damage);
+                PantallaJuego.stage.addActor(bullet);
+            } else {
+                BulletNave bullet = new BulletNave(bulletTextura,
+                        new Vector2(getX() + (getWidth() / 2),
+                                getY() + getHeight()),
+                        this.damage);
+                PantallaJuego.stage.addActor(bullet);
+            }
             tiempoSiguienteDisparo = 0;
         }
     }
@@ -231,14 +250,12 @@ public class JugadorEntity extends GameObjectEntity {
             dmg -= escudo;
             escudo -= temp;
 
-            if (escudo <= 0)
-                if (jugadorProperties.pasiva == JugadorType.PasivasNave.NOVA_WHEN_SHIELD_OFF) {
-                    //TODO: Crear nova
-                }
+            if (escudo <= 0) //Escudo destruido
                 escudo = 0;
             if (dmg > 0)
                 vida -= dmg;
-            spriteEscudo.setAlpha(Math.min(this.escudo/this.maxEscudo, 0.7f));
+
+            spriteEscudo.setAlpha(Math.min(this.escudo / this.maxEscudo, 0.7f));
         }
 
         if (vida <= 0) {
@@ -393,5 +410,9 @@ public class JugadorEntity extends GameObjectEntity {
 
     public void addPuntos(int puntos){
         this.puntuacion.incrementarPuntuacion(puntos);
+    }
+
+    public void RecalculateHitboxSize() {
+        hitbox.setRadius(getWidth() / 5);
     }
 }

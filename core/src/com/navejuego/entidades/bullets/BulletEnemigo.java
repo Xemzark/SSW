@@ -16,12 +16,8 @@ public class BulletEnemigo extends BulletEntity {
         movementPattern = pattern;
     }
 
-    /**
-     * TODO: Comprobar colision con objeto jugador.
-     */
     @Override
     protected void comprobarColision() {
-            //TODO: Comprobar colisión aquí y aplicar efectos de choque si corresponde.
         if (PantallaJuego.jugador.getHitbox().overlaps(this.getHitbox())) {
             if (PantallaJuego.jugador.recibirDmg(damage, ignoraEscudo)) {
                 this.destruirse();

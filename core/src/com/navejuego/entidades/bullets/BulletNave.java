@@ -17,13 +17,9 @@ public class BulletNave extends BulletEntity {
         movementPattern = new LinealMovement(900.0f, true);
     }
 
-    /**
-     * TODO: Comprobar colision con otros gameobjects del stage.
-     */
     @Override
     protected void comprobarColision() {
         for(Actor b : PantallaJuego.stage.getActors()){
-            //TODO: Comprobar colisión aquí y aplicar efectos de choque si corresponde.
             //Gdx.app.log("comprovando colision", b.getName());
             if (b instanceof EnemigoEntity){
                 EnemigoEntity enemigo = (EnemigoEntity) b;

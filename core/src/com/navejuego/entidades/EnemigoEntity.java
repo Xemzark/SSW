@@ -118,8 +118,9 @@ public class EnemigoEntity extends GameObjectEntity {
         //posX = Gdx.graphics.getWidth()/2;
         posY = Gdx.graphics.getHeight() + getHeight(); // Posición Y por encima de la pantalla
         setPosition(posX, posY);
-        hitbox.set(getX() + getWidth() / 2, getY() + getHeight() / 2, getWidth() / 2);
-        hitbox.setPosition(posX, posY);
+        hitbox.setPosition(getX() + getWidth() / 2, getY() + getHeight() / 2);
+        RecalculateHitboxSize();
+        //hitbox.setPosition(posX, posY);
         //Fin valores iniciales del Actor
 
     }
@@ -220,6 +221,8 @@ public class EnemigoEntity extends GameObjectEntity {
 
         if (jugador.getJugadorType().pasiva == JugadorType.PasivasNave.SHIELD_ON_KILL) {
             jugador.subirEscudo(1);
+        } else if (jugador.getJugadorType().pasiva == JugadorType.PasivasNave.SPEEDUP_ON_KILL) {
+            jugador.setDobleASPD(1);
         }
 
         if(Preferencias.getInstance().soundOn()){
@@ -272,7 +275,7 @@ public class EnemigoEntity extends GameObjectEntity {
         if(this.getHitbox().overlaps(PantallaJuego.jugador.getHitbox())){
             if (PantallaJuego.jugador.recibirDmg(this.danoColision, false)) {
                 this.destruirse();
-                Gdx.app.log("HitColision! a jugador!", "");
+                //Gdx.app.log("HitColision! a jugador!", "");
             }
         }
 

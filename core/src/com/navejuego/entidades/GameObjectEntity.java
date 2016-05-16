@@ -48,4 +48,8 @@ public abstract class GameObjectEntity extends Actor {
         hitbox.setPosition(x+getWidth()/2, y+getHeight()/2);
     }
 
+    public void RecalculateHitboxSize() {
+        hitbox.setRadius(getWidth()/2);
+    }
+
 }
