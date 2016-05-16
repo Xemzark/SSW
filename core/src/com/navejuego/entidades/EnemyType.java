@@ -213,8 +213,7 @@ public class EnemyType {
                 danoColision = (20); //Daño que le hace la nave al jugador si colisionan
                 probabilidadPowerUp = 15;
                 //movementPattern =  new LinealMovement(400, false);
-                patternList.add(new ZigZagMovement(100,100,false,false));
-                patternList.add(new LinealMovement(100,false));
+                patternList.add(new LinealMovement(400,false));
                 sizeX = 90.0f;
                 sizeY = 100.0f;
                 bulletMovement = new LinealMovement(250,false);
@@ -322,8 +321,7 @@ public class EnemyType {
                 danoColision = (20); //Daño que le hace la nave al jugador si colisionan
                 probabilidadPowerUp = 15;
                 //movementPattern =  new LinealMovement(400, false);
-                patternList.add(new ZigZagMovement(100,100,false,false));
-                patternList.add(new LinealMovement(100,false));
+                patternList.add(new LinealMovement(400,false));
                 sizeX = 90.0f;
                 sizeY = 100.0f;
                 bulletMovement = new LinealMovement(250,false);
@@ -433,8 +431,7 @@ public class EnemyType {
                 danoColision = (40); //Daño que le hace la nave al jugador si colisionan
                 probabilidadPowerUp = 15;
                 //movementPattern =  new LinealMovement(400, false);
-                patternList.add(new ZigZagMovement(100,100,false,false));
-                patternList.add(new LinealMovement(100,false));
+                patternList.add(new LinealMovement(400,false));
                 sizeX = 90.0f;
                 sizeY = 100.0f;
                 bulletMovement = new LinealMovement(250,false);
@@ -627,23 +624,32 @@ public class EnemyType {
         switch(type) {
             case 1: //Naves normales
             case 4:
+                return 1000;
             case 5:
             case 8:
+                return 900;
             case 9:
             case 12:
+                return 800;
             case 13:
             case 16:
-                return 1000;
+                return 700;
             case 2: //Naves kamikaze
-            case 6:
-            case 10:
-            case 14:
                 return 500;
+            case 6:
+                return 400;
+            case 10:
+                return 300;
+            case 14:
+                return 200;
             case 3: //Naves tank
-            case 7:
-            case 11:
-            case 15:
                 return 1500;
+            case 7:
+                return 1400;
+            case 11:
+                return 1300;
+            case 15:
+                return 1200;
         }
         return -1;
     }

@@ -106,6 +106,7 @@ public class JugadorEntity extends GameObjectEntity {
                 new Vector2(5, 395),
                 false, 200.0f);
         PantallaJuego.stage.addActor(barraescudo);
+        updateUI();
 
         this.tiempoSiguienteDisparo = 0;
         this.cadenciaDisparo = jugadorProperties.cadenciaDisparo;
@@ -117,6 +118,7 @@ public class JugadorEntity extends GameObjectEntity {
         hitbox.set(getX() + getWidth() / 2, getY() + getHeight() / 2, getWidth() / 5); //x, y, radio (20% del ancho de la nave)
         spriteEscudo.setPosition(getX(), getY());
         spriteEscudo.setSize(getWidth(), getHeight());
+
         //Fin de valores iniciales del Actor
 
         //Inicio de reacción al drag
@@ -155,8 +157,6 @@ public class JugadorEntity extends GameObjectEntity {
 
                 MoveTo(newX, newY);
                 spriteEscudo.setPosition(newX, newY);
-
-
             }
         });
         //Fin de reacción al drag
@@ -197,7 +197,6 @@ public class JugadorEntity extends GameObjectEntity {
         this.ataqueEspecial.draw(batch,parentAlpha);
     }
 
-
     /**
      * generarDisparo
      * Este método genera un disparo de la nave cada delta tiempo
@@ -232,7 +231,10 @@ public class JugadorEntity extends GameObjectEntity {
             dmg -= escudo;
             escudo -= temp;
 
-            if (escudo < 0)
+            if (escudo <= 0)
+                if (jugadorProperties.pasiva == JugadorType.PasivasNave.NOVA_WHEN_SHIELD_OFF) {
+                    //TODO: Crear nova
+                }
                 escudo = 0;
             if (dmg > 0)
                 vida -= dmg;
@@ -244,6 +246,10 @@ public class JugadorEntity extends GameObjectEntity {
         }
         if(Preferencias.getInstance().vibrationOn()){
             Gdx.input.vibrate(300);
+        }
+
+        if (jugadorProperties.pasiva == JugadorType.PasivasNave.BLINK_TIME_ON_HIT) {
+            setInvulnerabilidad(0.5f);
         }
 
         updateUI();

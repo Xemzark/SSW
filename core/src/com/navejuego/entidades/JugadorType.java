@@ -12,6 +12,13 @@ import com.navejuego.entidades.especiales.EspecialRegeneracion;
  */
 public class JugadorType{
 
+    public enum PasivasNave {
+        NONE,
+        SHIELD_ON_KILL,
+        BLINK_TIME_ON_HIT,
+        NOVA_WHEN_SHIELD_OFF
+    }
+
     public float cadenciaDisparo;
     public float maxVida;
     public float maxEscudo;
@@ -21,7 +28,7 @@ public class JugadorType{
     public int damage;
     public Texture textura;
     public Texture texturaEscudo;
-
+    public PasivasNave pasiva;
 
     public AtaqueEspecial getEspecial(int especial){
 
@@ -60,6 +67,7 @@ public class JugadorType{
                 this.textura = GestorAssets.getInstance().getTexture("nave1.png");
                 this.cadenciaDisparo = 0.3f; //DPS: 30
                 this.especial = 0;
+                this.pasiva = PasivasNave.NOVA_WHEN_SHIELD_OFF;
                 break;
             case 1: //Tank
                 this.vida = 120;
@@ -71,10 +79,11 @@ public class JugadorType{
                 this.textura = GestorAssets.getInstance().getTexture("nave2.png");
                 this.cadenciaDisparo = 0.6f; //DPS: 25
                 this.especial = 1;
+                this.pasiva = PasivasNave.BLINK_TIME_ON_HIT;
                 break;
             case 2: //Risky
                 this.vida = 50;
-                this.escudo = 50;
+                this.escudo = 25;
                 this.maxEscudo = 50;
                 this.maxVida = 50;
                 this.damage = 4;
@@ -82,6 +91,7 @@ public class JugadorType{
                 this.textura = GestorAssets.getInstance().getTexture("nave3.png");
                 this.cadenciaDisparo = 0.1f; //DPS: 40
                 this.especial = 2;
+                this.pasiva = PasivasNave.SHIELD_ON_KILL;
                 break;
             default:
                 this.vida = 1;
@@ -93,6 +103,7 @@ public class JugadorType{
                 this.textura = GestorAssets.getInstance().getTexture("nave1.png");
                 this.cadenciaDisparo = 1f;
                 this.especial = 0;
+                this.pasiva = PasivasNave.NONE;
                 break;
         }
     }

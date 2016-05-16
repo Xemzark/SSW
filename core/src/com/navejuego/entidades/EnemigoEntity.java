@@ -135,7 +135,6 @@ public class EnemigoEntity extends GameObjectEntity {
         eliminarseOutOfBounds();
         ttrans += delta;
         if ((indexmove+1<patternList.size()) && (ttrans >= duracion)) {
-            System.out.println("HEEEEY");
             indexmove += 1;
             movementPattern = patternList.get(indexmove);
             duracion = (Constantes.logicalHeight / movementPattern.getSpeed()) / patternList.size();
@@ -215,7 +214,13 @@ public class EnemigoEntity extends GameObjectEntity {
             generarPowerUp();
         }
         animacionExplo();
-        PantallaJuego.jugador.addPuntos(50);
+
+        JugadorEntity jugador = PantallaJuego.jugador;
+        jugador.addPuntos(50);
+
+        if (jugador.getJugadorType().pasiva == JugadorType.PasivasNave.SHIELD_ON_KILL) {
+            jugador.subirEscudo(1);
+        }
 
         if(Preferencias.getInstance().soundOn()){
             GestorAssets.getInstance().getSound("explosion2.wav").play(0.3f);
