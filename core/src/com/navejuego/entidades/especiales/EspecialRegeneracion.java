@@ -49,8 +49,7 @@ public class EspecialRegeneracion extends AtaqueEspecial {
         PantallaJuego.stage.addActor(animacion);
         PantallaJuego.stage.addActor(animacion2);
 
-
         PantallaJuego.jugador.subirEscudo(100);
-        PantallaJuego.jugador.curarse(100);
+        PantallaJuego.jugador.setInvulnerabilidad(2f);
     }
 }

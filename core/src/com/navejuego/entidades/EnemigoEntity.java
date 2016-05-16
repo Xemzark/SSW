@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Circle;
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.navejuego.Constantes;
 import com.navejuego.Explosion;
@@ -12,7 +13,12 @@ import com.navejuego.GestorAssets;
 import com.navejuego.Preferencias;
 import com.navejuego.entidades.patrones.MovementPattern;
 import com.navejuego.entidades.patrones.TargetPlayerMovement;
+import com.navejuego.entidades.powerups.PowerUpASPD;
 import com.navejuego.entidades.powerups.PowerUpEntity;
+import com.navejuego.entidades.powerups.PowerUpEscudo;
+import com.navejuego.entidades.powerups.PowerUpInvulnerabilidad;
+import com.navejuego.entidades.powerups.PowerUpPuntos;
+import com.navejuego.entidades.powerups.PowerUpVida;
 import com.navejuego.pantallas.PantallaJuego;
 
 import java.util.ArrayList;
@@ -204,7 +210,7 @@ public class EnemigoEntity extends GameObjectEntity {
      * TODO: Desaparecer/eliminar enemigo.
      */
     public void destruirse() {
-        int num_aleatorio = (int) (Math.random() *100);
+        int num_aleatorio = MathUtils.random(1, 100);
         if (num_aleatorio <= probabilidadPowerUp) {
             generarPowerUp();
         }
@@ -277,47 +283,31 @@ public class EnemigoEntity extends GameObjectEntity {
         int s_powerup = (int) (Math.random() * 5);
         //System.out.println("Power up" + s_powerup);
 
-        Vector2 posicion = new Vector2(getX(), getY());
+        int dados = MathUtils.random(1, 100);
 
-        switch (s_powerup) {
-            case 0:
-                //Power up vida
-                Texture powerup1;
-                powerup1 = GestorAssets.getInstance().getTexture("powerup_vida.png");
-                com.navejuego.entidades.powerups.PowerUpVida pUp1 = new com.navejuego.entidades.powerups.PowerUpVida(powerup1, posicion);
-                PantallaJuego.stage.addActor(pUp1);
-                break;
-            case 1:
-                //Power up ASPD
-                Texture powerup2;
-                powerup2 = GestorAssets.getInstance().getTexture("powerup_cadencia.png");
-                com.navejuego.entidades.powerups.PowerUpASPD pUp2 = new com.navejuego.entidades.powerups.PowerUpASPD(powerup2, posicion);
-                PantallaJuego.stage.addActor(pUp2);
-                break;
-            case 2:
-                //Power up Invulnerabilidad
-                Texture powerup3;
-                powerup3 = GestorAssets.getInstance().getTexture("powerup_invulnerable.png");
-                com.navejuego.entidades.powerups.PowerUpInvulnerabilidad pUp3 = new com.navejuego.entidades.powerups.PowerUpInvulnerabilidad(powerup3, posicion);
-                PantallaJuego.stage.addActor(pUp3);
-                break;
-            //Power up Puntos
-            case 3:
-                Texture powerup4;
-                powerup4 = GestorAssets.getInstance().getTexture("powerup_score3.png");
-                com.navejuego.entidades.powerups.PowerUpPuntos pUp4 = new com.navejuego.entidades.powerups.PowerUpPuntos(powerup4, posicion, 1234);
-                PantallaJuego.stage.addActor(pUp4);
-                break;
-            //Power up Escudo
-            case 4:
-                Texture powerup5;
-                powerup5 = GestorAssets.getInstance().getTexture("powerup_shield.png");
-                com.navejuego.entidades.powerups.PowerUpEscudo pUp5 = new com.navejuego.entidades.powerups.PowerUpEscudo(powerup5, posicion);
-                PantallaJuego.stage.addActor(pUp5);
-                break;
-            default:
-                break;
+        Vector2 posicion = new Vector2(getX(), getY());
+        Texture powerUpTexture;
+        PowerUpEntity powerUp;
+
+        if (dados <= 5) { //5%
+            powerUpTexture = GestorAssets.getInstance().getTexture("powerup_vida.png");
+            powerUp = new PowerUpVida(powerUpTexture, posicion);
+        } else if (dados <= 20) { //15%
+            powerUpTexture = GestorAssets.getInstance().getTexture("powerup_cadencia.png");
+            powerUp = new PowerUpASPD(powerUpTexture, posicion);
+        } else if (dados <= 30) { //10%
+            powerUpTexture = GestorAssets.getInstance().getTexture("powerup_invulnerable.png");
+            powerUp = new PowerUpInvulnerabilidad(powerUpTexture, posicion);
+        } else if (dados <= 70) { //40%
+            powerUpTexture = GestorAssets.getInstance().getTexture("powerup_score3.png");
+            powerUp = new PowerUpPuntos(powerUpTexture, posicion, 1337);
+        } else { //30%
+            powerUpTexture = GestorAssets.getInstance().getTexture("powerup_shield.png");
+            powerUp = new PowerUpEscudo(powerUpTexture, posicion);
         }
+
+        PantallaJuego.stage.addActor(powerUp);
+
     }
 
     @Override

@@ -195,7 +195,7 @@ public class MainNivelesScreen extends Pantalla {
 
     @Override
     public void render(float delta) {
-        nivelesStage.setDebugAll(true);
+       // nivelesStage.setDebugAll(true);
         Gdx.gl.glClearColor(0.4f, 0.5f, 0.8f, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 

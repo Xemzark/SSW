@@ -196,7 +196,7 @@ public class PantallaRanking extends Pantalla {
     @Override
     public void render(float delta) {
 
-        rankingStage.setDebugAll(true);
+        //rankingStage.setDebugAll(true);
         Gdx.gl.glClearColor(0.4f, 0.5f, 0.8f, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 

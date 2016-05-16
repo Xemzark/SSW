@@ -259,8 +259,8 @@ public class JugadorEntity extends GameObjectEntity {
         return puntuacion;
     }
 
-    public Puntuacion getPuntuacionInt() {
-        return getPuntuacionInt();
+    public int getPuntuacionInt() {
+        return Integer.parseInt(puntuacion.getPuntuacion());
     }
 
     /**
@@ -301,7 +301,7 @@ public class JugadorEntity extends GameObjectEntity {
         remove();
     }
 
-    public void animacionExplo()
+    protected void animacionExplo()
     {
         ArrayList<Texture> explosionTextura = new ArrayList<Texture>();
         explosionTextura.add(GestorAssets.getInstance().getTexture("explo1.png"));
@@ -311,13 +311,6 @@ public class JugadorEntity extends GameObjectEntity {
         explosionTextura.add(GestorAssets.getInstance().getTexture("explo5.png"));
         com.navejuego.Explosion explo = new com.navejuego.Explosion(explosionTextura, new Vector2(getX(),getY()),1.0f, 100);
         PantallaJuego.stage.addActor(explo);
-    }
-
-    /**
-     * TODO: Si el ataque especial puede activarse, lo activa. Devuelve cierto si lo ha activado.
-     */
-    public boolean activarAtaqueEspecial() {
-        return false;
     }
 
     public float getMaxVida(){
@@ -342,7 +335,7 @@ public class JugadorEntity extends GameObjectEntity {
         }
     }
 
-    public void contadorInvulnerabilidad(){
+    protected void contadorInvulnerabilidad(){
         if (TimeUtils.timeSinceMillis(inicioInvulnerabilidad) > duracionInvulnerabilidad * 1000){
             invulnerabilidad = false;
             parpadeo = false;
@@ -364,7 +357,7 @@ public class JugadorEntity extends GameObjectEntity {
         }
     }
 
-    public void contadorDobleASPD() {
+    protected void contadorDobleASPD() {
 
         if (TimeUtils.timeSinceMillis(inicioDobleASPD) > duracionDobleASPD * 1000){
             dobleASPD = false;
@@ -375,7 +368,7 @@ public class JugadorEntity extends GameObjectEntity {
         }
     }
 
-    public void animacionExploChain(){
+    protected void animacionExploChain(){
 
         ArrayList<Texture> explosionTextura = new ArrayList<Texture>();
         explosionTextura.add(GestorAssets.getInstance().getTexture("explo1.png"));

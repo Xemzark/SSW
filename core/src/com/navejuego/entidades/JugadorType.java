@@ -29,13 +29,13 @@ public class JugadorType{
 
         switch (especial){
             case 0:
-                aEspecial = new EspecialMisiles(13, 20, 7, 40.0f, 50.0f);
+                aEspecial = new EspecialMisiles(8, 20, 7, 40.0f, 50.0f);
                 break;
             case 1:
-                aEspecial = new EspecialMasa(13);
+                aEspecial = new EspecialMasa(15);
                 break;
             case 2:
-                aEspecial = new EspecialRegeneracion(13);
+                aEspecial = new EspecialRegeneracion(20);
                 break;
             default:
                 aEspecial = new EspecialMisiles(5, 20, 7, 40.0f, 50.0f);
@@ -50,47 +50,48 @@ public class JugadorType{
         //manager.load("ship3.png", Texture.class);
         //manager.load("destroyer.png", Texture.class);
         switch (type){
-            case 0:
+            case 0: //Balanced
                 this.vida = 100;
                 this.escudo = 100;
                 this.maxEscudo = 100;
                 this.maxVida = 100;
-                this.damage = 10;
+                this.damage = 9;
                 this.texturaEscudo = GestorAssets.getInstance().getTexture("escudoNave.png");
                 this.textura = GestorAssets.getInstance().getTexture("nave1.png");
-                this.cadenciaDisparo = 0.3f;
+                this.cadenciaDisparo = 0.3f; //DPS: 30
                 this.especial = 0;
                 break;
-            case 1:
+            case 1: //Tank
                 this.vida = 120;
                 this.escudo = 120;
                 this.maxEscudo = 120;
                 this.maxVida = 120;
-                this.damage = 12;
-                this.texturaEscudo = GestorAssets.getInstance().getTexture("escudoNave.png");
-                this.textura = GestorAssets.getInstance().getTexture("nave2.png");
-                this.cadenciaDisparo = 0.4f;
-                this.especial = 1;
-                break;
-            case 2:
-                this.vida = 150;
-                this.escudo = 150;
-                this.maxEscudo = 150;
-                this.maxVida = 150;
                 this.damage = 15;
                 this.texturaEscudo = GestorAssets.getInstance().getTexture("escudoNave.png");
+                this.textura = GestorAssets.getInstance().getTexture("nave2.png");
+                this.cadenciaDisparo = 0.6f; //DPS: 25
+                this.especial = 1;
+                break;
+            case 2: //Risky
+                this.vida = 50;
+                this.escudo = 50;
+                this.maxEscudo = 50;
+                this.maxVida = 50;
+                this.damage = 4;
+                this.texturaEscudo = GestorAssets.getInstance().getTexture("escudoNave.png");
                 this.textura = GestorAssets.getInstance().getTexture("nave3.png");
-                this.cadenciaDisparo = 0.5f;
+                this.cadenciaDisparo = 0.1f; //DPS: 40
                 this.especial = 2;
                 break;
             default:
-                this.vida = 200;
-                this.escudo = 200;
-                this.maxEscudo = 200;
-                this.maxVida = 200;
+                this.vida = 1;
+                this.escudo = 1;
+                this.maxEscudo = 1;
+                this.maxVida = 1;
+                this.damage = 1;
                 this.texturaEscudo = GestorAssets.getInstance().getTexture("escudoNave.png");
                 this.textura = GestorAssets.getInstance().getTexture("nave1.png");
-                this.cadenciaDisparo = 0.6f;
+                this.cadenciaDisparo = 1f;
                 this.especial = 0;
                 break;
         }
