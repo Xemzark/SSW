@@ -80,9 +80,13 @@ public class PantallaGaraje extends Pantalla {
 
         jugador = new JugadorType(opcion);
 
+        nave1 = new Image(jugador.textura);
+        nave1.setPosition(Gdx.graphics.getWidth() / 2 - 2 * 80 * Constantes.resizeWidth / 2, Gdx.graphics.getHeight() / 3 + Gdx.graphics.getHeight() / 8);
+        nave1.setSize(2 * 80 * Constantes.resizeWidth, 2 * 80 * Constantes.resizeHeight);
+
         barraAtaque = new Image(GestorAssets.getInstance().getTexture("barraloca.png"));
         barraAtaque.setPosition(Gdx.graphics.getWidth() / 2 - Gdx.graphics.getWidth() / 8, Gdx.graphics.getHeight() / 3 - Gdx.graphics.getHeight() / 50);
-        barraAtaque.setSize(Gdx.graphics.getWidth() / 2 * jugador.damage/17, Gdx.graphics.getHeight() / 16);
+        barraAtaque.setSize(Gdx.graphics.getWidth() / 2 * jugador.damage / 17, Gdx.graphics.getHeight() / 16);
 
         barraEscudo = new Image(GestorAssets.getInstance().getTexture("barraloca.png"));
         barraEscudo.setPosition(Gdx.graphics.getWidth() / 2 - Gdx.graphics.getWidth() / 8, Gdx.graphics.getHeight() / 3 - Gdx.graphics.getHeight() / 18);
@@ -96,32 +100,10 @@ public class PantallaGaraje extends Pantalla {
         barraCadencia.setPosition(Gdx.graphics.getWidth() / 2 - Gdx.graphics.getWidth() / 8, Gdx.graphics.getHeight() / 3 - Gdx.graphics.getHeight() / 8);
         barraCadencia.setSize(Gdx.graphics.getWidth() / 2 * (1.1f - jugador.cadenciaDisparo), Gdx.graphics.getHeight() / 16);
 
-        switch (opcion) {
-
-            case 0:
-                nave1 = new Image(GestorAssets.getInstance().getTexture("nave1.png"));
-                nave1.setPosition(Gdx.graphics.getWidth() / 2 - 2 * 80 * Constantes.resizeWidth / 2, Gdx.graphics.getHeight() / 3 + Gdx.graphics.getHeight() / 8);
-                nave1.setSize(2 * 80 * Constantes.resizeWidth, 2 * 80 * Constantes.resizeHeight);
-                break;
-            case 1:
-                nave1 = new Image(GestorAssets.getInstance().getTexture("nave2.png"));
-                nave1.setPosition(Gdx.graphics.getWidth() / 2 - 2 * 80 * Constantes.resizeWidth / 2, Gdx.graphics.getHeight() / 3 + Gdx.graphics.getHeight() / 8);
-                nave1.setSize(2 * 80 * Constantes.resizeWidth, 2 * 80 * Constantes.resizeHeight);
-                break;
-            case 2:
-                nave1 = new Image(GestorAssets.getInstance().getTexture("nave3.png"));
-                nave1.setPosition(Gdx.graphics.getWidth() / 2 - 2 * 80 * Constantes.resizeWidth / 2, Gdx.graphics.getHeight() / 3 + Gdx.graphics.getHeight() / 8);
-                nave1.setSize(2 * 80 * Constantes.resizeWidth, 2 * 80 * Constantes.resizeHeight);
-                break;
-
-        }
-
         if(opcion > PartidaGuardada.getInstance().getNaveDesbloqueada()){
             nave1.setColor(0,0,0,1);
-
-
-
         }
+
         TextButton.TextButtonStyle style = new TextButton.TextButtonStyle(); //** Button properties **//
         style.up = buttonSkin.getDrawable("buttonOff");
         style.down = buttonSkin.getDrawable("buttonOn");

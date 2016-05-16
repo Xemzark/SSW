@@ -128,7 +128,7 @@ public class EnemyType {
                 tiempoSiguienteDisparo = 0;
                 vivo = true;
                 damage = 8;
-                maxVida = 30;
+                maxVida = 20;
                 maxEscudo = 30;
                 vida = maxVida;
                 escudo = maxEscudo;
@@ -230,7 +230,7 @@ public class EnemyType {
                 tiempoSiguienteDisparo = 0;
                 vivo = true;
                 damage = 15;
-                maxVida = 35;
+                maxVida = 25;
                 maxEscudo = 35;
                 vida = maxVida;
                 escudo = maxEscudo;
@@ -339,7 +339,7 @@ public class EnemyType {
                 tiempoSiguienteDisparo = 0;
                 vivo = true;
                 damage = 20;
-                maxVida = 40;
+                maxVida = 30;
                 maxEscudo = 40;
                 vida = maxVida;
                 escudo = maxEscudo;
@@ -449,7 +449,7 @@ public class EnemyType {
                 tiempoSiguienteDisparo = 0;
                 vivo = true;
                 damage = 30;
-                maxVida = 40;
+                maxVida = 30;
                 maxEscudo = 60;
                 vida = maxVida;
                 escudo = maxEscudo;
@@ -645,11 +645,11 @@ public class EnemyType {
             case 3: //Naves tank
                 return 1500;
             case 7:
-                return 1400;
+                return 1450;
             case 11:
-                return 1300;
+                return 1400;
             case 15:
-                return 1200;
+                return 1350;
         }
         return -1;
     }

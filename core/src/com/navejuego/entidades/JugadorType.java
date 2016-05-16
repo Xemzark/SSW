@@ -63,10 +63,10 @@ public class JugadorType{
                 this.escudo = 100;
                 this.maxEscudo = 100;
                 this.maxVida = 100;
-                this.damage = 9;
+                this.damage = 12;
                 this.texturaEscudo = GestorAssets.getInstance().getTexture("escudoNave.png");
                 this.textura = GestorAssets.getInstance().getTexture("nave1.png");
-                this.cadenciaDisparo = 0.3f; //DPS: 30
+                this.cadenciaDisparo = 0.4f; //DPS: 30
                 this.especial = 0;
                 this.pasiva = PasivasNave.BLINK_TIME_ON_HIT;
                 break;
@@ -84,9 +84,9 @@ public class JugadorType{
                 break;
             case 2: //Risky
                 this.vida = 50;
-                this.escudo = 25;
+                this.escudo = 20;
                 this.maxEscudo = 60;
-                this.maxVida = 40;
+                this.maxVida = 50;
                 this.damage = 4;
                 this.texturaEscudo = GestorAssets.getInstance().getTexture("escudoNave.png");
                 this.textura = GestorAssets.getInstance().getTexture("nave3.png");
