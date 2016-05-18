@@ -59,10 +59,10 @@ public class JugadorType{
                 this.escudo = 100;
                 this.maxEscudo = 100;
                 this.maxVida = 100;
-                this.damage = 10;
+                this.damage = 11;
                 this.texturaEscudo = GestorAssets.getInstance().getTexture("escudoNave.png");
                 this.textura = GestorAssets.getInstance().getTexture("nave1.png");
-                this.cadenciaDisparo = 0.4f; //DPS: 25
+                this.cadenciaDisparo = 0.4f; //DPS: 27.5
                 this.especial = 0; //oleada de misiles, poco CD
                 this.pasiva = PasivasNave.BLINK_TIME_ON_HIT;
                 break;
@@ -71,10 +71,10 @@ public class JugadorType{
                 this.escudo = 120;
                 this.maxEscudo = 120;
                 this.maxVida = 150;
-                this.damage = 20;
+                this.damage = 18;
                 this.texturaEscudo = GestorAssets.getInstance().getTexture("escudoNave.png");
                 this.textura = GestorAssets.getInstance().getTexture("nave2.png");
-                this.cadenciaDisparo = 1f; //DPS: 20x2 (dual shots)
+                this.cadenciaDisparo = 1f; //DPS: 36 (18 x 2 gracias a dual shots)
                 this.especial = 1; //matar naves
                 this.pasiva = PasivasNave.DUAL_SHOTS;
                 break;
