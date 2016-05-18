@@ -26,7 +26,7 @@ public class Constantes {
 
     public static final boolean unlockAllLevels = false;
     public static final boolean unLockAllShips = false;
-    public static final boolean forceFirstTimeGameData = false;
+    public static final boolean forceFirstTimeGameData = true;
     public static final boolean fillTestRanking = false;
 
     public static void CalculateScreenConstants() {
