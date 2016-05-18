@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Xavi on 22/04/2016.
+ * Clase que ejecuta la animación de explosion
  */
 public class Explosion extends GameObjectEntity {
     float duracion; //segundos
@@ -17,6 +17,13 @@ public class Explosion extends GameObjectEntity {
     List<Texture> listatextura;
     float duracionframe; //segundos
 
+    /**
+     * Constructor
+     * @param texture Array de texturas que componen la animación
+     * @param posicion Posicion donde debe ejecutarse la animación
+     * @param duracion Duranción de la animación
+     * @param size Tamaño de los sprites de la animación
+     */
     public Explosion(ArrayList<Texture> texture, Vector2 posicion, float duracion, float size) {
 
         this.texture = texture.get(0);

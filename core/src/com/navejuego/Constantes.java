@@ -4,35 +4,85 @@ import com.badlogic.gdx.Gdx;
 import com.navejuego.entidades.LevelManager;
 
 /**
- * Created by Andrés on 03/04/2016.
+ * En esta clase se especfican las constantes y variables globales de la aplicación
  */
 public class Constantes {
     //Constantes para libGDX
 
+    /**
+     * Altura logica de la pantalla
+     */
     public static final float LOGICAL_HEIGHT = 640.0f;
+
+    /**
+     * Ancho logico de la pantalla
+     */
     public static final float LOGICAL_WIDTH = 360.0f;
+
+    /**
+     * Tamaño de las barras laaterales de la UI de juego
+     */
     public static final float LATERAL_BAR_WIDTH = 20.0f;
 
-    public static float resizeWidth;
-    public static float resizeHeight;
-
-    public static LevelManager.Nivel selectedLevel;
-    public static int lastScore = 0;
-    public static int naveUltimaSeleccion = PartidaGuardada.getInstance().getNaveSeleccionada();
-
-    //public static int opcion;
-
+    /**
+     * Desbloquear todos los niveles
+     */
     public static final boolean UNLOCK_ALL_LEVELS = false;
+
+    /**
+     * Desbloquear todas las naves
+     */
     public static final boolean UN_LOCK_ALL_SHIPS = false;
+
+    /**
+     * Si esta a true fuerza a crear una nueva partida, aunque haya una creada, sobreescribiendola
+     */
     public static final boolean FORCE_FIRST_TIME_GAME_DATA = true;
+
+    /**
+     * Si esta a true se genera un ranking de prueba para todos los niveles
+     */
     public static final boolean FILL_TEST_RANKING = false;
 
+    /**
+     * Variable que almacena el resize de LOGICAL_WIDTH
+     */
+    public static float resizeWidth;
+
+    /**
+     * Variable que almacena el resize de LOGICAL_HEIGHT
+     */
+    public static float resizeHeight;
+
+    /**
+     * Variable que almacena el nivel seleccionado
+     */
+    public static LevelManager.Nivel selectedLevel;
+
+    /**
+     * Último score conseguido por el jugador
+     */
+    public static int lastScore = 0;
+
+    /**
+     * Última nave seleccionada por el jugador en el garaje
+     */
+    public static int naveUltimaSeleccion = PartidaGuardada.getInstance().getNaveSeleccionada();
+
+    /**
+     * Calcula el resize de las constantes logicas de anchura y altura en base al tamaño de la
+     * pantalla del jugador
+     */
     public static void CalculateScreenConstants() {
         resizeWidth = Gdx.graphics.getWidth() / LOGICAL_WIDTH;
         resizeHeight = Gdx.graphics.getHeight() / LOGICAL_HEIGHT;
         System.out.print("W: " + resizeWidth + ", H: " + resizeHeight);
     }
 
+    /**
+     * Devuelve in Integro del nivel seleccionado
+     * @return nivel
+     */
     public static int getLevelInt(){
         int nivel = 0;
         switch(Constantes.selectedLevel){

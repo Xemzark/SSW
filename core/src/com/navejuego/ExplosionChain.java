@@ -36,11 +36,11 @@ public class ExplosionChain extends Explosion {
 
     /**
      * Constructor
-     * @param texture
-     * @param posicion
-     * @param duracion
-     * @param times
-     * @param size
+     * @param texture Array de textuas de la animación
+     * @param posicion Posición donde se dubuja la animación
+     * @param duracion Duración de la animación
+     * @param times Numero de veces que se ejecuta la animación
+     * @param size Tamaño de las texturas de la animación
      */
     public ExplosionChain(ArrayList<Texture> texture, Vector2 posicion, float duracion, int times, float size) {
         super(texture, posicion, duracion, size);
