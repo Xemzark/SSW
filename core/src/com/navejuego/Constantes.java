@@ -22,11 +22,7 @@ public class Constantes {
     public static int lastScore = 0;
     public static int naveUltimaSeleccion = PartidaGuardada.getInstance().getNaveSeleccionada();
 
-
-
-
-
-    public static int opcion;
+    //public static int opcion;
 
     public static final boolean unlockAllLevels = false;
     public static final boolean unLockAllShips = false;
@@ -38,13 +34,6 @@ public class Constantes {
         resizeHeight = Gdx.graphics.getHeight() / logicalHeight;
         System.out.print("W: " + resizeWidth + ", H: " + resizeHeight);
     }
-
-
-
-
-
-
-
 
     public static int getLevelInt(){
         int nivel = 0;

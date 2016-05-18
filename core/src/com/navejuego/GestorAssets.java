@@ -120,7 +120,7 @@ public class GestorAssets {
         manager.load("powerup_invulnerable.png", Texture.class);
 
         //ataques especiales
-        manager.load("bulletespecial.png", Texture.class);
+        //manager.load("bulletespecial.png", Texture.class);
         manager.load("botonespecial.png", Texture.class);
         manager.load("botonespecial_no.png", Texture.class);
         manager.load("missil_especial.png", Texture.class);
