@@ -200,7 +200,7 @@ public class BossEnemigo extends EnemigoEntity {
 
         if(vida < nextSegmentoVida && patternIndex < patternList.size()){
             animacionExplo();
-            GestorAssets.getInstance().getSound("explosion2.wav").play();
+            GestorAssets.getInstance().getSound("explosion2.mp3").play();
             movementPattern = patternList.get(patternIndex);
             nextSegmentoVida -= segmentoVida;
             patternIndex += 1;

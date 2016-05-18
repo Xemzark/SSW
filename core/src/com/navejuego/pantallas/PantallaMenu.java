@@ -43,8 +43,8 @@ public class PantallaMenu extends Pantalla {
     public PantallaMenu() {
 
         if(Preferencias.getInstance().musicOn()){
-            GestorAssets.getInstance().getMusic("Starlight.wav").setLooping(true);
-            GestorAssets.getInstance().getMusic("Starlight.wav").play();
+            GestorAssets.getInstance().getMusic("Starlight.mp3").setLooping(true);
+            GestorAssets.getInstance().getMusic("Starlight.mp3").play();
         }
 
         buttonsAtlas = new TextureAtlas("otherskin/button.pack"); //**button atlas image **//

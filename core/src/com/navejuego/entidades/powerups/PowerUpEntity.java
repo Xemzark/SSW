@@ -59,7 +59,7 @@ public abstract class PowerUpEntity extends GameObjectEntity {
         if (PantallaJuego.jugador.getHitbox().overlaps(this.getHitbox())){
             this.aplicarEfectosSobreJugador();
             if(Preferencias.getInstance().soundOn()){
-                GestorAssets.getInstance().getSound("powerup.wav").play();
+                GestorAssets.getInstance().getSound("powerup.mp3").play();
             }
 
             this.destruirse();

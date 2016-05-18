@@ -78,13 +78,13 @@ public class GestorAssets {
          * Background
          */
         manager.load("background_1.png", Texture.class);
-        manager.load("background_2.png", Texture.class);
+        //manager.load("background_2.png", Texture.class);
         manager.load("background_3.png", Texture.class);
         manager.load("background_4.png", Texture.class);
         manager.load("background_5.png", Texture.class);
         manager.load("background_6.png", Texture.class);
         manager.load("background_7.png", Texture.class);
-        manager.load("background_8.png", Texture.class);
+        //manager.load("background_8.png", Texture.class);
         manager.load("background_garaje.png", Texture.class);
         manager.load("otherskin/ajustess.png", Texture.class);
         manager.load("background_ajustes.png", Texture.class);
@@ -151,24 +151,23 @@ public class GestorAssets {
 
         //Link musica espacial gratis
         //http://www.dl-sounds.com/royalty-free/category/space/
-        manager.load("SpaceLoungeLoop.wav", Music.class);
-        manager.load("SpaceCube.wav", Music.class);
+        manager.load("SpaceLoungeLoop.mp3", Music.class);
+        manager.load("SpaceCube.mp3", Music.class);
         manager.load("SpaceTrip.mp3", Music.class);
         manager.load("SpaceGate.mp3", Music.class);
-        manager.load("Starlight.wav", Music.class);
-        //manager.load("victory.wav", Music.class);
-        manager.load("defeat.wav", Music.class);
-        manager.load("victory.wav", Music.class);
+        manager.load("Starlight.mp3", Music.class);
+        manager.load("defeat.mp3", Music.class);
+        manager.load("victory.mp3", Music.class);
 
 
         //Sonidos gratis
         //http://soundbible.com/tags-explosion.html
-        manager.load("explosion.wav", Sound.class);
-        manager.load("powerup.wav", Sound.class);
-        manager.load("explosion2.wav", Sound.class);
-        manager.load("laser.wav", Sound.class);
-        manager.load("especialdestruir.wav", Sound.class);
-        manager.load("misiles.wav", Sound.class);
+        manager.load("explosion.mp3", Sound.class);
+        manager.load("powerup.mp3", Sound.class);
+        manager.load("explosion2.mp3", Sound.class);
+        manager.load("laser.mp3", Sound.class);
+        manager.load("especialdestruir.mp3", Sound.class);
+        manager.load("misiles.mp3", Sound.class);
 
 
         manager.finishLoading();

@@ -42,8 +42,8 @@ private BitmapFont font;
     public PantallaGameOver() {
 
         if(Preferencias.getInstance().musicOn()){
-            GestorAssets.getInstance().getMusic("defeat.wav").setLooping(true);
-            GestorAssets.getInstance().getMusic("defeat.wav").play();
+            GestorAssets.getInstance().getMusic("defeat.mp3").setLooping(true);
+            GestorAssets.getInstance().getMusic("defeat.mp3").play();
         }
 
         //buscando datos de puntuacion y nivel
@@ -90,7 +90,7 @@ private BitmapFont font;
                 //System.out.println("Clicked! Is checked: " + button.isChecked());
 
                 if(Preferencias.getInstance().musicOn()){
-                    GestorAssets.getInstance().getMusic("defeat.wav").stop();
+                    GestorAssets.getInstance().getMusic("defeat.mp3").stop();
                 }
 
                 ScreenManager.getInstance().showScreen(ScreenEnum.MAIN_MENU);
@@ -103,7 +103,7 @@ private BitmapFont font;
                 //System.out.println("Clicked! Is checked: " + button.isChecked());
 
                 if(Preferencias.getInstance().musicOn()){
-                    GestorAssets.getInstance().getMusic("defeat.wav").stop();
+                    GestorAssets.getInstance().getMusic("defeat.mp3").stop();
                 }
 
                 ScreenManager.getInstance().showScreen(ScreenEnum.GAME);

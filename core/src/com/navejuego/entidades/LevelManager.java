@@ -50,7 +50,7 @@ public class LevelManager {
 
                 bossType = bossList[0];
                 background = GestorAssets.getInstance().getTexture("background_1.png");
-                music = GestorAssets.getInstance().getMusic("SpaceLoungeLoop.wav");
+                music = GestorAssets.getInstance().getMusic("SpaceLoungeLoop.mp3");
 
                 break;
 
@@ -64,7 +64,7 @@ public class LevelManager {
                 }
                 bossType = bossList[1];
                 background = GestorAssets.getInstance().getTexture("background_3.png");
-                music = GestorAssets.getInstance().getMusic("SpaceCube.wav");
+                music = GestorAssets.getInstance().getMusic("SpaceCube.mp3");
 
                 break;
 

@@ -36,8 +36,8 @@ public class PantallaVictory extends Pantalla{
     public PantallaVictory() {
 
         if(Preferencias.getInstance().musicOn()){
-            GestorAssets.getInstance().getMusic("victory.wav").setLooping(true);
-            GestorAssets.getInstance().getMusic("victory.wav").play();
+            GestorAssets.getInstance().getMusic("victory.mp3").setLooping(true);
+            GestorAssets.getInstance().getMusic("victory.mp3").play();
         }
 
         int nivel = Constantes.getLevelInt();
@@ -83,7 +83,7 @@ public class PantallaVictory extends Pantalla{
                 //System.out.println("Clicked! Is checked: " + button.isChecked());
 
                 if(Preferencias.getInstance().musicOn()){
-                    GestorAssets.getInstance().getMusic("victory.wav").stop();
+                    GestorAssets.getInstance().getMusic("victory.mp3").stop();
                 }
                 ScreenManager.getInstance().showScreen(ScreenEnum.MAIN_MENU);
 

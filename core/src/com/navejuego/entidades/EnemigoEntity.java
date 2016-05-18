@@ -226,7 +226,7 @@ public class EnemigoEntity extends GameObjectEntity {
         }
 
         if(Preferencias.getInstance().soundOn()){
-            GestorAssets.getInstance().getSound("explosion2.wav").play(0.3f);
+            GestorAssets.getInstance().getSound("explosion2.mp3").play(0.3f);
         }
 
 
@@ -244,10 +244,6 @@ public class EnemigoEntity extends GameObjectEntity {
         explosionTextura.add(GestorAssets.getInstance().getTexture("explo5.png"));
         Explosion explo = new Explosion(explosionTextura, new Vector2(getX(),getY()),1.0f,100);
         PantallaJuego.stage.addActor(explo);
-        /*if(Preferencias.getInstance().soundOn()){
-            GestorAssets.getInstance().getSound("explosion2.wav").play();
-        }*/
-        //GestorAssets.getInstance().getSound("explosion2.wav").play();
     }
 
     /**

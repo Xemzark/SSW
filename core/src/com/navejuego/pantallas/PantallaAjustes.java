@@ -88,7 +88,7 @@ public class PantallaAjustes extends Pantalla {
                 } else {
                     Preferencias.getInstance().setMusic(false);
                     System.out.println("Music: " + Preferencias.getInstance().musicOn());
-                    GestorAssets.getInstance().getMusic("Starlight.wav").stop();
+                    GestorAssets.getInstance().getMusic("Starlight.mp3").stop();
                     Preferencias.getInstance().savePreferences();
                 }
             }

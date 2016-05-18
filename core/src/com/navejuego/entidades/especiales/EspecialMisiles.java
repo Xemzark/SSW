@@ -37,7 +37,7 @@ public class EspecialMisiles extends AtaqueEspecial {
     public void activar() {
 
         if(Preferencias.getInstance().soundOn()){
-            GestorAssets.getInstance().getSound("misiles.wav").play();
+            GestorAssets.getInstance().getSound("misiles.mp3").play();
         }
 
         Texture bulletTextura = GestorAssets.getInstance().getTexture("missil_especial.png");
