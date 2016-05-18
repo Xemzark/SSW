@@ -9,7 +9,8 @@ import com.navejuego.pantallas.*;
 
 /**
  * Clase Main
- * Clase principal del juego.
+ * Clase principal del juego. Si es la primer vez que el usuario abre el juego
+ * Se generará una partida nueva. Rellenando las base de datos con los valores por defecto.
  */
 public class Main extends Game {
 	/**

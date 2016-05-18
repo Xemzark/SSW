@@ -6,38 +6,49 @@ import com.badlogic.gdx.utils.Json;
 import java.util.Hashtable;
 
 /**
- * Created by Elias on 20/04/2016.
+ * Clase encargada de la gestión de partida guardad.
  */
-
 public class PartidaGuardada {
 
-    //Base de datos
+    /**
+     * Objeto Preferences de Libgdx, utilizado como base de datos para los datos guardados
+     * de la partida del jugador
+     */
     Preferences gameData;
-    //singleton
+
+    /**
+     * Instancia para el Singleton de la clase
+     */
     private static PartidaGuardada instance;
-    //constante del numero maximo de puntuaciones que se guardan por nivel
+
+    /**
+     * constante del numero maximo de puntuaciones que se guardan por nivel
+     */
     private static final int maxPuntuaciones = 8;
-    //constante del numero maximo de nveles del juego
+
+    /**
+     * constante del numero maximo de nveles del juego
+     */
     private static final int maxNiveles = 4;
-    //int[] puntuaciones = new int[this.maxPuntuaciones];
 
 
-
-    //Singleton
+    /**
+     * Constructor
+     */
     private PartidaGuardada(){
         this.gameData  = Gdx.app.getPreferences("GameData");
     }
 
+    /**
+     * Singleton clase PartidaGuardada
+     * @return Instancia clase PartidadGuardada
+     */
     public static PartidaGuardada getInstance() {
         if (instance == null) {
             instance = new PartidaGuardada();
         }
         return instance;
     }
-
-
-
-
 
     /**
      * Colorca una puntuacion en el nivel seleccionado. La funcion ya se encarga de reordenar el array de puntuaciones
@@ -47,7 +58,6 @@ public class PartidaGuardada {
      * @param puntuacion
 
      */
-
     public void setPuntucion(Integer nivel, Integer puntuacion){
 
         Json json = new Json();
@@ -71,7 +81,7 @@ public class PartidaGuardada {
     /**
      * Ordena un array de integros de mayor a menor
      * @param array
-     * @return
+     * @return array ordenado de mayor a menor
      */
     public int[] ordenarArray(int[] array){
         int aux;
@@ -89,10 +99,10 @@ public class PartidaGuardada {
     }
 
     /**
-     * Devuelve la punacion indicada por nivel y fina. Recordar Nivel 1 = 0 en la BD;
+     * Devuelve la punacion indicada por nivel y fila. Recordar Nivel 1 = 0 en la BD;
      * @param nivel
      * @param fila
-     * @return
+     * @return puntuación
      */
     public int getPuntuacion(int nivel, int fila){
 
@@ -105,7 +115,7 @@ public class PartidaGuardada {
     /**
      * Devuelve array de puntuaciones de un nivel
      * @param nivel
-     * @return
+     * @return puntuaciones
      */
     public int[] getPuntuaciones(int nivel){
 
@@ -139,7 +149,8 @@ public class PartidaGuardada {
     }
 
     /**
-     * Precarga todas las puntuaciones
+     * Precarga todas las puntuaciones en la base de datos
+     * @deprecated Solo utilziado en desarrollo
      */
     public void fillPutuacionesPrueba(){
 
@@ -164,6 +175,9 @@ public class PartidaGuardada {
         this.gameData.put(hashTable);
     }
 
+    /**
+     * Inicializa la base de datos con 0. Para evitar errores.
+     */
     public void fillPutuaciones(){
 
         Hashtable<String, String> hashTable = new Hashtable<String, String>();
@@ -195,7 +209,7 @@ public class PartidaGuardada {
 
     /**
      * Devuelve el ultimo nivel que ha desbloqueado el jugador
-     * @return
+     * @return nivel
      */
     public Integer getNivelDesbloqueado(){
         return this.gameData.getInteger("level", 1);
@@ -211,7 +225,7 @@ public class PartidaGuardada {
 
     /**
      * Devuelve la ultima nave seleccionada por el jugador
-     * @return
+     * @return nave
      */
     public Integer getNaveSeleccionada(){
         return this.gameData.getInteger("nave", 1);
@@ -227,7 +241,7 @@ public class PartidaGuardada {
 
     /**
      * Devuelve la ultima nave desbloqueada por el usuario
-     * @return
+     * @return nave desbloqueada
      */
     public Integer getNaveDesbloqueada(){
         return this.gameData.getInteger("navedes",1);
@@ -235,7 +249,7 @@ public class PartidaGuardada {
 
     /**
      * Para indicar si es la primera primera vez que el jugador ha abierto el juego
-     * @param first
+     * @param first, true si es la primera vez. False si no lo és.
      */
     public void setFirstime(boolean first){
         this.gameData.putBoolean("first",  first);
@@ -243,27 +257,31 @@ public class PartidaGuardada {
 
     /**
      * Devuelve si es la primera vez que el jugador ha abierto el juego
-     * @return
+     * @return firstime
      */
     public boolean firstTime() {
         return this.gameData.getBoolean("first",true);
     }
 
     /**
-     *
-     * @return
+     * Devuelve el máximo de putuaciones posible por niveles.
+     * @return máximo putuaciones
      */
     public int getMaxPuntuaciones(){
         return this.maxPuntuaciones;
     }
 
     /**
-     * Necesario para persistir los cambios. O no se guardaran
+     * Presiste los datos en la base de datos.
      */
     public void saveGameData(){
         this.gameData.flush();
     }
 
+    /**
+     * Devuelve el número máximo de niveles en el juego
+     * @return máximo niveles
+     */
     public int getMaxNiveles(){
         return maxNiveles;
     }

@@ -4,25 +4,34 @@ import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
-import com.navejuego.pantallas.Pantalla;
 
 /**
- * Created by root on 4/04/16.
+ * Clase encargada de gestionar y cargar los assets del proyecto.
  */
 public class GestorAssets {
 
+    /**
+     * Instancia GestorAssets para Singleton
+     */
     private static GestorAssets instance;
+
+    /**
+     * Objeto AssetManager de Libgdx, donde se realizará la carga de los Assets
+     */
     private AssetManager manager;
 
-    private boolean update;
-
-    public Pantalla loadingScreen, menuScreen, gameScreen, gameOverScreen, creditsScreen;
-
+    /**
+     * Constructor
+     */
     private GestorAssets(){
         manager=new AssetManager();
         create();
     }
 
+    /**
+     * Singleton para GestorAssets
+     * @return instancia GestorAssets
+     */
     public static GestorAssets getInstance(){
         if (instance == null){
             instance = new GestorAssets();
@@ -30,12 +39,10 @@ public class GestorAssets {
         return instance;
     }
 
+    /**
+     * Metodo encargado de especificar y cargar todos los assets: Texturas, sonidos y música.
+     */
     public void create() {
-        //manager de Assets
-        //cargarle todos los assets posibles a usar en la pantalla!
-        /**
-         * Entidades
-         */
 
         //naves
         manager = new AssetManager();
@@ -74,17 +81,13 @@ public class GestorAssets {
         manager.load("blueship3.png", Texture.class);
         manager.load("blueship4.png", Texture.class);
 
-        /**
-         * Background
-         */
+        //Background
         manager.load("background_1.png", Texture.class);
-        //manager.load("background_2.png", Texture.class);
         manager.load("background_3.png", Texture.class);
         manager.load("background_4.png", Texture.class);
         manager.load("background_5.png", Texture.class);
         manager.load("background_6.png", Texture.class);
         manager.load("background_7.png", Texture.class);
-        //manager.load("background_8.png", Texture.class);
         manager.load("background_garaje.png", Texture.class);
         manager.load("otherskin/ajustess.png", Texture.class);
         manager.load("background_ajustes.png", Texture.class);
@@ -94,9 +97,7 @@ public class GestorAssets {
         manager.load("background_victory.png", Texture.class);
         manager.load("background_ranking.png", Texture.class);
 
-        /**
-         * UI
-         */
+        //UI
         manager.load("vidabgv2.png", Texture.class);
         manager.load("vidafgv2.png", Texture.class);
         manager.load("escudobg.png", Texture.class);
@@ -110,9 +111,7 @@ public class GestorAssets {
         manager.load("boss_corazon.png", Texture.class);
         manager.load("barraloca.png", Texture.class);
 
-        /**
-         * Power Ups
-         */
+        //Power Ups
         manager.load("powerup_vida.png", Texture.class);
         manager.load("powerup_shield.png", Texture.class);
         manager.load("powerup_cadencia.png", Texture.class);
@@ -120,7 +119,6 @@ public class GestorAssets {
         manager.load("powerup_invulnerable.png", Texture.class);
 
         //ataques especiales
-        //manager.load("bulletespecial.png", Texture.class);
         manager.load("botonespecial.png", Texture.class);
         manager.load("botonespecial_no.png", Texture.class);
         manager.load("missil_especial.png", Texture.class);
@@ -130,7 +128,6 @@ public class GestorAssets {
 
         manager.load("especialexplosion_off.png", Texture.class);
         manager.load("especialexplosion_on.png", Texture.class);
-
 
         //animaciones
         manager.load("explo1.png", Texture.class);
@@ -148,8 +145,7 @@ public class GestorAssets {
         manager.load("blue4.png", Texture.class);
         manager.load("blue2.png", Texture.class);
 
-
-        //Link musica espacial gratis
+        //Músicas
         //http://www.dl-sounds.com/royalty-free/category/space/
         manager.load("SpaceLoungeLoop.mp3", Music.class);
         manager.load("SpaceCube.mp3", Music.class);
@@ -159,8 +155,7 @@ public class GestorAssets {
         manager.load("defeat.mp3", Music.class);
         manager.load("victory.mp3", Music.class);
 
-
-        //Sonidos gratis
+        //Sonidos
         //http://soundbible.com/tags-explosion.html
         manager.load("explosion.mp3", Sound.class);
         manager.load("powerup.mp3", Sound.class);
@@ -169,32 +164,50 @@ public class GestorAssets {
         manager.load("especialdestruir.mp3", Sound.class);
         manager.load("misiles.mp3", Sound.class);
 
-
         manager.finishLoading();
-           // ScreenManager.getInstance().showScreen(ScreenEnum.LOADING);
-
-        //asÃ­ se cargan todos los assets. puede tardar, asÃ­ que mejor hacer pantalla de carga
     }
 
+    /**
+     * Devuelve el progreso de carga de los Assets
+     * @return progreso
+     */
     public float retornarProgress(){
-
-    return manager.getProgress();
+        return manager.getProgress();
     }
 
+    /**
+     * Devuelve un update del manager
+     * @return update, manager
+     */
     public boolean retornarUpdate(){
-
-
         return manager.update();
-
-
-    }
-    public Texture getTexture(String s){ return manager.get(s);}
-    public Music getMusic(String s){
-        return manager.get(s);
     }
 
-    public Sound getSound(String s){
-        return manager.get(s);
+    /**
+     * Devuelve la textura especificada
+     * @param texture
+     * @return textura
+     */
+    public Texture getTexture(String texture){
+        return manager.get(texture);
+    }
+
+    /**
+     * Devuelve la musica especificada
+     * @param music
+     * @return musica
+     */
+    public Music getMusic(String music){
+        return manager.get(music);
+    }
+
+    /**
+     * Devuelve el sonido espefificado
+     * @param sound
+     * @return sonido
+     */
+    public Sound getSound(String sound){
+        return manager.get(sound);
     }
 
 
