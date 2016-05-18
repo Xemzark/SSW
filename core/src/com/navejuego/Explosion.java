@@ -36,6 +36,11 @@ public class Explosion extends GameObjectEntity {
         duracionframe = duracion / texture.size();
     }
 
+    /**
+     * Dibuja la textura seleccionada de la animación
+     * @param batch
+     * @param parentAlpha
+     */
     @Override
     public void draw(Batch batch, float parentAlpha) {
         batch.draw(texture, getX(), getY(), getWidth(), getHeight());
@@ -46,6 +51,10 @@ public class Explosion extends GameObjectEntity {
         this.remove();
     }
 
+    /**
+     * Selecciona la siguiente textura de la animación que sera dibujada
+     * @param delta
+     */
     @Override
     public void act(float delta) {
         ttrans += delta;
