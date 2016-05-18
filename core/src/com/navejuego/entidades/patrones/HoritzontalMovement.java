@@ -52,7 +52,7 @@ public class HoritzontalMovement implements MovementPattern {
          */
         if (goRight && (speed*delta)+newX > Gdx.graphics.getWidth()-entity.getWidth()){
             goRight = false;
-        } else if (!goRight && newX - (speed*delta) < Constantes.lateralBarWidth) {
+        } else if (!goRight && newX - (speed*delta) < Constantes.LATERAL_BAR_WIDTH) {
             goRight = true;
         }
 

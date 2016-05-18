@@ -91,7 +91,7 @@ public class PantallaVictory extends Pantalla{
         });
         victoryStage.addActor(volvermenu);
 
-        if(!Constantes.unlockAllLevels){
+        if(!Constantes.UNLOCK_ALL_LEVELS){
             int nivels = Constantes.getLevelInt();
 
             if(nivels < 3 && nivels == PartidaGuardada.getInstance().getNivelDesbloqueado() ){

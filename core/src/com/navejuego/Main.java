@@ -1,9 +1,6 @@
 package com.navejuego;
 
 import com.badlogic.gdx.Game;
-import com.navejuego.pantallas.PantallaJuego;
-import com.navejuego.GestorAssets;
-import com.navejuego.pantallas.PantallaMenu;
 import com.navejuego.pantallas.ScreenManager;
 import com.navejuego.pantallas.*;
 
@@ -22,9 +19,9 @@ public class Main extends Game {
 		ScreenManager.getInstance().initialize(this); //Inicializo el AssetManager
 		GestorAssets.getInstance().create();
 
-		if(PartidaGuardada.getInstance().firstTime() || Constantes.forceFirstTimeGameData){
+		if(PartidaGuardada.getInstance().firstTime() || Constantes.FORCE_FIRST_TIME_GAME_DATA){
 			System.out.println("Iniciando juego por primera vez");
-			if(Constantes.fillTestRanking){
+			if(Constantes.FILL_TEST_RANKING){
 				PartidaGuardada.getInstance().fillPutuacionesPrueba();
 			}else{
 				PartidaGuardada.getInstance().fillPutuaciones();
@@ -41,10 +38,10 @@ public class Main extends Game {
 		}
 
 		//temporal
-		if(Constantes.unlockAllLevels){
+		if(Constantes.UNLOCK_ALL_LEVELS){
 			PartidaGuardada.getInstance().setNivelDesbloqueado(3);
 		}
-		if(Constantes.unLockAllShips){
+		if(Constantes.UN_LOCK_ALL_SHIPS){
 			PartidaGuardada.getInstance().setNaveDesbloqueada(2);
 		}
 

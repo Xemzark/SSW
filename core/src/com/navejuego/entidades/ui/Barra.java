@@ -55,7 +55,7 @@ public class Barra extends Actor {
             this.background.setSize(length * Constantes.resizeWidth,
                     background.getHeight() * Constantes.resizeHeight);
         } else {
-            this.background.setSize(Constantes.lateralBarWidth * Constantes.resizeWidth,
+            this.background.setSize(Constantes.LATERAL_BAR_WIDTH * Constantes.resizeWidth,
                     length * Constantes.resizeHeight);
         }
 
@@ -64,7 +64,7 @@ public class Barra extends Actor {
             this.foreground.setSize(length * Constantes.resizeWidth,
                     foreground.getHeight() * Constantes.resizeHeight);
         } else {
-            this.foreground.setSize(Constantes.lateralBarWidth * Constantes.resizeWidth,
+            this.foreground.setSize(Constantes.LATERAL_BAR_WIDTH * Constantes.resizeWidth,
                     length * Constantes.resizeHeight);
         }
 
@@ -74,7 +74,7 @@ public class Barra extends Actor {
             } else {
                 this.icon.setPosition(this.background.getX(), this.background.getY() - this.margenDeIcono);
             }
-            this.icon.setSize(Constantes.lateralBarWidth * Constantes.resizeWidth, Constantes.lateralBarWidth * Constantes.resizeHeight);
+            this.icon.setSize(Constantes.LATERAL_BAR_WIDTH * Constantes.resizeWidth, Constantes.LATERAL_BAR_WIDTH * Constantes.resizeHeight);
         }
     }
 

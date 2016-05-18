@@ -94,7 +94,7 @@ public class EnemigoEntity extends GameObjectEntity {
         //segundos que tarda en recorrer la pantalla /  cantidad de patrones
         //No toma en cuenta que las naves salen por encima de la pantalla! Eso puede ser un problema.
         //De momento se queda así porque no queda mal a la práctica
-        duracion = (Constantes.logicalHeight / movementPattern.getSpeed()) / patternList.size();
+        duracion = (Constantes.LOGICAL_HEIGHT / movementPattern.getSpeed()) / patternList.size();
         ttrans = 0.0f;
         indexmove=0;
 
@@ -114,7 +114,7 @@ public class EnemigoEntity extends GameObjectEntity {
         // Valores aleatorios
 
         //System.out.print(Gdx.graphics.getWidth() - 2 * ((int) getWidth()) + "\n");
-        posX = pos.nextInt(Gdx.graphics.getWidth() - 1 * ((int) getWidth())) + Constantes.lateralBarWidth; // Posición X aleatoria
+        posX = pos.nextInt(Gdx.graphics.getWidth() - 1 * ((int) getWidth())) + Constantes.LATERAL_BAR_WIDTH; // Posición X aleatoria
         //posX = Gdx.graphics.getWidth()/2;
         posY = Gdx.graphics.getHeight() + getHeight(); // Posición Y por encima de la pantalla
         setPosition(posX, posY);
@@ -138,7 +138,7 @@ public class EnemigoEntity extends GameObjectEntity {
         if ((indexmove+1<patternList.size()) && (ttrans >= duracion)) {
             indexmove += 1;
             movementPattern = patternList.get(indexmove);
-            duracion = (Constantes.logicalHeight / movementPattern.getSpeed()) / patternList.size();
+            duracion = (Constantes.LOGICAL_HEIGHT / movementPattern.getSpeed()) / patternList.size();
             ttrans = 0.0f;
         }
         movementPattern.Move(this, delta);

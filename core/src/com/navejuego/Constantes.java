@@ -9,11 +9,9 @@ import com.navejuego.entidades.LevelManager;
 public class Constantes {
     //Constantes para libGDX
 
-    public static final float logicalHeight = 640.0f;
-    public static final float logicalWidth = 360.0f;
-
-    public static final float lateralBarWidth = 20.0f;
-    public static final float PIXELS_METRE = 110.0f;
+    public static final float LOGICAL_HEIGHT = 640.0f;
+    public static final float LOGICAL_WIDTH = 360.0f;
+    public static final float LATERAL_BAR_WIDTH = 20.0f;
 
     public static float resizeWidth;
     public static float resizeHeight;
@@ -24,14 +22,14 @@ public class Constantes {
 
     //public static int opcion;
 
-    public static final boolean unlockAllLevels = false;
-    public static final boolean unLockAllShips = false;
-    public static final boolean forceFirstTimeGameData = true;
-    public static final boolean fillTestRanking = false;
+    public static final boolean UNLOCK_ALL_LEVELS = false;
+    public static final boolean UN_LOCK_ALL_SHIPS = false;
+    public static final boolean FORCE_FIRST_TIME_GAME_DATA = true;
+    public static final boolean FILL_TEST_RANKING = false;
 
     public static void CalculateScreenConstants() {
-        resizeWidth = Gdx.graphics.getWidth() / logicalWidth;
-        resizeHeight = Gdx.graphics.getHeight() / logicalHeight;
+        resizeWidth = Gdx.graphics.getWidth() / LOGICAL_WIDTH;
+        resizeHeight = Gdx.graphics.getHeight() / LOGICAL_HEIGHT;
         System.out.print("W: " + resizeWidth + ", H: " + resizeHeight);
     }
 
