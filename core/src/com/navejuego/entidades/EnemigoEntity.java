@@ -220,7 +220,7 @@ public class EnemigoEntity extends GameObjectEntity {
         jugador.addPuntos(50);
 
         if (jugador.getJugadorType().pasiva == JugadorType.PasivasNave.SHIELD_ON_KILL) {
-            jugador.subirEscudo(1);
+            jugador.subirEscudo(2);
         } else if (jugador.getJugadorType().pasiva == JugadorType.PasivasNave.SPEEDUP_ON_KILL) {
             jugador.setDobleASPD(1);
         }

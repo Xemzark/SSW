@@ -266,7 +266,7 @@ public class JugadorEntity extends GameObjectEntity {
         }
 
         if (jugadorProperties.pasiva == JugadorType.PasivasNave.BLINK_TIME_ON_HIT) {
-            setInvulnerabilidad(1f);
+            setInvulnerabilidad(1.5f);
         }
 
         updateUI();

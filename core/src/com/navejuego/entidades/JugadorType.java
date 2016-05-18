@@ -63,7 +63,7 @@ public class JugadorType{
                 this.texturaEscudo = GestorAssets.getInstance().getTexture("escudoNave.png");
                 this.textura = GestorAssets.getInstance().getTexture("nave1.png");
                 this.cadenciaDisparo = 0.4f; //DPS: 25
-                this.especial = 0;
+                this.especial = 0; //oleada de misiles, poco CD
                 this.pasiva = PasivasNave.BLINK_TIME_ON_HIT;
                 break;
             case 1: //Tank
@@ -75,14 +75,14 @@ public class JugadorType{
                 this.texturaEscudo = GestorAssets.getInstance().getTexture("escudoNave.png");
                 this.textura = GestorAssets.getInstance().getTexture("nave2.png");
                 this.cadenciaDisparo = 1f; //DPS: 20x2 (dual shots)
-                this.especial = 1;
+                this.especial = 1; //matar naves
                 this.pasiva = PasivasNave.DUAL_SHOTS;
                 break;
             case 2: //Risky
-                this.vida = 50;
-                this.escudo = 20;
+                this.vida = 40;
+                this.escudo = 30;
                 this.maxEscudo = 60;
-                this.maxVida = 50;
+                this.maxVida = 40;
                 this.damage = 4;
                 this.texturaEscudo = GestorAssets.getInstance().getTexture("escudoNave.png");
                 this.textura = GestorAssets.getInstance().getTexture("nave3.png");
