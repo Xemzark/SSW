@@ -23,9 +23,12 @@ public class WaveManager {
 
     private boolean loop;
 
+    /**
+     * Variable para establecer si el boss ha sido lanzado
+     */
     private boolean bossMode;
 
-    /**
+     /**
      * Enemigo que aparece cuando todas las oleadas han acabado.
      */
     private int bossType;
@@ -39,7 +42,8 @@ public class WaveManager {
     }
 
     /**
-     * @return True if it can spawn something, false if there's nothing to spawn.
+     * Metodo encargado de lanzar el Spawn de cada oleada
+     * @return Devuleve true si puede spawnear, false si no puede
      */
     public void Spawn () {
         if (bossMode)
@@ -69,14 +73,21 @@ public class WaveManager {
         }
     }
 
+    /**
+     * Resetea todos los waves
+     */
     public void Reset () {
-        System.out.print("Resetting waves.");
+
         for (Wave wave : waveList) {
             wave.Reset();
         }
         currentWave = 0;
     }
 
+    /**
+     * Lanza en la pantalla al boss seleccionado
+     * @param bossType boss a spawnear
+     */
     public void SpawnBoss (int bossType) {
         PantallaJuego.stage.addActor(new BossEnemigo(bossType));
     }

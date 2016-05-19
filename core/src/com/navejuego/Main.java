@@ -11,7 +11,7 @@ import com.navejuego.pantallas.*;
  */
 public class Main extends Game {
 	/**
-	 * Método crear
+	 * Método crear donde se inicia el juego y la partida.
 	 */
 	@Override
 	public void create() {
@@ -45,12 +45,7 @@ public class Main extends Game {
 			PartidaGuardada.getInstance().setNaveDesbloqueada(2);
 		}
 
-		//Preferencias.getInstance().setMusic(true);
-       // Preferencias.getInstance().setSound(true);
-        //Preferencias.getInstance().setVibration(true);
-		//Preferencias.getInstance().savePreferences();
-
-		PartidaGuardada.getInstance().printPuntuaciones();
+		//PartidaGuardada.getInstance().printPuntuaciones();
 
 		ScreenManager.getInstance().showScreen(ScreenEnum.MAIN_MENU);
 	}

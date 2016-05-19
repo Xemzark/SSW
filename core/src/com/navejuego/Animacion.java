@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Alejandro on 22/04/2016.
+ * Clase que ejecuta cualquier animación a traves de un array de texturas derivada de la clase Animación
  */
 public class Animacion extends GameObjectEntity {
     float duracion; //segundos
@@ -17,6 +17,13 @@ public class Animacion extends GameObjectEntity {
     List<Texture> listatextura;
     float duracionframe; //segundos
 
+    /**
+     * Constructor
+     * @param texture Array de texturas que componen la animación
+     * @param posicion Posicion donde debe ejecutarse la animación
+     * @param duracion Duranción de la animación
+     * @param size Tamaño de los sprites de la animación
+     */
     public Animacion(ArrayList<Texture> texture, Vector2 posicion, float duracion, float size) {
 
         this.texture = texture.get(0);
@@ -46,6 +53,10 @@ public class Animacion extends GameObjectEntity {
         this.remove();
     }
 
+    /**
+     * Selecciona la siguiente textura de la animación que será dibujada.
+     * @param delta
+     */
     @Override
     public void act(float delta) {
         ttrans += delta;

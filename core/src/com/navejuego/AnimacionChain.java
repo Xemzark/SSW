@@ -6,7 +6,7 @@ import com.badlogic.gdx.math.Vector2;
 import java.util.ArrayList;
 
 /**
- * Clase que ejecuta cualquier animación derivada de la clase Animación
+ * Clase que ejecuta cualquier animación a traves de un array de texturas derivada de la clase Animación
  */
 public class AnimacionChain extends Animacion {
     private int times; //Veces que se repite la animacion
