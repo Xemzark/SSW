@@ -9,7 +9,9 @@ import java.util.Random;
 import java.util.ArrayList;
 
 /**
- * Created by beno_ on 23/04/2016.
+ * Clase LevelManager, encargada de la gestion de niveles. Pertite seleccionar y cambiar el nivel
+ * a cargar. Tambien es la encargada de configurar los distintos niveles, defiende los WaveManagers
+ * y los jefes de cada nivel.
  */
 public class LevelManager {
 
@@ -19,7 +21,7 @@ public class LevelManager {
     private Level currentLevel;
 
     /**
-     * Enumerable donde se definen los niveles
+     * Enumerable donde se definen los nombres de cada nivel
      */
     public enum Nivel{
         NIVEL_1, NIVEL_2, NIVEL_3, NIVEL_4;
@@ -36,11 +38,19 @@ public class LevelManager {
     public int bossList[] = {21,22,23,24};
 
     /**
-     *
+     * tipo de boss
      */
     public int bossType;
+
+    /**
+     * Cantida de oleadas ue hay en un nivel
+     */
     public int waveAmount; //cantidad de oleadas que hay en un nivel
-    public Random rnd = new Random(); //se utiliza para cargar aleatoriamente los enemigos que se generan
+
+    /**
+     * variable utilizada para cargar aleatoriamente los enemigos que se generan
+     */
+    public Random rnd = new Random(); //
 
     /**
      * Constructor
@@ -52,7 +62,7 @@ public class LevelManager {
 
     /**
      * Devuelve el nivel actual en LevelManager
-     * @return
+     * @return Nivel actual
      */
     public Level getCurrentLevel(){
         return this.currentLevel;

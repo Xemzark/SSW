@@ -6,7 +6,8 @@ import com.navejuego.pantallas.PantallaJuego;
 import java.util.ArrayList;
 
 /**
- * Created by Elias on 21/04/2016.
+ * Clase encargada de representar una oleada. Compuesta por un conjunto de enemigos que pueden
+ * ser lanzados al stage mediante el metodo Spawn.
  */
 public class Wave {
 
@@ -36,8 +37,15 @@ public class Wave {
      */
     private long nextSpawn;
 
+    /**
+     * ArrayList de enemigos que contiene la oleada
+     */
     private ArrayList<EnemigoEntity> spawnedEnemies;
 
+    /**
+     * Constructor
+     * @param enemyType Tipo de nemigo de la oleada
+     */
     public Wave(int enemyType) {
         enemy = enemyType;
         spawnTargetAmount = EnemyType.getSpawnAmount(enemyType);
@@ -48,14 +56,14 @@ public class Wave {
     }
 
     /**
-     *
+     * Calcula el tiempo para el siguiente spawn
      */
     public void GetReady() {
         nextSpawn = System.currentTimeMillis() + spawnDelay;
     }
 
     /**
-     *
+     * Añade al stage al enemigo como actor
      */
     public void Spawn () {
 
