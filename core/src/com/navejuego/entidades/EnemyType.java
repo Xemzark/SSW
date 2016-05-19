@@ -403,7 +403,8 @@ public class EnemyType {
                 danoColision = 15; //Daño que le hace la nave al jugador si colisionan
                 probabilidadPowerUp = 23;
                 //movementPattern =  new TargetMovement(200, Gdx.graphics.getWidth()/2, Gdx.graphics.getHeight()/2);
-                patternList.add(new ZigZagMovement(130,130,false,false));
+                patternList.add(new ZigZagMovement(100,200,false,false));
+                patternList.add(new LinealMovement(130,false));
                 sizeX = 80.0f;
                 sizeY = 90.0f;
                 bulletSpeed = 200;
@@ -443,7 +444,7 @@ public class EnemyType {
                 spriteEscudo = new Sprite(textureEscudo);
                 hitbox = new Circle();
                 puntuacion = 500;
-                cadenciaDisparo = 2f;
+                cadenciaDisparo = 1.5f;
                 tiempoSiguienteDisparo = 0;
                 vivo = true;
                 damage = 30;
@@ -480,7 +481,6 @@ public class EnemyType {
                 probabilidadPowerUp = 20;
                // movementPattern =  new TargetMovement(200, Gdx.graphics.getWidth()/2, Gdx.graphics.getHeight()/2);
                 patternList.add(new ZigZagMovement(130,130,false,false));
-                patternList.add(new LinealMovement(130,false));
                 sizeX = 80.0f;
                 sizeY = 90.0f;
                 bulletMovement = new LinealMovement(250,false);
@@ -549,8 +549,10 @@ public class EnemyType {
                 vida = maxVida;
                 escudo = maxEscudo;
                 danoColision = 1000; //Daño que le hace la nave al jugador si colisionan
-                patternList.add(new NullMovement());
+                patternList.add(new HoritzontalMovement(50));
+                patternList.add(new HoritzontalMovement(100));
                 patternList.add(new HoritzontalMovement(150));
+                patternList.add(new HoritzontalMovement(200));
                 sizeX = 150.0f;
                 sizeY = 130.0f;
                 bulletMovement = new LinealMovement(150,false);
