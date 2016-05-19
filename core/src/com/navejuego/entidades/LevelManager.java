@@ -13,25 +13,56 @@ import java.util.ArrayList;
  */
 public class LevelManager {
 
+    /**
+     * Nivel actual del LevelManager
+     */
     private Level currentLevel;
 
+    /**
+     * Enumerable donde se definen los niveles
+     */
     public enum Nivel{
         NIVEL_1, NIVEL_2, NIVEL_3, NIVEL_4;
     }
-    public int enemySet[]; //tipos de enemigos que podran aparecer en un nivel
-    public int bossList[] = {21,22,23,24}; //Por orden, se corresponden al boss de cada nivel
+
+    /**
+     * Array de enemigos que aparecerán en un nivel
+     */
+    public int enemySet[];
+
+    /**
+     * Array donde se definen por orden los enemigos finales de cada nivel
+     */
+    public int bossList[] = {21,22,23,24};
+
+    /**
+     *
+     */
     public int bossType;
     public int waveAmount; //cantidad de oleadas que hay en un nivel
     public Random rnd = new Random(); //se utiliza para cargar aleatoriamente los enemigos que se generan
 
+    /**
+     * Constructor
+     * @param nivel Nivel a cargar en el LevelManager
+     */
     public LevelManager(Nivel nivel){
         this.setCurrentLevel(nivel);
     }
 
+    /**
+     * Devuelve el nivel actual en LevelManager
+     * @return
+     */
     public Level getCurrentLevel(){
         return this.currentLevel;
     }
 
+    /**
+     * Este metodo carga el nivel especificado mediante una configuración preestablecida para cada
+     * nivel, generando los distintos waves asociados, musica de fondo, background etc
+     * @param lvl Nivel a cargar en Level Manager
+     */
     public void setCurrentLevel(Nivel lvl){
 
         ArrayList<Wave> waveArray = new ArrayList<Wave>();
