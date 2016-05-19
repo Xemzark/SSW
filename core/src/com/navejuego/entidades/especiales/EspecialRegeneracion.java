@@ -5,6 +5,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.navejuego.AnimacionChain;
 import com.navejuego.Constantes;
 import com.navejuego.GestorAssets;
+import com.navejuego.Preferencias;
 import com.navejuego.pantallas.PantallaJuego;
 
 import java.util.ArrayList;
@@ -42,7 +43,10 @@ public class EspecialRegeneracion extends AtaqueEspecial {
         float x2 = PantallaJuego.jugador.getX() - (80 * Constantes.resizeWidth/2)*3.7f;
         float y2 = PantallaJuego.jugador.getY() - (80 * Constantes.resizeHeight/2);
 
-        GestorAssets.getInstance().getSound("laser.mp3").play();
+        if(Preferencias.getInstance().soundOn()){
+            GestorAssets.getInstance().getSound("laser.mp3").play();
+        }
+
         AnimacionChain animacion = new AnimacionChain(arrayTextura, new Vector2(x1,y1),0.3f,2,180);
         AnimacionChain animacion2 = new AnimacionChain(arrayTextura2, new Vector2(x2,y2),0.3f,2,180);
         //explo.setOnEndVictory(true);

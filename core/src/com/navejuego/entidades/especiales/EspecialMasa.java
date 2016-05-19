@@ -5,6 +5,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.navejuego.AnimacionChain;
 import com.navejuego.GestorAssets;
+import com.navejuego.Preferencias;
 import com.navejuego.entidades.EnemigoEntity;
 import com.navejuego.pantallas.PantallaJuego;
 
@@ -43,7 +44,11 @@ public class EspecialMasa extends AtaqueEspecial {
 
                 float x1 = enemy.getX();
                 float y1 = enemy.getY();
-                GestorAssets.getInstance().getSound("especialdestruir.mp3").play();
+
+                if(Preferencias.getInstance().soundOn()){
+                    GestorAssets.getInstance().getSound("especialdestruir.mp3").play();
+                }
+
                 AnimacionChain animacion = new AnimacionChain(this.animacion, new Vector2(x1,y1),0.3f,2,enemy.getWidth());
                 PantallaJuego.stage.addActor(animacion);
                 enemy.destruirse();

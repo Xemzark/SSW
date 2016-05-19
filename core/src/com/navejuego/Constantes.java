@@ -32,7 +32,7 @@ public class Constantes {
     /**
      * Desbloquear todas las naves
      */
-    public static final boolean UN_LOCK_ALL_SHIPS = false;
+    public static final boolean UN_LOCK_ALL_SHIPS = true;
 
     /**
      * Si esta a true fuerza a crear una nueva partida, aunque haya una creada, sobreescribiendola
@@ -80,7 +80,7 @@ public class Constantes {
     }
 
     /**
-     * Devuelve in Integro del nivel seleccionado
+     * Devuelve un Integro del nivel seleccionado
      * @return nivel
      */
     public static int getLevelInt(){
