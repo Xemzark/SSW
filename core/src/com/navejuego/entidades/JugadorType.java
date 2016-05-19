@@ -58,6 +58,14 @@ public class JugadorType{
      * Daño realizado con cada disparo
      */
     public int damage;
+    /**
+     * Definicion para el ataque especial que se muestra en el garaje
+     */
+    public String especialDefinicion;
+    /**
+     * Definicion para la pasiva que se muestra en el garaje
+     */
+    public String pasivaDefinicion;
 
     /**
      * Textura de la nave
@@ -100,10 +108,6 @@ public class JugadorType{
         return aEspecial;
     }
 
-    /**
-     * Constructor que configura la clase en base al tipo de nave que especifiquemos por parámetro
-     * @param type Integro que representa la nave a cargar
-     */
     public JugadorType(int type){
         switch (type){
             case 0: //Balanced
@@ -117,6 +121,8 @@ public class JugadorType{
                 this.cadenciaDisparo = 0.4f; //DPS: 27.5
                 this.especial = 0; //oleada de misiles, poco CD
                 this.pasiva = PasivasNave.BLINK_TIME_ON_HIT;
+                this.especialDefinicion= "Lanzamiento de cohetes";
+                this.pasivaDefinicion= "Invulnerabilidad de 1 segundo \ntras ser golpeado";
                 break;
             case 1: //Tank
                 this.vida = 150;
@@ -129,6 +135,8 @@ public class JugadorType{
                 this.cadenciaDisparo = 1f; //DPS: 36 (18 x 2 gracias a dual shots)
                 this.especial = 1; //matar naves
                 this.pasiva = PasivasNave.DUAL_SHOTS;
+                this.especialDefinicion= "Destruye los enemigos";
+                this.pasivaDefinicion= "Dispara 2 proyectiles \npor los laterales";
                 break;
             case 2: //Risky
                 this.vida = 40;
@@ -141,6 +149,8 @@ public class JugadorType{
                 this.cadenciaDisparo = 0.1f; //DPS: 40
                 this.especial = 2;
                 this.pasiva = PasivasNave.SHIELD_ON_KILL;
+                this.especialDefinicion= "Recupera el escudo";
+                this.pasivaDefinicion= "Matar un enemigo te \nda 1 punto de escudo";
                 break;
             default:
                 this.vida = 1;

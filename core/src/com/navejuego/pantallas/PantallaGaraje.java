@@ -39,7 +39,7 @@ public class PantallaGaraje extends Pantalla {
     private SpriteBatch batchGaraje;
 
     private Texture plataforma;
-    private Image barraAtaque, barraEscudo, barraCadencia, barraVida, nave1;
+    private Image barraAtaque, barraEscudo, barraCadencia, barraVida, nave1, ataqueEspecial;
     private TextButton aceptar;
 
 
@@ -70,9 +70,11 @@ public class PantallaGaraje extends Pantalla {
 
 
         font = new BitmapFont(Gdx.files.internal("otherfont/font.fnt"));
+        font.getData().setScale(0.15f*Gdx.graphics.getWidth()/360.f,0.15f*Gdx.graphics.getHeight()/640.0f);
 
        opcion = Constantes.naveUltimaSeleccion;
         System.out.println("Nave numero:" + opcion);
+        System.out.println(PartidaGuardada.getInstance().getNaveDesbloqueada());
 
 
         batchGaraje = new SpriteBatch();
@@ -81,24 +83,25 @@ public class PantallaGaraje extends Pantalla {
         jugador = new JugadorType(opcion);
 
         nave1 = new Image(jugador.textura);
-        nave1.setPosition(Gdx.graphics.getWidth() / 2 - 2 * 80 * Constantes.resizeWidth / 2, Gdx.graphics.getHeight() / 3 + Gdx.graphics.getHeight() / 8);
+        nave1.setPosition(Gdx.graphics.getWidth() / 2 - 2 * 80 * Constantes.resizeWidth / 2, Gdx.graphics.getHeight() / 3 + Gdx.graphics.getHeight() / 6);
         nave1.setSize(2 * 80 * Constantes.resizeWidth, 2 * 80 * Constantes.resizeHeight);
 
         barraAtaque = new Image(GestorAssets.getInstance().getTexture("barraloca.png"));
-        barraAtaque.setPosition(Gdx.graphics.getWidth() / 2 - Gdx.graphics.getWidth() / 8, Gdx.graphics.getHeight() / 3 - Gdx.graphics.getHeight() / 50);
+        barraAtaque.setPosition(Gdx.graphics.getWidth() / 2 - Gdx.graphics.getWidth() / 8, Gdx.graphics.getHeight() / 2 - Gdx.graphics.getHeight() / 8.5f);
         barraAtaque.setSize(Gdx.graphics.getWidth() / 2 * jugador.damage / 17, Gdx.graphics.getHeight() / 16);
 
         barraEscudo = new Image(GestorAssets.getInstance().getTexture("barraloca.png"));
-        barraEscudo.setPosition(Gdx.graphics.getWidth() / 2 - Gdx.graphics.getWidth() / 8, Gdx.graphics.getHeight() / 3 - Gdx.graphics.getHeight() / 18);
-        barraEscudo.setSize(Gdx.graphics.getWidth() / 3 * jugador.maxEscudo/140, Gdx.graphics.getHeight() / 16);
+        barraEscudo.setPosition(Gdx.graphics.getWidth() / 2 - Gdx.graphics.getWidth() / 8, Gdx.graphics.getHeight() / 2 - Gdx.graphics.getHeight() / 6.5f);
+        barraEscudo.setSize(Gdx.graphics.getWidth() / 3 * jugador.maxEscudo / 140, Gdx.graphics.getHeight() / 16);
 
         barraVida = new Image(GestorAssets.getInstance().getTexture("barraloca.png"));
-        barraVida.setPosition(Gdx.graphics.getWidth() / 2 - Gdx.graphics.getWidth() / 8, Gdx.graphics.getHeight() / 3 - Gdx.graphics.getHeight() / 11);
-        barraVida.setSize(Gdx.graphics.getWidth() / 3 * jugador.maxVida/140, Gdx.graphics.getHeight() / 16);
+        barraVida.setPosition(Gdx.graphics.getWidth() / 2 - Gdx.graphics.getWidth() / 8, Gdx.graphics.getHeight() / 2 - Gdx.graphics.getHeight() / 5.25f);
+        barraVida.setSize(Gdx.graphics.getWidth() / 3 * jugador.maxVida / 140, Gdx.graphics.getHeight() / 16);
 
         barraCadencia = new Image(GestorAssets.getInstance().getTexture("barraloca.png"));
-        barraCadencia.setPosition(Gdx.graphics.getWidth() / 2 - Gdx.graphics.getWidth() / 8, Gdx.graphics.getHeight() / 3 - Gdx.graphics.getHeight() / 8);
+        barraCadencia.setPosition(Gdx.graphics.getWidth() / 2 - Gdx.graphics.getWidth() / 8, Gdx.graphics.getHeight() / 2 - Gdx.graphics.getHeight() / 4.35f);
         barraCadencia.setSize(Gdx.graphics.getWidth() / 2 * (1.1f - jugador.cadenciaDisparo), Gdx.graphics.getHeight() / 16);
+
 
         if(opcion > PartidaGuardada.getInstance().getNaveDesbloqueada()){
             nave1.setColor(0,0,0,1);
@@ -132,6 +135,7 @@ public class PantallaGaraje extends Pantalla {
                     PartidaGuardada.getInstance().setNaveSeleccionada(opcion);
                     PartidaGuardada.getInstance().saveGameData();
                     ScreenManager.getInstance().showScreen(ScreenEnum.MAIN_MENU);
+
                 }
             }
         });
@@ -227,6 +231,10 @@ public class PantallaGaraje extends Pantalla {
 
 
         batchGaraje.draw(backgroundGaraje, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+
+        font.draw(batchGaraje, String.valueOf(jugador.especialDefinicion), (Gdx.graphics.getWidth() / 2 - Gdx.graphics.getWidth() / 8), Gdx.graphics.getHeight() / 2 - Gdx.graphics.getHeight() / 4.35f);
+        font.draw(batchGaraje, String.valueOf(jugador.pasivaDefinicion), (Gdx.graphics.getWidth() / 2 - Gdx.graphics.getWidth() / 8), Gdx.graphics.getHeight() / 2 - Gdx.graphics.getHeight() / 3.75f);
+
 
 
         batchGaraje.end();

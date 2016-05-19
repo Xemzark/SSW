@@ -121,6 +121,7 @@ public class PantallaVictory extends Pantalla{
 
                     if (navedesbloqueada > PartidaGuardada.getInstance().getNaveDesbloqueada()) {
                         PartidaGuardada.getInstance().setNaveDesbloqueada(navedesbloqueada);
+                        PartidaGuardada.getInstance().saveGameData();
                         System.out.println("Nave debloqueada: " + navedesbloqueada);
                     }
 
