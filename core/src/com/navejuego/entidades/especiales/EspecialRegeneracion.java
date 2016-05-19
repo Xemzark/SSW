@@ -11,15 +11,24 @@ import com.navejuego.pantallas.PantallaJuego;
 import java.util.ArrayList;
 
 /**
- * Created by beno_ on 09/05/2016.
+ * Clase del ataque especial Regeneración
  */
 public class EspecialRegeneracion extends AtaqueEspecial {
 
 
+    /**
+     * Constructor
+     * @param delay Tiempo de recarga del ataque especial una vez ejecutado
+     */
     public EspecialRegeneracion(int delay) {
-        super(delay, GestorAssets.getInstance().getTexture("especial_curacion_on.png"), GestorAssets.getInstance().getTexture("especial_curacion_off.png"));
+        super(delay, GestorAssets.getInstance().getTexture("especial_curacion_on.png"),
+                GestorAssets.getInstance().getTexture("especial_curacion_off.png"));
     }
 
+    /**
+     * Ejecuta el ataque especial lanzando 2 animaciones en base a la posición del jugador
+     * y regenrando el escudo de este.
+     */
     @Override
     public void activar() {
 
@@ -47,8 +56,10 @@ public class EspecialRegeneracion extends AtaqueEspecial {
             GestorAssets.getInstance().getSound("laser.mp3").play();
         }
 
-        AnimacionChain animacion = new AnimacionChain(arrayTextura, new Vector2(x1,y1),0.3f,2,180);
-        AnimacionChain animacion2 = new AnimacionChain(arrayTextura2, new Vector2(x2,y2),0.3f,2,180);
+        AnimacionChain animacion =
+                new AnimacionChain(arrayTextura, new Vector2(x1,y1),0.3f,2,180);
+        AnimacionChain animacion2 =
+                new AnimacionChain(arrayTextura2, new Vector2(x2,y2),0.3f,2,180);
         //explo.setOnEndVictory(true);
         PantallaJuego.stage.addActor(animacion);
         PantallaJuego.stage.addActor(animacion2);

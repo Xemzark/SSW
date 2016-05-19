@@ -9,17 +9,32 @@ import com.navejuego.pantallas.PantallaJuego;
 import com.navejuego.entidades.bullets.BulletEspecial;
 
 /**
- * Created by beno_ on 20/04/2016.
+ * Clase del AtaqueEspecial Misiles
  */
 public class EspecialMisiles extends AtaqueEspecial {
 
+    /**
+     * Daño realizado por cada proyectil del ataque
+     */
     private int damage;
+
+    /**
+     * Número de misiles lanzados por ataque
+     */
     private int missileAmount;
+
+    /**
+     * Distancia entre missiles en el eje de las X
+     */
     private float distanceBetweenMissilesX;
+
+    /**
+     * Distancia entre missiles en el eje de las Y
+     */
     private float distanceBetweenMissilesY;
 
     /**
-     *
+     * Constructor
      * @param delay Segundos entre usos
      * @param damage Daño de cada misil
      * @param missileAmount Cantidad de misiles (procura usar impar)
@@ -34,6 +49,10 @@ public class EspecialMisiles extends AtaqueEspecial {
         this.distanceBetweenMissilesY = distanceBetweenMissilesY * Constantes.resizeHeight;
     }
 
+    /**
+     * Ejecuta el ataque especial generando tantos proyectiles como se han especificado en
+     * missileAmount y calculando la posición de cada uno de ellos.
+     */
     public void activar() {
 
         if(Preferencias.getInstance().soundOn()){

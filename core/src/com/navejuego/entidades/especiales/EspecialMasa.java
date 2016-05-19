@@ -12,14 +12,22 @@ import com.navejuego.pantallas.PantallaJuego;
 import java.util.ArrayList;
 
 /**
- * Created by beno_ on 10/05/2016.
+ * Clase del AtaqueEspecial Masa
  */
 public class EspecialMasa extends AtaqueEspecial {
 
+    /**
+     * Animación del ataque especial
+     */
     private ArrayList<Texture> animacion;
 
+    /**
+     * Constructor
+     * @param delay Delay del ataque especial una vez utlizado
+     */
     public EspecialMasa(int delay) {
-        super(delay,GestorAssets.getInstance().getTexture("especialexplosion_on.png"), GestorAssets.getInstance().getTexture("especialexplosion_off.png"));
+        super(delay,GestorAssets.getInstance().getTexture("especialexplosion_on.png"),
+                GestorAssets.getInstance().getTexture("especialexplosion_off.png"));
         this.animacion = new ArrayList<Texture>();
         this.animacion.add(GestorAssets.getInstance().getTexture("blue4.png"));
         this.animacion.add(GestorAssets.getInstance().getTexture("blue2.png"));
@@ -27,6 +35,10 @@ public class EspecialMasa extends AtaqueEspecial {
         this.animacion.add(GestorAssets.getInstance().getTexture("blue2.png"));
     }
 
+    /**
+     * Ejecuta el ataque especial recorriendo la lista de actores para encontrar las naves enemigas,
+     * a las cuales destruye al instante y para cada una de ellas ejecuta una animación.
+     */
     @Override
     public void activar() {
 
@@ -49,7 +61,8 @@ public class EspecialMasa extends AtaqueEspecial {
                     GestorAssets.getInstance().getSound("especialdestruir.mp3").play();
                 }
 
-                AnimacionChain animacion = new AnimacionChain(this.animacion, new Vector2(x1,y1),0.3f,2,enemy.getWidth());
+                AnimacionChain animacion = new AnimacionChain(this.animacion, new Vector2(x1,y1),
+                        0.3f,2,enemy.getWidth());
                 PantallaJuego.stage.addActor(animacion);
                 enemy.destruirse();
             }
