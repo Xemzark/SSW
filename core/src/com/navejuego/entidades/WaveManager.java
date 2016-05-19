@@ -6,7 +6,8 @@ import com.navejuego.pantallas.PantallaJuego;
 import java.util.List;
 
 /**
- * Created by Elias on 21/04/2016.
+ * Clase encargada de la gestión de Waves. Esta compuesta por una lista de Waves, y permite
+ * lanzar el metodo Spawn del wave actual
  */
 public class WaveManager {
 
@@ -21,6 +22,9 @@ public class WaveManager {
      */
     private List<Wave> waveList;
 
+    /**
+     * Boleano para ejecutar las oleadas en bucle
+     */
     private boolean loop;
 
     /**
@@ -33,6 +37,12 @@ public class WaveManager {
      */
     private int bossType;
 
+    /**
+     * Constructor
+     * @param waveList Lista de Waves
+     * @param bossType Tipo de Boss
+     * @param loop True si queremos waves en bucle, False si no
+     */
     public WaveManager(List<Wave> waveList, int bossType, boolean loop) {
         this.waveList = waveList;
         this.bossType = bossType;

@@ -47,10 +47,16 @@ public class Wave {
         spawnedEnemies = new ArrayList<EnemigoEntity>();
     }
 
+    /**
+     *
+     */
     public void GetReady() {
         nextSpawn = System.currentTimeMillis() + spawnDelay;
     }
 
+    /**
+     *
+     */
     public void Spawn () {
 
         if (spawnCount < spawnTargetAmount && nextSpawn <= System.currentTimeMillis()) {
@@ -62,6 +68,10 @@ public class Wave {
         }
     }
 
+    /**
+     *
+     * @return
+     */
     public boolean isDone() {
         if (spawnTargetAmount > spawnCount) {
             return false;
@@ -76,6 +86,9 @@ public class Wave {
         return true;
     }
 
+    /**
+     *
+     */
     public void Reset() {
         spawnCount = 0;
         nextSpawn = System.currentTimeMillis() + spawnDelay;

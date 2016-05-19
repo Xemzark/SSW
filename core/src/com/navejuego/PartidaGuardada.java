@@ -6,7 +6,7 @@ import com.badlogic.gdx.utils.Json;
 import java.util.Hashtable;
 
 /**
- * Clase encargada de la gestión de partida guardad.
+ * Clase encargada de la gestión de partida guardada.
  */
 public class PartidaGuardada {
 
@@ -142,7 +142,8 @@ public class PartidaGuardada {
 
             for(int x = 0; x < this.maxPuntuaciones; x++){
 
-                Gdx.app.log("Nivel: " + String.valueOf(i)+" Fila: "+ String.valueOf(x) +" --> "+  String.valueOf(ints[x]),"");
+                Gdx.app.log("Nivel: " + String.valueOf(i)+" Fila: "+ String.valueOf(x) +" --> "
+                        +  String.valueOf(ints[x]),"");
 
             }
         }

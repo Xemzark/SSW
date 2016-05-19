@@ -4,14 +4,27 @@ import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Texture;
 
 /**
- * Created by beno_ on 23/04/2016.
+ * Clase que representa la estructura y contenido de un nivel.
  */
 public class Level {
 
+    /**
+     * Fondo de pantalla
+     */
     private Texture background;
+
+    /**
+     * Musica de fondo del nivel
+     */
     private Music music;
     private WaveManager wavemanager;
 
+    /**
+     * Constructor
+     * @param wavemanager WaveManager del nivel
+     * @param music Musica del nivel
+     * @param background Fondo asociado al nivel para la pantalla Juego
+     */
     public Level(WaveManager wavemanager, Music music, Texture background){
         this.wavemanager = wavemanager;
         this.music = music;

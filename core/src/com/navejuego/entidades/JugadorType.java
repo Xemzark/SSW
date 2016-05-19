@@ -8,10 +8,14 @@ import com.navejuego.entidades.especiales.EspecialMisiles;
 import com.navejuego.entidades.especiales.EspecialRegeneracion;
 
 /**
- * Created by beno_ on 05/05/2016.
+ * En esta clase se representan los distintos tipos de jugador, en este caso naves que el
+ * jugador puede seleccionar
  */
 public class JugadorType{
 
+    /**
+     * Emumerable de las diferentes pasivas de las naves
+     */
     public enum PasivasNave {
         NONE,
         SHIELD_ON_KILL,
@@ -20,17 +24,61 @@ public class JugadorType{
         DUAL_SHOTS
     }
 
+    /**
+     * cadencia de disparo
+     */
     public float cadenciaDisparo;
+
+    /**
+     * Máximo valor de vida
+     */
     public float maxVida;
+
+    /**
+     * Máximo valor de escudo
+     */
     public float maxEscudo;
+
+    /**
+     *  Valor de vida con la que empieza la nave del jugador
+     */
     public float vida;
+
+    /**
+     * Valor de escudo con el que empieza la nave del juagador
+     */
     public float escudo;
+
+    /**
+     * Integro que representa el ataque especial asociado a una nave
+     */
     public int especial;
+
+    /**
+     * Daño realizado con cada disparo
+     */
     public int damage;
+
+    /**
+     * Textura de la nave
+     */
     public Texture textura;
+
+    /**
+     * Textura del escudo de la nave
+     */
     public Texture texturaEscudo;
+
+    /**
+     * Pasivas de la nave
+     */
     public PasivasNave pasiva;
 
+    /**
+     * Método encargado de devolver una nueva instancia de ataque especial
+     * @param especial integro que representa el ataque especial
+     * @return Nueva instancia AtaqueEspecial
+     */
     public AtaqueEspecial getEspecial(int especial){
 
         AtaqueEspecial aEspecial;
@@ -52,6 +100,10 @@ public class JugadorType{
         return aEspecial;
     }
 
+    /**
+     * Constructor que configura la clase en base al tipo de nave que especifiquemos por parámetro
+     * @param type Integro que representa la nave a cargar
+     */
     public JugadorType(int type){
         switch (type){
             case 0: //Balanced

@@ -1,7 +1,6 @@
 package com.navejuego;
 
 import com.badlogic.gdx.Game;
-import com.navejuego.pantallas.ScreenManager;
 import com.navejuego.pantallas.*;
 
 /**
@@ -11,7 +10,8 @@ import com.navejuego.pantallas.*;
  */
 public class Main extends Game {
 	/**
-	 * Método crear donde se inicia el juego y la partida.
+	 * Método crear donde se inicia el juego y la partida. Tambien se cargan los managers
+	 * tanto de Screens como de Assets
 	 */
 	@Override
 	public void create() {
@@ -20,7 +20,7 @@ public class Main extends Game {
 		GestorAssets.getInstance().create();
 
 		if(PartidaGuardada.getInstance().firstTime() || Constantes.FORCE_FIRST_TIME_GAME_DATA){
-			System.out.println("Iniciando juego por primera vez");
+
 			if(Constantes.FILL_TEST_RANKING){
 				PartidaGuardada.getInstance().fillPutuacionesPrueba();
 			}else{
