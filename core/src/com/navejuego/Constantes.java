@@ -27,7 +27,7 @@ public class Constantes {
     /**
      * Desbloquear todos los niveles
      */
-    public static final boolean UNLOCK_ALL_LEVELS = false;
+    public static final boolean UNLOCK_ALL_LEVELS = true;
 
     /**
      * Desbloquear todas las naves
@@ -37,7 +37,7 @@ public class Constantes {
     /**
      * Si esta a true fuerza a crear una nueva partida, aunque haya una creada, sobreescribiendola
      */
-    public static final boolean FORCE_FIRST_TIME_GAME_DATA = true;
+    public static final boolean FORCE_FIRST_TIME_GAME_DATA = false;
 
     /**
      * Si esta a true se genera un ranking de prueba para todos los niveles

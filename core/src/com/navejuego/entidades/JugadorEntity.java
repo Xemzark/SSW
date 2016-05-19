@@ -90,7 +90,7 @@ public class JugadorEntity extends GameObjectEntity {
         PantallaJuego.stage.addActor(this.ataqueEspecial);
         // Sprite animación escudo
         this.spriteEscudo = new Sprite(jugadorProperties.texturaEscudo);
-        spriteEscudo.setAlpha(0.7f);
+        spriteEscudo.setAlpha(escudo/maxEscudo);
         //
 
         this.barravida = new Barra (GestorAssets.getInstance().getTexture("vidabgv2.png"),
@@ -255,7 +255,7 @@ public class JugadorEntity extends GameObjectEntity {
             if (dmg > 0)
                 vida -= dmg;
 
-            spriteEscudo.setAlpha(Math.min(this.escudo / this.maxEscudo, 0.7f));
+            spriteEscudo.setAlpha(Math.min(this.escudo / this.maxEscudo, 1f));
         }
 
         if (vida <= 0) {

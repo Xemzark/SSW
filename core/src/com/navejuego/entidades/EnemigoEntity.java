@@ -85,7 +85,7 @@ public class EnemigoEntity extends GameObjectEntity {
         vida = enemyProperties.vida;
         maxEscudo = enemyProperties.maxEscudo;
         escudo = enemyProperties.escudo;
-        spriteEscudo.setAlpha(Math.min(this.escudo/this.maxEscudo, 0.7f));
+        spriteEscudo.setAlpha(Math.min(this.escudo/this.maxEscudo, 1f));
 
 
         patternList = new ArrayList<MovementPattern>();
@@ -194,7 +194,7 @@ public class EnemigoEntity extends GameObjectEntity {
                 escudo = 0;
             if (dmg > 0)
                 vida -= dmg;
-            spriteEscudo.setAlpha(Math.min(this.escudo/this.maxEscudo, 0.7f));
+            spriteEscudo.setAlpha(Math.min(this.escudo/this.maxEscudo, 1f));
         }
 
         if (vida <= 0) {
