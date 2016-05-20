@@ -108,6 +108,10 @@ public class JugadorType{
         return aEspecial;
     }
 
+    /**
+     * Constructor que configura la clase en base al tipo de nave que especifiquemos por parámetro
+     * @param type Integro que representa la nave a cargar
+     */
     public JugadorType(int type){
         switch (type){
             case 0: //Balanced
