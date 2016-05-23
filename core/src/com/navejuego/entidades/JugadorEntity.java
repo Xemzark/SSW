@@ -153,7 +153,6 @@ public class JugadorEntity extends GameObjectEntity {
                 if (newY < 0) {
                     newY = 0;
                 } else if ((newY + getHeight()) > Gdx.graphics.getHeight()) {
-                    //TODO: Ajustar por barra de acción
                     newY = Gdx.graphics.getHeight() - getHeight();
                 }
 
