@@ -97,9 +97,6 @@ public class BossEnemigo extends EnemigoEntity {
     }
 
     /**
-     * TODO: Crear disparos (similar a la función en JugadorEntity)
-     */
-    /**
      * generarDisparo
      * Este método genera un disparo de la nave cada delta tiempo
      */

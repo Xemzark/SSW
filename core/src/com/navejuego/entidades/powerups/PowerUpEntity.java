@@ -52,9 +52,7 @@ public abstract class PowerUpEntity extends GameObjectEntity {
         setPosition(getX(), getY() - (velocidad * delta));
         hitbox.set(getX() + getWidth() / 2, getY() + getHeight() / 2, getWidth() / 2);
     }
-    /**
-     * TODO: Comprobar si ha colisionado con el jugador. Si ha colisionado, se auto-destruye y le aplica el efecto.
-     */
+
     public void comprobarColisionJugador() {
         if (PantallaJuego.jugador.getHitbox().overlaps(this.getHitbox())){
             this.aplicarEfectosSobreJugador();
@@ -66,16 +64,10 @@ public abstract class PowerUpEntity extends GameObjectEntity {
         }
     }
 
-    /**
-     * TODO: Destruir power-up
-     */
     @Override
     public void destruirse() {
         this.remove();
     }
 
-    /**
-     * TODO: Aplica sus efectos sobre el jugador.
-     */
     public abstract void aplicarEfectosSobreJugador();
 }

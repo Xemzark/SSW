@@ -27,12 +27,12 @@ public class Constantes {
     /**
      * Desbloquear todos los niveles
      */
-    public static final boolean UNLOCK_ALL_LEVELS = true;
+    public static final boolean UNLOCK_ALL_LEVELS = false;
 
     /**
      * Desbloquear todas las naves
      */
-    public static final boolean UN_LOCK_ALL_SHIPS = true;
+    public static final boolean UN_LOCK_ALL_SHIPS = false;
 
     /**
      * Si esta a true fuerza a crear una nueva partida, aunque haya una creada, sobreescribiendola

@@ -59,8 +59,6 @@ public class WaveManager {
         if (bossMode)
             return;
 
-        //TODO: Convertir boss es una wave
-
         if (!waveList.get(currentWave).isDone()) {
             //Quedan enemigos por spawnear en la oleada.
             waveList.get(currentWave).Spawn();

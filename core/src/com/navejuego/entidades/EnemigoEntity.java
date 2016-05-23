@@ -156,9 +156,6 @@ public class EnemigoEntity extends GameObjectEntity {
     }
 
     /**
-     * TODO: Crear disparos (similar a la función en JugadorEntity)
-     */
-    /**
      * generarDisparo
      * Este método genera un disparo de la nave cada delta tiempo
      */
@@ -206,9 +203,7 @@ public class EnemigoEntity extends GameObjectEntity {
     public String getName(){
         return "Nave enemiga";
     }
-    /**
-     * TODO: Desaparecer/eliminar enemigo.
-     */
+
     public void destruirse() {
         int num_aleatorio = MathUtils.random(1, 100);
         if (num_aleatorio <= probabilidadPowerUp) {
@@ -279,14 +274,7 @@ public class EnemigoEntity extends GameObjectEntity {
 
     }
 
-    /**
-     * TODO: Tirar los dados para ver si genera o no genera el power up.
-     */
     private void generarPowerUp() {
-
-        int s_powerup = (int) (Math.random() * 5);
-        //System.out.println("Power up" + s_powerup);
-
         int dados = MathUtils.random(1, 100);
 
         Vector2 posicion = new Vector2(getX(), getY());

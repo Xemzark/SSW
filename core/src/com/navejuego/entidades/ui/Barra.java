@@ -24,8 +24,6 @@ public class Barra extends Actor {
         this.background = new Sprite(background);
         this.foreground = new Sprite(foreground);
 
-        //TODO: Handle rotation of the sprite
-
         if (icon != null) {
             this.icon = new Sprite(icon);
         }

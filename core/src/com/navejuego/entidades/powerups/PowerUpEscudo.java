@@ -11,7 +11,7 @@ import com.navejuego.pantallas.PantallaJuego;
  */
 public class PowerUpEscudo extends PowerUpEntity {
 
-    private int escudo = 10;
+    private int escudo = 25;
     public PowerUpEscudo (Texture textura, Vector2 posicion){
         super(textura, posicion);
     }

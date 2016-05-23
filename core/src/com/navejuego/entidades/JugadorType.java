@@ -119,14 +119,14 @@ public class JugadorType{
                 this.escudo = 100;
                 this.maxEscudo = 100;
                 this.maxVida = 100;
-                this.damage = 11;
+                this.damage = 12;
                 this.texturaEscudo = GestorAssets.getInstance().getTexture("escudoNave.png");
                 this.textura = GestorAssets.getInstance().getTexture("nave1.png");
-                this.cadenciaDisparo = 0.4f; //DPS: 27.5
+                this.cadenciaDisparo = 0.4f; //DPS: 30
                 this.especial = 0; //oleada de misiles, poco CD
                 this.pasiva = PasivasNave.BLINK_TIME_ON_HIT;
-                this.especialDefinicion= "Lanzamiento de cohetes";
-                this.pasivaDefinicion= "Invulnerabilidad de 1 segundo \ntras ser golpeado";
+                this.especialDefinicion= "Rafaga de Cohetes";
+                this.pasivaDefinicion= "Invulnerabilidad tras\nrecibir golpes";
                 break;
             case 1: //Tank
                 this.vida = 150;
@@ -139,13 +139,13 @@ public class JugadorType{
                 this.cadenciaDisparo = 1f; //DPS: 36 (18 x 2 gracias a dual shots)
                 this.especial = 1; //matar naves
                 this.pasiva = PasivasNave.DUAL_SHOTS;
-                this.especialDefinicion= "Destruye los enemigos";
-                this.pasivaDefinicion= "Dispara 2 proyectiles \npor los laterales";
+                this.especialDefinicion= "Destruccion de Enemigos Menores";
+                this.pasivaDefinicion= "Doble Disparo";
                 break;
             case 2: //Risky
                 this.vida = 40;
-                this.escudo = 30;
-                this.maxEscudo = 60;
+                this.escudo = 25;
+                this.maxEscudo = 50;
                 this.maxVida = 40;
                 this.damage = 4;
                 this.texturaEscudo = GestorAssets.getInstance().getTexture("escudoNave.png");
@@ -153,8 +153,8 @@ public class JugadorType{
                 this.cadenciaDisparo = 0.1f; //DPS: 40
                 this.especial = 2;
                 this.pasiva = PasivasNave.SHIELD_ON_KILL;
-                this.especialDefinicion= "Recupera el escudo";
-                this.pasivaDefinicion= "Matar un enemigo te \nda 1 punto de escudo";
+                this.especialDefinicion= "Recarga De Poder";
+                this.pasivaDefinicion= "Recupera escudo al\ndestruir enemigos";
                 break;
             default:
                 this.vida = 1;
