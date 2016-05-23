@@ -17,7 +17,7 @@ public class Main extends Game {
 	public void create() {
 		Constantes.CalculateScreenConstants();
 		ScreenManager.getInstance().initialize(this); //Inicializo el AssetManager
-		GestorAssets.getInstance().create();
+
 
 		if(PartidaGuardada.getInstance().firstTime() || Constantes.FORCE_FIRST_TIME_GAME_DATA){
 
@@ -47,6 +47,6 @@ public class Main extends Game {
 
 		//PartidaGuardada.getInstance().printPuntuaciones();
 
-		ScreenManager.getInstance().showScreen(ScreenEnum.MAIN_MENU);
+		ScreenManager.getInstance().showScreen(ScreenEnum.LOADING);
 	}
 }

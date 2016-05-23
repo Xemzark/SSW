@@ -43,7 +43,7 @@ public enum ScreenEnum {
 
     LOADING {
         public Pantalla getScreen(Object... params) {
-            return new PantallaGaraje();
+            return new LoadingScreen();
         }
     },
 

@@ -164,16 +164,18 @@ public class GestorAssets {
         manager.load("especialdestruir.mp3", Sound.class);
         manager.load("misiles.mp3", Sound.class);
 
-        manager.finishLoading();
+
     }
 
     /**
      * Devuelve el progreso de carga de los Assets
      * @return progreso
      */
-    public float retornarProgress(){
-        return manager.getProgress();
+    public float retornarProgress(){ return manager.getProgress();
     }
+
+
+
 
     /**
      * Devuelve un update del manager

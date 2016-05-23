@@ -34,6 +34,8 @@ public class LoadingScreen extends Pantalla {
         loading = new Label("Loading...", skin);
         loading.setPosition(320 - loading.getWidth() / 2, 180 - loading.getHeight() / 2);
         stage.addActor(loading);
+        GestorAssets.getInstance().create();
+
 
 
     }
