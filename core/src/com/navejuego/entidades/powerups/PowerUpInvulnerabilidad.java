@@ -10,7 +10,7 @@ import com.navejuego.pantallas.PantallaJuego;
  */
 public class PowerUpInvulnerabilidad extends PowerUpEntity {
 
-    private int segundosInvulnerabilidad = 3;
+    private int segundosInvulnerabilidad = 5;
     public PowerUpInvulnerabilidad (Texture texture, Vector2 posicion){
         super(texture, posicion);
     }

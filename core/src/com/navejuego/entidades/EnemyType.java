@@ -493,7 +493,7 @@ public class EnemyType {
                 textureEscudo = GestorAssets.getInstance().getTexture("escudoEnemigo.png");
                 spriteEscudo = new Sprite(textureEscudo);
                 hitbox = new Circle();
-                puntuacion = 20000;
+                puntuacion = 1000;
                 cadenciaDisparo = 0.5f;
                 tiempoSiguienteDisparo = 0f;
                 vivo = true;
@@ -505,6 +505,7 @@ public class EnemyType {
                 danoColision = 1000; //Daño que le hace la nave al jugador si colisionan
                 patternList.add(new NullMovement());
                 patternList.add(new HoritzontalMovement(150));
+                patternList.add(new HoritzontalMovement(200));
                 sizeX = 150.0f;
                 sizeY = 130.0f;
                 bulletMovement = new LinealMovement(150,false);
@@ -515,7 +516,7 @@ public class EnemyType {
                 textureEscudo = GestorAssets.getInstance().getTexture("escudoEnemigo.png");
                 spriteEscudo = new Sprite(textureEscudo);
                 hitbox = new Circle();
-                puntuacion = 20000;
+                puntuacion = 2000;
                 cadenciaDisparo = 100000000000f;
                 tiempoSiguienteDisparo = 0f;
                 vivo = true;
@@ -539,11 +540,11 @@ public class EnemyType {
                 textureEscudo = GestorAssets.getInstance().getTexture("escudoEnemigo.png");
                 spriteEscudo = new Sprite(textureEscudo);
                 hitbox = new Circle();
-                puntuacion = 20000;
-                cadenciaDisparo = 0.5f;
+                puntuacion = 3000;
+                cadenciaDisparo = 0.35f;
                 tiempoSiguienteDisparo = 0f;
                 vivo = true;
-                damage = 10;
+                damage = 12;
                 maxVida = 1000;
                 maxEscudo = 0;
                 vida = maxVida;
@@ -555,7 +556,7 @@ public class EnemyType {
                 patternList.add(new HoritzontalMovement(200));
                 sizeX = 150.0f;
                 sizeY = 130.0f;
-                bulletMovement = new LinealMovement(150,false);
+                bulletMovement = new LinealMovement(175,false);
                 break;
 
             case 24: //BOSS PANTALLA 4 Verde
@@ -564,8 +565,8 @@ public class EnemyType {
                 textureEscudo = GestorAssets.getInstance().getTexture("escudoEnemigo.png");
                 spriteEscudo = new Sprite(textureEscudo);
                 hitbox = new Circle();
-                puntuacion = 20000;
-                cadenciaDisparo = 0.75f;
+                puntuacion = 4000;
+                cadenciaDisparo = 0.6f;
                 tiempoSiguienteDisparo = 0f;
                 vivo = true;
                 damage = 10;
