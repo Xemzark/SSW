@@ -35,6 +35,10 @@ public class Main extends Game {
 			Preferencias.getInstance().setVibration(true);
 			PartidaGuardada.getInstance().saveGameData();
 			Preferencias.getInstance().savePreferences();
+			Constantes.FORCE_FIRST_TIME_GAME_DATA = false;
+			Constantes.naveUltimaSeleccion=0;
+			PartidaGuardada.getInstance().notfirstTime();
+
 		}
 
 		//temporal

@@ -109,8 +109,8 @@ public class PantallaVictory extends Pantalla{
 
                 //En estos niveles desbloqueas una nave, en los demas no!
                 if(nivels == 1 || nivels == 3){
-                    texto = "\n Felicidades!! \n \n Has desbloqueado el nivel "+ String.valueOf(nivels + 1) + "! \n" +
-                            " Has desbloqueado una nueva nave! \n";
+                    texto = " Felicidades!!\n Has desbloqueado\n el nivel "+ String.valueOf(nivels + 1) + "! \n" +
+                            " Has desbloqueado\n una nueva nave!";
 
                     int navedesbloqueada = 0;
                     if(nivels == 1){
@@ -127,15 +127,17 @@ public class PantallaVictory extends Pantalla{
 
 
                 }else{
-                    texto = "\n Felicidades!! \n \n Has desbloqueado el nivel "+ String.valueOf(nivels + 1) + "! \n";
+                    texto = " Felicidades!! \n Has desbloqueado\n el nivel "+ String.valueOf(nivels + 1) + "! \n";
                 }
 
                 Skin uiSkin = new Skin(Gdx.files.internal("skin/uiskin.json"));
                 Dialog d = new Dialog("Recompensa!",uiSkin);
-                d.text(texto);
+                d.setPosition(Gdx.graphics.getWidth() / 2 - Gdx.graphics.getWidth()/3.7f, Gdx.graphics.getHeight() / 2- d.getHeight()/2);
                 d.button("Aceptar");
+                d.text(texto);
+                d.scaleBy(4,3.5f);
 
-                d.show(victoryStage);
+                victoryStage.addActor(d);
 
             }
 
@@ -152,8 +154,8 @@ public class PantallaVictory extends Pantalla{
         batchVictory.begin();
 
         batchVictory.draw(backgroundVictory, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-        font.draw(batchVictory, String.valueOf(this.score), (Gdx.graphics.getWidth() / 2 - Gdx.graphics.getWidth() / 14), Gdx.graphics.getHeight() / 2 + Gdx.graphics.getHeight() / 11);
-        font.draw(batchVictory, String.valueOf(this.bestScore), (Gdx.graphics.getWidth() / 2 - Gdx.graphics.getWidth()/8), Gdx.graphics.getHeight()/2 -Gdx.graphics.getHeight() / 20);
+        font.draw(batchVictory, String.valueOf(this.score), (Gdx.graphics.getWidth() / 2 - Gdx.graphics.getWidth() / 14), Gdx.graphics.getHeight() / 2 + Gdx.graphics.getHeight()/17 );
+        font.draw(batchVictory, String.valueOf(this.bestScore), (Gdx.graphics.getWidth() / 2 - Gdx.graphics.getWidth()/8), Gdx.graphics.getHeight()/2 -Gdx.graphics.getHeight() / 10);
 
 
         batchVictory.end();

@@ -26,6 +26,7 @@ import com.navejuego.entidades.JugadorType;
 import com.navejuego.entidades.ui.Barra;
 
 
+
 /**
  * Created by albertmoreno on 14/4/16.
  */
@@ -39,8 +40,8 @@ public class PantallaGaraje extends Pantalla {
     private SpriteBatch batchGaraje;
 
     private Texture plataforma;
-    private Image barraAtaque, barraEscudo, barraCadencia, barraVida, nave1, ataqueEspecial;
-    private TextButton aceptar;
+    private Image barraAtaque, barraEscudo, barraCadencia, barraVida, nave1;
+    private TextButton aceptar, atras;
 
 
     private Skin skin;
@@ -51,6 +52,8 @@ public class PantallaGaraje extends Pantalla {
     private Skin buttonSkin;
     private BitmapFont font;
     private int opcion;
+    private Dialog d;
+    private String texto;
 
 
     public PantallaGaraje() {
@@ -74,7 +77,7 @@ public class PantallaGaraje extends Pantalla {
 
        opcion = Constantes.naveUltimaSeleccion;
         System.out.println("Nave numero:" + opcion);
-        System.out.println(PartidaGuardada.getInstance().getNaveDesbloqueada());
+        System.out.println(PartidaGuardada.getInstance().getNaveSeleccionada());
 
 
         batchGaraje = new SpriteBatch();
@@ -116,21 +119,40 @@ public class PantallaGaraje extends Pantalla {
         aceptar = new TextButton("Aceptar", style);
 
         aceptar.setSize(1.5f * Gdx.graphics.getWidth() / 4, Gdx.graphics.getHeight() / 12);
-        aceptar.setPosition(Gdx.graphics.getWidth() / 2 - Gdx.graphics.getWidth() / 5.5f, Gdx.graphics.getHeight() / 4 - Gdx.graphics.getHeight() / 5.5f);
+        aceptar.setPosition(Gdx.graphics.getWidth() / 4-  Gdx.graphics.getWidth()/6 , Gdx.graphics.getHeight() / 4 - Gdx.graphics.getHeight() / 5.5f);
         aceptar.getLabel().setFontScale(0.5f * (Gdx.graphics.getWidth() / 640.0f));
+
+
+        atras = new TextButton("Atras", style);
+
+        atras.setSize(1.5f * Gdx.graphics.getWidth() / 4, Gdx.graphics.getHeight() / 12);
+        atras.setPosition(Gdx.graphics.getWidth() / 4 + Gdx.graphics.getWidth() / 3.5f, Gdx.graphics.getHeight() / 4 - Gdx.graphics.getHeight() / 5.5f);
+        atras.getLabel().setFontScale(0.5f * (Gdx.graphics.getWidth() / 640.0f));
 
         aceptar.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
 
-                if(opcion> PartidaGuardada.getInstance().getNaveDesbloqueada()){
-                    Dialog d = new Dialog("Nave Bloqueada",skin);
+                if (opcion > PartidaGuardada.getInstance().getNaveDesbloqueada()) {
+                    if (opcion == 1) {
+                        texto = " Gana el nivel 1\n para desbloquear\n la nave";
+                    } else if (opcion == 2) {
+                        texto = " Gana el nivel 3 \n para desbloquear \n la nave";
+                    }
 
-                    d.setPosition(Gdx.graphics.getWidth()/2- 100, Gdx.graphics.getHeight()/2);
+                    d = new Dialog("Nave Bloqueada", skin);
+
+
+                    d.text(texto);
+
+
+                    d.setPosition(Gdx.graphics.getWidth() / 2 - Gdx.graphics.getWidth() / 3.7f, Gdx.graphics.getHeight() / 2 - d.getHeight() / 2);
                     d.button("Aceptar");
-                    d.setScale(5, 5);
-                    d.show(garajeStage);
-                }else {
+                    d.scaleBy(4, 3.5f);
+                    garajeStage.addActor(d);
+
+
+                } else {
 
                     PartidaGuardada.getInstance().setNaveSeleccionada(opcion);
                     PartidaGuardada.getInstance().saveGameData();
@@ -139,6 +161,16 @@ public class PantallaGaraje extends Pantalla {
                 }
             }
         });
+
+        atras.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+
+                ScreenManager.getInstance().showScreen(ScreenEnum.MAIN_MENU);
+                Constantes.naveUltimaSeleccion= PartidaGuardada.getInstance().getNaveSeleccionada();
+            }
+        });
+
 
 
 
@@ -154,7 +186,7 @@ public class PantallaGaraje extends Pantalla {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 if (opcion <= 0) {
-                    opcion= 2;
+                    opcion = 2;
 
                 } else {
                     opcion--;
@@ -173,17 +205,16 @@ public class PantallaGaraje extends Pantalla {
             public void changed(ChangeEvent event, Actor actor) {
 
 
-                if (opcion>=2)
-                {
-                    opcion=0;
+                if (opcion >= 2) {
+                    opcion = 0;
 
-                }else {
+                } else {
                     // System.out.println(opcion);
                     opcion++;
 
 
                 }
-                Constantes.naveUltimaSeleccion= opcion;
+                Constantes.naveUltimaSeleccion = opcion;
 
                 ScreenManager.getInstance().showScreen(ScreenEnum.GARAJE);
 
@@ -199,6 +230,7 @@ public class PantallaGaraje extends Pantalla {
         garajeStage.addActor(leftarrow);
         garajeStage.addActor(aceptar);
         garajeStage.addActor(barraVida);
+        garajeStage.addActor(atras);
         garajeStage.addActor(barraAtaque);
         garajeStage.addActor(barraCadencia);
         garajeStage.addActor(barraEscudo);

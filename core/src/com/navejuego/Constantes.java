@@ -37,7 +37,7 @@ public class Constantes {
     /**
      * Si esta a true fuerza a crear una nueva partida, aunque haya una creada, sobreescribiendola
      */
-    public static final boolean FORCE_FIRST_TIME_GAME_DATA = false;
+    public static boolean FORCE_FIRST_TIME_GAME_DATA = true;
 
     /**
      * Si esta a true se genera un ranking de prueba para todos los niveles

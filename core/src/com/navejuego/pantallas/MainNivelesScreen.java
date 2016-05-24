@@ -130,12 +130,15 @@ public class MainNivelesScreen extends Pantalla {
                     Constantes.selectedLevel = LevelManager.Nivel.NIVEL_2;
                     ScreenManager.getInstance().showScreen(ScreenEnum.GAME);
                 }else{
-                    System.out.println("Nivel 2 no desbloqueado");
+                    System.out.println("Nivel 2 bloqueado");
                     Skin uiSkin = new Skin(Gdx.files.internal("skin/uiskin.json"));
-                    Dialog d = new Dialog("Nivel 2 no desbloqueado",uiSkin);
-                    d.text("\n Acaba el nivel 1 para desbloquear este nivel! \n");
+                    Dialog d = new Dialog("Nivel 2 bloqueado",uiSkin);
+                    d.text(" Acaba el nivel 1\n para desbloquear\n este nivel! \n");
+                    d.setPosition(Gdx.graphics.getWidth() / 2 - Gdx.graphics.getWidth() / 3.7f, Gdx.graphics.getHeight() / 2 - d.getHeight() / 2);
                     d.button("Aceptar");
-                    d.show(nivelesStage);
+                    d.scaleBy(4, 3.5f);
+                    nivelesStage.addActor(d);
+
                 }
 
 
@@ -152,9 +155,11 @@ public class MainNivelesScreen extends Pantalla {
                     System.out.println("Nivel 3 no desbloqueado");
                     Skin uiSkin = new Skin(Gdx.files.internal("skin/uiskin.json"));
                     Dialog d = new Dialog("Nivel 3 no desbloqueado",uiSkin);
-                    d.text("\n Acaba el nivel 2 para desbloquear este nivel! \n");
+                    d.text(" Acaba el nivel 2\n para desbloquear\n este nivel! \n");
+                    d.setPosition(Gdx.graphics.getWidth() / 2 - Gdx.graphics.getWidth() / 3.7f, Gdx.graphics.getHeight() / 2 - d.getHeight() / 2);
                     d.button("Aceptar");
-                    d.show(nivelesStage);
+                    d.scaleBy(4, 3.5f);
+                    nivelesStage.addActor(d);
                 }
 
 
@@ -171,9 +176,11 @@ public class MainNivelesScreen extends Pantalla {
                     System.out.println("Nivel 4 no desbloqueado");
                     Skin uiSkin = new Skin(Gdx.files.internal("skin/uiskin.json"));
                     Dialog d = new Dialog("Nivel 4 no desbloqueado",uiSkin);
-                    d.text("\n Acaba el nivel 3 para desbloquear este nivel! \n");
+                    d.text("Acaba el nivel 3\npara desbloquear\neste nivel! \n");
+                    d.setPosition(Gdx.graphics.getWidth() / 2 - Gdx.graphics.getWidth() / 3.7f, Gdx.graphics.getHeight() / 2 - d.getHeight() / 2);
                     d.button("Aceptar");
-                    d.show(nivelesStage);
+                    d.scaleBy(4, 3.5f);
+                    nivelesStage.addActor(d);
                 }
 
 

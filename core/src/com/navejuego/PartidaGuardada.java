@@ -264,6 +264,10 @@ public class PartidaGuardada {
         return this.gameData.getBoolean("first",true);
     }
 
+    public boolean notfirstTime() {
+        return this.gameData.getBoolean("first",false);
+    }
+
     /**
      * Devuelve el máximo de putuaciones posible por niveles.
      * @return máximo putuaciones

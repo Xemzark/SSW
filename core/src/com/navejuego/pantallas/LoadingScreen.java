@@ -4,6 +4,8 @@ package com.navejuego.pantallas;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
@@ -22,6 +24,9 @@ public class LoadingScreen extends Pantalla {
 
     /** This is the label that we use to display some text on the screen. */
     private Label loading;
+    private BitmapFont font;
+    private SpriteBatch batch;
+
 
 
     public LoadingScreen() {
@@ -31,9 +36,12 @@ public class LoadingScreen extends Pantalla {
         skin = new Skin(Gdx.files.internal("skin/uiskin.json"));
 
         // Create some loading text using this skin file and position it on screen.
-        loading = new Label("Loading...", skin);
-        loading.setPosition(320 - loading.getWidth() / 2, 180 - loading.getHeight() / 2);
-        stage.addActor(loading);
+        font = new BitmapFont(Gdx.files.internal("otherfont/font.fnt"));
+        font.getData().setScale(1.5f,4);
+
+
+        batch = new SpriteBatch();
+
         GestorAssets.getInstance().create();
 
 
@@ -45,6 +53,8 @@ public class LoadingScreen extends Pantalla {
     public void render(float delta) {
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        batch.begin();
+
 
         // This is important. To load an asset from the asset manager you call update() method.
         // this method will return true if it has finished loading. Else it will return false.
@@ -57,9 +67,12 @@ public class LoadingScreen extends Pantalla {
         } else {
 
             int progress = (int) (GestorAssets.getInstance().retornarProgress() * 100);
-            loading.setText("Loading... " + progress + "%");
+            font.draw(batch, String.valueOf("Loading... " + progress + "%"), (Gdx.graphics.getWidth() / 2 - Gdx.graphics.getWidth()/3), Gdx.graphics.getHeight() / 2);
+
+
         }
 
+        batch.end();
         stage.act();
         stage.draw();
     }
