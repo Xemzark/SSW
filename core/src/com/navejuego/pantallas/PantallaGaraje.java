@@ -146,9 +146,9 @@ public class PantallaGaraje extends Pantalla {
                     d.text(texto);
 
 
-                    d.setPosition(Gdx.graphics.getWidth() / 2 - Gdx.graphics.getWidth() / 3.7f, Gdx.graphics.getHeight() / 2 - d.getHeight() / 2);
+                    d.setPosition(Gdx.graphics.getWidth() / 2 - Gdx.graphics.getWidth() / 3.9f, Gdx.graphics.getHeight() / 2 - d.getHeight() / 2);
                     d.button("Aceptar");
-                    d.scaleBy(0.5f * Gdx.graphics.getWidth()/360.f, 0.5f * Gdx.graphics.getHeight()/640.0f);
+                    d.scaleBy(1f * Gdx.graphics.getWidth()/360.f, 1f * Gdx.graphics.getHeight()/640.0f);
                     garajeStage.addActor(d);
 
 
