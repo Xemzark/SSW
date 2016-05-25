@@ -37,7 +37,7 @@ public class LoadingScreen extends Pantalla {
 
         // Create some loading text using this skin file and position it on screen.
         font = new BitmapFont(Gdx.files.internal("otherfont/font.fnt"));
-        font.getData().setScale(1.5f,4);
+        font.getData().setScale(0.35f*Gdx.graphics.getWidth()/360.0f,0.5f*Gdx.graphics.getHeight()/640.0f);
 
 
         batch = new SpriteBatch();
@@ -68,7 +68,6 @@ public class LoadingScreen extends Pantalla {
 
             int progress = (int) (GestorAssets.getInstance().retornarProgress() * 100);
             font.draw(batch, String.valueOf("Loading... " + progress + "%"), (Gdx.graphics.getWidth() / 2 - Gdx.graphics.getWidth()/3), Gdx.graphics.getHeight() / 2);
-
 
         }
 
