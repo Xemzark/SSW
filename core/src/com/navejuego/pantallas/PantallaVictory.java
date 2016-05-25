@@ -131,11 +131,10 @@ public class PantallaVictory extends Pantalla{
 
                 Skin uiSkin = new Skin(Gdx.files.internal("skin/uiskin.json"));
                 Dialog d = new Dialog("Recompensa!",uiSkin);
-                d.setPosition(Gdx.graphics.getWidth() / 2 - Gdx.graphics.getWidth()/3.7f, Gdx.graphics.getHeight() / 2- d.getHeight()/2);
-                d.button("Aceptar");
                 d.text(texto);
-                d.scaleBy(0.5f * Gdx.graphics.getWidth() / 360.f, 0.5f * Gdx.graphics.getHeight() / 640.0f);
-
+                d.setPosition(Gdx.graphics.getWidth() / 2 - Gdx.graphics.getWidth() / 3.9f, Gdx.graphics.getHeight() / 2 - d.getHeight() / 2);
+                d.button("Aceptar");
+                d.scaleBy(1f * Gdx.graphics.getWidth() / 360.f, 1f * Gdx.graphics.getHeight() / 640.0f);
                 victoryStage.addActor(d);
 
             }
