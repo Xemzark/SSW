@@ -54,7 +54,7 @@ public class Puntuacion extends Actor {
 
     public void draw (Batch batch)
     {
-        font.draw(batch, "PUNTOS", Gdx.graphics.getWidth() * 0.34f ,Gdx.graphics.getHeight() * 0.98f);
+        font.draw(batch, "PUNTOS", Gdx.graphics.getWidth() * 0.37f ,Gdx.graphics.getHeight() * 0.98f);
         font.draw(batch, this.puntuacion,  Gdx.graphics.getWidth() * 0.4f ,Gdx.graphics.getHeight() * 0.93f);
     }
 }
