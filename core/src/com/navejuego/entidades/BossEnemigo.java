@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.math.Vector2;
 import com.navejuego.Constantes;
 import com.navejuego.GestorAssets;
+import com.navejuego.Preferencias;
 import com.navejuego.entidades.patrones.LinealMovement;
 import com.navejuego.entidades.patrones.MovementPattern;
 import com.navejuego.entidades.ui.Barra;
@@ -197,7 +198,9 @@ public class BossEnemigo extends EnemigoEntity {
 
         if(vida < nextSegmentoVida && patternIndex < patternList.size()){
             animacionExplo();
-            GestorAssets.getInstance().getSound("explosion2.mp3").play();
+            if(Preferencias.getInstance().soundOn()) {
+                GestorAssets.getInstance().getSound("explosion2.mp3").play();
+            }
             movementPattern = patternList.get(patternIndex);
             nextSegmentoVida -= segmentoVida;
             patternIndex += 1;
